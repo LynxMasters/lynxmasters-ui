@@ -5,7 +5,6 @@ language: node_js
 node_js:
   - "6"
   - "8"
-  - "10"
 
 # Cache dependencies to speed up build
 cache:
