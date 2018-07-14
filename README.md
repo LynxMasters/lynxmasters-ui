@@ -1,5 +1,7 @@
 # lynxmasters-ui
 
+![Image](https://travis-ci.org/LynxMasters/lynxmasters-ui.svg?branch=master)
+
 ## Table of Contents
 - [Contributing](#contributing)
 - [Running Locally](#run-locally)
