@@ -6,7 +6,7 @@
         <div class="hero-body">
           <div class="container has-text-centered">
             <div class="column is-10 is-offset-1 is-centered">
-              <div class="title is-1">{{title}}</div>
+              <div class="title is-1 lynx-title">{{title}}</div>
             </div>
             <div class="column is-6 is-offset-3">
               <h2 class="subtitle">
@@ -26,10 +26,36 @@
       </section>
       <!-- End Header -->
 
-      <!-- Social Add-Ons -->
+      <!-- About Sticky Navigation -->
+      <nav class="">
+        <div class="tabs is-medium is-centered">
+          <ul>
+            <li class="is-active"><a>About</a></li>
+            <li><a>Social</a></li>
+            <li><a>Tech Stack</a></li>
+            <li><a>Team</a></li>
+            <li><a>Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+      <!-- End About Sticky Navigation -->
+
+      <!-- Purpose / About -->
       <section class="container">
         <div class="intro column is-8 is-offset-2">
           <h2 class="title">Perfect for people who want to share!</h2><hr>
+          <p class="subtitle">Vel fringilla est ullamcorper eget nulla facilisi. Nulla facilisi nullam vehicula ipsum a. Neque egestas congue quisque egestas diam in arcu cursus.</p>
+        </div>
+
+        <!-- Add other stuff here -->
+
+      </section>
+      <!-- End Purpose / About -->
+
+      <!-- Social Add-Ons -->
+      <section class="container">
+        <div class="intro column is-8 is-offset-2">
+          <h2 class="title">Customize Your Feed!</h2><hr>
           <p class="subtitle">Vel fringilla est ullamcorper eget nulla facilisi. Nulla facilisi nullam vehicula ipsum a. Neque egestas congue quisque egestas diam in arcu cursus.</p>
         </div>
         <div class="columns features">
@@ -122,31 +148,23 @@
           <h2 class="title">Our Team</h2><hr>
           <p class="subtitle">Vel fringilla est ullamcorper eget nulla facilisi. Nulla facilisi nullam vehicula ipsum a. Neque egestas congue quisque egestas diam in arcu cursus.</p>
         </div>
-        <div class="columns is-centered">
+        <div class="columns is-centered team">
           <div class="column is-4">
             <div class="card is-shady card-equal-height">
               <div class="card-image has-text-centered">
                 <!-- TEAM MEMBER IMAGE GOES HERE -->
                 <img src="https://randomuser.me/api/portraits/lego/4.jpg">
               </div>
-              <div class="card-content">
+              <div class="card-content member-desc">
                 <div class="content">
                   <h4 class="has-text-centered">Ian Arsenault</h4>
                   <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>
-                  <div class="field is-grouped">
-                    <p class="control">
-                      <a href="#">
-                        <i class="fab fa-github fa-2x"></i>
-                      </a>
-                    </p>
-                    <p class="control">
-                      <a href="#">
-                        <i class="fab fa-linkedin-in fa-2x"></i>
-                      </a>
-                    </p>
-                  </div>
                 </div>
               </div>
+              <footer class="card-footer">
+                <a href="#" class="card-footer-item"><i class="fab fa-github fa-2x"></i></a>
+                <a href="#" class="card-footer-item"><i class="fab fa-linkedin-in fa-2x"></i></a>
+              </footer>
             </div>
           </div>
           <div class="column is-4">
@@ -155,53 +173,36 @@
                 <!-- TEAM MEMBER IMAGE GOES HERE -->
                 <img src="https://randomuser.me/api/portraits/lego/2.jpg">
               </div>
-              <div class="card-content">
+              <div class="card-content member-desc">
                 <div class="content">
                   <h4 class="has-text-centered">Tyler Corwin</h4>
-                  <p>Ut venenatis tellus in metus vulputate. Amet consectetur adipiscing elit pellentesque. Sed arcu non odio euismod lacinia at quis risus. Faucibus turpis in eu mi bibendum neque egestas cmonsu songue. Phasellus vestibulum lorem
-                    sed risus.</p>
-                  <div class="field is-grouped">
-                    <p class="control">
-                      <a href="#">
-                        <i class="fab fa-github fa-2x"></i>
-                      </a>
-                    </p>
-                    <p class="control">
-                      <a href="#">
-                        <i class="fab fa-linkedin-in fa-2x"></i>
-                      </a>
-                    </p>
-                  </div>
+                  <p>Purus semper eget duis at sdfdsf sdfsdf sdf sdfsdfd stellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>
                 </div>
               </div>
+              <footer class="card-footer">
+                <a href="#" class="card-footer-item"><i class="fab fa-github fa-2x"></i></a>
+                <a href="#" class="card-footer-item"><i class="fab fa-linkedin-in fa-2x"></i></a>
+              </footer>
             </div>
           </div>
         </div>
-        <div class="columns is-centered">
+        <div class="columns is-centered team">
           <div class="column is-4">
             <div class="card is-shady card-equal-height">
               <div class="card-image has-text-centered">
                 <!-- TEAM MEMBER IMAGE GOES HERE -->
                 <img src="https://randomuser.me/api/portraits/lego/1.jpg">
               </div>
-              <div class="card-content">
+              <div class="card-content member-desc">
                 <div class="content">
                   <h4 class="has-text-centered">Jameson Arsenault</h4>
                   <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>
-                  <div class="field is-grouped">
-                    <p class="control">
-                      <a href="#">
-                        <i class="fab fa-github fa-2x"></i>
-                      </a>
-                    </p>
-                    <p class="control">
-                      <a href="#">
-                        <i class="fab fa-linkedin-in fa-2x"></i>
-                      </a>
-                    </p>
-                  </div>
                 </div>
               </div>
+              <footer class="card-footer">
+                <a href="#" class="card-footer-item"><i class="fab fa-github fa-2x"></i></a>
+                <a href="#" class="card-footer-item"><i class="fab fa-linkedin-in fa-2x"></i></a>
+              </footer>
             </div>
           </div>
           <div class="column is-4">
@@ -210,34 +211,37 @@
                 <!-- TEAM MEMBER IMAGE GOES HERE -->
                 <img src="https://randomuser.me/api/portraits/lego/5.jpg">
               </div>
-              <div class="card-content">
+              <div class="card-content member-desc">
                 <div class="content">
                   <h4 class="has-text-centered">Nicholas Montalbano</h4>
-                  <p>Ut venenatis tellus in metus vulputate. Amet consectetur adipiscing elit pellentesque. Sed arcu non odio euismod lacinia at quis risus. Faucibus turpis in eu mi bibendum neque egestas cmonsu songue. Phasellus vestibulum lorem
-                    sed risus.</p>
-                  <div class="field is-grouped">
-                    <p class="control">
-                      <a href="#">
-                        <i class="fab fa-github fa-2x"></i>
-                      </a>
-                    </p>
-                    <p class="control">
-                      <a href="#">
-                        <i class="fab fa-linkedin-in fa-2x"></i>
-                      </a>
-                    </p>
-                  </div>
+                  <p>Purus semper eget duis at sdfdsf sdfsdf sdf sdfsdfd stellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>
                 </div>
               </div>
+              <footer class="card-footer">
+                <a href="#" class="card-footer-item"><i class="fab fa-github fa-2x"></i></a>
+                <a href="#" class="card-footer-item"><i class="fab fa-linkedin-in fa-2x"></i></a>
+              </footer>
             </div>
           </div>
         </div>
       </section>
       <!-- End Team -->
+
+      <!-- Team -->
+      <section class="container">
+        <div class="intro column is-8 is-offset-2">
+          <h2 class="title">Contact Us!</h2><hr>
+          <p class="subtitle">Vel fringilla est ullamcorper eget nulla facilisi. Nulla facilisi nullam vehicula ipsum a. Neque egestas congue quisque egestas diam in arcu cursus.</p>
+        </div>
+
+        <!-- Add Contact Form here -->
+
+      </section>
     </div>
 </template>
 
 <script>
+
   export default {
     name: 'Landing',
     data () {
@@ -252,4 +256,11 @@
   .card-content {
     padding: 1.5rem 1.5rem 0 1.5rem;
   }
+  @media screen and (min-width: 769px) {
+    .hero.is-large .hero-body {
+      padding-bottom: 16rem;
+      padding-top: 16rem;
+    }
+  }
+
 </style>

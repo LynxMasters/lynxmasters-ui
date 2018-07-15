@@ -64,3 +64,14 @@ hr {
   -o-animation: bounce 2s infinite;
   animation: bounce 2s infinite;
 }
+.member-desc {
+  display: flex;
+}
+.team .column .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.team .column .card-footer {
+  margin-top: auto;
+}
