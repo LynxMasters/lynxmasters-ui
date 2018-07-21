@@ -230,7 +230,6 @@
       <!-- Contact Us -->
       <contact-us></contact-us>
 
-      <!-- Add Footer Component Here -->
     </div>
 </template>
 
