@@ -64,6 +64,14 @@
       this.checkUser()
     },
     methods: {
+      userVerified() {
+        this.$toast.open({
+          duration: 4500,
+          message: `You're all set to login!`,
+          position: 'is-top',
+          type: 'is-success'
+        })
+      },
       checkVerification() {
         this.verified = !this.verified
       },
@@ -78,6 +86,10 @@
         setTimeout(function() {
           vm.checkVerification()
         }, 2000)
+        setTimeout(function () {
+          vm.userVerified()
+          vm.$router.push({ name: "Login"})
+        }, 3500)
       },
     },
     beforeMount(){
