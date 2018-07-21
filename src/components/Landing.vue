@@ -227,22 +227,18 @@
       </section>
       <!-- End Team -->
 
-      <!-- Team -->
-      <section class="container">
-        <div class="intro column is-8 is-offset-2">
-          <h2 class="title">Contact Us!</h2><hr>
-          <p class="subtitle">Vel fringilla est ullamcorper eget nulla facilisi. Nulla facilisi nullam vehicula ipsum a. Neque egestas congue quisque egestas diam in arcu cursus.</p>
-        </div>
+      <!-- Contact Us -->
+      <contact-us></contact-us>
 
-        <!-- Add Contact Form here -->
-
-      </section>
     </div>
 </template>
 
 <script>
-
+  import ContactUs from '@/components/ContactUs.vue'
   export default {
+    components: {
+      ContactUs
+    },
     name: 'Landing',
     data () {
       return {
