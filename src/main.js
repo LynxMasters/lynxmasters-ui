@@ -3,10 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import './assets/style/app.scss'
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
 import Bulma from 'bulma/css/bulma.css'
+import './assets/style/app.scss'
 
 Vue.use(Buefy)
 
