@@ -181,6 +181,23 @@
       }
     },
     methods: {
+      checkEmailAlert() {
+        this.$snackbar.open({
+          message: 'An email has been sent to ' + this.user.email + ' for verification',
+          type: 'is-warning',
+          position: 'is-top',
+          actionText: 'GOT IT!',
+          indefinite: true
+        })
+      },
+      errorAlert() {
+        this.$toast.open({
+          duration: 5000,
+          message: `There was a problem saving!`,
+          position: 'is-bottom',
+          type: 'is-danger'
+        })
+      },
       checkFormFields:  _.debounce(function () {
         if (this.user.firstName) {
           this.error.firstName = ''
@@ -254,11 +271,10 @@
         await UserService.addUser(this.user).then(res => {
           if (res.data.errors) {
             this.errors = res.data.errors
-            console.log(this.errors)
-//            this.errorMsg('Please fill out all form fields')
+            this.errorAlert()
           } else {
-//            this.userSaved()
-            this.$router.push({name: 'Login'})
+            this.checkEmailAlert()
+            this.$router.push({name: 'Landing'})
           }
         })
       }
