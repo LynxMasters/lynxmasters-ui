@@ -1,7 +1,7 @@
 <template>
   <!-- Contact Us -->
   <section class="container">
-    <div class="intro column is-8 is-offset-2">
+    <div class="intro column is-8 is-offset-2" id="contactSection">
       <h2 class="title">Contact Us!</h2><hr>
       <p class="subtitle">Have questions? Have suggestions to make the platform better?</p>
       <p class="subtitle">Shoot us an email!</p>
