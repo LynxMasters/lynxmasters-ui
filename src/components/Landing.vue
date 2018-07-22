@@ -230,19 +230,70 @@
       <!-- Contact Us -->
       <contact-us></contact-us>
 
+      <!-- Floating Action Button -->
+      <fab
+        :position="position"
+        :bg-color="bgColor"
+        :actions="fabActions"
+        @scrollToTop="scrollToTop"
+        @login="goToLoginPage"
+        @signUp="goToSignUpPage"
+        @contactUs="scrollToContactUs"
+      ></fab>
+
     </div>
 </template>
 
 <script>
   import ContactUs from '@/components/ContactUs.vue'
+  import fab from 'vue-fab'
   export default {
     components: {
-      ContactUs
+      ContactUs,
+      fab
     },
     name: 'Landing',
     data () {
       return {
-        title: 'Lynxmasters'
+        title: 'Lynxmasters',
+        bgColor: '#778899',
+        position: 'bottom-right',
+        fabActions: [
+          {
+            name: 'scrollToTop',
+            tooltip: 'Take me up!',
+            icon: 'arrow_upward'
+          },
+          {
+            name: 'login',
+            tooltip: 'Login!',
+            icon: 'account_circle'
+          },
+          {
+            name: 'signUp',
+            tooltip: 'Sign Up!',
+            icon: 'person_add'
+          },
+          {
+            name: 'contactUs',
+            tooltip: 'Contact Us!',
+            icon: 'mail'
+          }
+        ]
+      }
+    },
+    methods:{
+      scrollToTop(){
+        console.log('Scroll to top');
+      },
+      goToLoginPage(){
+        console.log('Going to login page');
+      },
+      goToSignUpPage(){
+        console.log('Scroll to top');
+      },
+      scrollToContactUs(){
+        console.log('scrolling to contact us');
       }
     }
   }
