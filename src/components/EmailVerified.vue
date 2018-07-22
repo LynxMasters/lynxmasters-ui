@@ -25,7 +25,11 @@
             </div>
             <div>
               <div v-if="verified">
-                <p>Thank you {{ user.firstName + ' ' +  user.lastName }}!</p>
+                <p>
+                  <span class="tag is-warning is-large animated pulse">
+                    Thank you {{ user.firstName + ' ' +  user.lastName }}!
+                  </span>
+                </p>
               </div>
             </div>
           </div>
