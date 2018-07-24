@@ -51,10 +51,6 @@
                 </div>
                 <div class="field">
                   <label class="label">Email</label>
-                  <div class="control has-icons-left has-icons-right">
-                    <!-- v-bind:class="{ 'is-danger': errors.email, 'is-danger': error.email}"
-                         v-bind:class="['{{errors.email || error.email}}' ? 'is-danger' : '']"
-                    -->
                     <input class="input"
                            type="email"
                            placeholder="joey@google.com"
