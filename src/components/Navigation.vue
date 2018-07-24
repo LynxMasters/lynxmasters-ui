@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar is-transparent">
+  <nav class="navbar is-transparent" id="navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="#">
         <img src="" alt="">

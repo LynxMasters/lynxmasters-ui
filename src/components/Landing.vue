@@ -247,10 +247,12 @@
 <script>
   import ContactUs from '@/components/ContactUs.vue'
   import fab from 'vue-fab'
+  import VueScrollTo from 'vue-scrollto'
   export default {
     components: {
       ContactUs,
-      fab
+      fab,
+      VueScrollTo
     },
     name: 'Landing',
     data () {
@@ -284,16 +286,16 @@
     },
     methods:{
       scrollToTop(){
-        console.log('Scroll to top');
+        VueScrollTo.scrollTo('#navigation', 2000);
       },
       goToLoginPage(){
-        console.log('Going to login page');
+        this.$router.push({name: 'Login'});
       },
       goToSignUpPage(){
-        console.log('Scroll to top');
+        this.$router.push({name: 'Signup'});
       },
       scrollToContactUs(){
-        console.log('scrolling to contact us');
+        VueScrollTo.scrollTo('#contactSection', 2000);
       }
     }
   }
