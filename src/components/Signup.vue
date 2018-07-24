@@ -51,6 +51,7 @@
                 </div>
                 <div class="field">
                   <label class="label">Email</label>
+                  <div class="control has-icons-left has-icons-right">
                     <input class="input"
                            type="email"
                            placeholder="joey@google.com"
