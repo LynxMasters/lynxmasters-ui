@@ -5,6 +5,7 @@ import Login from '@/components/Login'
 import Signup from '@/components/Signup'
 import Profile from '@/components/Profile'
 import EmailVerified from '@/components/EmailVerified'
+import LinkAccounts from '@/components/LinkAccounts'
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ export default new Router({
       path: '/verification',
       name: 'EmailVerified',
       component: EmailVerified
+    },
+    {
+      path: '/LinkAccounts',
+      name: 'LinkAccounts',
+      component: LinkAccounts
     }
   ]
 })
