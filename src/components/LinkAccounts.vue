@@ -74,13 +74,13 @@
     watch: {},
     computed: {},
     methods:{
-      twitter: function() {
+      twitter() {
         window.location = 'http://localhost:9999/auth/twitter'
       },
-      reddit: function() {
+      reddit() {
         window.location = 'http://localhost:9999/auth/reddit'
       },
-      twitch: function() {
+      twitch() {
         window.location = 'http://localhost:9999/auth/twitch'
       }
     }
