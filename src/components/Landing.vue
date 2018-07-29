@@ -10,11 +10,9 @@
             </div>
             <div class="column is-6 is-offset-3">
               <h2 class="subtitle">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Neque laoreet suspendisse interdum consectetur libero id faucibus nisl. Amet mauris
-                commodo quis imperdiet massa tincidunt.
+                Welcome to Lynxmasters! Here we offer a centralized location to access almost all of your favorite social media outlets. We give you the option of aggregating them all in one spot, which makes life and your social media scrolling easier on you!
               </h2>
-              <button class="button is-large is-primary">Sign Up</button>
+              <button class="button is-large is-primary" v-on:click="goToSignUpPage()">Sign Up</button>
             </div>
           </div>
         </div>
@@ -25,16 +23,17 @@
         </div>
       </section>
       <!-- End Header -->
+      <div id="scroller-anchor"></div>
 
       <!-- About Sticky Navigation -->
-      <nav class="">
+      <nav class="navbar-content" id="sectionsNav" v-bind:class="{ 'sticky': isActive }">
         <div class="tabs is-medium is-centered">
           <ul>
-            <li class="is-active"><a>About</a></li>
-            <li><a>Social</a></li>
-            <li><a>Tech Stack</a></li>
-            <li><a>Team</a></li>
-            <li><a>Contact</a></li>
+            <li @click="selected = 1" :class="{'is-active':selected == 1}"><a v-scroll-to="{element: '#aboutSection', duration: 2000}">About</a></li>
+            <li @click="selected = 2" :class="{'is-active':selected == 2}"><a v-scroll-to="{element: '#socialSection', duration: 2000}">Social</a></li>
+            <li @click="selected = 3" :class="{'is-active':selected == 3}"><a v-scroll-to="{element: '#techStackSection', duration: 2000}">Tech Stack</a></li>
+            <li @click="selected = 4" :class="{'is-active':selected == 4}"><a v-scroll-to="{element: '#teamSection', duration: 2000}">Team</a></li>
+            <li @click="selected = 5" :class="{'is-active':selected == 5}"><a v-scroll-to="{element: '#contactSection', duration: 2000}">Contact</a></li>
           </ul>
         </div>
       </nav>
@@ -42,7 +41,7 @@
 
       <!-- Purpose / About -->
       <section class="container">
-        <div class="intro column is-8 is-offset-2">
+        <div class="intro column is-8 is-offset-2" id="aboutSection">
           <h2 class="title">Perfect for people who want to share!</h2><hr>
           <p class="subtitle">Vel fringilla est ullamcorper eget nulla facilisi. Nulla facilisi nullam vehicula ipsum a. Neque egestas congue quisque egestas diam in arcu cursus.</p>
         </div>
@@ -54,7 +53,7 @@
 
       <!-- Social Add-Ons -->
       <section class="container">
-        <div class="intro column is-8 is-offset-2">
+        <div class="intro column is-8 is-offset-2" id="socialSection">
           <h2 class="title">Customize Your Feed!</h2><hr>
           <p class="subtitle">Vel fringilla est ullamcorper eget nulla facilisi. Nulla facilisi nullam vehicula ipsum a. Neque egestas congue quisque egestas diam in arcu cursus.</p>
         </div>
@@ -108,7 +107,7 @@
 
       <!-- Tech Stack -->
       <section class="container">
-        <div class="intro column is-8 is-offset-2">
+        <div class="intro column is-8 is-offset-2" id="techStackSection">
           <h2 class="title">Tech Stack</h2><hr>
           <p class="subtitle">Vel fringilla est ullamcorper eget nulla facilisi. Nulla facilisi nullam vehicula ipsum a. Neque egestas congue quisque egestas diam in arcu cursus.</p>
         </div>
@@ -144,7 +143,7 @@
 
       <!-- Team -->
       <section class="container">
-        <div class="intro column is-8 is-offset-2">
+        <div class="intro column is-8 is-offset-2" id="teamSection">
           <h2 class="title">Our Team</h2><hr>
           <p class="subtitle">Vel fringilla est ullamcorper eget nulla facilisi. Nulla facilisi nullam vehicula ipsum a. Neque egestas congue quisque egestas diam in arcu cursus.</p>
         </div>
@@ -258,8 +257,11 @@
     data () {
       return {
         title: 'Lynxmasters',
+        selected: undefined,
         bgColor: '#778899',
         position: 'bottom-right',
+        isActive: false,
+        sticky: '',
         fabActions: [
           {
             name: 'scrollToTop',
@@ -296,7 +298,23 @@
       },
       scrollToContactUs(){
         VueScrollTo.scrollTo('#contactSection', 2000);
+      },
+      handleScroll(){
+        this.sticky =  document.getElementById('sectionsNav').offsetTop
+        let anchor = document.getElementById('scroller-anchor').offsetTop
+        let anchorSpace = window.pageYOffset - anchor
+        if (window.pageYOffset > this.sticky && (anchorSpace > 0)) {
+          this.isActive = true;
+        } else {
+          this.isActive = false;
+        }
       }
+    },
+    created () {
+      window.addEventListener('scroll', this.handleScroll);
+    },
+    destroyed () {
+      window.removeEventListener('scroll', this.handleScroll);
     }
   }
 </script>
