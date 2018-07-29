@@ -7,6 +7,7 @@ import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
 import Bulma from 'bulma/css/bulma.css'
 import './assets/style/app.scss'
+import store from './store/store'
 
 Vue.use(Buefy)
 
@@ -16,6 +17,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

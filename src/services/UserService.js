@@ -7,5 +7,7 @@ export default {
   checkUserIdentifiers(params) {
     return Api().post('users/identifiers', {params})
   },
-
+  uploadAvatar(params) {
+    return Api().post('uploads', params, { headers: { 'Content-Type': 'multipart/form-data' } })
+  }
 }
