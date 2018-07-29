@@ -26,13 +26,11 @@ export default new Vuex.Store({
   },
   mutations: {
     createAccount(state, payload) {
-      console.log('HIT CREATE ACCOUNT STORE!')
       state.user.username = payload.username
       state.user.email = payload.email
       state.user.password = payload.password
     },
     additionalInfo(state, payload) {
-      console.log('HIT ADDITIONAL INFO STORE!')
       state.user.firstName = payload.firstName
       state.user.lastName = payload.lastName
       state.user.address = payload.address
@@ -43,7 +41,6 @@ export default new Vuex.Store({
 
     },
     profileAvatar(state, payload) {
-      console.log('HIT PROFILE AVATAR!')
       console.log("payload.avatar == " + payload.avatar)
       state.user.avatar = payload.avatar
     }
