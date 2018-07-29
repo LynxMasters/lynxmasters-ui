@@ -10,7 +10,7 @@
             </div>
             <div class="column is-6 is-offset-3">
               <h2 class="subtitle">
-                Welcome to Lynxmasters! Here we offer a centralized location to access almost all of your favorite social media outlets. We give you the option of aggregating them all in one spot, which makes life and your social media scrolling easier on you!
+                Welcome to Lynxmasters! Here we offer a centralized location to access almost all of your favorite social media outlets. We give you the option of aggregating them all in one spot, which makes life and your social media scrolling easier!
               </h2>
               <button class="button is-large is-primary" v-on:click="goToSignUpPage()">Sign Up</button>
             </div>
@@ -43,7 +43,7 @@
       <section class="container">
         <div class="intro column is-8 is-offset-2" id="aboutSection">
           <h2 class="title">Perfect for people who want to share!</h2><hr>
-          <p class="subtitle">Vel fringilla est ullamcorper eget nulla facilisi. Nulla facilisi nullam vehicula ipsum a. Neque egestas congue quisque egestas diam in arcu cursus.</p>
+          <p class="subtitle">Lynxmasters is perfect if you like sharing on multiple social media platforms, or even just one. It is also perfect for people who want to consolidate all their social media in once spot. We are working towards adding the option to link even more social media platforms.</p>
         </div>
 
         <!-- Add other stuff here -->
@@ -55,7 +55,7 @@
       <section class="container">
         <div class="intro column is-8 is-offset-2" id="socialSection">
           <h2 class="title">Customize Your Feed!</h2><hr>
-          <p class="subtitle">Vel fringilla est ullamcorper eget nulla facilisi. Nulla facilisi nullam vehicula ipsum a. Neque egestas congue quisque egestas diam in arcu cursus.</p>
+          <p class="subtitle">Only want to see specific feeds? We've got you covered with feed customization based upon what feeds you want to see.</p>
         </div>
         <div class="columns features">
           <div class="column is-4">
@@ -66,7 +66,7 @@
               <div class="card-content">
                 <div class="content">
                   <h4 class="has-text-centered">Twitter</h4>
-                  <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>
+                  <p>Twitter is an online news and social networking service on which users post and interact with messages known as "tweets".</p>
                   <p><a href="#">Learn more</a></p>
                 </div>
               </div>
@@ -80,8 +80,7 @@
               <div class="card-content">
                 <div class="content">
                   <h4 class="has-text-centered">Reddit</h4>
-                  <p>Ut venenatis tellus in metus vulputate. Amet consectetur adipiscing elit pellentesque. Sed arcu non odio euismod lacinia at quis risus. Faucibus turpis in eu mi bibendum neque egestas cmonsu songue. Phasellus vestibulum lorem
-                    sed risus.</p>
+                  <p>Reddit is home to thousands of communities, endless conversation, and authentic human connection. Whether you're into breaking news, sports, TV fan theories, or a never-ending stream of the internet's cutest animals, there's a community on Reddit for you.</p>
                   <p><a href="#">Learn more</a></p>
                 </div>
               </div>
@@ -95,7 +94,8 @@
               <div class="card-content">
                 <div class="content">
                   <h4 class="has-text-centered">Twitch</h4>
-                  <p>Imperdiet dui accumsan sit amet nulla facilisi morbi. Fusce ut placerat orci nulla pellentesque dignissim enim. Libero id faucibus nisl tincidunt eget nullam. Commodo viverra maecenas accumsan lacus vel facilisis.</p>
+                  <p>The community where millions of people and thousands of interests collide in a beautiful explosion of video games, pop culture, and conversation. With chat built into every stream, you don’t just watch on Twitch, you’re a part of the show. From classic tv show marathons to esports tournaments, if you can imagine it, it’s probably live on Twitch right now.
+                  </p>
                   <p><a href="#">Learn more</a></p>
                 </div>
               </div>
@@ -109,7 +109,7 @@
       <section class="container">
         <div class="intro column is-8 is-offset-2" id="techStackSection">
           <h2 class="title">Tech Stack</h2><hr>
-          <p class="subtitle">Vel fringilla est ullamcorper eget nulla facilisi. Nulla facilisi nullam vehicula ipsum a. Neque egestas congue quisque egestas diam in arcu cursus.</p>
+          <p class="subtitle">Here at Lynxmasters we are interested in using unique technology to make your experience the best it could possibly be. Checkout the technologies we are leveraging to bring you the best Lynxmasters experience.</p>
         </div>
         <div class="columns is-centered">
           <div class="column is-2">
@@ -145,7 +145,7 @@
       <section class="container">
         <div class="intro column is-8 is-offset-2" id="teamSection">
           <h2 class="title">Our Team</h2><hr>
-          <p class="subtitle">Vel fringilla est ullamcorper eget nulla facilisi. Nulla facilisi nullam vehicula ipsum a. Neque egestas congue quisque egestas diam in arcu cursus.</p>
+          <p class="subtitle">The Lynxmasters team is stacked with young up and coming developers. They all have a passion for bringing you the best social media experience. Each team member is well rounded, but has their own expertise they bring to the platform.</p>
         </div>
         <div class="columns is-centered team">
           <div class="column is-4">
