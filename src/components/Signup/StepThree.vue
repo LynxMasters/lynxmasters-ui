@@ -77,7 +77,6 @@
     },
     methods: {
       uploadImage(e) {
-        this.user.avatar = this.tempUser.firstName + this.tempUser.lastName +'.';
         let files = e.target.files
         if(!files[0]) {
           return
