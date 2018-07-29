@@ -1,72 +1,107 @@
 <template>
-  <section>
-    <div class="card">
-      <header class="card-header">
-        <p class="card-header-title">
-          Component
-        </p>
-        <a href="#" class="card-header-icon" aria-label="more options">
-      <span class="icon">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
-      </span>
-        </a>
-      </header>
-      <div class="card-content">
-        <div class="content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-          <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
-          <br>
-          <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+  <div class="signup-steps">
+    <section>
+      <div class="columns is-centered">
+        <div class="column is-half">
+          <div class="card">
+            <div class="field">
+              <img :src="imageSrc ? imageSrc : avatar" class="image">
+              <input @change="uploadImage"
+                     type="file"
+                     name="photo"
+                     accept="image/*"
+                     ref="fileInput"
+                     class="button is-fullwidth is-info">
+            </div>
+          </div>
         </div>
       </div>
-      <footer class="card-footer">
-        <a href="#" class="card-footer-item">Save</a>
-        <a href="#" class="card-footer-item">Edit</a>
-        <a href="#" class="card-footer-item">Delete</a>
-      </footer>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>
 
 
 <script>
-    export default {
-      name: "StepThree",
-      props: ['clickedNext', 'currentStep'],
-      data() {
-        return {
+  import {validationMixin} from 'vuelidate'
+  import {required, email, sameAs, minLength } from 'vuelidate/lib/validators'
+  import defaultImage from '@/assets/images/default-avatar.png'
+  import UserService from "../../services/UserService";
 
-        }
-      },
-      validations: {
-      },
-      watch: {
-        $v: {
-          handler: function (val) {
-            if(!val.$invalid) {
-              this.$emit('can-continue', {value: true});
-            } else {
-              this.$emit('can-continue', {value: false});
-            }
-          },
-          deep: true
+  export default {
+    name: "StepThree",
+    props: ['clickedNext', 'currentStep'],
+    mixins: [validationMixin],
+    data() {
+      return {
+        user: {
+          avatar: ''
         },
-        clickedNext(val) {
-          this.$v.user.$touch();
-          // console.log(val)
-          // if(val === true) {
-          //   this.$v.user.$touch();
-          // }
-        }
+        tempUser: {},
+        imageSrc: ''
+      }
+    },
+    validations: {
+      avatar: {
+        required
+      }
+    },
+    computed: {
+      avatar() {
+        return this.user.avatar ? `/static/uploads/${this.user.avatar}` : defaultImage
+      }
+    },
+    watch: {
+      $v: {
+        handler: function (val) {
+          if (!val.$invalid) {
+            this.$emit('can-continue', {value: true});
+          } else {
+            this.$emit('can-continue', {value: false});
+          }
+        },
+        deep: true
       },
-      mounted() {
-        if(!this.$v.$invalid) {
-          this.$emit('can-continue', {value: true});
-        } else {
-          this.$emit('can-continue', {value: false});
+      clickedNext(val) {
+        if (val === true) {
+          this.$v.user.$touch();
         }
       }
+    },
+    mounted() {
+      this.tempUser = this.$store.getters.getUser
+      if (!this.$v.$invalid) {
+        this.$emit('can-continue', {value: true});
+      } else {
+        this.$emit('can-continue', {value: false});
+      }
+    },
+    methods: {
+      uploadImage(e) {
+        this.user.avatar = this.tempUser.firstName + this.tempUser.lastName +'.';
+        let files = e.target.files
+        if(!files[0]) {
+          return
+        }
+        let data = new FormData()
+        data.append('user', this.tempUser.firstName + this.tempUser.lastName)
+        data.append('image', files[0])
+        let reader = new FileReader()
+        let fileName = files[0].name
+        reader.onload = (e) => {
+          this.user.avatar = `${this.user.firstName + this.user.lastName}.${fileName.substr(fileName.lastIndexOf('.') + 1)}`
+          this.imageSrc = e.target.result
+        }
+
+        UserService.uploadAvatar(data).then(res => {
+          reader.readAsDataURL(files[0])
+          this.user.avatar = res.data.filename
+          this.$store.commit('profileAvatar', this.user)
+        }).catch(error => {
+          console.log(error)
+        })
+      }
     }
+  }
 </script>
 
 <style scoped>

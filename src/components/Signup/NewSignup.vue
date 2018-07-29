@@ -4,7 +4,7 @@
       <div class="columns">
         <div class="column is-8 is-offset-2">
           <horizontal-stepper :steps="signupSteps" @completed-step="completeStep"
-                              @active-step="isStepActive" @stepper-finished="alert"
+                              @active-step="isStepActive" @stepper-finished="addUser"
           >
           </horizontal-stepper>
         </div>
@@ -15,6 +15,7 @@
 
 <script>
     import HorizontalStepper from 'vue-stepper';
+    import UserService from "../../services/UserService";
 
     // This components will have the content for each stepper step.
     import StepOne from './StepOne.vue';
@@ -29,6 +30,7 @@
       },
       data(){
         return {
+          tempUser: {},
           signupSteps: [
             {
               icon: 'mail',
@@ -58,13 +60,16 @@
             {
               icon: 'check',
               name: 'fourth',
-              title: 'Completed',
-              subtitle: 'Signup is complete!',
+              title: 'Completion',
+              subtitle: 'Confirm your details!',
               component: StepFour,
               completed: true
             }
           ]
         }
+      },
+      mounted() {
+        this.tempUser = this.$store.getters.getUser
       },
       methods: {
         // Executed when @completed-step event is triggered
@@ -86,8 +91,33 @@
           })
         },
         // Executed when @stepper-finished event is triggered
-        alert(payload) {
-          alert('end')
+        signupComplete() {
+          this.$snackbar.open({
+            message: 'An email has been sent to ' + this.tempUser.email + ' for verification',
+            type: 'is-warning',
+            position: 'is-top',
+            actionText: 'GOT IT!',
+            indefinite: true
+          })
+        },
+        errorAlert() {
+          this.$toast.open({
+            duration: 5000,
+            message: `There was a problem saving!`,
+            position: 'is-bottom',
+            type: 'is-danger'
+          })
+        },
+        async addUser() {
+          await UserService.addUser(this.tempUser).then(res => {
+            if (res.data.errors) {
+              this.errors = res.data.errors
+              this.errorAlert()
+            } else {
+              this.signupComplete()
+              this.$router.push({name: 'Landing'})
+            }
+          })
         }
       }
     }

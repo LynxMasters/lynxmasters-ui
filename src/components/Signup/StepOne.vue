@@ -1,5 +1,5 @@
 <template>
-  <div style="padding: 2rem 3rem; text-align: left;">
+  <div class="signup-steps">
     <div class="field">
       <label class="label">Username</label>
       <div class="control">
@@ -26,7 +26,6 @@
         <input :class="['input', ($v.user.password.$error || !$v.user.password.minLength) ? 'is-danger' : '']"
                type="password"
                placeholder="supersecretpassword"
-               name="password"
                v-model.lazy="user.password">
         <span class="icon is-small is-left">
           <i class="fas  fa-unlock-alt"></i>
@@ -46,7 +45,6 @@
         <input :class="['input', ($v.user.confirmPassword.$error) ? 'is-danger' : '']"
                type="password"
                placeholder="supersecretpassword"
-               name="confirmPassword"
                v-model="user.confirmPassword">
         <span class="icon is-small is-left">
           <i class="fas  fa-unlock-alt"></i>
@@ -99,6 +97,7 @@
         $v: {
           handler: function (val) {
             if(!val.$invalid) {
+              this.updateUserInfo()
               this.$emit('can-continue', {value: true});
             } else {
               this.$emit('can-continue', {value: false});
@@ -107,7 +106,6 @@
           deep: true
         },
         clickedNext(val) {
-          console.log(val)
           if(val === true) {
             this.$v.user.$touch();
           }
@@ -118,6 +116,11 @@
           this.$emit('can-continue', {value: true});
         } else {
           this.$emit('can-continue', {value: false});
+        }
+      },
+      methods: {
+        updateUserInfo() {
+          this.$store.commit('createAccount', this.user)
         }
       }
     }
