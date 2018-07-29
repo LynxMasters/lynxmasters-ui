@@ -41,7 +41,6 @@ export default new Vuex.Store({
 
     },
     profileAvatar(state, payload) {
-      console.log("payload.avatar == " + payload.avatar)
       state.user.avatar = payload.avatar
     }
   }
