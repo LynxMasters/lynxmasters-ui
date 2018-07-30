@@ -75,13 +75,13 @@
     computed: {},
     methods:{
       twitter() {
-        window.location = 'http://localhost:9999/auth/twitter'
+        window.location = 'http://localhost:8081/auth/twitter'
       },
       reddit() {
-        window.location = 'http://localhost:9999/auth/reddit'
+        window.location = 'http://localhost:8081/auth/reddit'
       },
       twitch() {
-        window.location = 'http://localhost:9999/auth/twitch'
+        window.location = 'http://localhost:8081/auth/twitch'
       }
     }
   }
