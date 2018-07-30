@@ -5,11 +5,15 @@ import App from './App'
 import router from './router'
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
+import VueScrollTo from 'vue-scrollto'
+import scrollSpy from 'vue2-scrollspy';
 import Bulma from 'bulma/css/bulma.css'
 import './assets/style/app.scss'
 import store from './store/store'
 
 Vue.use(Buefy)
+Vue.use(scrollSpy)
+Vue.use(VueScrollTo)
 
 Vue.config.productionTip = false
 

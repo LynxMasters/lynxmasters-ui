@@ -75,3 +75,12 @@ hr {
 .team .column .card-footer {
   margin-top: auto;
 }
+.sticky {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  border-top: 0;
+  background-color: white;
+}
