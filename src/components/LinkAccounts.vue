@@ -75,8 +75,10 @@
     beforeRouteEnter(to, from, next) {
       if(Object.keys(to.query).length !== 0) { //if the url has query (?query)
         next(vm => {
-         vm.code = to.query.code
+         vm.code = to.query.code //reddit
+         vm.token = to.query.token //twitch
          console.log(vm.code)
+         console.log(vm.token)
          OuathService.authReddit(vm.code).then(res => {
           console.log(res);
         })
@@ -93,11 +95,11 @@
         window.location = ''
       },
       reddit() {
-        window.location = 'https://www.reddit.com/api/v1/authorize?client_id=h9NwYUZGn65RJw&response_type=code&state=fdsfsdfasff&redirect_uri=http://localhost:8080/LinkAccounts&duration=permanent&scope=identity,edit,flair,history,modconfig,modflair,modlog,modposts,modwiki,mysubreddits,privatemessages,read,report,save,submit,subscribe,vote'
+        window.location = 'https://www.reddit.com/api/v1/authorize?client_id=h9NwYUZGn65RJw&response_type=code&state=fdsfsdfasff&redirect_uri=http://localhost:8080/LinkAccounts&scope=identity,edit,flair,history,modconfig,modflair,modlog,modposts,modwiki,mysubreddits,privatemessages,read,report,save,submit,subscribe,vote'
 
       },
       twitch() {
-        window.location = ''
+        window.location = 'https://id.twitch.tv/oauth2/authorize?client_id=b83413k7rg3fstv11tx5v7elta4t6l&redirect_uri=http://localhost:8080/LinkAccounts&response_type=token&scope=user_read+viewing_activity_read+openid&force_verify=true'
       }
     }
   }
