@@ -64,24 +64,40 @@
 
 <script>
   // import services here...
-  import UserService from '@/services/UserService'
-
+  import OuathService from '@/services/Oauth'
+  
   export default {
     name: 'LinkAccounts',
-    data() {
-      return {}
+    data: {
+      code: ''
+      
+    },
+    beforeRouteEnter(to, from, next) {
+      if(Object.keys(to.query).length !== 0) { //if the url has query (?query)
+        next(vm => {
+         vm.code = to.query.code
+         console.log(vm.code)
+         OuathService.authReddit(vm.code).then(res => {
+          console.log(res);
+        })
+       })
+      }
+    next()
     },
     watch: {},
     computed: {},
     methods:{
+    
+
       twitter() {
-        window.location = 'http://localhost:8081/auth/twitter'
+        window.location = ''
       },
       reddit() {
-        window.location = 'http://localhost:8081/auth/reddit'
+        window.location = 'https://www.reddit.com/api/v1/authorize?client_id=h9NwYUZGn65RJw&response_type=code&state=fdsfsdfasff&redirect_uri=http://localhost:8080/LinkAccounts&duration=permanent&scope=identity,edit,flair,history,modconfig,modflair,modlog,modposts,modwiki,mysubreddits,privatemessages,read,report,save,submit,subscribe,vote'
+
       },
       twitch() {
-        window.location = 'http://localhost:8081/auth/twitch'
+        window.location = ''
       }
     }
   }
