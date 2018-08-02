@@ -92,10 +92,13 @@
     
 
       twitter() {
-        window.location = ''
+        OuathService.authTwitter().then(){
+          window.location=''
+        }
       },
       /////////CODE FLOW Oauth ///////////////////////////////////
       /////////Token is returned to a post response////////////////
+      ////////CORS needs to be enabled/////////////////////////
       reddit() {
         window.location = 'https://www.reddit.com/api/v1/authorize?client_id=h9NwYUZGn65RJw&response_type=code&state=fdsfsdfasff&redirect_uri=http://localhost:8080/LinkAccounts&scope=identity,edit,flair,history,modconfig,modflair,modlog,modposts,modwiki,mysubreddits,privatemessages,read,report,save,submit,subscribe,vote'
 
