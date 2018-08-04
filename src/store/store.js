@@ -8,8 +8,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    signupState: signupState,
-    stepperState: stepperState,
-    userState: userState
+    signup: signupState,
+    stepper: stepperState,
+    user: userState
   }
 })
