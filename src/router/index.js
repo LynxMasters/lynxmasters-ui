@@ -41,6 +41,11 @@ export default new Router({
       path: '/verification',
       name: 'EmailVerified',
       component: EmailVerified
+    },
+    {
+      path: '/LinkAccounts',
+      name: 'LinkAccounts',
+      component: LinkAccounts
     }
   ]
 })

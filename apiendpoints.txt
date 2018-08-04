@@ -1,0 +1,31 @@
+*************Reddit-endpoints**************
+EXAMPLE REQUEST
+curl -H 'Authorization: bearer <TOKEN>'
+-X GET https://oauth.reddit.com/api/v1/me
+
+# GET /subreddits/mine/subscriber
+Get subreddits the user has a relationship with. 
+*limit - the maximum number of items desired (default: 25, maximum: 100)
+
+# GET /profiles/search
+Search user profiles by title and description.
+
+# POST /api/subscribe
+Subscribe to or unsubscribe from a subreddit.
+
+# GET /subreddits/search
+Search subreddits by title and description.
+
+*************Twitch-endpoints***************
+
+Twitch requires client-id for all endpoints. 
+To get the client-id the Ouath token needs to be verified.
+EXAMPLE CLIENT-ID
+curl -H 'Accept: application/vnd.twitchtv.v5+json' \
+-H 'Authorization: OAuth <TOKEN>' \
+-X GET https://api.twitch.tv/kraken
+
+************Twitter-endpoints***************
+EXAMPLE REQUEST
+curl –request GET
+–url https://stream.twitter.com/1.1/statuses/sample.json –header ‘authorization: OAuth oauth_consumer_key=”CONSUMER_KEY”, oauth_nonce=”CONSUMER_SECRET”, oauth_signature=”GENERATED_SIGNATURE”, oauth_signature_method=”HMAC-SHA1”, oauth_timestamp=”GENERATED_TIMESTAMP”, oauth_token=”ACCESS_TOKEN”, oauth_version=”1.0”’`
