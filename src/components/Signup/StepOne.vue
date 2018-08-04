@@ -98,9 +98,9 @@
           handler: function (val) {
             if(!val.$invalid) {
               this.updateUserInfo()
-              this.$emit('can-continue', {value: true});
+              this.$emit('can-continue', {value: true})
             } else {
-              this.$emit('can-continue', {value: false});
+              this.$emit('can-continue', {value: false})
             }
           },
           deep: true
@@ -114,9 +114,9 @@
       mounted() {
         console.log(this.$store)
         if(!this.$v.$invalid) {
-          this.$emit('can-continue', {value: true});
+          this.$emit('can-continue', {value: true})
         } else {
-          this.$emit('can-continue', {value: false});
+          this.$emit('can-continue', {value: false})
         }
       },
       methods: {

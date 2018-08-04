@@ -54,9 +54,9 @@
       $v: {
         handler: function (val) {
           if (!val.$invalid) {
-            this.$emit('can-continue', {value: true});
+            this.$emit('can-continue', {value: true})
           } else {
-            this.$emit('can-continue', {value: false});
+            this.$emit('can-continue', {value: false})
           }
         },
         deep: true
@@ -70,9 +70,9 @@
     mounted() {
       this.tempUser = this.$store.getters['signup/getUser']
       if (!this.$v.$invalid) {
-        this.$emit('can-continue', {value: true});
+        this.$emit('can-continue', {value: true})
       } else {
-        this.$emit('can-continue', {value: false});
+        this.$emit('can-continue', {value: false})
       }
     },
     methods: {
