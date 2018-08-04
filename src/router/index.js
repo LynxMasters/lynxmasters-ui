@@ -5,6 +5,7 @@ import Login from '@/components/Login'
 import Profile from '@/components/Profile'
 import EmailVerified from '@/components/EmailVerified'
 import Signup from '@/components/Signup/NewSignup'
+import LinkAccounts from '@/components/LinkAccounts'
 
 Vue.use(Router)
 
