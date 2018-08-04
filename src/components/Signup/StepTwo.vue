@@ -148,7 +148,6 @@
         }
       },
       mounted() {
-        console.log(this.countries.name)
         if(!this.$v.$invalid) {
           this.$emit('can-continue', {value: true});
         } else {
