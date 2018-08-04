@@ -64,8 +64,6 @@
 
 <script>
   // import services here...
-  import OuathService from '@/services/Oauth'
-  
   export default {
     name: 'LinkAccounts',
     data: {
@@ -83,7 +81,7 @@
         window.location = 'http://localhost:8081/auth/twitch'
       },
       twitter() {
-        window.location='http://localhost:8081/auth/twitter'
+        window.location ='http://localhost:8081/auth/twitter'
       }
       
       
