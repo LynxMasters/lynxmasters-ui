@@ -38,7 +38,7 @@
       <p v-if="$v.user.city.$error" class="help is-danger">City is required</p>
     </div>
     <div class="field">
-      <label class="label">State</label>
+      <label class="label">State / Province</label>
       <input :class="['input', ($v.user.state.$error) ? 'is-danger' : '']"
              type="tex"
              placeholder=""
@@ -62,11 +62,17 @@
     </div>
     <div class="field">
       <label class="label">Country</label>
-      <input :class="['input', ($v.user.country.$error) ? 'is-danger' : '']"
-             type="tex"
-             placeholder=""
-             v-model="user.country"
-             required>
+      <div class="control">
+        <div class="select is-fullwidth">
+          <select :class="['input', ($v.user.country.$error) ? 'is-danger' : '']"
+                  v-model="user.country"
+                  required>
+            <option selected>Country</option>
+            <option v-for="country in countries">
+              {{ country.name }}</option>
+          </select>
+        </div>
+      </div>
       <p v-if="$v.user.country.$error" class="help is-danger">Country is required</p>
     </div>
   </div>
@@ -74,6 +80,7 @@
 <script>
     import {validationMixin} from 'vuelidate'
     import {required, numeric, minLength, maxLength} from 'vuelidate/lib/validators'
+    import countries from '@/assets/countries.json'
 
     export default {
       name: "StepTwo",
@@ -89,7 +96,8 @@
             state: '',
             zipCode: '',
             country: ''
-          }
+          },
+          countries
         }
       },
       validations: {
@@ -120,6 +128,7 @@
           }
         }
       },
+      computed: {},
       watch: {
         $v: {
           handler: function (val) {
