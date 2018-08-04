@@ -137,7 +137,7 @@
             this.invalidMessage = 'Invalid email or password!'
             this.invalidCredentials = true // display this somewhere to show bad credentials
           } else {
-            console.log(res) // display content being sent back.....
+            console.log(res.data) // display content being sent back.....
             this.validUser = true // display this somewhere to know successful credentials
             //window.localStorage.setItem('token', json.token);
             // redirect to profile
