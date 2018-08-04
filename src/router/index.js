@@ -2,10 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Landing from '@/components/Landing'
 import Login from '@/components/Login'
-import Signup from '@/components/Signup'
 import Profile from '@/components/Profile'
 import EmailVerified from '@/components/EmailVerified'
-import LinkAccounts from '@/components/LinkAccounts'
+import Signup from '@/components/Signup/NewSignup'
 
 Vue.use(Router)
 
