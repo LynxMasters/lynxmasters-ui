@@ -120,10 +120,6 @@
         }
       },
       methods: {
-        // this.$store.commit('updateMessage', value, { module: 'auth' })
-        // this.$store.commit('locations/provinces', response.data)
-
-
         updateUserInfo() {
           this.$store.commit('signup/createAccount', this.user)
         }
