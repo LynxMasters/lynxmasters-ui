@@ -68,7 +68,7 @@
       }
     },
     mounted() {
-      this.tempUser = this.$store.getters.getUser
+      this.tempUser = this.$store.getters['signup/getUser']
       if (!this.$v.$invalid) {
         this.$emit('can-continue', {value: true});
       } else {
@@ -94,7 +94,7 @@
         UserService.uploadAvatar(data).then(res => {
           reader.readAsDataURL(files[0])
           this.user.avatar = res.data.filename
-          this.$store.commit('profileAvatar', this.user)
+          this.$store.commit('signup/profileAvatar', this.user)
         }).catch(error => {
           console.log(error)
         })

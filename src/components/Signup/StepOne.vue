@@ -112,6 +112,7 @@
         }
       },
       mounted() {
+        console.log(this.$store)
         if(!this.$v.$invalid) {
           this.$emit('can-continue', {value: true});
         } else {
@@ -119,8 +120,12 @@
         }
       },
       methods: {
+        // this.$store.commit('updateMessage', value, { module: 'auth' })
+        // this.$store.commit('locations/provinces', response.data)
+
+
         updateUserInfo() {
-          this.$store.commit('createAccount', this.user)
+          this.$store.commit('signup/createAccount', this.user)
         }
       }
     }
