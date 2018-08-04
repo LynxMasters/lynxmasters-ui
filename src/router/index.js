@@ -23,6 +23,11 @@ export default new Router({
       component: Signup
     },
     {
+      path: '/LinkAccounts',
+      name: 'LinkAccounts',
+      component: LinkAccounts
+    },
+    {
       path: '/login',
       name: 'Login',
       component: Login
