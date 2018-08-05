@@ -112,7 +112,6 @@
         }
       },
       mounted() {
-        console.log(this.$store)
         if(!this.$v.$invalid) {
           this.$emit('can-continue', {value: true})
         } else {
