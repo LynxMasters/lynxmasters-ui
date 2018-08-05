@@ -97,8 +97,7 @@
             zipCode: '',
             country: ''
           },
-          countries,
-          stepOne: ''
+          countries
         }
       },
       validations: {
