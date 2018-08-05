@@ -146,15 +146,13 @@
           } else if (res.data.status === 401) {
             this.errorMsg('Invalid email or password!')
           } else {
-            console.log(res)// display content being sent back.....
-            this.validUser = true // display this somewhere to know successful credentials
+            this.successAlert('Welcome, First Name')
             document.cookie = 'token='+res.data.token+';'
             if(!res.data.linkedAccounts){
               this.$router.push('LinkAccounts')
             } else {
               this.$router.push('Profile')
             }// redirect to profile
-
 
           }
         })
