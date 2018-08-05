@@ -4,12 +4,6 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-half">
-            <!--<div class="notification is-success has-text-centered" v-if="validUser">-->
-              <!--Valid User - Email Exists-->
-            <!--</div>-->
-            <!--<div class="notification is-danger has-text-centered" v-if="invalidCredentials">-->
-              <!--{{ invalidMessage }}-->
-            <!--</div>-->
             <div class="card">
               <div class="card-content">
                 <div class="field animated flipInX has-text-centered" v-if="errors.email || errors.password">
