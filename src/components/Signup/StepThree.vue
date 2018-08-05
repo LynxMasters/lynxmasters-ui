@@ -54,9 +54,9 @@
       $v: {
         handler: function (val) {
           if (!val.$invalid) {
-            this.$emit('can-continue', {value: true});
+            this.$emit('can-continue', {value: true})
           } else {
-            this.$emit('can-continue', {value: false});
+            this.$emit('can-continue', {value: false})
           }
         },
         deep: true
@@ -68,11 +68,11 @@
       }
     },
     mounted() {
-      this.tempUser = this.$store.getters.getUser
+      this.tempUser = this.$store.getters['signup/getUser']
       if (!this.$v.$invalid) {
-        this.$emit('can-continue', {value: true});
+        this.$emit('can-continue', {value: true})
       } else {
-        this.$emit('can-continue', {value: false});
+        this.$emit('can-continue', {value: false})
       }
     },
     methods: {
@@ -94,7 +94,7 @@
         UserService.uploadAvatar(data).then(res => {
           reader.readAsDataURL(files[0])
           this.user.avatar = res.data.filename
-          this.$store.commit('profileAvatar', this.user)
+          this.$store.commit('signup/profileAvatar', this.user)
         }).catch(error => {
           console.log(error)
         })

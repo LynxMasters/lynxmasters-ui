@@ -48,9 +48,12 @@
         return this.tempUser.avatar ? `/static/uploads/${this.tempUser.avatar}` : defaultImage
       }
     },
+    beforeMount() {
+      this.$emit('can-continue', {value: true})
+    },
     mounted() {
-      this.tempUser = this.$store.getters.getUser
-      this.$emit('can-continue', {value: true});
+      this.tempUser = this.$store.getters['signup/getUser']
+      this.$emit('can-continue', {value: true})
     },
     methods: {}
   }

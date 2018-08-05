@@ -4,12 +4,6 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-half">
-            <div class="notification is-success has-text-centered" v-if="validUser">
-              Valid User - Email Exists
-            </div>
-            <div class="notification is-danger has-text-centered" v-if="invalidCredentials">
-              {{ invalidMessage }}
-            </div>
             <div class="card">
               <div class="card-content">
                 <div class="field animated flipInX has-text-centered" v-if="errors.email || errors.password">
@@ -118,10 +112,28 @@
         } else {
           this.error.password = ''
         }
+        if (this.error.email && this.error.password) {
+          this.errorMsg('Please fill out all form fields')
+        }
         if (!this.error.email && !this.error.password) {
           this.confirmUser()
         }
-
+      },
+      errorMsg(message) {
+        this.$toast.open({
+          duration: 3500,
+          message: message,
+          position: 'is-top',
+          type: 'is-danger'
+        })
+      },
+      successAlert(message) {
+        this.$toast.open({
+          duration: 3500,
+          message: message,
+          position: 'is-top',
+          type: 'is-success'
+        })
       },
       async confirmUser() {
         await Authentication.loginUser(this.user).then(res => {
@@ -129,23 +141,18 @@
             console.log('THERE ARE ERRORS')
             this.errors = res.data.errors
             console.log(this.errors)
-//            this.errorMsg('Please fill out all form fields')
           } else if (res.data.status === 400) {
-            this.invalidMessage = 'Email does not exist!'
-            this.invalidCredentials = true // display this somewhere to show bad credentials
+            this.errorMsg('Email does not exist!')
           } else if (res.data.status === 401) {
-            this.invalidMessage = 'Invalid email or password!'
-            this.invalidCredentials = true // display this somewhere to show bad credentials
+            this.errorMsg('Invalid email or password!')
           } else {
-            console.log(res)// display content being sent back.....
-            this.validUser = true // display this somewhere to know successful credentials
+            this.successAlert('Welcome, First Name')
             document.cookie = 'token='+res.data.token+';'
             if(!res.data.linkedAccounts){
               this.$router.push('LinkAccounts')
             } else {
               this.$router.push('Profile')
             }// redirect to profile
-
 
           }
         })
