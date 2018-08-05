@@ -146,18 +146,15 @@
           } else if (res.data.status === 401) {
             this.errorMsg('Invalid email or password!')
           } else {
-            this.successAlert('Welcome, First Name')
-            //window.localStorage.setItem('token', json.token);
+            console.log(res)// display content being sent back.....
+            this.validUser = true // display this somewhere to know successful credentials
+            document.cookie = 'token='+res.data.token+';'
+            if(!res.data.linkedAccounts){
+              this.$router.push('LinkAccounts')
+            } else {
+              this.$router.push('Profile')
+            }// redirect to profile
 
-            /**
-             * Get linkedAccounts value and determine which page to redirect to
-             */
-
-            // if (isLinked) {
-            //   this.$router.push({name: 'Profile'})
-            // } else {
-            //   this.$router.push({name: 'LinkAccounts'})
-            // }
 
           }
         })
