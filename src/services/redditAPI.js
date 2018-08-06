@@ -13,13 +13,13 @@ export default{
 	axios(options);
 	},
 	
-	redditGET(info){
+	redditGET(token, endpoint){
 		const options = {
   			method: 'GET',
   			headers: { 'content-type': 'application/x-www-form-urlencoded',
-  				'Authorization': 'bearer '+info.token
+  				'Authorization': 'bearer '+ token
   			 },
-  			url: 'https://oauth.reddit.com'+info.endpoint
+  			url: 'https://oauth.reddit.com/api/v1/'+ endpoint
 		};
 	axios(options);
 	},
