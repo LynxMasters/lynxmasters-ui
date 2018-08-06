@@ -1,19 +1,64 @@
+const OAuth   = require('oauth-1.0a');
+const crypto  = require('crypto');
 export default{
-	redditPOST(){
+	twitterPOST(info){
+		const oauth = OAuth({
+ 			consumer: {
+    			key: 'xvz1evFS4wEEPTGEFPHBog',
+    			secret: 'kAcSOqF21Fu85e7zjz7ZN2U4ZRhfV3WpwPAoE3Z7kBw'
+  			},
+  			signature_method: 'HMAC-SHA1',
+  			hash_function(base_string, key) {
+    			return CryptoJS.HmacSHA1(base_string, key).toString(CryptoJS.enc.Base64);
+  			}	
+		});
+ 
+		const request_data = {
+  			url: 'https://api.twitter.com/1.1/'+info.endpoint,
+  			method: 'POST',
+  			data: info.data
+		};
+ 
+		const token = {
+  			key: '370773112-GmHxMAgYyLbNEtIKZeRNFsMKPR9EyMZeS9weJAEb',
+  			secret: 'LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE'
+		};
+
 		const options = {
   			method: 'POST',
-  			headers: { 'content-type': 'application/x-www-form-urlencoded' },
-  			data: qs.stringify(data),
-  			url,
+  			data: oauth.authorize(request_data, token),
+  			url = request_data.url
 		};
 	axios(options);
-	},
-	redditGET(){
+	}
+	
+	twitterGET(info){
+		const oauth = OAuth({
+ 			consumer: {
+    			key: 'xvz1evFS4wEEPTGEFPHBog',
+    			secret: 'kAcSOqF21Fu85e7zjz7ZN2U4ZRhfV3WpwPAoE3Z7kBw'
+  			},
+  			signature_method: 'HMAC-SHA1',
+  			hash_function(base_string, key) {
+    			return CryptoJS.HmacSHA1(base_string, key).toString(CryptoJS.enc.Base64);
+  			}	
+		});
+ 
+		const request_data = {
+  			url: 'https://api.twitter.com/1.1/'+info.endpoint,
+  			method: 'GET',
+  			data: ''
+		};
+ 
+		const token = {
+  			key: '370773112-GmHxMAgYyLbNEtIKZeRNFsMKPR9EyMZeS9weJAEb',
+  			secret: 'LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE'
+		};
+
 		const options = {
   			method: 'GET',
-  			headers: { 'content-type': 'application/x-www-form-urlencoded' },
-  			data: qs.stringify(data),
-  			url,
+  			data: oauth.authorize(request_data, token),
+  			url = request_data.url
 		};
 	axios(options);
 	}
