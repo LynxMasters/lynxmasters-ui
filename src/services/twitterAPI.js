@@ -28,7 +28,7 @@ export default{
 		const options = {
   			method: 'POST',
   			data: oauth.authorize(request_data, token),
-  			url = request_data.url
+  			url: request_data.url
 		};
 	axios(options);
 	},
@@ -59,8 +59,20 @@ export default{
 		const options = {
   			method: 'GET',
   			data: oauth.authorize(request_data, token),
-  			url = request_data.url
+  			url: request_data.url
 		};
 	axios(options);
-	}
+	},
+
+  twitterAuthenticate(){
+    const options = {
+        method: 'GET',
+        headers: { 'content-type': 'application/x-www-form-urlencoded',
+          'Authorization': 'Basic '+window.localStorage.getItem('token')  
+         },
+        data: '',
+        url: Api+'/auth/twitter/callback',
+    };
+  axios(options);
+  }
 }

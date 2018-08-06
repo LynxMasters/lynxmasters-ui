@@ -64,23 +64,17 @@
 
 <script>
   // import services here...
-  import UserService from '@/services/UserService'
+  import redditAPI from '@/services/redditAPI'
   export default {
     name: 'LinkAccounts',
     data: {  
-    },
-    beforeMount: function() {
-      UserService.getAccounts(window.localStorage.getItem('token')).then(res => {
-
-          
-      }
     },
     watch: {},
     computed: {},
     methods:{
 
       reddit() { 
-        window.location = 'http://localhost:8081/auth/reddit?token='+window.localStorage.getItem('token')     
+        window.location = 'http://localhost:8081/auth/reddit?token='+window.localStorage.getItem('token')   
       },
       twitch() {
         window.location = 'http://localhost:8081/auth/twitch?token='+window.localStorage.getItem('token')

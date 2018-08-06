@@ -10,8 +10,7 @@ import scrollSpy from 'vue2-scrollspy';
 import Bulma from 'bulma/css/bulma.css'
 import './assets/style/app.scss'
 import store from './store/store'
-import OAuth   = require('oauth-1.0a');
-import crypto  = require('crypto');
+
 
 Vue.use(Buefy)
 Vue.use(scrollSpy)

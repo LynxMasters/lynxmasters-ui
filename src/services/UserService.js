@@ -9,5 +9,8 @@ export default {
   },
   uploadAvatar(params) {
     return Api().post('uploads', params, { headers: { 'Content-Type': 'multipart/form-data' } })
+  },
+  getAccounts(params) {
+    return Api().post('accounts/info', params, { headers: { 'Content-Type': 'multipart/form-data' } })
   }
 }
