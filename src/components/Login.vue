@@ -139,7 +139,8 @@
           } else {
             console.log(res)// display content being sent back.....
             this.validUser = true // display this somewhere to know successful credentials
-            document.cookie = 'token='+res.data.token+';'
+            //document.cookie = 'token='+res.data.token+';expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";'
+            window.localStorage.setItem('token', res.data.token);
             if(!res.data.linkedAccounts){
               this.$router.push('LinkAccounts')
             } else {

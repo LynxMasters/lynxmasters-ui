@@ -66,26 +66,26 @@
   // import services here...
   export default {
     name: 'LinkAccounts',
-    data: {
-      code: ''
-      
+    data: {  
+    },
+    beforeMount: function() {
+        let status = this.$route.query.status
+        let type = this.$route.query.type
+        console.log(status)
+        console.log(type)
     },
     watch: {},
     computed: {},
     methods:{
 
-      getCookiebyName(name){
-        var pair = document.cookie.match(new RegExp(name + '=([^;]+)'));
-        return !!pair ? pair[1] : null;
+      reddit() { 
+        window.location = 'http://localhost:8081/auth/reddit?token='+window.localStorage.getItem('token')     
       },
-      reddit(getCookiebyName) {   
-        window.location = 'http://localhost:8081/auth/reddit?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViNWY4ZjY3YjBiNDk2MmNkOTI5MTc5NiIsImlhdCI6MTUzMzQyOTM3MywiZXhwIjoxNTMzNTE1NzczfQ.wk44BQKeSyXzGzXHs2sqQwZPsB8BQugluuYLXBomCec'      
+      twitch() {
+        window.location = 'http://localhost:8081/auth/twitch?token='+window.localStorage.getItem('token')
       },
-      twitch(getCookiebyName) {
-        window.location = 'http://localhost:8081/auth/twitch?token='+getCookiebyName(token)
-      },
-      twitter(getCookiebyName) {
-        window.location ='http://localhost:8081/auth/twitter?token='+getCookiebyName(token)
+      twitter() {
+        window.location ='http://localhost:8081/auth/twitter?token='+window.localStorage.getItem('token')
       }  
     }
   }
