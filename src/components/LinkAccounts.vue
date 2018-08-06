@@ -64,15 +64,16 @@
 
 <script>
   // import services here...
+  import UserService from '@/services/UserService'
   export default {
     name: 'LinkAccounts',
     data: {  
     },
     beforeMount: function() {
-        let status = this.$route.query.status
-        let type = this.$route.query.type
-        console.log(status)
-        console.log(type)
+      UserService.getAccounts(window.localStorage.getItem('token')).then(res => {
+
+          
+      }
     },
     watch: {},
     computed: {},

@@ -1,6 +1,7 @@
 const OAuth   = require('oauth-1.0a');
 const crypto  = require('crypto');
 export default{
+	
 	twitterPOST(info){
 		const oauth = OAuth({
  			consumer: {
@@ -20,8 +21,8 @@ export default{
 		};
  
 		const token = {
-  			key: '370773112-GmHxMAgYyLbNEtIKZeRNFsMKPR9EyMZeS9weJAEb',
-  			secret: 'LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE'
+  			key: info.token, 
+  			secret: into.secret
 		};
 
 		const options = {
@@ -30,12 +31,12 @@ export default{
   			url = request_data.url
 		};
 	axios(options);
-	}
+	},
 	
 	twitterGET(info){
 		const oauth = OAuth({
  			consumer: {
-    			key: 'xvz1evFS4wEEPTGEFPHBog',
+    			key: 'xvz1evFS4wEEPTGEFPHBog', //not the real client id or client secret
     			secret: 'kAcSOqF21Fu85e7zjz7ZN2U4ZRhfV3WpwPAoE3Z7kBw'
   			},
   			signature_method: 'HMAC-SHA1',
@@ -51,8 +52,8 @@ export default{
 		};
  
 		const token = {
-  			key: '370773112-GmHxMAgYyLbNEtIKZeRNFsMKPR9EyMZeS9weJAEb',
-  			secret: 'LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE'
+  			key: info.token, 
+  			secret: into.secret
 		};
 
 		const options = {

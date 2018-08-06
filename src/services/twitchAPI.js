@@ -1,4 +1,5 @@
 export default{
+	
 	twitchPOST(info){
 		const options = {
   			method: 'POST',

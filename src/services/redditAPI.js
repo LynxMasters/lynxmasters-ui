@@ -1,4 +1,5 @@
 export default{
+	
 	redditPOST(info){
 		const options = {
   			method: 'POST',
