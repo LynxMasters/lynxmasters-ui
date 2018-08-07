@@ -52,7 +52,8 @@ export default{
   			method: 'GET',
         headers: { 'content-type': 'application/x-www-form-urlencoded','Access-Control-Allow-Credentials': 'true',
         'Access-Control-Allow-Origin': 'http://localhost:8080',
-        'Accept': '*/*'},
+        'Accept': '*/*',
+        'Access-Control-Max-Age': '600'},
   			data: {}
 		};
  

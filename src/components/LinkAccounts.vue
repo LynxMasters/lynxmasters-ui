@@ -75,12 +75,18 @@
       let token = window.localStorage.getItem('token')
       UserService.getAccounts(token).then(res => {
         console.log(res.data);
+        
+        twitchAPI.twitchGET(res.data.twitch.access_token, '/kraken', function(res){
+        console.log(hit)  
+        console.log(res)
+        })   
         twitterAPI.twitterGET(res.data.twitter.oauth_token, res.data.twitter.ouath_secret, '/users/show', function(res){
              console.log(res)
         })
         redditAPI.redditGET(res.data.reddit.access_token, '/api/v1/me', function(res){
             console.log(res)
-          })   
+        }) 
+
       })
 
     },

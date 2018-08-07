@@ -1,9 +1,10 @@
+const axios = require('axios')
 export default{
 	
 	twitchPOST(info){
 		const options = {
   			method: 'POST',
-  			headers: { 'content-type': 'application/x-www-form-urlencoded', 
+  			headers: { 'Accept': 'application/vnd.twitchtv.v5+json', 
   				'Authorization': 'Oauth '+info.token 
   			 },
   			data: info.data,
@@ -12,13 +13,14 @@ export default{
 	axios(options);
 	},
 
-	twitchGET(info){
+	twitchGET(token, endpoint){
 		const options = {
   			method: 'GET',
-  			headers: { 'content-type': 'application/x-www-form-urlencoded', 
-  			'Authorization': 'Oauth '+info.token 
+  			headers: { 'Accept': 'application/vnd.twitchtv.v5+json',
+        'content-type': 'application/x-www-form-urlencoded', 
+  			'Authorization': 'Oauth '+token 
   			},
-  			url: 'https://api.twitch.tv/kraken'+ info.endpoint
+  			url: 'https://api.twitch.tv'+ endpoint
 		};
 	axios(options);
 	},
