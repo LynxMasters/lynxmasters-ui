@@ -1,4 +1,5 @@
 import Api from '@/services/Api'
+const axios = require('axios')
 export default{
 	
 	redditPOST(info){
@@ -16,10 +17,9 @@ export default{
 	redditGET(token, endpoint){
 		const options = {
   			method: 'GET',
-  			headers: { 'content-type': 'application/x-www-form-urlencoded',
-  				'Authorization': 'bearer '+ token
+  			headers: { 'content-type': 'application/x-www-form-urlencoded', 'Authorization': 'bearer '+token
   			 },
-  			url: 'https://oauth.reddit.com/api/v1/'+ endpoint
+  			url: 'https://oauth.reddit.com'+endpoint
 		};
 	axios(options);
 	},

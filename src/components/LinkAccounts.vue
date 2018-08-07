@@ -63,11 +63,26 @@
 </template>
 
 <script>
-  // import services here...
+  import UserService from '@/services/UserService'
   import redditAPI from '@/services/redditAPI'
+  import twitchAPI from '@/services/twitchAPI'
+  import twitterAPI from '@/services/twitterAPI'
+
   export default {
     name: 'LinkAccounts',
-    data: {  
+    data:{}, 
+    mounted() {
+      let token = window.localStorage.getItem('token')
+      UserService.getAccounts(token).then(res => {
+        console.log(res.data);
+        twitterAPI.twitterGET(res.data.twitter.oauth_token, res.data.twitter.ouath_secret, '/users/show', function(res){
+             console.log(res)
+        })
+        redditAPI.redditGET(res.data.reddit.access_token, '/api/v1/me', function(res){
+            console.log(res)
+          })   
+      })
+
     },
     watch: {},
     computed: {},
