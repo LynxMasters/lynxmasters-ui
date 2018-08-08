@@ -31,7 +31,7 @@ export default{
   			data: oauth.authorize(request_data, token),
   			url: request_data.url
 		};
-	axios(options);
+	return axios(options);
 	},
 	
 	twitterGET(tkn, secret, endpoint){
@@ -64,6 +64,6 @@ export default{
   			url: request_data.url
 		};  
   console.log(options)  
-	axios(options);
+	return axios(options);
 	}
 }

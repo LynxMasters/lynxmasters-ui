@@ -45,7 +45,7 @@
         <section class="container" id="aboutSection">
           <div class="intro column is-8 is-offset-2">
             <h2 class="title">Perfect for people who want to share!</h2><hr>
-            <p class="subtitle">Lynxmasters is perfect if you like sharing on multiple social media platforms, or even just one. It is also perfect for people who want to consolidate all their social media in once spot. We are working towards adding the option to link even more social media platforms.</p>
+            <p class="subtitle">Lynxmasters is perfect if you like sharing on multiple social media platforms, or even just one. It is also perfect for people who want to consolidate all their social media in one spot. We are working towards adding the option to link even more social media platforms.</p>
           </div>
 
           <!-- Add other stuff here -->

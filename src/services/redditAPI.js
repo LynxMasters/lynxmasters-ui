@@ -11,7 +11,7 @@ export default{
   			data: body,
   			url: 'https://oauth.reddit.com'+endpoint,
 		};
-	axios(options);
+	return axios(options);
 	},
 	
 	redditGET(token, endpoint){
@@ -20,17 +20,6 @@ export default{
   			headers: { 'content-type': 'application/x-www-form-urlencoded', 'Authorization': 'bearer '+token
   			 },
   			url: 'https://oauth.reddit.com'+endpoint
-		};
-	axios(options);
-	},
-		redditAuthenticate(){
-		const options = {
-  			method: 'GET',
-  			headers: { 'content-type': 'application/x-www-form-urlencoded',
-  				'Authorization': 'Basic '+window.localStorage.getItem('token')  
-  			 },
-  			data: '',
-  			url: Api+'/auth/reddit/callback',
 		};
 	return axios(options);
 	},

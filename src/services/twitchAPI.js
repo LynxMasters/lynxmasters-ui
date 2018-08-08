@@ -8,15 +8,15 @@ export default{
   				'Authorization': 'Oauth '+info.token 
   			 },
   			data: info.data,
-  			url: 'https://api.twitch.tv/kraken'+ info.endpoint
+  			url: 'https://api.twitch.tv/kraken'+info.endpoint
 		};
-	axios(options);
+	return axios(options);
 	},
 
-	twitchGET(token, endpoint){
+	twitchGET(endpoint){
 		const options = {
   			method: 'GET',
-  			url: 'https://api.twitch.tv'+ endpoint+'?oauth_token='+token
+  			url: 'https://api.twitch.tv/kraken'+endpoint
 		};
 	return axios(options);
 	},	

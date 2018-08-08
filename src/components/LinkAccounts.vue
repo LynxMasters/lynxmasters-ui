@@ -69,28 +69,20 @@
   import twitterAPI from '@/services/twitterAPI'
 
   export default {
-    name: 'LinkAccounts',
-    data:{}, 
+    name: 'LinkAccounts', 
     mounted() {
 
       let token = window.localStorage.getItem('token')
       UserService.getAccounts(token).then(res => { 
-        redditAPI.redditGET(res.data.reddit.access_token, '/api/v1/me', function(
-        res){
-          let redditProfile = res.data
-          console.log(redditProfile)
-        }),
         
-        twitchAPI.twitchGET(res.data.twitch.access_token, '/kraken/user', function(
-        res){
-          let twitchProfile = res.data
-          console.log(twitchProfile)
-        }),        
-      
-        twitterAPI.twitterGET(res.data.twitter.oauth_token, res.data.twitter.ouath_secret, '/users/show.json?screen_name='+res.data.twitter.displayName, function(
-        res){
-          console.log(res)
-        })
+        let redditProfile = redditAPI.redditGET(res.data.reddit.access_token, '/api/v1/me')
+        console.log(redditProfile)
+        
+        let twitchProfile = twitchAPI.twitchGET('/user?oauth_token='+res.data.twitch.access_token)
+        console.log(twitchProfile)
+       
+        let twitterProfile = twitterAPI.twitterGET(res.data.twitter.oauth_token, res.data.twitter.ouath_secret, '/users/show.json?screen_name='+res.data.twitter.displayName)
+        console.log(res)
       }) 
     },
     watch: {},
