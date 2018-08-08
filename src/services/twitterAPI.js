@@ -42,7 +42,7 @@ export default{
   			},
   			signature_method: 'HMAC-SHA1',
   			hash_function(base_string, key) {
-          console.log('hello');
+          console.log()
     			return crypto.createHmac('sha1', key).update(base_string).digest('base64');
   			}	
 		});
@@ -50,10 +50,6 @@ export default{
 		const request_data = {
   			url: 'https://api.twitter.com/1.1'+endpoint,
   			method: 'GET',
-        headers: { 'content-type': 'application/x-www-form-urlencoded','Access-Control-Allow-Credentials': 'true',
-        'Access-Control-Allow-Origin': 'http://localhost:8080',
-        'Accept': '*/*',
-        'Access-Control-Max-Age': '600'},
   			data: {}
 		};
  
@@ -64,21 +60,10 @@ export default{
 
 		const options = {
   			method: 'GET',
-  			data: oauth.authorize(request_data, token),
+        header:oauth.authorize(request_data, token),
   			url: request_data.url
-		};
+		};  
+  console.log(options)  
 	axios(options);
-	},
-
-  twitterAuthenticate(){
-    const options = {
-        method: 'GET',
-        headers: { 'content-type': 'application/x-www-form-urlencoded',
-          'Authorization': 'Basic '+window.localStorage.getItem('token')  
-         },
-        data: '',
-        url: Api+'/auth/twitter/callback',
-    };
-  axios(options);
-  }
+	}
 }

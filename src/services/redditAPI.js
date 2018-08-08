@@ -2,14 +2,14 @@ import Api from '@/services/Api'
 const axios = require('axios')
 export default{
 	
-	redditPOST(info){
+	redditPOST(token, endpoint, body){
 		const options = {
   			method: 'POST',
   			headers: { 'content-type': 'application/x-www-form-urlencoded',
-  				'Authorization': 'bearer '+info.token 
+  				'Authorization': 'bearer '+token 
   			 },
-  			data: info.data,
-  			url: 'https://oauth.reddit.com'+info.endpoint,
+  			data: body,
+  			url: 'https://oauth.reddit.com'+endpoint,
 		};
 	axios(options);
 	},
@@ -32,6 +32,6 @@ export default{
   			data: '',
   			url: Api+'/auth/reddit/callback',
 		};
-	axios(options);
+	return axios(options);
 	},
 }

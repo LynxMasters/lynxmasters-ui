@@ -16,24 +16,10 @@ export default{
 	twitchGET(token, endpoint){
 		const options = {
   			method: 'GET',
-  			headers: { 'Accept': 'application/vnd.twitchtv.v5+json',
-        'content-type': 'application/x-www-form-urlencoded', 
-  			'Authorization': 'Oauth '+token 
-  			},
-  			url: 'https://api.twitch.tv'+ endpoint
+  			url: 'https://api.twitch.tv'+ endpoint+'?oauth_token='+token
 		};
-	axios(options);
-	},
-
-	twitchAuthenticate(){
-		const options = {
-  			method: 'GET',
-  			headers: { 'content-type': 'application/x-www-form-urlencoded',
-  				'Authorization': 'Basic '+window.localStorage.getItem('token')  
-  			 },
-  			data: '',
-  			url: Api+'/auth/twicth/callback',
-		};
-	axios(options);
-	}	
+	return axios(options);
+	},	
 }
+
+//curl -H 'Accept: application/vnd.twitchtv.v5+json' -H 'Authorization: OAuth token'-X 'GET https://api.twitch.tv/kraken'

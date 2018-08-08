@@ -72,23 +72,26 @@
     name: 'LinkAccounts',
     data:{}, 
     mounted() {
+
       let token = window.localStorage.getItem('token')
-      UserService.getAccounts(token).then(res => {
-        console.log(res.data);
+      UserService.getAccounts(token).then(res => { 
+        redditAPI.redditGET(res.data.reddit.access_token, '/api/v1/me', function(
+        res){
+          let redditProfile = res.data
+          console.log(redditProfile)
+        }),
         
-        twitchAPI.twitchGET(res.data.twitch.access_token, '/kraken', function(res){
-        console.log(hit)  
-        console.log(res)
-        })   
-        twitterAPI.twitterGET(res.data.twitter.oauth_token, res.data.twitter.ouath_secret, '/users/show', function(res){
-             console.log(res)
+        twitchAPI.twitchGET(res.data.twitch.access_token, '/kraken/user', function(
+        res){
+          let twitchProfile = res.data
+          console.log(twitchProfile)
+        }),        
+      
+        twitterAPI.twitterGET(res.data.twitter.oauth_token, res.data.twitter.ouath_secret, '/users/show.json?screen_name='+res.data.twitter.displayName, function(
+        res){
+          console.log(res)
         })
-        redditAPI.redditGET(res.data.reddit.access_token, '/api/v1/me', function(res){
-            console.log(res)
-        }) 
-
-      })
-
+      }) 
     },
     watch: {},
     computed: {},

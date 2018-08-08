@@ -12,7 +12,6 @@ import './assets/style/app.scss'
 import store from './store/store'
 import Oauth from 'oauth-1.0a'
 import crypto from 'crypto'
-import cors  from 'cors'
 
 Vue.use(Buefy)
 Vue.use(scrollSpy)
@@ -30,7 +29,7 @@ new Vue({
 })
 
 var corsOptions = {
-  origin: '',
+  origin: 'https://api.twitter.com/1.1',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
@@ -57,18 +56,4 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   }
-  Vue.http.options.credentials = true;
-
-Vue.http.options.xhr = {
-  withCredentials: true
-}
-Vue.http.options.emulateJSON = true
-Vue.http.options.emulateHTTP = true
-Vue.http.options.crossOrigin = true
-
-Vue.http.headers.common['Access-Control-Allow-Origin'] = '*'
-Vue.http.headers.common['Content-Type'] = 'application/x-www-form-urlencoded'
-Vue.http.headers.common['Accept'] = 'application/json, text/plain, */*'
-Vue.http.headers.common['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, Authorization, Access-Control-Allow-Origin'
-
 });
