@@ -80,7 +80,8 @@
           endpoint: '/me',
           access_token: res.data.reddit.access_token,
           jwt: window.localStorage.getItem('token'),
-          method: 'GET/'
+          method: 'GET/', //If posting data method would be POST/
+          user_agent: navigator.userAgent
         } 
         let redditProfile = ExternalService.redditPOST(redditInfo)
         console.log(redditProfile)
@@ -90,18 +91,19 @@
           endpoint: '/user?oauth_token='+res.data.twitch.access_token,
           access_token: res.data.twitch.access_token,
           jwt: window.localStorage.getItem('token'),
-          method: 'GET/'
+          method: 'GET/', //If posting data method would be POST/
+          user_agent: navigator.userAgent
         }
         let twitchProfile = ExternalService.twitchPOST(twitchInfo)
         console.log(twitchProfile)
-        console.log('^^^^^^^^twittch^^^^^^^^^^^')
+        console.log('^^^^^^^^twitch^^^^^^^^^^^')
 
         let twitterInfo = {
           endpoint: '/users/show.json?screen_name='+res.data.twitter.displayName,
           oauth_token: res.data.twitter.oauth_token,
           oauth_secret: res.data.twitter.oauth_secret,
           jwt: window.localStorage.getItem('token'),
-          method: 'GET/'
+          method: 'GET/' //If posting data method would be POST/
         }
         let twitterProfile = ExternalService.twitterPOST(twitterInfo)
         console.log(twitterProfile)
