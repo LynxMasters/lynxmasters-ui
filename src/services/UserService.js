@@ -11,7 +11,7 @@ export default {
     return Api().post('uploads', params, { headers: { 'Content-Type': 'multipart/form-data' } })
   },
   getAccounts(jwt) {
-    console.log('hit')
+    
     return Api().post('accounts/', { headers: {'Authorization': jwt, 'Content-Type': 'multipart/form-data' } })
   }
 }

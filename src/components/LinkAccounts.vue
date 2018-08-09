@@ -64,9 +64,7 @@
 
 <script>
   import UserService from '@/services/UserService'
-  import redditAPI from '@/services/redditAPI'
-  import twitchAPI from '@/services/twitchAPI'
-  import twitterAPI from '@/services/twitterAPI'
+  import ExternalService from '@/services/externalService'
 
   export default {
     name: 'LinkAccounts', 
@@ -75,14 +73,33 @@
       let token = window.localStorage.getItem('token')
       UserService.getAccounts(token).then(res => { 
         
-        let redditProfile = redditAPI.redditGET(res.data.reddit.access_token, '/api/v1/me')
+        let redditInfo = {
+          endpoint: 'me',
+          access_token: res.data.reddit.access_token,
+          jwt: window.localStorage.getItem('token'),
+          method: 'GET/'
+        } 
+        let redditProfile = ExternalService.redditPOST(redditInfo)
         console.log(redditProfile)
         
-        let twitchProfile = twitchAPI.twitchGET('/user?oauth_token='+res.data.twitch.access_token)
+        let twitchInfo = {
+          endpoint: '/user?oauth_token='+res.data.twitch.access_token,
+          access_token: res.data.twitch.access_token,
+          jwt: window.localStorage.getItem('token'),
+          method: 'GET/'
+        }
+        let twitchProfile = ExternalService.twitchPOST(twitchInfo)
         console.log(twitchProfile)
-       
-        let twitterProfile = twitterAPI.twitterGET(res.data.twitter.oauth_token, res.data.twitter.ouath_secret, '/users/show.json?screen_name='+res.data.twitter.displayName)
-        console.log(res)
+
+        let twitterInfo = {
+          endpoint: 'statuses/user_timeline?user_id='+res.data.twitter.user_id,
+          oauth_token: res.data.twitter.oauth_token,
+          oauth_token_secret: res.data.twitter.oauth_token_secret,
+          jwt: window.localStorage.getItem('token'),
+          method: 'GET/'
+        }
+        let twitterProfile = ExternalService.twitterPOST(twitterInfo)
+        console.log(twitterProfile)
       }) 
     },
     watch: {},

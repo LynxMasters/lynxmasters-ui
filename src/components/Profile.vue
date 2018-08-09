@@ -2,10 +2,7 @@
   <div>Members Profile</div>
 </template>
 
-<script>
-import redditAPI from '@/services/redditAPI'
-import twitchAPI from '@/services/twitchAPI'	
-import twitterAPI from '@/services/twitterAPI'		
+<script>	
 export default {
 
     name: 'Profile',
