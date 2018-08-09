@@ -92,7 +92,7 @@
         console.log(twitchProfile)
 
         let twitterInfo = {
-          endpoint: 'statuses/user_timeline?user_id='+res.data.twitter.user_id,
+          endpoint: 'users/show.json?screen_name='+res.data.twitter.displayName,
           oauth_token: res.data.twitter.oauth_token,
           oauth_token_secret: res.data.twitter.oauth_token_secret,
           jwt: window.localStorage.getItem('token'),
