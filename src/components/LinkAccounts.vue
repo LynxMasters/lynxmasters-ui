@@ -77,7 +77,7 @@
         console.log('^^^^^^^^LynxMasters^^^^^^^^^^^')
 
         let redditInfo = {
-          endpoint: 'me',
+          endpoint: '/me',
           access_token: res.data.reddit.access_token,
           jwt: window.localStorage.getItem('token'),
           method: 'GET/'
@@ -97,7 +97,7 @@
         console.log('^^^^^^^^twittch^^^^^^^^^^^')
 
         let twitterInfo = {
-          endpoint: 'users/show.json?screen_name='+res.data.twitter.displayName,
+          endpoint: '/users/show.json?screen_name='+res.data.twitter.displayName,
           oauth_token: res.data.twitter.oauth_token,
           oauth_secret: res.data.twitter.oauth_secret,
           jwt: window.localStorage.getItem('token'),
