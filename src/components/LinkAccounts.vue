@@ -81,6 +81,7 @@
         } 
         let redditProfile = ExternalService.redditPOST(redditInfo)
         console.log(redditProfile)
+        console.log('^^^^^^^^reddit^^^^^^^^^^^')
         
         let twitchInfo = {
           endpoint: '/user?oauth_token='+res.data.twitch.access_token,
@@ -90,16 +91,18 @@
         }
         let twitchProfile = ExternalService.twitchPOST(twitchInfo)
         console.log(twitchProfile)
+        console.log('^^^^^^^^twittch^^^^^^^^^^^')
 
         let twitterInfo = {
           endpoint: 'users/show.json?screen_name='+res.data.twitter.displayName,
           oauth_token: res.data.twitter.oauth_token,
-          oauth_token_secret: res.data.twitter.oauth_token_secret,
+          oauth_secret: res.data.twitter.oauth_secret,
           jwt: window.localStorage.getItem('token'),
           method: 'GET/'
         }
         let twitterProfile = ExternalService.twitterPOST(twitterInfo)
         console.log(twitterProfile)
+        console.log('^^^^^^^^twitter^^^^^^^^^^^')
       }) 
     },
     watch: {},
