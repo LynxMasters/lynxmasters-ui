@@ -7,7 +7,6 @@ export default{
 	},
 
   twitterPOST(info){
-    console.log(info) 
     return Api().post('twitter'+info.method, {data: info}, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
   }, 	
 

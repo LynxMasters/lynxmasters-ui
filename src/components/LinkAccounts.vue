@@ -73,6 +73,9 @@
       let token = window.localStorage.getItem('token')
       UserService.getAccounts(token).then(res => { 
         
+        console.log(res)
+        console.log('^^^^^^^^LynxMasters^^^^^^^^^^^')
+
         let redditInfo = {
           endpoint: 'me',
           access_token: res.data.reddit.access_token,
