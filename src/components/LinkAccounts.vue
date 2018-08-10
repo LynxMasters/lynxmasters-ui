@@ -137,13 +137,13 @@
       },
 
       reddit() {
-        window.location = 'http://localhost:8081/auth/reddit?token='+window.localStorage.getItem('token')
+        window.location = 'http://localhost:8081/auth/reddit?token=' + this.token
       },
       twitch() {
-        window.location = 'http://localhost:8081/auth/twitch?token='+window.localStorage.getItem('token')
+        window.location = 'http://localhost:8081/auth/twitch?token=' + this.token
       },
       twitter() {
-        window.location ='http://localhost:8081/auth/twitter?token='+window.localStorage.getItem('token')
+        window.location ='http://localhost:8081/auth/twitter?token=' + this.token
       }
     }
   }
