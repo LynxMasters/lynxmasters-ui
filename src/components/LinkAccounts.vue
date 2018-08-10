@@ -71,7 +71,10 @@
           </div>
           <div class="card-content">
             <div class="content">
-              <h4 class="has-text-centered">Reddit Username = </h4>
+              <h4 class="has-text-centered">@{{ accounts.reddit.name }}</h4>
+              <h5 class="has-text-centered">{{ accounts.reddit.link_karma }} Post Karma</h5>
+              <h5 class="has-text-centered">{{ accounts.reddit.comment_karma }} Comment Karma</h5>
+              <h5 class="has-text-centered">Date Created: {{ moment.unix(accounts.reddit.created).format('YYYY-MM-DD') }}</h5>
             </div>
           </div>
           <footer class="card-footer">
