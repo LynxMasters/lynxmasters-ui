@@ -4,6 +4,84 @@
     <div class="intro column is-8 is-offset-2">
       <h2 class="title">Link Accounts</h2><hr>
     </div>
+
+    <div id="social" class="columns features">
+      <div class="column is-4">
+        <div class="card is-shady card-equal-height">
+          <header class="card-header">
+            <p class="card-header-title">
+              <i class="fab fa-twitter fa-2x linked"></i>
+              <span>
+                Twitter Linked
+              </span>
+            </p>
+          </header>
+          <div class="card-image has-text-centered">
+            <img :src="accounts.twitter.image">
+          </div>
+          <div class="card-content">
+            <div class="content">
+              <h4 class="has-text-centered">Twitter name = {{ accounts.twitter }}</h4>
+            </div>
+          </div>
+          <footer class="card-footer">
+            <a href="#" class="card-footer-item is-light button"
+               @click="">Unlink Twitter Account</a>
+          </footer>
+        </div>
+      </div>
+      <div class="column is-4">
+        <div class="card is-shady card-equal-height">
+          <header class="card-header">
+            <p class="card-header-title">
+              <i class="fab fa-twitch fa-2x linked"></i>
+              <span>
+                Twitch Linked
+              </span>
+            </p>
+          </header>
+          <div class="card-image has-text-centered">
+            <img :src="accounts.twitch.logo">
+          </div>
+          <div class="card-content">
+            <div class="content">
+              <h4 class="has-text-centered">@{{ accounts.twitch.display_name }}</h4>
+              <h5 class="has-text-centered">Bio: {{ accounts.twitch.bio }}</h5>
+              <h5 class="has-text-centered">Date Created: {{ moment(accounts.twitch.created_at).format('YYYY-MM-DD') }}</h5>
+            </div>
+          </div>
+          <footer class="card-footer">
+            <a class="card-footer-item is-light button"
+               @click="">Unlink Twitch Account</a>
+          </footer>
+        </div>
+      </div>
+      <div class="column is-4">
+        <div class="card is-shady card-equal-height">
+          <header class="card-header">
+            <p class="card-header-title">
+              <i class="fab fa-reddit fa-2x linked"></i>
+              <span>
+                Reddit Linked
+              </span>
+            </p>
+          </header>
+          <div class="card-image has-text-centered">
+            <img :src="accounts.reddit.icon_img">
+          </div>
+          <div class="card-content">
+            <div class="content">
+              <h4 class="has-text-centered">Reddit Username = </h4>
+            </div>
+          </div>
+          <footer class="card-footer">
+            <a class="card-footer-item button is-light"
+               @click="">Unlink Reddit Account</a>
+          </footer>
+        </div>
+      </div>
+    </div>
+
     <div id="social" class="columns features">
       <div class="column is-4">
         <div class="card is-shady card-equal-height">
@@ -100,11 +178,13 @@
             method: 'GET/', //If posting data method would be POST/
             user_agent: navigator.userAgent
           }
+
           ExternalService.redditPOST(redditInfo).then(response => {
             return response
           }).then((profile) => {
             console.log(profile.data)
             console.log('^^^^^^^^reddit^^^^^^^^^^^')
+            this.accounts.reddit = profile.data
           })
 
           let twitchInfo = {
@@ -120,6 +200,7 @@
           }).then((profile) => {
             console.log(profile.data)
             console.log('^^^^^^^^twitch^^^^^^^^^^^')
+            this.accounts.twitch = profile.data
           })
 
           let twitterInfo = {
@@ -135,6 +216,7 @@
           }).then((profile) => {
             console.log(profile.data)
             console.log('^^^^^^^^twitter^^^^^^^^^^^')
+            this.accounts.twitter = profile.data
           })
 
         })

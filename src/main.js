@@ -12,11 +12,13 @@ import './assets/style/app.scss'
 import store from './store/store'
 import Oauth from 'oauth-1.0a'
 import crypto from 'crypto'
+import moment from 'moment'
 
 
 Vue.use(Buefy)
 Vue.use(scrollSpy)
 Vue.use(VueScrollTo)
+Vue.prototype.moment = moment
 
 Vue.config.productionTip = false
 
