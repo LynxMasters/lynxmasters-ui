@@ -17,11 +17,13 @@
             </p>
           </header>
           <div class="card-image has-text-centered">
-            <img :src="accounts.twitter.image">
+            <img :src="accounts.twitter.profile_image_url_https">
           </div>
           <div class="card-content">
             <div class="content">
-              <h4 class="has-text-centered">Twitter name = {{ accounts.twitter }}</h4>
+              <h4 class="has-text-centered">@{{ accounts.twitter.screen_name }}</h4>
+              <h5 class="has-text-centered">Followers: {{ accounts.twitter.followers_count }} Following:  {{ accounts.twitter.friends_count }}</h5>
+              <h5 class="has-text-centered">Date Created: {{ moment(accounts.twitter.created_at).format('YYYY-MM-DD') }}</h5>
             </div>
           </div>
           <footer class="card-footer">
