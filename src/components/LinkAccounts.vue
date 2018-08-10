@@ -174,7 +174,7 @@
     computed: {},
     methods:{
       async getAccountInfo() {
-        await UserService.getAccounts(this.token, navigator.userAgent).then(res => {
+        await UserService.getAccounts(this.token).then(res => {
           console.log(res)
           console.log('^^^^^^^^LynxMasters^^^^^^^^^^^')
 
@@ -241,6 +241,15 @@
       },
       twitter() {
         window.location ='http://localhost:8081/auth/twitter?token=' + this.token
+      }
+      redditUNLK() {
+        
+      },
+      twitchUNLK() {
+        
+      },
+      twitterUNLK() {
+        
       }
     }
   }

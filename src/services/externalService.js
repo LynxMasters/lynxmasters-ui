@@ -14,12 +14,16 @@ export default{
   return Api().post('reddit'+info.method, { data: info }, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
   },
 
-  twitchRFSH(info){
-  return Api().post('twitch/refresh', {data: info}, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
-  },
+  twitchUNLK(info){   
+  return Api().post('unlink/twitch', {data: info}, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
+  }, 
 
-  redditRFSH(info){
-  return Api().post('reddit/refresh', {data: info}, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
+  twitterUNLK(info){
+  return Api().post('unlink/twitter', {data: info}, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
+  },  
+
+  redditUNLK(info){
+  return Api().post('unlink/reddit', { data: info }, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
   }
 }
 
