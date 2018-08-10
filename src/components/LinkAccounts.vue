@@ -17,7 +17,7 @@
             </p>
           </header>
           <div class="card-image has-text-centered">
-            <img :src="accounts.twitter.profile_image_url_https">
+            <img :src="twitterImg" class="twitter-img">
           </div>
           <div class="card-content">
             <div class="content">
@@ -158,6 +158,7 @@
           twitter: {},
           reddit: {}
         },
+        twitterImg: null,
         hasTwitterLinked: false,
         hasTwitchLinked: false,
         hasRedditLinked: false,
@@ -222,11 +223,15 @@
             console.log(profile.data)
             console.log('^^^^^^^^twitter^^^^^^^^^^^')
             this.accounts.twitter = profile.data
+            this.normalizeImage(this.accounts.twitter.profile_image_url_https)
           })
 
         })
       },
-
+      normalizeImage(img) {
+        let regex = /(_normal)+/g
+        this.twitterImg = img.replace(regex, "")
+      },
       reddit() {
         window.location = 'http://localhost:8081/auth/reddit?token=' + this.token
       },
