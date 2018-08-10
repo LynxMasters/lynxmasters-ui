@@ -67,62 +67,84 @@
   import ExternalService from '@/services/externalService'
 
   export default {
-    name: 'LinkAccounts', 
+    name: 'LinkAccounts',
+    data() {
+      return {
+        accounts: {},
+        hasTwitterLinked: false,
+        hasTwitchLinked: false,
+        hasRedditLinked: false,
+        token: null
+      }
+    },
     mounted() {
-
-      let token = window.localStorage.getItem('token')
-      UserService.getAccounts(token).then(res => { 
-        
-        console.log(res)
-        console.log('^^^^^^^^LynxMasters^^^^^^^^^^^')
-
-        let redditInfo = {
-          endpoint: '/me',
-          access_token: res.data.reddit.access_token,
-          jwt: window.localStorage.getItem('token'),
-          method: 'GET/', //If posting data method would be POST/
-          user_agent: navigator.userAgent
-        } 
-        let redditProfile = ExternalService.redditPOST(redditInfo)
-        console.log(redditProfile)
-        console.log('^^^^^^^^reddit^^^^^^^^^^^')
-        
-        let twitchInfo = {
-          endpoint: '/user?oauth_token='+res.data.twitch.access_token,
-          access_token: res.data.twitch.access_token,
-          jwt: window.localStorage.getItem('token'),
-          method: 'GET/', //If posting data method would be POST/
-          user_agent: navigator.userAgent
-        }
-        let twitchProfile = ExternalService.twitchPOST(twitchInfo)
-        console.log(twitchProfile)
-        console.log('^^^^^^^^twitch^^^^^^^^^^^')
-
-        let twitterInfo = {
-          endpoint: '/users/show.json?screen_name='+res.data.twitter.displayName,
-          oauth_token: res.data.twitter.oauth_token,
-          oauth_secret: res.data.twitter.oauth_secret,
-          jwt: window.localStorage.getItem('token'),
-          method: 'GET/' //If posting data method would be POST/
-        }
-        let twitterProfile = ExternalService.twitterPOST(twitterInfo)
-        console.log(twitterProfile)
-        console.log('^^^^^^^^twitter^^^^^^^^^^^')
-      }) 
+      this.token = window.localStorage.getItem('token')
+      this.getAccountInfo()
     },
     watch: {},
     computed: {},
     methods:{
+      async getAccountInfo() {
+        await UserService.getAccounts(this.token).then(res => {
+          console.log(res)
+          console.log('^^^^^^^^LynxMasters^^^^^^^^^^^')
 
-      reddit() { 
-        window.location = 'http://localhost:8081/auth/reddit?token='+window.localStorage.getItem('token')   
+          let redditInfo = {
+            endpoint: '/me',
+            access_token: res.data.reddit.access_token,
+            jwt: window.localStorage.getItem('token'),
+            method: 'GET/', //If posting data method would be POST/
+            user_agent: navigator.userAgent
+          }
+          ExternalService.redditPOST(redditInfo).then(response => {
+            return response
+          }).then((profile) => {
+            console.log(profile.data)
+            console.log('^^^^^^^^reddit^^^^^^^^^^^')
+          })
+
+          let twitchInfo = {
+            endpoint: '/user?oauth_token='+res.data.twitch.access_token,
+            access_token: res.data.twitch.access_token,
+            jwt: window.localStorage.getItem('token'),
+            method: 'GET/', //If posting data method would be POST/
+            user_agent: navigator.userAgent
+          }
+
+          ExternalService.twitchPOST(twitchInfo).then(response => {
+            return response
+          }).then((profile) => {
+            console.log(profile.data)
+            console.log('^^^^^^^^twitch^^^^^^^^^^^')
+          })
+
+          let twitterInfo = {
+            endpoint: '/users/show.json?screen_name='+res.data.twitter.displayName,
+            oauth_token: res.data.twitter.oauth_token,
+            oauth_secret: res.data.twitter.oauth_secret,
+            jwt: window.localStorage.getItem('token'),
+            method: 'GET/' //If posting data method would be POST/
+          }
+
+          ExternalService.twitterPOST(twitterInfo).then(response => {
+            return response
+          }).then((profile) => {
+            console.log(profile.data)
+            console.log('^^^^^^^^twitter^^^^^^^^^^^')
+          })
+
+        })
+      },
+
+      reddit() {
+        window.location = 'http://localhost:8081/auth/reddit?token='+window.localStorage.getItem('token')
       },
       twitch() {
         window.location = 'http://localhost:8081/auth/twitch?token='+window.localStorage.getItem('token')
       },
       twitter() {
         window.location ='http://localhost:8081/auth/twitter?token='+window.localStorage.getItem('token')
-      }  
+      }
     }
   }
 </script>
