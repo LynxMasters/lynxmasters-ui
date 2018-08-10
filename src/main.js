@@ -10,8 +10,6 @@ import scrollSpy from 'vue2-scrollspy';
 import Bulma from 'bulma/css/bulma.css'
 import './assets/style/app.scss'
 import store from './store/store'
-import Oauth from 'oauth-1.0a'
-import crypto from 'crypto'
 import moment from 'moment'
 
 

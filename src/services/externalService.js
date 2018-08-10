@@ -7,11 +7,19 @@ export default{
 	},
 
   twitterPOST(info){
-    return Api().post('twitter'+info.method, {data: info}, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
+  return Api().post('twitter'+info.method, {data: info}, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
   }, 	
 
   redditPOST(info){
   return Api().post('reddit'+info.method, { data: info }, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
+  },
+
+  twitchRFSH(info){
+  return Api().post('twitter/refresh', {data: info}, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
+  },
+
+  redditRFSH(info){
+  return Api().post('reddit/refresh', { data: info }, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
   }
 }
 
