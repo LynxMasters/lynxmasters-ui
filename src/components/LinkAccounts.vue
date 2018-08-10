@@ -70,7 +70,11 @@
     name: 'LinkAccounts',
     data() {
       return {
-        accounts: {},
+        accounts: {
+          twitch: {},
+          twitter: {},
+          reddit: {}
+        },
         hasTwitterLinked: false,
         hasTwitchLinked: false,
         hasRedditLinked: false,
