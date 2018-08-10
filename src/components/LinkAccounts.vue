@@ -241,7 +241,7 @@
       },
       twitter() {
         window.location ='http://localhost:8081/auth/twitter?token=' + this.token
-      }
+      },
       redditUNLK() {
         
       },
