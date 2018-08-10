@@ -4,7 +4,7 @@ export default{
 	
 	twitchPOST(info){   
 	return Api().post('twitch'+info.method, {data: info}, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
-	},
+	}, 
 
   twitterPOST(info){
   return Api().post('twitter'+info.method, {data: info}, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
@@ -15,11 +15,11 @@ export default{
   },
 
   twitchRFSH(info){
-  return Api().post('twitter/refresh', {data: info}, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
+  return Api().post('twitch/refresh', {data: info}, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
   },
 
   redditRFSH(info){
-  return Api().post('reddit/refresh', { data: info }, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
+  return Api().post('reddit/refresh', {data: info}, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
   }
 }
 

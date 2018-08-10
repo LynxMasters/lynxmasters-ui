@@ -168,12 +168,13 @@
     mounted() {
       this.token = window.localStorage.getItem('token')
       this.getAccountInfo()
+        
     },
     watch: {},
     computed: {},
     methods:{
       async getAccountInfo() {
-        await UserService.getAccounts(this.token).then(res => {
+        await UserService.getAccounts(this.token, navigator.userAgent).then(res => {
           console.log(res)
           console.log('^^^^^^^^LynxMasters^^^^^^^^^^^')
 
