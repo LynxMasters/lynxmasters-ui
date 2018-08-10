@@ -10,10 +10,15 @@ import scrollSpy from 'vue2-scrollspy';
 import Bulma from 'bulma/css/bulma.css'
 import './assets/style/app.scss'
 import store from './store/store'
+import Oauth from 'oauth-1.0a'
+import crypto from 'crypto'
+import moment from 'moment'
+
 
 Vue.use(Buefy)
 Vue.use(scrollSpy)
 Vue.use(VueScrollTo)
+Vue.prototype.moment = moment
 
 Vue.config.productionTip = false
 
@@ -25,6 +30,11 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+var corsOptions = {
+  origin: 'https://api.twitter.com/1.1',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -49,5 +59,4 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   }
-
 });
