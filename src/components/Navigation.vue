@@ -37,6 +37,12 @@
           </span>
           <span>Profile</span>
         </router-link>
+        <router-link v-bind:to="{ name: 'AccountManagement' }" class="navbar-item" active-class="link-is-active" exact>
+          <span class="icon ">
+            <i class="fas fa-id-card"></i>
+          </span>
+          <span>Account</span>
+        </router-link>
         <router-link v-bind:to="{ name: 'Landing' }" class="navbar-item" exact>
           <span class="icon ">
             <i class="fas fa-sign-out-alt"></i>

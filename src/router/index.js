@@ -6,6 +6,7 @@ import Profile from '@/components/Profile'
 import EmailVerified from '@/components/EmailVerified'
 import Signup from '@/components/Signup/NewSignup'
 import LinkAccounts from '@/components/LinkAccounts'
+import AccountManagement from '@/components/AccountManagement'
 
 Vue.use(Router)
 
@@ -43,9 +44,9 @@ export default new Router({
       component: EmailVerified
     },
     {
-      path: '/LinkAccounts',
-      name: 'LinkAccounts',
-      component: LinkAccounts
+      path: '/account',
+      name: 'AccountManagement',
+      component: AccountManagement
     }
   ]
 })
