@@ -4,6 +4,79 @@
     <div class="intro column is-8 is-offset-2">
       <h2 class="title">Link Accounts</h2><hr>
     </div>
+    <div class="columns features">
+      <div class="column is-4">
+        <div class="card is-shady card-equal-height">
+          <header class="card-header">
+            <p class="card-header-title is-centered">
+              Checking for Twitter
+            </p>
+          </header>
+          <div class="card-content">
+            <div class="content has-text-centered">
+              <loading-progress
+                :progress="progress"
+                :indeterminate="indeterminate"
+                :counter-clockwise="counterClockwise"
+                :hide-background="hideBackground"
+                size="64"
+                rotate
+                fillDuration="2"
+                rotationDuration="1"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column is-4">
+        <div class="card is-shady card-equal-height">
+          <header class="card-header">
+            <p class="card-header-title is-centered">
+              Checking for Twitter
+            </p>
+          </header>
+          <div class="card-content">
+            <div class="content has-text-centered">
+              <loading-progress
+                :progress="progress"
+                :indeterminate="indeterminate"
+                :counter-clockwise="counterClockwise"
+                :hide-background="hideBackground"
+                size="64"
+                rotate
+                fillDuration="2"
+                rotationDuration="1"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column is-4">
+        <div class="card is-shady card-equal-height">
+          <header class="card-header">
+            <p class="card-header-title is-centered">
+              Checking for Twitter
+            </p>
+          </header>
+          <div class="card-content">
+            <div class="content has-text-centered">
+              <loading-progress
+                class="progress-twitter"
+                :progress="progress"
+                :indeterminate="indeterminate"
+                :counter-clockwise="counterClockwise"
+                :hide-background="hideBackground"
+                size="64"
+                rotate
+                fillDuration="2"
+                rotationDuration="1"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <div id="social" class="columns features">
       <div class="column is-4">
@@ -162,7 +235,11 @@
         hasTwitterLinked: false,
         hasTwitchLinked: false,
         hasRedditLinked: false,
-        token: null
+        token: null,
+        indeterminate: true,
+        progress: 0,
+        counterClockwise: false,
+        hideBackground: false,
       }
     },
     mounted() {
