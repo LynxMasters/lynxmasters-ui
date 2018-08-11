@@ -1,15 +1,100 @@
 <template>
   <!-- Social Add-Ons -->
   <section class="container">
+
     <div class="intro column is-8 is-offset-2">
       <h2 class="title">Link Accounts</h2><hr>
+      <!--<h1>twitter is loaded = {{ isLoaded.twitter }} and twitter is linked = {{ isLoaded.hasTwitterLinked }}</h1>-->
+      <!--<h1>twitch is loaded = {{ isLoaded.twitch }}</h1>-->
+      <!--<h1>reddit is loaded = {{ isLoaded.reddit }}</h1>-->
+      <!--<transition name="fade" >-->
+        <!--<p v-if=" isLoaded.hasTwitterLinked"><h1>HELLO THERE</h1></p>-->
+      <!--</transition>-->
     </div>
-    <div class="columns features">
-      <div class="column is-4">
+    <div id="social" class="columns features">
+      <!-- BEGIN TWITTER CARDS -->
+      <transition name="fade" mode="out-in">
+        <div class="column is-4"
+             v-if="!isLoaded.twitter">
+          <div class="card is-shady card-equal-height">
+            <header class="card-header">
+              <p class="card-header-title is-centered">
+                Checking for Twitter
+              </p>
+            </header>
+            <div class="card-content">
+              <div class="content has-text-centered">
+                <loading-progress
+                  :progress="progress"
+                  :indeterminate="indeterminate"
+                  :counter-clockwise="counterClockwise"
+                  :hide-background="hideBackground"
+                  size="64"
+                  rotate
+                  fillDuration="2"
+                  rotationDuration="1"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column is-4 animated fadeIn"
+             v-if="isLoaded.twitter && isLoaded.hasTwitterLinked">
+          <div class="card is-shady card-equal-height">
+            <header class="card-header">
+              <p class="card-header-title">
+                <i class="fab fa-twitter fa-2x linked"></i>
+                <span>
+                Twitter Linked
+              </span>
+              </p>
+            </header>
+            <div class="card-image has-text-centered">
+              <img :src="twitterImg" class="twitter-img">
+            </div>
+            <div class="card-content">
+              <div class="content">
+                <h4 class="has-text-centered">@{{ accounts.twitter.screen_name }}</h4>
+                <h5 class="has-text-centered">Followers: {{ accounts.twitter.followers_count }} Following:  {{ accounts.twitter.friends_count }}</h5>
+                <h5 class="has-text-centered">Date Created: {{ moment(accounts.twitter.created_at).format('YYYY-MM-DD') }}</h5>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <a href="#" class="card-footer-item is-light button"
+                 @click="">Unlink Twitter Account</a>
+            </footer>
+          </div>
+        </div>
+        <div class="column is-4 animated fadeIn"
+             v-if="isLoaded.twitter && !isLoaded.hasTwitterLinked">
+          <div class="card is-shady card-equal-height">
+            <div class="card-image has-text-centered">
+              <i class="fab fa-twitter fa-7x"></i>
+            </div>
+            <div class="card-content">
+              <div class="content">
+                <h4 class="has-text-centered">Twitter</h4>
+                <p>Twitter is an online news and social networking service on which users post and interact with messages known as "tweets".</p>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <a href="#" class="card-footer-item is-primary button"
+                 @click="twitter">Link Twitter Account</a>
+            </footer>
+          </div>
+        </div>
+      </transition>
+      <!-- END TWITTER CARDS -->
+
+
+
+      <!-- BEGIN TWITCH CARDS -->
+      <div class="column is-4"
+           v-if="!isLoaded.twitch">
         <div class="card is-shady card-equal-height">
           <header class="card-header">
             <p class="card-header-title is-centered">
-              Checking for Twitter
+              Checking for Twitch
             </p>
           </header>
           <div class="card-content">
@@ -28,34 +113,12 @@
           </div>
         </div>
       </div>
-      <div class="column is-4">
+      <div class="column is-4"
+           v-if="!isLoaded.reddit">
         <div class="card is-shady card-equal-height">
           <header class="card-header">
             <p class="card-header-title is-centered">
-              Checking for Twitter
-            </p>
-          </header>
-          <div class="card-content">
-            <div class="content has-text-centered">
-              <loading-progress
-                :progress="progress"
-                :indeterminate="indeterminate"
-                :counter-clockwise="counterClockwise"
-                :hide-background="hideBackground"
-                size="64"
-                rotate
-                fillDuration="2"
-                rotationDuration="1"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="column is-4">
-        <div class="card is-shady card-equal-height">
-          <header class="card-header">
-            <p class="card-header-title is-centered">
-              Checking for Twitter
+              Checking for Reddit
             </p>
           </header>
           <div class="card-content">
@@ -75,36 +138,38 @@
           </div>
         </div>
       </div>
-    </div>
+    <!--</div>-->
 
 
-    <div id="social" class="columns features">
-      <div class="column is-4">
-        <div class="card is-shady card-equal-height">
-          <header class="card-header">
-            <p class="card-header-title">
-              <i class="fab fa-twitter fa-2x linked"></i>
-              <span>
-                Twitter Linked
-              </span>
-            </p>
-          </header>
-          <div class="card-image has-text-centered">
-            <img :src="twitterImg" class="twitter-img">
-          </div>
-          <div class="card-content">
-            <div class="content">
-              <h4 class="has-text-centered">@{{ accounts.twitter.screen_name }}</h4>
-              <h5 class="has-text-centered">Followers: {{ accounts.twitter.followers_count }} Following:  {{ accounts.twitter.friends_count }}</h5>
-              <h5 class="has-text-centered">Date Created: {{ moment(accounts.twitter.created_at).format('YYYY-MM-DD') }}</h5>
-            </div>
-          </div>
-          <footer class="card-footer">
-            <a href="#" class="card-footer-item is-light button"
-               @click="">Unlink Twitter Account</a>
-          </footer>
-        </div>
-      </div>
+    <!--<div id="social" class="columns features">-->
+
+
+      <!--<div class="column is-4">-->
+        <!--<div class="card is-shady card-equal-height">-->
+          <!--<header class="card-header">-->
+            <!--<p class="card-header-title">-->
+              <!--<i class="fab fa-twitter fa-2x linked"></i>-->
+              <!--<span>-->
+                <!--Twitter Linked-->
+              <!--</span>-->
+            <!--</p>-->
+          <!--</header>-->
+          <!--<div class="card-image has-text-centered">-->
+            <!--<img :src="twitterImg" class="twitter-img">-->
+          <!--</div>-->
+          <!--<div class="card-content">-->
+            <!--<div class="content">-->
+              <!--<h4 class="has-text-centered">@{{ accounts.twitter.screen_name }}</h4>-->
+              <!--<h5 class="has-text-centered">Followers: {{ accounts.twitter.followers_count }} Following:  {{ accounts.twitter.friends_count }}</h5>-->
+              <!--<h5 class="has-text-centered">Date Created: {{ moment(accounts.twitter.created_at).format('YYYY-MM-DD') }}</h5>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<footer class="card-footer">-->
+            <!--<a href="#" class="card-footer-item is-light button"-->
+               <!--@click="">Unlink Twitter Account</a>-->
+          <!--</footer>-->
+        <!--</div>-->
+      <!--</div>-->
       <div class="column is-4">
         <div class="card is-shady card-equal-height">
           <header class="card-header">
@@ -158,26 +223,29 @@
           </footer>
         </div>
       </div>
-    </div>
+    <!--</div>-->
 
-    <div id="social" class="columns features">
-      <div class="column is-4">
-        <div class="card is-shady card-equal-height">
-          <div class="card-image has-text-centered">
-            <i class="fab fa-twitter fa-7x"></i>
-          </div>
-          <div class="card-content">
-            <div class="content">
-              <h4 class="has-text-centered">Twitter</h4>
-              <p>Twitter is an online news and social networking service on which users post and interact with messages known as "tweets".</p>
-            </div>
-          </div>
-          <footer class="card-footer">
-            <a href="#" class="card-footer-item is-primary button"
-               @click="twitter">Link Twitter Account</a>
-          </footer>
-        </div>
-      </div>
+    <!--<div id="social" class="columns features">-->
+
+      <!--<div class="column is-4">-->
+        <!--<div class="card is-shady card-equal-height">-->
+          <!--<div class="card-image has-text-centered">-->
+            <!--<i class="fab fa-twitter fa-7x"></i>-->
+          <!--</div>-->
+          <!--<div class="card-content">-->
+            <!--<div class="content">-->
+              <!--<h4 class="has-text-centered">Twitter</h4>-->
+              <!--<p>Twitter is an online news and social networking service on which users post and interact with messages known as "tweets".</p>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<footer class="card-footer">-->
+            <!--<a href="#" class="card-footer-item is-primary button"-->
+               <!--@click="twitter">Link Twitter Account</a>-->
+          <!--</footer>-->
+        <!--</div>-->
+      <!--</div>-->
+
+
       <div class="column is-4">
         <div class="card is-shady card-equal-height">
           <div class="card-image has-text-centered">
@@ -219,6 +287,7 @@
 </template>
 
 <script>
+  import _ from 'lodash'
   import UserService from '@/services/UserService'
   import ExternalService from '@/services/externalService'
 
@@ -231,10 +300,15 @@
           twitter: {},
           reddit: {}
         },
+        isLoaded: {
+          twitch: false,
+          twitter: false,
+          reddit: false,
+          hasTwitterLinked: false,
+          hasTwitchLinked: false,
+          hasRedditLinked: false,
+        },
         twitterImg: null,
-        hasTwitterLinked: false,
-        hasTwitchLinked: false,
-        hasRedditLinked: false,
         token: null,
         indeterminate: true,
         progress: 0,
@@ -253,6 +327,16 @@
         await UserService.getAccounts(this.token).then(res => {
           console.log(res)
           console.log('^^^^^^^^LynxMasters^^^^^^^^^^^')
+
+          if (!_.isEmpty(res.data.twitter.oauth_secret)) {
+            this.isLoaded.hasTwitterLinked = true
+          }
+          if (!_.isEmpty(res.data.twitch.access_token )) {
+            this.isLoaded.hasTwitchLinked = true
+          }
+          if (!_.isEmpty(res.data.reddit.access_token)) {
+            this.isLoaded.hasRedditLinked = true
+          }
 
           let redditInfo = {
             endpoint: '/me',
@@ -301,6 +385,8 @@
             console.log('^^^^^^^^twitter^^^^^^^^^^^')
             this.accounts.twitter = profile.data
             this.normalizeImage(this.accounts.twitter.profile_image_url_https)
+            this.isLoaded.twitter = true
+
           })
 
         })
@@ -331,4 +417,5 @@
   #social .column .card-footer {
     margin-top: auto;
   }
+
 </style>
