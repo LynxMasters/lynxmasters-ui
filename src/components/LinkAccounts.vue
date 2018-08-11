@@ -168,7 +168,8 @@
     mounted() {
       this.token = window.localStorage.getItem('token')
       this.getAccountInfo()
-        
+      let profile = ExternalService.profiles(window.localStorage.getItem('token'))
+      console.log(profile)  
     },
     watch: {},
     computed: {},

@@ -24,6 +24,10 @@ export default{
 
   redditUNLK(info){
   return Api().post('unlink/reddit', { data: info }, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
+  },
+
+  profiles(jwt){
+  return Api().post('profiles', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
   }
 }
 
