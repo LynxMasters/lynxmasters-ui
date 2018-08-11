@@ -13,11 +13,14 @@ import store from './store/store'
 import Oauth from 'oauth-1.0a'
 import crypto from 'crypto'
 import moment from 'moment'
+import VueProgress from 'vue-progress-path'
+require('vue2-animate/dist/vue2-animate.min.css')
 
 
 Vue.use(Buefy)
 Vue.use(scrollSpy)
 Vue.use(VueScrollTo)
+Vue.use(VueProgress)
 Vue.prototype.moment = moment
 
 Vue.config.productionTip = false
