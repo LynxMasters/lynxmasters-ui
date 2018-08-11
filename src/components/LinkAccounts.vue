@@ -267,6 +267,7 @@
         progress: 0,
         counterClockwise: false,
         hideBackground: false,
+        linkedMessage: 'Looks like you have linked at least one account'
       }
     },
     mounted() {
@@ -350,6 +351,11 @@
             this.isLoaded.reddit = true
           }
 
+          if (this.isLoaded.hasTwitterLinked || this.isLoaded.hasTwitchLinked
+            || this.isLoaded.hasRedditLinked) {
+            this.proceedToProfile()
+          }
+
         })
       },
       normalizeImage(img) {
@@ -364,7 +370,23 @@
       },
       twitter() {
         window.location ='http://localhost:8081/auth/twitter?token=' + this.token
-      }
+      },
+      proceedToProfile() {
+        this.$snackbar.open({
+          message: this.linkedMessage,
+          type: 'is-warning',
+          position: 'is-top',
+          actionText: 'Go To Profile',
+          indefinite: true,
+          onAction: () => {
+            this.$toast.open({
+              message: 'Redirecting to your profile',
+              queue: false
+            })
+            this.$router.push('Profile')
+          }
+        })
+      },
     }
   }
 </script>
