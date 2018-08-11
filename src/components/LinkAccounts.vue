@@ -314,7 +314,6 @@
           }
 
           if (!_.isEmpty(res.data.twitch.access_token )) {
-            console.log("NO TWITCH TOKEN")
             this.isLoaded.hasTwitchLinked = true
             ExternalService.twitchPOST(twitchInfo).then(response => {
               return response
