@@ -387,6 +387,15 @@
           }
         })
       },
+      unlinkTwitter() {
+
+      },
+      unlinkTwitch() {
+
+      },
+      unlinkReddit() {
+
+      }
     }
   }
 </script>
