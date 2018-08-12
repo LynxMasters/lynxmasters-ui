@@ -396,14 +396,14 @@
       },
       async unlinkTwitch() {
         await ExternalService.twitchUNLINK(this.token).then(res => {
-          if (_.isEmpty(res.data.twitter.user_id)) {
+          if (_.isEmpty(res.data.twitch.client_id)) {
             this.isLoaded.hasTwitchLinked = false
           }
         })
       },
       async unlinkReddit() {
         await ExternalService.redditUNLINK(this.token).then(res => {
-          if (_.isEmpty(res.data.twitter.user_id)) {
+          if (_.isEmpty(res.data.reddit.access_token)) {
             this.isLoaded.hasRedditLinked = false
           }
         })
