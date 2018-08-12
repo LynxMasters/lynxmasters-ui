@@ -235,15 +235,17 @@
       <!-- End scrollspy div -->
 
       <!-- Floating Action Button -->
-      <div id="fab"><fab
-        :position="position"
-        :bg-color="bgColor"
-        :actions="fabActions"
-        @scrollToTop="scrollToTop"
-        @login="goToLoginPage"
-        @signUp="goToSignUpPage"
-        @contactUs="scrollToContactUs"
-      ></fab></div>
+      <div id="fab" class="animated fadeIn">
+        <fab
+          :position="position"
+          :bg-color="bgColor"
+          :actions="fabActions"
+          @scrollToTop="scrollToTop"
+          @login="goToLoginPage"
+          @signUp="goToSignUpPage"
+          @contactUs="scrollToContactUs"
+        ></fab>
+      </div>
 
     </div>
 </template>
