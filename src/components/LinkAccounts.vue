@@ -401,20 +401,23 @@
       },
       async unlinkTwitter() {
         await ExternalService.twitterUNLINK(this.token).then(res => {
-          console.log("unlinking twitter response....")
-          console.log(res)
+          if (_.isEmpty(res.data.twitter.user_id)) {
+            this.isLoaded.hasTwitterLinked = false
+          }
         })
       },
       async unlinkTwitch() {
         await ExternalService.twitchUNLINK(this.token).then(res => {
-          console.log("unlinking twitch response....")
-          console.log(res)
+          if (_.isEmpty(res.data.twitter.user_id)) {
+            this.isLoaded.hasTwitchLinked = false
+          }
         })
       },
       async unlinkReddit() {
         await ExternalService.redditUNLINK(this.token).then(res => {
-          console.log("unlinking reddit response....")
-          console.log(res)
+          if (_.isEmpty(res.data.twitter.user_id)) {
+            this.isLoaded.hasRedditLinked = false
+          }
         })
       }
     }
