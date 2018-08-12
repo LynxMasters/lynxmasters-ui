@@ -57,7 +57,7 @@
             </div>
             <footer class="card-footer">
               <a href="#" class="card-footer-item is-light button"
-                 @click="">Unlink Twitter Account</a>
+                 @click="unlinkTwitter">Unlink Twitter Account</a>
             </footer>
           </div>
         </div>
@@ -133,7 +133,7 @@
             </div>
             <footer class="card-footer">
               <a class="card-footer-item is-light button"
-                 @click="">Unlink Twitch Account</a>
+                 @click="unlinkTwitch">Unlink Twitch Account</a>
             </footer>
           </div>
         </div>
@@ -210,7 +210,7 @@
             </div>
             <footer class="card-footer">
               <a class="card-footer-item button is-light"
-                 @click="">Unlink Reddit Account</a>
+                 @click="unlinkReddit">Unlink Reddit Account</a>
             </footer>
           </div>
         </div>
@@ -387,6 +387,24 @@
           }
         })
       },
+      async unlinkTwitter() {
+        await ExternalService.twitterUNLINK(this.token).then(res => {
+          console.log("unlinking twitter response....")
+          console.log(res)
+        })
+      },
+      async unlinkTwitch() {
+        await ExternalService.twitchUNLINK(this.token).then(res => {
+          console.log("unlinking twitch response....")
+          console.log(res)
+        })
+      },
+      async unlinkReddit() {
+        await ExternalService.redditUNLINK(this.token).then(res => {
+          console.log("unlinking reddit response....")
+          console.log(res)
+        })
+      }
     }
   }
 </script>
