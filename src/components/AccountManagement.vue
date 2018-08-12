@@ -14,7 +14,7 @@
                     <!--
                     <img :src="imageSrc ? imageSrc : avatar" class="image" alt="profile avatar">
                     -->
-                    <img src="../../static/uploads/ReginaldReginold.jpg">
+                    <img src="http://via.placeholder.com/350x400">
                   </figure>
                 </div>
                 <div class="card-content has-text-centered">
