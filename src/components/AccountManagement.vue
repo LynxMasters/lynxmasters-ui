@@ -58,36 +58,61 @@
                 <div class="media-content has-text-left">
                   <div class="field">
                     <label class="label">Email</label>
-                    <div class="control has-icons-left has-icons-right">
                       <input
                         class="input"
                         type="email"
-                        placeholder="joey@google.com">
-                      <span class="icon is-small is-left">
-                        <i class="fas fa-envelope"></i>
-                      </span>
-                      <span class="icon is-small is-right" >
-                        <i class="fas fa-exclamation-triangle"></i>
-                      </span>
-                    </div>
+                        placeholder="">
                     <p class="help is-danger"></p>
                   </div>
-                  <!--
-                  <p class="title is-4">{{ tempUser.firstName + ' ' + tempUser.lastName }}</p>
-                  <p class="subtitle is-6">@{{ tempUser.username }}</p>
-                  -->
-                  <p class="title is-1">FirstName LastName</p>
-                  <p class="subtitle is-6">@Usernamwe</p>
-                </div>
-              </div>
-              <div class="content">
 
-                <!--
-                <div>{{ tempUser.email }}</div>
-                <div>{{ tempUser.address }}</div>
-                <div>{{ tempUser.city + ' ' + tempUser.state + ' ' + tempUser.zipCode }}</div>
-                <div>{{ tempUser.country }}</div>
-                -->
+                  <div class="field">
+                    <label class="label">First Name</label>
+                    <input
+                      class="input"
+                      type="text"
+                      placeholder="">
+                    <p class="help is-danger"></p>
+                  </div>
+
+                  <div class="field">
+                    <label class="label">Last Name</label>
+                    <input
+                      class="input"
+                      type="text"
+                      placeholder="">
+                    <p class="help is-danger"></p>
+                  </div>
+
+                  <div class="field">
+                    <label class="label">Address</label>
+                    <input
+                      class="input"
+                      type="text"
+                      placeholder="">
+                    <p class="help is-danger"></p>
+                  </div>
+
+                  <div class="field">
+                    <label class="label">City</label>
+                    <input
+                      class="input"
+                      type="text"
+                      placeholder=""
+                      required>
+                    <p class="help is-danger"></p>
+                  </div>
+
+                  <div class="field">
+                    <label class="label">State / Province</label>
+                    <input class="input"
+                           type="tex"
+                           placeholder=""
+                           required>
+                    <p v-if="$v.user.state.$error" class="help is-danger">State is required</p>
+                  </div>
+
+
+                </div>
               </div>
             </div>
           </div>
