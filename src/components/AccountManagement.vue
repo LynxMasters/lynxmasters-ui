@@ -61,7 +61,8 @@
                       <input
                         class="input"
                         type="email"
-                        placeholder="">
+                        placeholder=""
+                        required>
                     <p class="help is-danger"></p>
                   </div>
 
@@ -70,7 +71,8 @@
                     <input
                       class="input"
                       type="text"
-                      placeholder="">
+                      placeholder=""
+                      required>
                     <p class="help is-danger"></p>
                   </div>
 
@@ -79,7 +81,8 @@
                     <input
                       class="input"
                       type="text"
-                      placeholder="">
+                      placeholder=""
+                      required>
                     <p class="help is-danger"></p>
                   </div>
 
@@ -88,7 +91,8 @@
                     <input
                       class="input"
                       type="text"
-                      placeholder="">
+                      placeholder=""
+                      required>
                     <p class="help is-danger"></p>
                   </div>
 
@@ -108,7 +112,35 @@
                            type="tex"
                            placeholder=""
                            required>
-                    <p v-if="$v.user.state.$error" class="help is-danger">State is required</p>
+                    <p class="help is-danger"></p>
+                  </div>
+
+                  <div class="field">
+                    <label class="label">Zip Code</label>
+                    <input class="input"
+                           type="tex"
+                           placeholder=""
+                           required>
+                    <p class="help is-danger"></p>
+                  </div>
+
+                  <div class="field">
+                    <label class="label">Country</label>
+                    <div class="control">
+                      <div class="select is-fullwidth">
+                        <select class="input"
+                                required>
+                          <option selected>Country</option>
+                          <!--
+                          <option v-for="country in countries">
+                            {{ country.name }}</option>
+                            -->
+                        </select>
+                      </div>
+                    </div>
+                    <!--
+                    <p v-if="$v.user.country.$error" class="help is-danger">Country is required</p>
+                    -->
                   </div>
 
 
