@@ -12,7 +12,7 @@ import './assets/style/app.scss'
 import store from './store/store'
 import moment from 'moment'
 import VueProgress from 'vue-progress-path'
-
+require('vue2-animate/dist/vue2-animate.min.css')
 
 
 Vue.use(Buefy)
