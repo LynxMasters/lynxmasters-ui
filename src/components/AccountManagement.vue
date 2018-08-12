@@ -1,8 +1,14 @@
 <template>
   <div>
-    <div class="intro column is-8 is-offset-2">
-      <h2 class="title">Super Phat Profile Page</h2>
-    </div>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <h1 class="title">
+            Account Management
+          </h1>
+        </div>
+      </div>
+    </section>
     <section>
       <div class="columns is-centered">
         <div class="column is-two-fifths">
@@ -49,7 +55,7 @@
             </header>
             <div class="card-content has-text-centered">
               <div class="media">
-                <div class="media-content has-text-centered">
+                <div class="media-content has-text-left">
                   <div class="field">
                     <label class="label">Email</label>
                     <div class="control has-icons-left has-icons-right">
