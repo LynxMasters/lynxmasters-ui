@@ -198,7 +198,7 @@
               </p>
             </header>
             <div class="card-image has-text-centered">
-              <img :src="accounts.reddit.icon_img">
+              <img :src="redditImg">
             </div>
             <div class="card-content">
               <div class="content">
@@ -303,6 +303,7 @@
 
           if (!this.accounts.reddit.error) {
             this.isLoaded.hasRedditLinked = true
+            this.normalizeReddit(this.accounts.reddit.icon_img)
             this.isLoaded.reddit = true
           } else {
             this.isLoaded.reddit = true
@@ -318,6 +319,10 @@
       normalizeImage(img) {
         let regex = /(_normal)+/g
         this.twitterImg = img.replace(regex, "")
+      },
+      normalizeReddit(img) {
+        let regex = /(amp;)+/g
+        this.redditImg = img.replace(regex, "")
       },
       reddit() {
         window.location = 'http://localhost:8081/auth/reddit?token=' + this.token
@@ -380,3 +385,4 @@
   }
 
 </style>
+  
