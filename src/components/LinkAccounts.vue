@@ -198,7 +198,7 @@
               </p>
             </header>
             <div class="card-image has-text-centered">
-              <img :src="redditImg">
+              <img :src="redditImg" height="300" width="300">
             </div>
             <div class="card-content">
               <div class="content">
