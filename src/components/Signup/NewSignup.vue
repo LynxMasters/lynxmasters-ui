@@ -69,7 +69,7 @@
         }
       },
       mounted() {
-        this.tempUser = this.$store.getters.getUser
+        this.tempUser = this.$store.getters['signup/getUser']
       },
       methods: {
         // Executed when @completed-step event is triggered
@@ -116,6 +116,7 @@
             } else {
               this.signupComplete()
               this.$router.push({name: 'Landing'})
+              this.$store.commit('signup/resetState') // clear signup state
             }
           })
         }
