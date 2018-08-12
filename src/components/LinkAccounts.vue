@@ -344,22 +344,22 @@
           }
         })
       },
-      unlinkTwitter() {
-        ExternalService.twitterUNLINK(this.token).then(res => {
+      async unlinkTwitter() {
+        await ExternalService.twitterUNLINK(this.token).then(res => {
           this.isLoaded.hasTwitterLinked = false
           console.log("unlinking twitter response....")
           console.log(res)
         })
       },
-      unlinkTwitch() {
-        ExternalService.twitchUNLINK(this.token).then(res => {
+      async unlinkTwitch() {
+        await ExternalService.twitchUNLINK(this.token).then(res => {
           this.isLoaded.hasTwitchLinked = false
           console.log("unlinking twitch response....")          
           console.log(res)
         })
       },
-      unlinkReddit() {
-        ExternalService.redditUNLINK(this.token).then(res => {
+      async unlinkReddit() {
+        await ExternalService.redditUNLINK(this.token).then(res => {
           this.isLoaded.hasRedditLinked = false
           console.log("unlinking reddit response....")
           console.log(res)
