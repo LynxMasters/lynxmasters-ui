@@ -273,7 +273,7 @@
     mounted() {
       this.token = window.localStorage.getItem('token')
       this.getAccountInfo()
-      let profile = ExternalService.profiles(window.localStorage.getItem('token'))
+      let profile = ExternalService.feeds(window.localStorage.getItem('token'))
       console.log(profile)  
     },
     watch: {},
@@ -373,7 +373,7 @@
       twitter() {
         window.location ='http://localhost:8081/auth/twitter?token=' + this.token
       },
-<<<<<<< HEAD
+
       redditUNLK() {
         
       },
@@ -381,8 +381,8 @@
         
       },
       twitterUNLK() {
-        
-=======
+
+      },  
       proceedToProfile() {
         this.$snackbar.open({
           message: this.linkedMessage,
@@ -416,7 +416,6 @@
           console.log("unlinking reddit response....")
           console.log(res)
         })
->>>>>>> b33ec2d53cf9fe301d7bf98723623f136009909e
       }
     }
   }
