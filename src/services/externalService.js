@@ -15,15 +15,15 @@ export default{
   return Api().post('reddit'+info.method, { data: info }, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
   },
 
-  twitchUNLK(info){   
+  twitchUNLINK(info){   
   return Api().post('unlink/twitch', {data: info}, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
   }, 
 
-  twitterUNLK(info){
+  twitterUNLINK(info){
   return Api().post('unlink/twitter', {data: info}, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
   },  
 
-  redditUNLK(info){
+  redditUNLINK(info){
   return Api().post('unlink/reddit', { data: info }, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
   },
 

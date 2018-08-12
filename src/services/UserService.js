@@ -13,4 +13,6 @@ export default {
   getAccounts(jwt) {
     return Api().post('accounts/', { headers: {'Authorization': jwt, 'Content-Type': 'multipart/form-data' } })
   }
+  
+
 }
