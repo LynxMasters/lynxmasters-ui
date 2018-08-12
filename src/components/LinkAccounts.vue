@@ -249,9 +249,7 @@
     data() {
       return {
         accounts: {
-          twitch: {},
-          twitter: {},
-          reddit: {}
+         
         },
         isLoaded: {
           twitch: false,
@@ -282,73 +280,30 @@
       async getAccountInfo() {
         await UserService.getAccounts(this.token).then(res => {
           console.log(res)
-          console.log('^^^^^^^^LynxMasters^^^^^^^^^^^')
+          return ExternalService.profiles(this.token)
+        })
+        .then(profile => {
+          console.log(profile)
+          this.accounts = profile.data
 
-          let twitterInfo = {
-            endpoint: '/users/show.json?screen_name='+res.data.twitter.displayName,
-            oauth_token: res.data.twitter.oauth_token,
-            oauth_secret: res.data.twitter.oauth_secret,
-            jwt: window.localStorage.getItem('token'),
-            method: 'GET/' //If posting data method would be POST/
-          }
-
-          if (!_.isEmpty(res.data.twitter.oauth_secret)) {
-            this.isLoaded.hasTwitterLinked = true
-            ExternalService.twitterPOST(twitterInfo).then(response => {
-              return response
-            }).then((profile) => {
-              console.log(profile.data)
-              console.log('^^^^^^^^twitter^^^^^^^^^^^')
-              this.accounts.twitter = profile.data
-              this.normalizeImage(this.accounts.twitter.profile_image_url_https)
-              this.isLoaded.twitter = true
-            })
+          if (!this.accounts.twitter.errors) {
+            this.isLoaded.hasTwitterLinked = true  
+            this.normalizeImage(this.accounts.twitter.profile_image_url_https)
+            this.isLoaded.twitter = true
           } else {
             this.isLoaded.twitter = true
           }
 
-
-          let twitchInfo = {
-            endpoint: '/user?oauth_token='+res.data.twitch.access_token,
-            access_token: res.data.twitch.access_token,
-            jwt: window.localStorage.getItem('token'),
-            method: 'GET/', //If posting data method would be POST/
-            user_agent: navigator.userAgent
-          }
-
-          if (!_.isEmpty(res.data.twitch.access_token )) {
+          if (!this.accounts.twitch.error) {
             this.isLoaded.hasTwitchLinked = true
-            ExternalService.twitchPOST(twitchInfo).then(response => {
-              return response
-            }).then((profile) => {
-              console.log(profile.data)
-              console.log('^^^^^^^^twitch^^^^^^^^^^^')
-              this.accounts.twitch = profile.data
-              this.isLoaded.twitch = true
-            })
+            this.isLoaded.twitch = true
           } else {
             this.isLoaded.twitch = true
           }
 
-
-          let redditInfo = {
-            endpoint: '/me',
-            access_token: res.data.reddit.access_token,
-            jwt: window.localStorage.getItem('token'),
-            method: 'GET/', //If posting data method would be POST/
-            user_agent: navigator.userAgent
-          }
-
-          if (!_.isEmpty(res.data.reddit.access_token)) {
+          if (!this.accounts.reddit.error) {
             this.isLoaded.hasRedditLinked = true
-            ExternalService.redditPOST(redditInfo).then(response => {
-              return response
-            }).then((profile) => {
-              console.log(profile.data)
-              console.log('^^^^^^^^reddit^^^^^^^^^^^')
-              this.accounts.reddit = profile.data
-              this.isLoaded.reddit = true
-            })
+            this.isLoaded.reddit = true
           } else {
             this.isLoaded.reddit = true
           }
@@ -373,16 +328,6 @@
       twitter() {
         window.location ='http://localhost:8081/auth/twitter?token=' + this.token
       },
-
-      redditUNLK() {
-        
-      },
-      twitchUNLK() {
-        
-      },
-      twitterUNLK() {
-
-      },  
       proceedToProfile() {
         this.$snackbar.open({
           message: this.linkedMessage,
@@ -399,25 +344,25 @@
           }
         })
       },
-      async unlinkTwitter() {
-        await ExternalService.twitterUNLINK(this.token).then(res => {
-          if (_.isEmpty(res.data.twitter.user_id)) {
-            this.isLoaded.hasTwitterLinked = false
-          }
+      unlinkTwitter() {
+        ExternalService.twitterUNLINK(this.token).then(res => {
+          this.isLoaded.hasTwitterLinked = false
+          console.log("unlinking twitter response....")
+          console.log(res)
         })
       },
-      async unlinkTwitch() {
-        await ExternalService.twitchUNLINK(this.token).then(res => {
-          if (_.isEmpty(res.data.twitter.user_id)) {
-            this.isLoaded.hasTwitchLinked = false
-          }
+      unlinkTwitch() {
+        ExternalService.twitchUNLINK(this.token).then(res => {
+          this.isLoaded.hasTwitchLinked = false
+          console.log("unlinking twitch response....")          
+          console.log(res)
         })
       },
-      async unlinkReddit() {
-        await ExternalService.redditUNLINK(this.token).then(res => {
-          if (_.isEmpty(res.data.twitter.user_id)) {
-            this.isLoaded.hasRedditLinked = false
-          }
+      unlinkReddit() {
+        ExternalService.redditUNLINK(this.token).then(res => {
+          this.isLoaded.hasRedditLinked = false
+          console.log("unlinking reddit response....")
+          console.log(res)
         })
       }
     }
