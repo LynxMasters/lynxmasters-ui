@@ -9,6 +9,7 @@
         </div>
       </div>
     </section>
+
     <section>
       <div class="columns is-centered">
         <div class="column is-two-fifths">
@@ -27,8 +28,8 @@
                   <div class="media">
                     <div class="media-content has-text-centered">
                       <!--
-                      <p class="title is-4">{{ tempUser.firstName + ' ' + tempUser.lastName }}</p>
-                      <p class="subtitle is-6">@{{ tempUser.username }}</p>
+                      <p class="title is-3">{{ tempUser.firstName + ' ' + tempUser.lastName }}</p>
+                      <p class="subtitle is-5">@{{ tempUser.username }}</p>
                       -->
                       <p class="title is-3">FirstName LastName</p>
                       <p class="subtitle is-5">@Usernamwe</p>
@@ -36,10 +37,7 @@
                   </div>
                   <div class="content">
                     <!--
-                    <div>{{ tempUser.email }}</div>
-                    <div>{{ tempUser.address }}</div>
-                    <div>{{ tempUser.city + ' ' + tempUser.state + ' ' + tempUser.zipCode }}</div>
-                    <div>{{ tempUser.country }}</div>
+                    <p>{{ tempUser.email }}</p>
                     -->
                   </div>
                 </div>
@@ -47,6 +45,7 @@
             </div>
           </div>
         </div>
+
         <!-- start other column -->
         <div class="column is-half">
           <div class="card">
@@ -144,6 +143,39 @@
                   </div>
 
 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end column -->
+
+      </div>
+
+      <div class="columns">
+        <div class="column is-half is-offset-one-quarter">
+          <div class="columns is-centered">
+            <div class="column is-four-fifths">
+              <div class="card">
+                <header class="card-header">
+                  <p class="card-header-title is-centered">Linked Accounts</p>
+                </header>
+                <div class="card-content has-text-centered">
+                  <div class="media">
+                    <div class="media-content has-text-centered">
+                      <!--
+                      <p class="title is-3">{{ tempUser.firstName + ' ' + tempUser.lastName }}</p>
+                      <p class="subtitle is-5">@{{ tempUser.username }}</p>
+                      -->
+                      <p class="title is-3">FirstName LastName</p>
+                      <p class="subtitle is-5">@Usernamwe</p>
+                    </div>
+                  </div>
+                  <div class="content">
+                    <!--
+                    <p>{{ tempUser.email }}</p>
+                    -->
+                  </div>
                 </div>
               </div>
             </div>
