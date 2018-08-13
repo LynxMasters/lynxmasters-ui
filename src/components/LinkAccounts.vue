@@ -57,7 +57,7 @@
             </div>
             <footer class="card-footer">
               <a href="#" class="card-footer-item is-light button"
-                 @click="">Unlink Twitter Account</a>
+                 @click="unlinkTwitter">Unlink Twitter Account</a>
             </footer>
           </div>
         </div>
@@ -126,14 +126,14 @@
             </div>
             <div class="card-content">
               <div class="content">
-                <h4 class="has-text-centered">@{{ accounts.twitch.display_name }}</h4>
+                <h4 class="has-text-centered">  {{ accounts.twitch.display_name }}</h4>
                 <h5 class="has-text-centered">Bio: {{ accounts.twitch.bio }}</h5>
                 <h5 class="has-text-centered">Date Created: {{ moment(accounts.twitch.created_at).format('YYYY-MM-DD') }}</h5>
               </div>
             </div>
             <footer class="card-footer">
               <a class="card-footer-item is-light button"
-                 @click="">Unlink Twitch Account</a>
+                 @click="unlinkTwitch">Unlink Twitch Account</a>
             </footer>
           </div>
         </div>
@@ -198,11 +198,11 @@
               </p>
             </header>
             <div class="card-image has-text-centered">
-              <img :src="accounts.reddit.icon_img">
+              <img :src="redditImg" height="300" width="300">
             </div>
             <div class="card-content">
               <div class="content">
-                <h4 class="has-text-centered">@{{ accounts.reddit.name }}</h4>
+                <h4 class="has-text-centered">u/{{ accounts.reddit.name }}</h4>
                 <h5 class="has-text-centered">{{ accounts.reddit.link_karma }} Post Karma</h5>
                 <h5 class="has-text-centered">{{ accounts.reddit.comment_karma }} Comment Karma</h5>
                 <h5 class="has-text-centered">Date Created: {{ moment.unix(accounts.reddit.created).format('YYYY-MM-DD') }}</h5>
@@ -210,7 +210,7 @@
             </div>
             <footer class="card-footer">
               <a class="card-footer-item button is-light"
-                 @click="">Unlink Reddit Account</a>
+                 @click="unlinkReddit">Unlink Reddit Account</a>
             </footer>
           </div>
         </div>
@@ -249,9 +249,7 @@
     data() {
       return {
         accounts: {
-          twitch: {},
-          twitter: {},
-          reddit: {}
+         
         },
         isLoaded: {
           twitch: false,
@@ -273,6 +271,8 @@
     mounted() {
       this.token = window.localStorage.getItem('token')
       this.getAccountInfo()
+      let profile = ExternalService.feeds(window.localStorage.getItem('token'))
+      console.log(profile)  
     },
     watch: {},
     computed: {},
@@ -280,73 +280,31 @@
       async getAccountInfo() {
         await UserService.getAccounts(this.token).then(res => {
           console.log(res)
-          console.log('^^^^^^^^LynxMasters^^^^^^^^^^^')
+          return ExternalService.profiles(this.token)
+        })
+        .then(profile => {
+          console.log(profile)
+          this.accounts = profile.data
 
-          let twitterInfo = {
-            endpoint: '/users/show.json?screen_name='+res.data.twitter.displayName,
-            oauth_token: res.data.twitter.oauth_token,
-            oauth_secret: res.data.twitter.oauth_secret,
-            jwt: window.localStorage.getItem('token'),
-            method: 'GET/' //If posting data method would be POST/
-          }
-
-          if (!_.isEmpty(res.data.twitter.oauth_secret)) {
-            this.isLoaded.hasTwitterLinked = true
-            ExternalService.twitterPOST(twitterInfo).then(response => {
-              return response
-            }).then((profile) => {
-              console.log(profile.data)
-              console.log('^^^^^^^^twitter^^^^^^^^^^^')
-              this.accounts.twitter = profile.data
-              this.normalizeImage(this.accounts.twitter.profile_image_url_https)
-              this.isLoaded.twitter = true
-            })
+          if (!this.accounts.twitter.errors) {
+            this.isLoaded.hasTwitterLinked = true  
+            this.normalizeImage(this.accounts.twitter.profile_image_url_https)
+            this.isLoaded.twitter = true
           } else {
             this.isLoaded.twitter = true
           }
 
-
-          let twitchInfo = {
-            endpoint: '/user?oauth_token='+res.data.twitch.access_token,
-            access_token: res.data.twitch.access_token,
-            jwt: window.localStorage.getItem('token'),
-            method: 'GET/', //If posting data method would be POST/
-            user_agent: navigator.userAgent
-          }
-
-          if (!_.isEmpty(res.data.twitch.access_token )) {
+          if (!this.accounts.twitch.error) {
             this.isLoaded.hasTwitchLinked = true
-            ExternalService.twitchPOST(twitchInfo).then(response => {
-              return response
-            }).then((profile) => {
-              console.log(profile.data)
-              console.log('^^^^^^^^twitch^^^^^^^^^^^')
-              this.accounts.twitch = profile.data
-              this.isLoaded.twitch = true
-            })
+            this.isLoaded.twitch = true
           } else {
             this.isLoaded.twitch = true
           }
 
-
-          let redditInfo = {
-            endpoint: '/me',
-            access_token: res.data.reddit.access_token,
-            jwt: window.localStorage.getItem('token'),
-            method: 'GET/', //If posting data method would be POST/
-            user_agent: navigator.userAgent
-          }
-
-          if (!_.isEmpty(res.data.reddit.access_token)) {
+          if (!this.accounts.reddit.error) {
             this.isLoaded.hasRedditLinked = true
-            ExternalService.redditPOST(redditInfo).then(response => {
-              return response
-            }).then((profile) => {
-              console.log(profile.data)
-              console.log('^^^^^^^^reddit^^^^^^^^^^^')
-              this.accounts.reddit = profile.data
-              this.isLoaded.reddit = true
-            })
+            this.normalizeReddit(this.accounts.reddit.icon_img)
+            this.isLoaded.reddit = true
           } else {
             this.isLoaded.reddit = true
           }
@@ -361,6 +319,10 @@
       normalizeImage(img) {
         let regex = /(_normal)+/g
         this.twitterImg = img.replace(regex, "")
+      },
+      normalizeReddit(img) {
+        let regex = /(amp;)+/g
+        this.redditImg = img.replace(regex, "")
       },
       reddit() {
         window.location = 'http://localhost:8081/auth/reddit?token=' + this.token
@@ -387,6 +349,27 @@
           }
         })
       },
+      async unlinkTwitter() {
+        await ExternalService.twitterUNLINK(this.token).then(res => {
+          this.isLoaded.hasTwitterLinked = false
+          console.log("unlinking twitter response....")
+          console.log(res)
+        })
+      },
+      async unlinkTwitch() {
+        await ExternalService.twitchUNLINK(this.token).then(res => {
+          this.isLoaded.hasTwitchLinked = false
+          console.log("unlinking twitch response....")          
+          console.log(res)
+        })
+      },
+      async unlinkReddit() {
+        await ExternalService.redditUNLINK(this.token).then(res => {
+          this.isLoaded.hasRedditLinked = false
+          console.log("unlinking reddit response....")
+          console.log(res)
+        })
+      }
     }
   }
 </script>
@@ -402,3 +385,4 @@
   }
 
 </style>
+  

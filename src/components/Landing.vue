@@ -235,15 +235,17 @@
       <!-- End scrollspy div -->
 
       <!-- Floating Action Button -->
-      <fab
-        :position="position"
-        :bg-color="bgColor"
-        :actions="fabActions"
-        @scrollToTop="scrollToTop"
-        @login="goToLoginPage"
-        @signUp="goToSignUpPage"
-        @contactUs="scrollToContactUs"
-      ></fab>
+      <div id="fab" class="animated fadeIn">
+        <fab
+          :position="position"
+          :bg-color="bgColor"
+          :actions="fabActions"
+          @scrollToTop="scrollToTop"
+          @login="goToLoginPage"
+          @signUp="goToSignUpPage"
+          @contactUs="scrollToContactUs"
+        ></fab>
+      </div>
 
     </div>
 </template>
@@ -310,8 +312,10 @@
         let anchorSpace = window.pageYOffset - anchor
         if (window.pageYOffset > this.sticky && (anchorSpace > 0)) {
           this.isActive = true;
+          document.getElementById('fab').style.visibility = 'visible';
         } else {
           this.isActive = false;
+          document.getElementById('fab').style.visibility = 'hidden';
         }
       }
     },
