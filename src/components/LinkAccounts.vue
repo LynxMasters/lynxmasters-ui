@@ -126,7 +126,7 @@
             </div>
             <div class="card-content">
               <div class="content">
-                <h4 class="has-text-centered">{{ accounts.twitch.display_name }}</h4>
+                <h4 class="has-text-centered">  {{ accounts.twitch.display_name }}</h4>
                 <h5 class="has-text-centered">Bio: {{ accounts.twitch.bio }}</h5>
                 <h5 class="has-text-centered">Date Created: {{ moment(accounts.twitch.created_at).format('YYYY-MM-DD') }}</h5>
               </div>
