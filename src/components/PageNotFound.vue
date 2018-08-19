@@ -18,9 +18,7 @@
 </script>
 
 <style scoped>
-  .not-found-header {
-    background: #F2F2F2
-  }
+  @import url('https://fonts.googleapis.com/css?family=Anton');
 
   .circles:after {
     content:'';
@@ -43,6 +41,7 @@
   }
 
   .circles p {
+    font-family: 'Anton', sans-serif;
     font-size: 240px;
     color: #202020;
     padding-top: 60px;
