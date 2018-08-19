@@ -1,7 +1,5 @@
 <template>
-  <!-- hero is-fullheight class was here before -->
-  <section class="">
-    <!-- hero-body class was here before-->
+  <section class="animated fadeIn">
     <div class="">
       <div class="container">
         <div class="columns is-centered">

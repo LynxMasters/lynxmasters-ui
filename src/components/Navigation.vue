@@ -32,6 +32,15 @@
           </span>
           <span>Signup</span>
         </router-link>
+        <router-link v-bind:to="{ name: 'Search' }"
+                     class="navbar-item"
+                     active-class="link-is-active"
+                     v-if="authenticatedUser" exact>
+          <span class="icon ">
+            <i class="fas fa-search-plus"></i>
+          </span>
+          <span>Search</span>
+        </router-link>
         <router-link v-bind:to="{ name: 'Profile' }"
                      class="navbar-item"
                      active-class="link-is-active"

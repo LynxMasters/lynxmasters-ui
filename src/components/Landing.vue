@@ -1,5 +1,5 @@
 <template>
-    <div class="landing">
+    <div class="landing animated fadeIn">
       <!-- Header -->
       <section class="hero is-dark is-large">
         <img src="/static/landing-images/social-2.jpg" style="display:none;">

@@ -1,11 +1,8 @@
 <template>
   <!-- Social Add-Ons -->
-  <section class="container">
+  <section class="container animated fadeIn">
     <div class="intro column is-8 is-offset-2">
       <h2 class="title">Link Accounts</h2><hr>
-      <!--<h1>twitter is loaded = {{ isLoaded.twitter }} and twitter is linked = {{ isLoaded.hasTwitterLinked }}</h1>-->
-      <!--<h1>twitch is loaded = {{ isLoaded.twitch }} and twitch is linked = {{ isLoaded.hasTwitchLinked }}</h1>-->
-      <!--<h1>reddit is loaded = {{ isLoaded.reddit }} and REDDIT is linked = {{ isLoaded.hasRedditLinked }}</h1>-->
     </div>
     <div id="social" class="columns features">
       <!-- BEGIN TWITTER CARDS -->
@@ -315,7 +312,7 @@
 
           if (this.isLoaded.hasTwitterLinked || this.isLoaded.hasTwitchLinked
             || this.isLoaded.hasRedditLinked) {
-            this.proceedToProfile()
+            // display button for profile
           }
 
         })
@@ -336,22 +333,6 @@
       },
       twitter() {
         window.location ='http://localhost:8081/auth/twitter?token=' + this.token
-      },
-      proceedToProfile() {
-        this.$snackbar.open({
-          message: this.linkedMessage,
-          type: 'is-warning',
-          position: 'is-top',
-          actionText: 'Go To Profile',
-          indefinite: true,
-          onAction: () => {
-            this.$toast.open({
-              message: 'Redirecting to your profile',
-              queue: false
-            })
-            this.$router.push('Profile')
-          }
-        })
       },
       async unlinkTwitter() {
         await ExternalService.twitterUNLINK(this.token).then(res => {

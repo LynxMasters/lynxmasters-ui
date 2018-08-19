@@ -1,6 +1,6 @@
 <template>
   <section class="notFound">
-    <div class="circles">
+    <div class="circles animated fadeIn">
       <p>404<br>
         <small class="pnf-text">PAGE NOT FOUND</small>
       </p>

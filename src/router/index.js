@@ -8,6 +8,7 @@ import Signup from '@/components/Signup/NewSignup'
 import LinkAccounts from '@/components/LinkAccounts'
 import AccountManagement from '@/components/AccountManagement'
 import PageNotFound from '@/components/PageNotFound'
+import Search from '@/components/MemberSearch'
 
 Vue.use(Router)
 
@@ -48,6 +49,11 @@ export default new Router({
       path: '/account',
       name: 'AccountManagement',
       component: AccountManagement
+    },
+    {
+      path: '/search',
+      name: 'Search',
+      component: Search
     },
     {
       path :'*',
