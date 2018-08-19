@@ -105,9 +105,31 @@ export default {
       }
     },
     mounted() {},
+    created () {
+      this.checkAuthentication()
+    },
+    updated() {
+      this.checkAuthentication()
+    },
     watch: {},
     computed: {},
-    methods: {}
+    methods: {
+      checkAuthentication() {
+        let existingToken =  window.localStorage.getItem('token')
+        if (_.isEmpty(existingToken) ) {
+          this.needsAuthWarning()
+          this.$router.replace(this.$route.query.redirect || '/Login')
+        }
+      },
+      needsAuthWarning() {
+        this.$toast.open({
+          duration: 3500,
+          message: 'You need to be logged in to access that page!',
+          position: 'is-top',
+          type: 'is-danger'
+        })
+      },
+    }
  }
 </script>
 
