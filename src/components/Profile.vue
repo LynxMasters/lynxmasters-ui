@@ -1,5 +1,5 @@
 <template>
-  <section class="profile">
+  <section class="profile animated fadeIn">
     <div class="columns">
       <div class="column">
         <div class="container">
@@ -35,15 +35,18 @@
               <div class="card">
                 <div class="card-content">
                   <div class="content has-text-centered">
-                    <a class="member-linked-accounts">
+                    <router-link v-bind:to="{ name: 'LinkAccounts' }"
+                                 class="member-linked-accounts" exact>
                       <i class="fab fa-twitter fa-2x"></i>
-                    </a>
-                    <a class="member-linked-accounts">
+                    </router-link>
+                    <router-link v-bind:to="{ name: 'LinkAccounts' }"
+                                 class="member-linked-accounts" exact>
                       <i class="fab fa-twitch fa-2x"></i>
-                    </a>
-                    <a class="member-linked-accounts">
+                    </router-link>
+                    <router-link v-bind:to="{ name: 'LinkAccounts' }"
+                                 class="member-linked-accounts" exact>
                       <i class="fab fa-reddit fa-2x"></i>
-                    </a>
+                    </router-link>
                   </div>
                 </div>
               </div>
@@ -100,12 +103,36 @@ export default {
 
     name: 'Profile',
     data() {
-      return {}
+      return {
+        activeTab: 0
+      }
     },
     mounted() {},
+    created () {
+      this.checkAuthentication()
+    },
+    updated() {
+      this.checkAuthentication()
+    },
     watch: {},
     computed: {},
-    methods: {}
+    methods: {
+      checkAuthentication() {
+        let existingToken =  window.localStorage.getItem('token')
+        if (_.isEmpty(existingToken) ) {
+          this.needsAuthWarning()
+          this.$router.replace(this.$route.query.redirect || '/Login')
+        }
+      },
+      needsAuthWarning() {
+        this.$toast.open({
+          duration: 3500,
+          message: 'You need to be logged in to access that page!',
+          position: 'is-top',
+          type: 'is-danger'
+        })
+      },
+    }
  }
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section class="section animated fadeIn">
     <div class="container">
       <div class="columns">
         <div class="column is-8 is-offset-2">

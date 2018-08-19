@@ -1,11 +1,8 @@
 <template>
   <!-- Social Add-Ons -->
-  <section class="container">
+  <section class="container animated fadeIn">
     <div class="intro column is-8 is-offset-2">
       <h2 class="title">Link Accounts</h2><hr>
-      <!--<h1>twitter is loaded = {{ isLoaded.twitter }} and twitter is linked = {{ isLoaded.hasTwitterLinked }}</h1>-->
-      <!--<h1>twitch is loaded = {{ isLoaded.twitch }} and twitch is linked = {{ isLoaded.hasTwitchLinked }}</h1>-->
-      <!--<h1>reddit is loaded = {{ isLoaded.reddit }} and REDDIT is linked = {{ isLoaded.hasRedditLinked }}</h1>-->
     </div>
     <div id="social" class="columns features">
       <!-- BEGIN TWITTER CARDS -->
@@ -248,9 +245,7 @@
     name: 'LinkAccounts',
     data() {
       return {
-        accounts: {
-         
-        },
+        accounts: {},
         isLoaded: {
           twitch: false,
           twitter: false,
@@ -268,11 +263,17 @@
         linkedMessage: 'Looks like you have linked at least one account'
       }
     },
+    created () {
+      this.checkAuthentication()
+    },
+    updated() {
+      this.checkAuthentication()
+    },
     mounted() {
       this.token = window.localStorage.getItem('token')
       this.getAccountInfo()
       let profile = ExternalService.feeds(window.localStorage.getItem('token'))
-      console.log(profile)  
+      console.log(profile)
     },
     watch: {},
     computed: {},
@@ -287,7 +288,7 @@
           this.accounts = profile.data
 
           if (!this.accounts.twitter.errors) {
-            this.isLoaded.hasTwitterLinked = true  
+            this.isLoaded.hasTwitterLinked = true
             this.normalizeImage(this.accounts.twitter.profile_image_url_https)
             this.isLoaded.twitter = true
           } else {
@@ -311,7 +312,7 @@
 
           if (this.isLoaded.hasTwitterLinked || this.isLoaded.hasTwitchLinked
             || this.isLoaded.hasRedditLinked) {
-            this.proceedToProfile()
+            // display button for profile
           }
 
         })
@@ -333,22 +334,6 @@
       twitter() {
         window.location ='http://localhost:8081/auth/twitter?token=' + this.token
       },
-      proceedToProfile() {
-        this.$snackbar.open({
-          message: this.linkedMessage,
-          type: 'is-warning',
-          position: 'is-top',
-          actionText: 'Go To Profile',
-          indefinite: true,
-          onAction: () => {
-            this.$toast.open({
-              message: 'Redirecting to your profile',
-              queue: false
-            })
-            this.$router.push('Profile')
-          }
-        })
-      },
       async unlinkTwitter() {
         await ExternalService.twitterUNLINK(this.token).then(res => {
           this.isLoaded.hasTwitterLinked = false
@@ -359,7 +344,7 @@
       async unlinkTwitch() {
         await ExternalService.twitchUNLINK(this.token).then(res => {
           this.isLoaded.hasTwitchLinked = false
-          console.log("unlinking twitch response....")          
+          console.log("unlinking twitch response....")
           console.log(res)
         })
       },
@@ -369,7 +354,22 @@
           console.log("unlinking reddit response....")
           console.log(res)
         })
-      }
+      },
+      checkAuthentication() {
+        let existingToken =  window.localStorage.getItem('token')
+        if (_.isEmpty(existingToken) ) {
+          this.needsAuthWarning()
+          this.$router.replace(this.$route.query.redirect || '/Login')
+        }
+      },
+      needsAuthWarning() {
+        this.$toast.open({
+          duration: 3500,
+          message: 'You need to be logged in to access that page!',
+          position: 'is-top',
+          type: 'is-danger'
+        })
+      },
     }
   }
 </script>
@@ -385,4 +385,3 @@
   }
 
 </style>
-  
