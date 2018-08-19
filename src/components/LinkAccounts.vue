@@ -248,9 +248,7 @@
     name: 'LinkAccounts',
     data() {
       return {
-        accounts: {
-         
-        },
+        accounts: {},
         isLoaded: {
           twitch: false,
           twitter: false,
@@ -268,11 +266,17 @@
         linkedMessage: 'Looks like you have linked at least one account'
       }
     },
+    created () {
+      this.checkAuthentication()
+    },
+    updated() {
+      this.checkAuthentication()
+    },
     mounted() {
       this.token = window.localStorage.getItem('token')
       this.getAccountInfo()
       let profile = ExternalService.feeds(window.localStorage.getItem('token'))
-      console.log(profile)  
+      console.log(profile)
     },
     watch: {},
     computed: {},
@@ -287,7 +291,7 @@
           this.accounts = profile.data
 
           if (!this.accounts.twitter.errors) {
-            this.isLoaded.hasTwitterLinked = true  
+            this.isLoaded.hasTwitterLinked = true
             this.normalizeImage(this.accounts.twitter.profile_image_url_https)
             this.isLoaded.twitter = true
           } else {
@@ -359,7 +363,7 @@
       async unlinkTwitch() {
         await ExternalService.twitchUNLINK(this.token).then(res => {
           this.isLoaded.hasTwitchLinked = false
-          console.log("unlinking twitch response....")          
+          console.log("unlinking twitch response....")
           console.log(res)
         })
       },
@@ -369,7 +373,22 @@
           console.log("unlinking reddit response....")
           console.log(res)
         })
-      }
+      },
+      checkAuthentication() {
+        let existingToken =  window.localStorage.getItem('token')
+        if (_.isEmpty(existingToken) ) {
+          this.needsAuthWarning()
+          this.$router.replace(this.$route.query.redirect || '/Login')
+        }
+      },
+      needsAuthWarning() {
+        this.$toast.open({
+          duration: 3500,
+          message: 'You need to be logged in to access that page!',
+          position: 'is-top',
+          type: 'is-danger'
+        })
+      },
     }
   }
 </script>
@@ -385,4 +404,3 @@
   }
 
 </style>
-  
