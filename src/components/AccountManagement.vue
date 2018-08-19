@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="hero">
+    <section class="hero animated fadeIn">
       <div class="hero-body">
         <div class="container has-text-centered">
           <h1 class="title">
@@ -10,7 +10,7 @@
       </div>
     </section>
 
-    <section class="accountManagement">
+    <section class="accountManagement animated fadeIn">
       <div class="columns">
         <div class="column">
           <div class="container">
