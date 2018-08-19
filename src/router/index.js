@@ -7,6 +7,7 @@ import EmailVerified from '@/components/EmailVerified'
 import Signup from '@/components/Signup/NewSignup'
 import LinkAccounts from '@/components/LinkAccounts'
 import AccountManagement from '@/components/AccountManagement'
+import PageNotFound from '@/components/PageNotFound'
 
 Vue.use(Router)
 
@@ -47,6 +48,10 @@ export default new Router({
       path: '/account',
       name: 'AccountManagement',
       component: AccountManagement
+    },
+    {
+      path :'*',
+      component: PageNotFound
     }
   ]
 })
