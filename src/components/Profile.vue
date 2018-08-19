@@ -48,28 +48,44 @@
                 </div>
               </div>
             </div>
-            <div class="column is-7">
-              <div class="tabs is-medium is-centered is-boxed">
-                <ul>
-                  <li v-for="tab in tabs" v-bind:class="{'is-active': tab.isActive}">
-                    <a @click="selectTab(tab)">
-                    <span class="icon is-small">
-                      <i  v-bind:class=[tab.icon]  aria-hidden="true"></i>
-                    </span>
-                      <span> {{ tab.displayName }} </span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
+            <div class="column is-7 tab-top">
+              <b-tabs size="is-medium"
+                      position="is-centered"
+                      type="is-boxed"
+                      v-model="activeTab">
+                <b-tab-item>
+                  <template slot="header">
+                    <b-icon class="fas fa-align-justify"></b-icon>
+                    <span> All</span>
+                  </template>
+                  <div>ALL FEEDS GO HERE</div>
+                </b-tab-item>
+                <b-tab-item>
+                  <template slot="header">
+                    <b-icon class="fab fa-twitter"></b-icon>
+                    <span> Twitter</span>
+                  </template>
+                  <div>TWITTER FEED GOES HERE</div>
+                  <twitter-feed twitter-feed="twitter-feed"></twitter-feed>
+                </b-tab-item>
+                <b-tab-item>
+                  <template slot="header">
+                    <b-icon class="fab fa-twitch"></b-icon>
+                    <span> Twitch</span>
+                  </template>
+                  <div>TWITCH FEED GOES HERE</div>
+                  <twitch-feed></twitch-feed>
+                </b-tab-item>
+                <b-tab-item>
+                  <template slot="header">
+                    <b-icon class="fab fa-reddit"></b-icon>
+                    <span> Reddit</span>
+                  </template>
+                  <div>REDDIT FEED GOES HERE</div>
+                  <reddit-feed></reddit-feed>
+                </b-tab-item>
 
-              <div class="all-feed"><h1>ALL FEEDS</h1></div>
-              <div class="reddit-feed"><h1>REDDIT FEED</h1></div>
-              <div class="twitch-feed"><h1>TWITCH FEED</h1></div>
-              <div class="twitter-feed"><h1>TWITTER FEED</h1></div>
-
-              <twitter-feed twitter-feed="twitter-feed"></twitter-feed>
-              <reddit-feed></reddit-feed>
-              <twitch-feed></twitch-feed>
+              </b-tabs>
 
             </div>
           </div>
@@ -84,49 +100,12 @@ export default {
 
     name: 'Profile',
     data() {
-      return {
-        isActive: false,
-        tabs: [
-          {
-            name: 'All',
-            displayName: 'All',
-            icon: 'fas fa-align-justify'
-          }, {
-            name: 'Twitter',
-            displayName: 'Twitter',
-            icon: 'fab fa-twitter'
-          }, {
-            name: 'Twitch',
-            displayName: 'Twitch',
-            icon: 'fab fa-twitch'
-          }, {
-            name: 'Reddit',
-            displayName: 'Reddit',
-            icon: 'fab fa-reddit'
-          }
-        ]
-      }
+      return {}
     },
-    mounted() {
-      this.tabs[0].isActive = true
-    },
+    mounted() {},
     watch: {},
     computed: {},
-    methods: {
-      selectTab(selectedTab) {
-        this.tabs.forEach(
-          function(tab){
-            tab.isActive = (selectedTab.name === tab.name)
-          }
-        )
-        if (selectedTab.name === 'stats') {
-          this.showStats = true
-          this.loadGraphs()
-        } else {
-          this.showStats = false
-        }
-      },
-    }
+    methods: {}
  }
 </script>
 
@@ -136,5 +115,8 @@ export default {
   }
   .member-linked-accounts {
     margin: 0 .5rem 0 .5rem;
+  }
+  .tab-top {
+    margin: 3rem 0 0 0;
   }
 </style>
