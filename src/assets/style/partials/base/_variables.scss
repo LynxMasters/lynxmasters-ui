@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Lora|Montserrat:400,500,700|Open+Sans:400,700');
+@import url('https://use.fontawesome.com/releases/v5.2.0/css/all.csshttps://use.fontawesome.com/releases/v5.2.0/css/all.css');
+
+// Typeography
+$base-font-family: 'Lora', sans-serif;
+$heading-font-family: 'Montserrat', sans-serif;
+$secondary-heading-font-family: 'OpenSans', sans-serif;
+
+// Font Weights
+$regular-font: 400;
+$medium-font: 500;
+$bold-font: 700;
+
+// Font-Sizes
+$base-font-size: 1em;
+
+// Line Height
+$base-line-height: 1.5;
+$heading-line-height: 1.2;
+
+// Other Sizes
+$base-border-radius: 3px;
+$base-spacing: $base-line-height * 1em;
+$small-spacing: $base-spacing / 2;
+$base-z-index: 0;
+
+// Brand Colors
+$dusk: #5D5C61;
+$green: #379683;
+$light-blue: #7395AE;
+$dark-blue: #557A95;
+$tan: #B1A296;
+
+// Base Colors
+$black: #000;
+$medium-gray: #999;
+$light-gray: #ddd;
+$white: #fff;
+
+// Font Colors
+$base-font-color: $dusk;
+$action-color: $dark-blue;
+
+// Border
+$base-border-color: $light-gray;
+$base-border: 1px solid $base-border-color;
+
+// Background Colors
+$base-background-color: $white;
+$secondary-background-color: tint($base-border-color, 75%);
+
+// Forms
+$form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
+$form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $lightness: -5%, $alpha: -0.3);
+
+// Animations
+$base-duration: 300ms;
+$base-timing: ease;
