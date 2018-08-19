@@ -68,7 +68,7 @@
 
 
 <script>
-  import _ from 'lodash';
+  import _ from 'lodash'
   import Authentication from '@/services/Authentication'
 
   export default {
@@ -146,18 +146,18 @@
           } else if (res.data.status === 401) {
             this.errorMsg('Invalid email or password!')
           } else {
-            console.log(res)// display content being sent back.....
-            this.validUser = true // display this somewhere to know successful credentials
-            //document.cookie = 'token='+res.data.token+';expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";'
-            window.localStorage.setItem('token', res.data.token);
+            this.validUser = true
+            window.localStorage.setItem('token', res.data.token)
             this.successAlert('Welcome, ' + res.data.name)
             document.cookie = 'token='+res.data.token+';'
-            if(!res.data.linkedAccounts){
+            let linkedAccounts = res.data.linkedAccounts
+            if (_.isEmpty(linkedAccounts.reddit.access_token) &&
+              _.isEmpty(linkedAccounts.twitter.oauth_token) &&
+              _.isEmpty(linkedAccounts.twitch.access_token)) {
               this.$router.push('LinkAccounts')
             } else {
               this.$router.push('Profile')
-            }// redirect to profile
-
+            }
           }
         })
       }
