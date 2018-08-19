@@ -10,179 +10,214 @@
       </div>
     </section>
 
-    <section>
-      <div class="columns is-centered">
-        <div class="column is-two-fifths">
-          <div class="columns is-centered">
-            <div class="column is-four-fifths">
-              <div class="card">
-                <div class="card-image">
-                  <figure class="image">
-                    <!--
-                    <img :src="imageSrc ? imageSrc : avatar" class="image" alt="profile avatar">
-                    -->
-                    <img src="http://via.placeholder.com/350x400">
-                  </figure>
-                </div>
-                <div class="card-content has-text-centered">
-                  <div class="media">
-                    <div class="media-content has-text-centered">
-                      <!--
-                      <p class="title is-3">{{ tempUser.firstName + ' ' + tempUser.lastName }}</p>
-                      <p class="subtitle is-5">@{{ tempUser.username }}</p>
-                      -->
-                      <p class="title is-3">FirstName LastName</p>
-                      <p class="subtitle is-5">@Usernamwe</p>
+    <section class="accountManagement">
+      <div class="columns">
+        <div class="column">
+          <div class="container">
+            <div class="columns is-centered">
+              <div class="column is-3">
+                <div class="card">
+                  <header class="card-header">
+                    <p class="card-header-title is-centered card-name is-primary">
+                      Username
+                    </p>
+                  </header>
+                  <div class="card-image">
+                    <div class="image players-avatar">
+                      <img src="http://via.placeholder.com/150x150" alt="Profile Avatar">
                     </div>
                   </div>
-                  <div class="content">
-                    <!--
-                    <p>{{ tempUser.email }}</p>
-                    -->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- start other column -->
-        <div class="column is-half">
-          <div class="card">
-            <header class="card-header">
-              <p class="card-header-title is-centered">Personal Information</p>
-            </header>
-            <div class="card-content has-text-centered">
-              <div class="media">
-                <div class="media-content has-text-left">
-                  <div class="field">
-                    <label class="label">Email</label>
-                      <input
-                        class="input"
-                        type="email"
-                        placeholder=""
-                        required>
-                    <p class="help is-danger"></p>
-                  </div>
-
-                  <div class="field">
-                    <label class="label">First Name</label>
-                    <input
-                      class="input"
-                      type="text"
-                      placeholder=""
-                      required>
-                    <p class="help is-danger"></p>
-                  </div>
-
-                  <div class="field">
-                    <label class="label">Last Name</label>
-                    <input
-                      class="input"
-                      type="text"
-                      placeholder=""
-                      required>
-                    <p class="help is-danger"></p>
-                  </div>
-
-                  <div class="field">
-                    <label class="label">Address</label>
-                    <input
-                      class="input"
-                      type="text"
-                      placeholder=""
-                      required>
-                    <p class="help is-danger"></p>
-                  </div>
-
-                  <div class="field">
-                    <label class="label">City</label>
-                    <input
-                      class="input"
-                      type="text"
-                      placeholder=""
-                      required>
-                    <p class="help is-danger"></p>
-                  </div>
-
-                  <div class="field">
-                    <label class="label">State / Province</label>
-                    <input class="input"
-                           type="tex"
-                           placeholder=""
-                           required>
-                    <p class="help is-danger"></p>
-                  </div>
-
-                  <div class="field">
-                    <label class="label">Zip Code</label>
-                    <input class="input"
-                           type="tex"
-                           placeholder=""
-                           required>
-                    <p class="help is-danger"></p>
-                  </div>
-
-                  <div class="field">
-                    <label class="label">Country</label>
-                    <div class="control">
-                      <div class="select is-fullwidth">
-                        <select class="input"
-                                required>
-                          <option selected>Country</option>
-                          <!--
-                          <option v-for="country in countries">
-                            {{ country.name }}</option>
-                            -->
-                        </select>
+                  <div class="card-content">
+                    <div class="content has-text-centered">
+                      <div class="field">
+                        <label class="label">Username</label>
+                      </div>
+                      <div class="field has-addons">
+                        <div class="control">
+                          <label class="label">Followers: </label>
+                        </div>
+                        <div class="control">
+                          <label class="label">Following: </label>
+                        </div>
                       </div>
                     </div>
-                    <!--
-                    <p v-if="$v.user.country.$error" class="help is-danger">Country is required</p>
-                    -->
                   </div>
-
-
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- end column -->
-
-      </div>
-
-      <div class="columns">
-        <div class="column is-half is-offset-one-quarter">
-          <div class="columns is-centered">
-            <div class="column is-four-fifths">
-              <div class="card">
-                <header class="card-header">
-                  <p class="card-header-title is-centered">Linked Accounts</p>
-                </header>
-                <div class="card-content has-text-centered">
-                  <div class="media">
-                    <div class="media-content has-text-centered">
-                      <!--
-                      <p class="title is-3">{{ tempUser.firstName + ' ' + tempUser.lastName }}</p>
-                      <p class="subtitle is-5">@{{ tempUser.username }}</p>
-                      -->
-                      <p class="title is-3">FirstName LastName</p>
-                      <p class="subtitle is-5">@Usernamwe</p>
+                <div class="card">
+                  <div class="card-content">
+                    <div class="content has-text-centered">
+                      <a class="member-linked-accounts">
+                        <i class="fab fa-twitter fa-2x"></i>
+                      </a>
+                      <a class="member-linked-accounts">
+                        <i class="fab fa-twitch fa-2x"></i>
+                      </a>
+                      <a class="member-linked-accounts">
+                        <i class="fab fa-reddit fa-2x"></i>
+                      </a>
                     </div>
                   </div>
-                  <div class="content">
-                    <!--
-                    <p>{{ tempUser.email }}</p>
-                    -->
-                  </div>
                 </div>
+              </div>
+              <div class="column is-7 tab-top">
+                <b-tabs size="is-medium"
+                        position="is-centered"
+                        type="is-boxed"
+                        v-model="activeTab">
+                  <b-tab-item>
+                    <template slot="header">
+                      <b-icon class="fas fa-align-justify"></b-icon>
+                      <span> Personal Info</span>
+                    </template>
+                    <div class="card">
+                      <div class="card-content has-text-centered">
+                        <div class="media">
+                          <div class="media-content has-text-left">
+
+                            <div class="field">
+                              <label class="label">First Name</label>
+                              <input
+                                class="input"
+                                type="text"
+                                placeholder=""
+                                required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+                            <div class="field">
+                              <label class="label">Last Name</label>
+                              <input
+                                class="input"
+                                type="text"
+                                placeholder=""
+                                required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+                            <div class="field">
+                              <label class="label">Address</label>
+                              <input
+                                class="input"
+                                type="text"
+                                placeholder=""
+                                required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+                            <div class="field">
+                              <label class="label">City</label>
+                              <input
+                                class="input"
+                                type="text"
+                                placeholder=""
+                                required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+                            <div class="field">
+                              <label class="label">State / Province</label>
+                              <input class="input"
+                                     type="tex"
+                                     placeholder=""
+                                     required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+                            <div class="field">
+                              <label class="label">Zip Code</label>
+                              <input class="input"
+                                     type="tex"
+                                     placeholder=""
+                                     required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+                            <div class="field">
+                              <label class="label">Country</label>
+                              <div class="control">
+                                <div class="select is-fullwidth">
+                                  <select class="input"
+                                          required>
+                                    <option selected>Country</option>
+                                    <!--
+                                    <option v-for="country in countries">
+                                      {{ country.name }}</option>
+                                      -->
+                                  </select>
+                                </div>
+                              </div>
+                              <!--
+                              <p v-if="$v.user.country.$error" class="help is-danger">Country is required</p>
+                              -->
+                            </div>
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </b-tab-item>
+                  <b-tab-item>
+                    <template slot="header">
+                      <b-icon class="fas fa-key"></b-icon>
+                      <span> Password</span>
+                    </template>
+                    <div>TWITTER FEED GOES HERE</div>
+                    <twitter-feed twitter-feed="twitter-feed"></twitter-feed>
+                  </b-tab-item>
+                  <b-tab-item>
+                    <template slot="header">
+                      <b-icon class="fas fa-at"></b-icon>
+                      <span> Email</span>
+                    </template>
+                    <div class="card">
+                      <div class="card-content has-text-centered">
+                        <div class="media">
+                          <div class="media-content has-text-left">
+                            <div class="field">
+                              <label class="label">Current Email</label>
+                              <input
+                                class="input"
+                                type="email"
+                                placeholder=""
+                                required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+                            <div class="field">
+                              <label class="label">New Email</label>
+                              <input
+                                class="input"
+                                type="email"
+                                placeholder=""
+                                required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </b-tab-item>
+                  <b-tab-item>
+                    <template slot="header">
+                      <b-icon class="fab fa-reddit"></b-icon>
+                      <span> Reddit</span>
+                    </template>
+                    <div>REDDIT FEED GOES HERE</div>
+                    <reddit-feed></reddit-feed>
+                  </b-tab-item>
+
+                </b-tabs>
+
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
   </div>
 </template>
 
