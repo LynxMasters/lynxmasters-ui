@@ -66,7 +66,7 @@
                         v-model="activeTab">
                   <b-tab-item>
                     <template slot="header">
-                      <b-icon class="fas fa-align-justify"></b-icon>
+                      <b-icon class="fas fa-info"></b-icon>
                       <span> Personal Info</span>
                     </template>
                     <div class="card">
@@ -162,7 +162,7 @@
                       <b-icon class="fas fa-key"></b-icon>
                       <span> Password</span>
                     </template>
-                    <div>TWITTER FEED GOES HERE</div>
+                    <div>OLD PASSWORD THEN NEW PASSWORD 2x STUFF HERE</div>
                     <twitter-feed twitter-feed="twitter-feed"></twitter-feed>
                   </b-tab-item>
                   <b-tab-item>
@@ -200,15 +200,6 @@
                       </div>
                     </div>
                   </b-tab-item>
-                  <b-tab-item>
-                    <template slot="header">
-                      <b-icon class="fab fa-reddit"></b-icon>
-                      <span> Reddit</span>
-                    </template>
-                    <div>REDDIT FEED GOES HERE</div>
-                    <reddit-feed></reddit-feed>
-                  </b-tab-item>
-
                 </b-tabs>
 
               </div>
@@ -223,7 +214,33 @@
 
 <script>
     export default {
-        name: "AccountManagement"
+        name: "AccountManagement",
+      /*
+      created () {
+        this.checkAuthentication()
+      },
+      updated() {
+        this.checkAuthentication()
+      },
+      watch: {},
+      computed: {},
+      methods: {
+        checkAuthentication() {
+          let existingToken =  window.localStorage.getItem('token')
+          if (_.isEmpty(existingToken) ) {
+            this.needsAuthWarning()
+            this.$router.replace(this.$route.query.redirect || '/Login')
+          }
+        },
+        needsAuthWarning() {
+          this.$toast.open({
+            duration: 3500,
+            message: 'You need to be logged in to access that page!',
+            position: 'is-top',
+            type: 'is-danger'
+          })
+        },
+      }*/
     }
 </script>
 
