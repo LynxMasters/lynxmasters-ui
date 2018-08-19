@@ -17,21 +17,20 @@
                   </div>
                 </div>
                 <div class="card-content">
-                  <div class="content">
+                  <div class="content has-text-centered">
                     <div class="field">
                       <label class="label">Username</label>
                     </div>
-                    <div class="field">
-                      <label class="label">Followers: </label>
-                      <label class="label">Following: </label>
+                    <div class="field has-addons">
+                      <div class="control">
+                        <label class="label">Followers: </label>
+                      </div>
+                      <div class="control">
+                        <label class="label">Following: </label>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <footer class="card-footer">
-                  <!--<router-link v-bind:to="{ name: 'EditProfile', params: { id: user._id } }"-->
-                               <!--class="card-footer-item is-primary">Edit-->
-                  <!--</router-link>-->
-                </footer>
               </div>
               <div class="card">
                 <div class="card-content">
@@ -43,14 +42,14 @@
                       <i class="fab fa-twitch fa-2x"></i>
                     </a>
                     <a class="member-linked-accounts">
-                      <i style="color: grey;" class="fab fa-reddit fa-2x"></i>
+                      <i class="fab fa-reddit fa-2x"></i>
                     </a>
                   </div>
                 </div>
               </div>
             </div>
             <div class="column is-7">
-              <div class="tabs is-boxed">
+              <div class="tabs is-medium is-centered is-boxed">
                 <ul>
                   <li v-for="tab in tabs" v-bind:class="{'is-active': tab.isActive}">
                     <a @click="selectTab(tab)">
@@ -63,8 +62,15 @@
                 </ul>
               </div>
 
+              <div class="all-feed"><h1>ALL FEEDS</h1></div>
+              <div class="reddit-feed"><h1>REDDIT FEED</h1></div>
+              <div class="twitch-feed"><h1>TWITCH FEED</h1></div>
+              <div class="twitter-feed"><h1>TWITTER FEED</h1></div>
 
               <twitter-feed twitter-feed="twitter-feed"></twitter-feed>
+              <reddit-feed></reddit-feed>
+              <twitch-feed></twitch-feed>
+
             </div>
           </div>
         </div>
@@ -77,7 +83,6 @@
 export default {
 
     name: 'Profile',
-    props: ["twitter-feeed"]
     data() {
       return {
         isActive: false,
@@ -86,19 +91,18 @@ export default {
             name: 'All',
             displayName: 'All',
             icon: 'fas fa-align-justify'
-
           }, {
             name: 'Twitter',
             displayName: 'Twitter',
-            icon: 'fas fa-twitter'
+            icon: 'fab fa-twitter'
           }, {
             name: 'Twitch',
             displayName: 'Twitch',
-            icon: 'fas fa-twitch'
+            icon: 'fab fa-twitch'
           }, {
             name: 'Reddit',
             displayName: 'Reddit',
-            icon: 'fas fa-reddit'
+            icon: 'fab fa-reddit'
           }
         ]
       }
@@ -127,7 +131,10 @@ export default {
 </script>
 
 <style scoped>
-.member-linked-accounts {
-  margin: 0 .5rem 0 .5rem;
-}
+  .profile {
+    padding-top: 1.5rem;
+  }
+  .member-linked-accounts {
+    margin: 0 .5rem 0 .5rem;
+  }
 </style>
