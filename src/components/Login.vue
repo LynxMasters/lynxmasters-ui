@@ -151,7 +151,6 @@
             this.successAlert('Welcome, ' + res.data.name)
             document.cookie = 'token='+res.data.token+';'
             let linkedAccounts = res.data.linkedAccounts
-            console.log(linkedAccounts)
             if (_.isEmpty(linkedAccounts.reddit.access_token) &&
               _.isEmpty(linkedAccounts.twitter.oauth_token) &&
               _.isEmpty(linkedAccounts.twitch.access_token)) {
