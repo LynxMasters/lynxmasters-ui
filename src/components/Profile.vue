@@ -100,7 +100,9 @@ export default {
 
     name: 'Profile',
     data() {
-      return {}
+      return {
+        activeTab: 0
+      }
     },
     mounted() {},
     watch: {},
