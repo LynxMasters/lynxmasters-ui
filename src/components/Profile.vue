@@ -68,7 +68,29 @@
                     <b-icon class="fab fa-twitter"></b-icon>
                     <span> Twitter</span>
                   </template>
-                  <div>TWITTER FEED GOES HERE</div>
+                  <div>
+                    <div class="columns medium-4" v-for="tweet in tweets" :key="tweet.id">
+                      <div class="card is-shady card-equal-height">
+                        <header class="card-header">
+                          <p class="card-header-title">
+                            <img v-bind:src="tweet.user.profile_image_url">
+                            <span>
+                            {{tweet.user.name}}
+                            </span>
+                            <i class="fab fa-twitter fa-2x "align-self="end"></i>
+                          </p>
+                        </header>
+                        <div class="card-image has-text-centered">
+                         <!--<img v-bind:src="tweet.entities.media.media_url">-->
+                        </div>
+                        <div class="card-divider">
+                          <p> {{tweet.text}}</p>
+                        </div>
+                        <div class="card-section">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <twitter-feed twitter-feed="twitter-feed"></twitter-feed>
                 </b-tab-item>
                 <b-tab-item>
@@ -76,7 +98,30 @@
                     <b-icon class="fab fa-twitch"></b-icon>
                     <span> Twitch</span>
                   </template>
-                  <div>TWITCH FEED GOES HERE</div>
+                  <div>
+                    <div class="columns medium-4" v-for="stream in streams" :key="stream.id">
+                      <div class="card is-shady card-equal-height">
+                        <header class="card-header">
+                          <p class="card-header-title">
+                            <span>
+                              {{stream.channel.display_name}}
+                            </span>
+                            <i class="fab fa-twitch fa-2x"></i>
+                          </p>
+                        </header>
+                          <p>{{stream.channel.name}} </p>
+                        <div class="card-section">
+                          <iframe src="http://player.twitch.tv/?channel="
+                            height="500"
+                            width="500"
+                            frameborder="<frameborder>"
+                            scrolling="<scrolling>"
+                            allowfullscreen="<allowfullscreen>">
+                        </iframe>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <twitch-feed></twitch-feed>
                 </b-tab-item>
                 <b-tab-item>
@@ -84,7 +129,28 @@
                     <b-icon class="fab fa-reddit"></b-icon>
                     <span> Reddit</span>
                   </template>
-                  <div>REDDIT FEED GOES HERE</div>
+                  <div>
+                    <div class="columns medium-4" v-for="thread in threads" :key="thread.id">
+                      <div class="card is-shady card-equal-height">
+                        <header class="card-header">
+                          <p class="card-header-title">
+                            <span>
+                            r/{{thread.data.subreddit}}
+                            </span>
+                            <i class="fab fa-reddit fa-2x"></i>
+                          </p>
+                        </header>
+                        <div class="card-image has-text-centered">
+                         <img v-bind:src="thread.data.url">
+                        </div>
+                        <div class="card-divider">
+                          <p> {{thread.data.title}}</p>
+                        </div>
+                        <div class="card-section">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <reddit-feed></reddit-feed>
                 </b-tab-item>
 
@@ -99,15 +165,22 @@
 </template>
 
 <script>
+import ExternalService from '@/services/externalService'
 export default {
 
     name: 'Profile',
     data() {
       return {
-        activeTab: 0
+        activeTab: 0,
+        tweets: {},
+        threads:{},
+        streams:{},
       }
     },
-    mounted() {},
+    mounted() {
+      this.token = window.localStorage.getItem('token')
+      this.getFeed()
+    },
     created () {
       this.checkAuthentication()
     },
@@ -124,12 +197,22 @@ export default {
           this.$router.replace(this.$route.query.redirect || '/Login')
         }
       },
+
       needsAuthWarning() {
         this.$toast.open({
           duration: 3500,
           message: 'You need to be logged in to access that page!',
           position: 'is-top',
           type: 'is-danger'
+        })
+      },
+
+      async getFeed() {
+        await ExternalService.feeds(this.token).then(res => {
+          this.tweets = res.data.twitter
+          this.threads = res.data.reddit.data.children
+          this.streams = res.data.twitch.streams 
+          console.log(res) 
         })
       },
     }
