@@ -111,7 +111,7 @@
                         </header>
                           <p>{{stream.channel.name}} </p>
                         <div class="card-section">
-                          <iframe src="http://player.twitch.tv/?channel="
+                          <iframe v-bind:src="`http://player.twitch.tv/?channel=${stream.channel.name}`"
                             height="500"
                             width="500"
                             frameborder="<frameborder>"
@@ -134,6 +134,7 @@
                       <div class="card is-shady card-equal-height">
                         <header class="card-header">
                           <p class="card-header-title">
+                            <img v-bind:src="thread.data.profile_image_url">
                             <span>
                             r/{{thread.data.subreddit}}
                             </span>
