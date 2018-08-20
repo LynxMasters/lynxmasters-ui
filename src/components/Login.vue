@@ -1,5 +1,5 @@
 <template>
-  <section class="hero is-fullheight">
+  <section class="hero is-fullheight animated fadeIn">
     <div class="hero-body">
       <div class="container">
         <div class="columns is-centered">
@@ -147,6 +147,7 @@
             this.errorMsg('Invalid email or password!')
           } else {
             this.validUser = true
+            this.$store.commit('user/auth_success', res.data.token, res.data.name)
             window.localStorage.setItem('token', res.data.token)
             this.successAlert('Welcome, ' + res.data.name)
             document.cookie = 'token='+res.data.token+';'

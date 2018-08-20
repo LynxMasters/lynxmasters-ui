@@ -1,5 +1,5 @@
 <template>
-    <div class="landing">
+    <div class="landing animated fadeIn">
       <!-- Header -->
       <section class="hero is-dark is-large">
         <img src="/static/landing-images/social-2.jpg" style="display:none;">
@@ -295,35 +295,45 @@
     },
     methods:{
       scrollToTop(){
-        VueScrollTo.scrollTo('#navigation', 2000);
+        VueScrollTo.scrollTo('#navigation', 2000)
       },
       goToLoginPage(){
-        this.$router.push({name: 'Login'});
+        this.$router.push({name: 'Login'})
       },
       goToSignUpPage(){
-        this.$router.push({name: 'Signup'});
+        this.$router.push({name: 'Signup'})
       },
       scrollToContactUs(){
-        VueScrollTo.scrollTo('#contactSection', 2000);
+        VueScrollTo.scrollTo('#contactSection', 2000)
       },
       handleScroll(){
         this.sticky =  document.getElementById('sectionsNav').offsetTop
         let anchor = document.getElementById('scroller-anchor').offsetTop
         let anchorSpace = window.pageYOffset - anchor
         if (window.pageYOffset > this.sticky && (anchorSpace > 0)) {
-          this.isActive = true;
-          document.getElementById('fab').style.visibility = 'visible';
+          this.isActive = true
+          document.getElementById('fab').style.visibility = 'visible'
         } else {
-          this.isActive = false;
-          document.getElementById('fab').style.visibility = 'hidden';
+          this.isActive = false
+          document.getElementById('fab').style.visibility = 'hidden'
+        }
+      },
+      checkAuthentication() {
+        let existingToken =  window.localStorage.getItem('token')
+        if (!_.isEmpty(existingToken) ) {
+          this.$router.replace(this.$route.query.redirect || '/profile')
         }
       }
     },
     created () {
-      window.addEventListener('scroll', this.handleScroll);
+      this.checkAuthentication()
+      window.addEventListener('scroll', this.handleScroll)
+    },
+    updated() {
+      this.checkAuthentication()
     },
     destroyed () {
-      window.removeEventListener('scroll', this.handleScroll);
+      window.removeEventListener('scroll', this.handleScroll)
     }
   }
 </script>
