@@ -68,29 +68,43 @@
                     <b-icon class="fab fa-twitter"></b-icon>
                     <span> Twitter</span>
                   </template>
-                  <div>
-                    <div class="columns medium-4" v-for="tweet in tweets" :key="tweet.id">
-                      <div class="card is-shady card-equal-height">
-                        <header class="card-header">
-                          <p class="card-header-title">
-                            <img v-bind:src="tweet.user.profile_image_url">
-                            <span>
-                            {{tweet.user.name}}
-                            </span>
-                            <i class="fab fa-twitter fa-2x "align-self="end"></i>
-                          </p>
-                        </header>
-                        <div class="card-image has-text-centered">
-                         -<!--<img v-bind:src="`${tweet.entities.media[0].media_url}`">-->
-                        </div>
-                        <div class="card-divider">
-                          <p> {{tweet.text}}</p>
-                        </div>
-                        <div class="card-section">
-                        </div>
-                      </div>
-                    </div>
-                  </div>                  
+                  <article class="media" v-for="tweet in tweets" :key="tweet.id">
+<figure class="media-left">
+    <p class="image is-64x64">
+      <img v-bind:src="tweet.user.profile_image_url">
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <strong>{{tweet.user.name}}</strong> <small>@{{tweet.user.screen_name}}</small> <small>{{tweet.created_at}}</small>
+        <br>
+        {{tweet.text}}
+        <br>
+        <img v-for="media in tweet.entities.media" :key="tweet.id" v-bind:src="media.media_url" height="500" width="500">
+      </p>
+    </div>
+    <nav class="level is-mobile">
+      <div class="level-left">
+        <a class="level-item">
+          <span class="icon is-small"><i class="fas fa-comment black"></i></span>
+        </a>
+        <a class="level-item">
+          <span class="icon is-small"><i class="fas fa-retweet black"></i></span>
+          <span>{{tweet.retweet_count}}</span>
+        </a>
+        <a class="level-item">
+          <span class="icon is-small"><i class="fas fa-heart black"></i></span>
+          <span>{{tweet.favorite_count}}</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+  <div class="media-right">
+    <i class="fab fa-twitter fa-2x"></i>
+  </div>
+</article>
+                 
                 </b-tab-item>
                 <b-tab-item>
                   <template slot="header">
@@ -108,7 +122,6 @@
                             <i class="fab fa-twitch fa-2x"></i>
                           </p>
                         </header>
-                          <p>{{stream.channel.name}} </p>
                         <div class="card-section">
                           <iframe v-bind:src="`http://player.twitch.tv/?channel=${stream.channel.name}&autoplay=false`"
                             height="500"
@@ -170,6 +183,7 @@
 </template>
 
 <script>
+import UserService from '@/services/UserService'
 import ExternalService from '@/services/externalService'
 export default {
 
@@ -180,10 +194,12 @@ export default {
         tweets: {},
         threads:{},
         streams:{},
+        all:{},
       }
     },
     mounted() {
       this.token = window.localStorage.getItem('token')
+      this.getAccountInfo()
       this.getFeed()
     },
     created () {
@@ -195,6 +211,14 @@ export default {
     watch: {},
     computed: {},
     methods: {
+
+      getAccountInfo() {
+        UserService.getAccounts(this.token).then(res => {
+          console.log(res)
+          return res
+        })
+      },
+
       checkAuthentication() {
         let existingToken =  window.localStorage.getItem('token')
         if (_.isEmpty(existingToken) ) {
@@ -217,7 +241,7 @@ export default {
           this.tweets = res.data.twitter
           this.threads = res.data.reddit.data.children
           this.streams = res.data.twitch.streams 
-          console.log(res) 
+          console.log(res)   
         })
       },
     }
