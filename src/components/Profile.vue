@@ -81,7 +81,7 @@
                           </p>
                         </header>
                         <div class="card-image has-text-centered">
-                         <!--<img v-bind:src="tweet.entities.media.media_url">-->
+                         -<!--<img v-bind:src="`${tweet.entities.media[0].media_url}`">-->
                         </div>
                         <div class="card-divider">
                           <p> {{tweet.text}}</p>
@@ -90,8 +90,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <twitter-feed twitter-feed="twitter-feed"></twitter-feed>
+                  </div>                  
                 </b-tab-item>
                 <b-tab-item>
                   <template slot="header">
@@ -122,7 +121,6 @@
                       </div>
                     </div>
                   </div>
-                  <twitch-feed></twitch-feed>
                 </b-tab-item>
                 <b-tab-item>
                   <template slot="header">
@@ -134,15 +132,24 @@
                       <div class="card is-shady card-equal-height">
                         <header class="card-header">
                           <p class="card-header-title">
-                            <img v-bind:src="thread.data.profile_image_url">
                             <span>
                             r/{{thread.data.subreddit}}
                             </span>
-                            <i class="fab fa-reddit fa-2x"></i>
+                            <i class="fab fa-reddit fa-2x text-right"></i>
                           </p>
                         </header>
-                        <div class="card-image has-text-centered">
-                         <img v-bind:src="thread.data.url">
+                        <div v-if="!thread.data.is_video" class="card-image has-text-centered">
+                         <img v-bind:src="thread.data.url" height="500"
+                            width="500">
+                        </div>
+                        <div v-if="thread.data.is_video" class="card-image has-text-centered">
+                          <iframe v-bind:src="thread.data.secure_media.reddit_video.fallback_url"
+                            height="500"
+                            width="500"
+                            frameborder="<frameborder>"
+                            scrolling="<scrolling>"
+                            allowfullscreen="<allowfullscreen>">
+                          </iframe>
                         </div>
                         <div class="card-divider">
                           <p> {{thread.data.title}}</p>
@@ -152,11 +159,8 @@
                       </div>
                     </div>
                   </div>
-                  <reddit-feed></reddit-feed>
                 </b-tab-item>
-
               </b-tabs>
-
             </div>
           </div>
         </div>
