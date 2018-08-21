@@ -110,7 +110,7 @@
                         </header>
                           <p>{{stream.channel.name}} </p>
                         <div class="card-section">
-                          <iframe v-bind:src="`http://player.twitch.tv/?channel=${stream.channel.name}`"
+                          <iframe v-bind:src="`http://player.twitch.tv/?channel=${stream.channel.name}&autoplay=false`"
                             height="500"
                             width="500"
                             frameborder="<frameborder>"
