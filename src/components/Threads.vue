@@ -57,24 +57,24 @@
     },
     methods: {
       upVote() {
-       if(!this.likes){
-          this.likes = true
-          this.thread.data.ups += 2
-        }else if(this.likes == null){
+       if(this.likes == null){
           this.likes = true
           this.thread.data.ups += 1
+        }else if(!this.likes){
+          this.likes = true
+          this.thread.data.ups += 2
         }else{
           this.likes = null
           this.thread.data.ups -= 1
         }
       },
       downVote() {
-        if(this.likes){
-          this.likes = false
-          this.thread.data.ups -= 2
-        }else if(this.likes == null){
+        if(this.likes == null){
           this.likes = false
           this.thread.data.ups -= 1
+        }else if(this.likes){
+          this.likes = false
+          this.thread.data.ups -= 2
         }else{
           this.likes = null
           this.thread.data.ups += 1
