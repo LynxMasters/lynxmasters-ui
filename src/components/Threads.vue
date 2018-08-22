@@ -75,8 +75,8 @@
           this.isUp = false
           this.thread.data.ups -= 2
         }else if(!this.isDown && !this.isUp){
-          this.isUp = true
-          this.isDown = false
+          this.isUp = false
+          this.isDown = true
           this.thread.data.ups -= 1
         }else{
           this.isDown = false
