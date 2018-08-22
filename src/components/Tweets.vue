@@ -21,10 +21,10 @@
           <span class="icon is-small"><i class="far fa-comment"></i></span>
         </a>
         <a class="level-item has-text-grey" @click="retweet">
-          <span class="icon is-small"><i v-bind:class="{'has-text-success': isRetweet, 'has-text-grey': !isRetweet}" class="fas fa-retweet">{{tweet.retweet_count}}</i></span>
+          <span class="icon is-small padLeft padRight"><i v-bind:class="{'has-text-success': isRetweet, 'has-text-grey': !isRetweet}" class="fas fa-retweet">{{tweet.retweet_count}}</i></span>
         </a>
         <a class="level-item" @click="favorite">
-          <span class="icon is-small tweetBtn"><i v-bind:class="{'has-text-danger fas fa-heart': isFavorite, 'has-text-grey': !isFavorite}" class="far fa-heart">{{tweet.favorite_count}}</i></span>
+          <span class="icon is-small padLeft"><i v-bind:class="{'has-text-danger fas fa-heart': isFavorite, 'has-text-grey': !isFavorite}" class="far fa-heart">{{tweet.favorite_count}}</i></span>
         </a>
       </div>
     </nav>
@@ -66,7 +66,10 @@
   }
 </script>
 <style scoped>
-  .tweetBtn{
-    padding-left: 1.4em;
+  .padLeft{
+    padding-left: 2.0em;
+  }
+  .padRight{
+    padding-right: 2.0em;
   }
 </style>

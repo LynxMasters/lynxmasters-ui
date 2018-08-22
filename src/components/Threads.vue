@@ -4,7 +4,7 @@
     <a class="level-item has-text-grey" @click="upVote">
       <i v-bind:class="{'has-text-reddit': isUp, 'has-text-grey': !isUp}" class="fas fa-arrow-up"></i>
     </a>
-    <p v-bind:class="{'has-text-reddit': isUp, 'has-text-grey': !isUp, 'has-text-link': isDown}">{{thread.data.ups}}</p>
+    <strong v-bind:class="{'has-text-reddit': isUp, 'has-text-link': isDown}">{{thread.data.ups}}</strong>
     <a class="level-item has-text-grey" @click="downVote">
       <i class="fas fa-arrow-down" v-bind:class="{'has-text-link': isDown, 'has-text-grey': !isDown}"></i>
     </a>
