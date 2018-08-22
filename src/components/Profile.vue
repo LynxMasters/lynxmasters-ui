@@ -86,14 +86,14 @@
                 </div>
                 <nav class="level is-mobile">
                   <div class="level-left">
-                    <a class="level-item">
+                    <a class="level-item has-text-black">
                       <span class="icon is-small"><i class="fas fa-comment black"></i></span>
                     </a>
-                    <a class="level-item">
+                    <a class="level-item has-text-black">
                       <span class="icon is-small"><i class="fas fa-retweet black"></i></span>
                       <span>{{tweet.retweet_count}}</span>
                     </a>
-                    <a class="level-item">
+                    <a class="level-item has-text-black">
                       <span class="icon is-small"><i class="fas fa-heart black"></i></span>
                       <span>{{tweet.favorite_count}}</span>
                     </a>
@@ -142,11 +142,11 @@
               </template>
               <article class="media" v-for="thread in threads">
                 <figure class="media-left">
-                  <a class="level-item">
+                  <a class="level-item has-text-grey">
                     <i class="fas fa-arrow-up"></i>
                   </a>
                   <p>{{thread.data.ups}}</p>
-                  <a class="level-item">
+                  <a class="level-item has-text-grey">
                     <i class="fas fa-arrow-down"></i>
                   </a>
                 </figure>
@@ -174,10 +174,10 @@
                     </div>
                     <nav class="level is-mobile">
                       <div class="level-left">
-                        <a class="level-item">
+                        <a class="level-item has-text-grey">
                           <span class="icon is-small"><i class="fas fa-comment"></i></span>
                         </a>
-                        <a class="level-item">
+                        <a class="level-item has-text-grey">
                           <span class="icon is-small"><i class="fas fa-share"></i></span>
                         </a>
                       </div>
