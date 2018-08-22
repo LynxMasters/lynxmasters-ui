@@ -52,7 +52,6 @@
     data() {
         return {
           likes: this.thread.data.likes,
-          isDown: false,
         }
     },
     methods: {

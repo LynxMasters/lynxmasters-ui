@@ -20,7 +20,7 @@
         <a class="level-item has-text-grey" @click="">
           <span class="icon is-small"><i class="far fa-comment"></i></span>
         </a>
-        <a class="level-item has-text-grey" @click="retweet">
+        <a class="level-item" @click="retweet">
           <span class="icon is-small padLeft padRight"><i v-bind:class="{'has-text-success': isRetweet, 'has-text-grey': !isRetweet}" class="fas fa-retweet">{{tweet.retweet_count}}</i></span>
         </a>
         <a class="level-item" @click="favorite">
