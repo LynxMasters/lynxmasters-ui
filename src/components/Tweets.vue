@@ -44,22 +44,28 @@
         return {
           isFavorite: false,
           isRetweet: false,
+          favoriteCount: 0,
         }
     },
     methods: {
       retweet() {
        if(!this.isRetweet){
           this.isRetweet = true
+          this.tweet.retweet_count +=1
+          
         }else{
           this.isRetweet = false
+          this.tweet.retweet_count -=1
         }
       },
 
       favorite() {
         if(!this.isFavorite){
           this.isFavorite = true
+          this.tweet.favorite_count +=1
         }else{
           this.isFavorite = false
+          this.tweet.favorite_count -=1
         }
       },
     },

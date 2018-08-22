@@ -63,7 +63,6 @@
           this.isUp = false
         }
       },
-
       downVote() {
         if(!this.isDown){
           this.isDown = true
