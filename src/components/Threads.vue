@@ -1,12 +1,12 @@
 <template>
 <article class="media">
   <figure class="media-left">
-    <a class="level-item has-text-grey">
-      <i class="fas fa-arrow-up"></i>
+    <a class="level-item has-text-grey" @click="upVote">
+      <i v-bind:class="{'has-text-reddit': isUp, 'has-text-grey': !isUp}" class="fas fa-arrow-up"></i>
     </a>
-    <p>{{thread.data.ups}}</p>
-    <a class="level-item has-text-grey">
-      <i class="fas fa-arrow-down"></i>
+    <p v-bind:class="{'has-text-reddit': isUp, 'has-text-grey': !isUp, 'has-text-link': isDown}">{{thread.data.ups}}</p>
+    <a class="level-item has-text-grey" @click="downVote">
+      <i class="fas fa-arrow-down" v-bind:class="{'has-text-link': isDown, 'has-text-grey': !isDown}"></i>
     </a>
   </figure>
   <div class="media-content">
@@ -48,7 +48,35 @@
     props: {
      thread:{}
     },
+    data() {
+        return {
+          isUp: false,
+          isDown: false,
+        }
+    },
     methods: {
+      upVote() {
+       if(!this.isUp){
+          this.isUp = true
+          this.isDown = false
+        }else{
+          this.isUp = false
+        }
+      },
+
+      downVote() {
+        if(!this.isDown){
+          this.isDown = true
+          this.isUp = false
+        }else{
+          this.isDown = false
+        }
+      },
     },
   }
 </script>  
+<style scoped>
+  .has-text-reddit{
+    color: rgb(255, 69, 0);
+  }
+</style>
