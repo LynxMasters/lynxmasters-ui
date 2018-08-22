@@ -68,125 +68,22 @@
             <b-icon class="fab fa-twitter"></b-icon>
             <span> Twitter</span>
             </template>
-            <article class="media" v-for="tweet in tweets" :key="tweet.id">
-              <figure class="media-left">
-                <p class="image is-64x64">
-                  <img v-bind:src="tweet.user.profile_image_url">
-                </p>
-              </figure>
-              <div class="media-content">
-                <div class="content">
-                  <p>
-                    <strong>{{tweet.user.name}}</strong> <small>@{{tweet.user.screen_name}}</small> <small>{{ moment.unix(tweet.created_at).format('MM-DD-YYYY') }}</small>
-                    <br>
-                    {{tweet.text}}
-                    <br>
-                    <img v-for="media in tweet.entities.media" :key="tweet.id" v-bind:src="media.media_url" height="500" width="500">
-                  </p>
-                </div>
-                <nav class="level is-mobile">
-                  <div class="level-left">
-                    <a class="level-item has-text-grey">
-                      <span class="icon is-small"><i class="far fa-comment"></i></span>
-                    </a>
-                    <a class="level-item has-text-grey">
-                      <span class="icon is-small"><i class="fas fa-retweet"></i></span>
-                      <span>{{tweet.retweet_count}}</span>
-                    </a>
-                    <a class="level-item has-text-grey">
-                      <span class="icon is-small"><i class="far fa-heart"></i></span>
-                      <span>{{tweet.favorite_count}}</span>
-                    </a>
-                  </div>
-                </nav>
-              </div>
-              <div class="media-right">
-                <i class="fab fa-twitter fa-2x"></i>
-              </div>
-            </article>
-            
+            <twitter :tweet="tweet" v-for="tweet in tweets" :key="tweet.id"></twitter>
             </b-tab-item>
             <b-tab-item>
             <template slot="header">
             <b-icon class="fab fa-twitch"></b-icon>
             <span> Twitch</span>
             </template>
-            <div>
-              <div class="columns medium-4" v-for="stream in streams" :key="stream.id">
-                <div class="card is-shady card-equal-height">
-                  <header class="card-header">
-                    <p class="card-header-title">
-                      <span>
-                        {{stream.channel.display_name}}
-                      </span>
-                      <i class="fab fa-twitch fa-2x"></i>
-                    </p>
-                  </header>
-                  <div class="card-section">
-                    <iframe v-bind:src="`http://player.twitch.tv/?channel=${stream.channel.name}&autoplay=false`"
-                    height="500"
-                    width="500"
-                    frameborder="<frameborder>"
-                    scrolling="<scrolling>"
-                    allowfullscreen="<allowfullscreen>">
-                      </iframe>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <twitch :stream="stream" v-for="stream in streams" :key="stream.id"></twitch>
               </b-tab-item>
               <b-tab-item>
               <template slot="header">
               <b-icon class="fab fa-reddit"></b-icon>
               <span> Reddit</span>
               </template>
-              <article class="media" v-for="thread in threads">
-                <figure class="media-left">
-                  <a class="level-item has-text-grey">
-                    <i class="fas fa-arrow-up"></i>
-                  </a>
-                  <p>{{thread.data.ups}}</p>
-                  <a class="level-item has-text-grey">
-                    <i class="fas fa-arrow-down"></i>
-                  </a>
-                </figure>
-                <div class="media-content">
-                  <div class="content">
-                    <p>
-                      <strong>r/{{thread.data.subreddit}}</strong> <small>Posted by u/{{thread.data.author}}</small> <small>{{ moment.unix(thread.data.created).format('MM-DD-YYYY') }}</small>
-                      <br>
-                      <strong>{{thread.data.title}}</strong>
-                      <br>
-                      <div v-if="!thread.data.is_video" class="card-image has-text-centered">
-                        <img v-bind:src="thread.data.url" height="500"
-                        width="500">
-                      </div>
-                      <div v-if="thread.data.is_video" class="card-image has-text-centered">
-                        <iframe v-bind:src="thread.data.secure_media.reddit_video.fallback_url"
-                        height="500"
-                        width="500"
-                        frameborder="<frameborder>"
-                        scrolling="<scrolling>"
-                        allowfullscreen="<allowfullscreen>">
-                          </iframe>
-                        </div>
-                      </p>
-                    </div>
-                    <nav class="level is-mobile">
-                      <div class="level-left">
-                        <a class="level-item has-text-grey">
-                          <span class="icon is-small"><i class="fas fa-comment"></i></span>
-                        </a>
-                        <a class="level-item has-text-grey">
-                          <span class="icon is-small"><i class="fas fa-share"></i></span>
-                        </a>
-                      </div>
-                    </nav>
-                  </div>
-                  <div class="media-right">
-                    <i class="fab fa-reddit fa-2x"></i>
-                  </div>
-                </article>
+              <reddit :thread="thread" v-for="thread in threads" :key="thread.id">
+              </reddit>
                 </b-tab-item>
                 </b-tabs>
               </div>
@@ -200,8 +97,17 @@
 <script>
 import UserService from '@/services/UserService'
 import ExternalService from '@/services/externalService'
+import Twitter from './Tweets.vue'
+import Reddit from './Threads.vue'
+import Twitch from './Streams.vue'
+
 export default {
 
+    components: {
+      'twitter': Twitter,
+      'reddit': Reddit,
+      'twitch': Twitch,
+    },
     name: 'Profile',
     data() {
       return {
@@ -269,5 +175,8 @@ export default {
   }
   .tab-top {
     margin: 3rem 0 0 0;
+  }
+  .tweetBtn{
+    padding-left: 1.4em;
   }
 </style>
