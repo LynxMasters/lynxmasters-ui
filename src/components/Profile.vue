@@ -77,7 +77,7 @@
   <div class="media-content">
     <div class="content">
       <p>
-        <strong>{{tweet.user.name}}</strong> <small>@{{tweet.user.screen_name}}</small> <small>{{tweet.created_at}}</small>
+        <strong>{{tweet.user.name}}</strong> <small>@{{tweet.user.screen_name}}</small> <small>{{ moment.unix(tweet.created_at).format('MM-DD-YYYY') }}</small>
         <br>
         {{tweet.text}}
         <br>
@@ -142,16 +142,23 @@
                   </template>
 <article class="media" v-for="thread in threads">
 <figure class="media-left">
-    <p class="image is-64x64">
-      <!-- <img v-bind:src="tweet.user.profile_image_url"> -->
-    </p>
+  <a class="level-item">
+  <i class="fas fa-arrow-up"></i>
+  </a>
+  <p>{{thread.data.ups}}</p>
+   <a class="level-item">
+  <i class="fas fa-arrow-down"></i>
+  </a>
+    <!-- <p class="image is-64x64">
+      <img v-bind:src="tweet.user.profile_image_url">
+    </p> -->
   </figure>
   <div class="media-content">
     <div class="content">
       <p>
-        <strong>r/{{thread.data.subreddit}}</strong> <small>Posted by u/{{thread.data.author}}</small> <small>{{thread.data.created}}</small>
+        <strong>r/{{thread.data.subreddit}}</strong> <small>Posted by u/{{thread.data.author}}</small> <small>{{ moment.unix(thread.data.created).format('MM-DD-YYYY') }}</small>
         <br>
-        {{thread.data.title}}
+        <strong>{{thread.data.title}}</strong>
         <br>
         <div v-if="!thread.data.is_video" class="card-image has-text-centered">
                          <img v-bind:src="thread.data.url" height="500"
@@ -171,15 +178,10 @@
     <nav class="level is-mobile">
       <div class="level-left">
         <a class="level-item">
-          <span class="icon is-small"><i class="fas fa-comment black"></i></span>
+          <span class="icon is-small"><i class="fas fa-comment"></i></span> 
         </a>
         <a class="level-item">
-          <span class="icon is-small"><i class="fas fa-retweet black"></i></span>
-          <span></span>
-        </a>
-        <a class="level-item">
-          <span class="icon is-small"><i class="fas fa-heart black"></i></span>
-          <span></span>
+          <span class="icon is-small"><i class="fas fa-share"></i></span>
         </a>
       </div>
     </nav>
