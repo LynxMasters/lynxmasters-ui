@@ -140,7 +140,56 @@
                     <b-icon class="fab fa-reddit"></b-icon>
                     <span> Reddit</span>
                   </template>
-                  <div>
+<article class="media" v-for="thread in threads">
+<figure class="media-left">
+    <p class="image is-64x64">
+      <!-- <img v-bind:src="tweet.user.profile_image_url"> -->
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <strong>r/{{thread.data.subreddit}}</strong> <small>Posted by u/{{thread.data.author}}</small> <small>{{thread.data.created}}</small>
+        <br>
+        {{thread.data.title}}
+        <br>
+        <div v-if="!thread.data.is_video" class="card-image has-text-centered">
+                         <img v-bind:src="thread.data.url" height="500"
+                            width="500">
+                        </div>
+                        <div v-if="thread.data.is_video" class="card-image has-text-centered">
+                          <iframe v-bind:src="thread.data.secure_media.reddit_video.fallback_url"
+                            height="500"
+                            width="500"
+                            frameborder="<frameborder>"
+                            scrolling="<scrolling>"
+                            allowfullscreen="<allowfullscreen>">
+                          </iframe>
+          </div>
+      </p>
+    </div>
+    <nav class="level is-mobile">
+      <div class="level-left">
+        <a class="level-item">
+          <span class="icon is-small"><i class="fas fa-comment black"></i></span>
+        </a>
+        <a class="level-item">
+          <span class="icon is-small"><i class="fas fa-retweet black"></i></span>
+          <span></span>
+        </a>
+        <a class="level-item">
+          <span class="icon is-small"><i class="fas fa-heart black"></i></span>
+          <span></span>
+        </a>
+      </div>
+    </nav>
+  </div>
+  <div class="media-right">
+    <i class="fab fa-reddit fa-2x"></i>
+  </div>
+</article>
+
+                  <!-- <div>
                     <div class="columns medium-4" v-for="thread in threads" :key="thread.id">
                       <div class="card is-shady card-equal-height">
                         <header class="card-header">
@@ -171,7 +220,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </b-tab-item>
               </b-tabs>
             </div>
@@ -200,7 +249,7 @@ export default {
     mounted() {
       this.token = window.localStorage.getItem('token')
       this.getAccountInfo()
-      this.getFeed()
+      
     },
     created () {
       this.checkAuthentication()
@@ -212,10 +261,16 @@ export default {
     computed: {},
     methods: {
 
-      getAccountInfo() {
-        UserService.getAccounts(this.token).then(res => {
+      async getAccountInfo() {
+       await UserService.getAccounts(this.token).then(res => {
           console.log(res)
-          return res
+          return ExternalService.feeds(this.token)
+        })
+        .then(feed => {
+          this.tweets = feed.data.twitter
+          this.streams = feed.data.twitch.streams
+          this.threads = feed.data.reddit.data.children 
+          console.log(feed)
         })
       },
 
@@ -233,15 +288,6 @@ export default {
           message: 'You need to be logged in to access that page!',
           position: 'is-top',
           type: 'is-danger'
-        })
-      },
-
-      async getFeed() {
-        await ExternalService.feeds(this.token).then(res => {
-          this.tweets = res.data.twitter
-          this.threads = res.data.reddit.data.children
-          this.streams = res.data.twitch.streams 
-          console.log(res)   
         })
       },
     }
