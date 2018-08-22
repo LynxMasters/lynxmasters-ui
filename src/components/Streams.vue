@@ -32,8 +32,8 @@
         <strong>{{stream.channel.display_name}}</strong> <small>Game</small> <small>30m</small>
         <br>
         <iframe v-bind:src="`http://player.twitch.tv/?channel=${stream.channel.name}&autoplay=false`"
-          height="450"
-          width="450"
+          height="500"
+          width="650"
           frameborder="<frameborder>"
           scrolling="<scrolling>"
           allowfullscreen="<allowfullscreen>">
