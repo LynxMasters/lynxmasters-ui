@@ -2,7 +2,7 @@
 <article class="media">
   <figure class="media-left">
     <p class="image is-64x64">
-      <img v-bind:src="tweet.user.profile_image_url">
+      <img class="profileImg" v-bind:src="tweet.user.profile_image_url">
     </p>
   </figure>
   <div class="media-content">
@@ -71,5 +71,8 @@
   }
   .padRight{
     padding-right: 2.0em;
+  }
+  .profileImg{
+    border-radius: 50%;
   }
 </style>
