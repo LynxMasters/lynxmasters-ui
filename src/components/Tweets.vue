@@ -42,8 +42,8 @@
     },
     data() {
         return {
-          isFavorite: false,
-          isRetweet: false,
+          isFavorite: this.tweet.favorited,
+          isRetweet: this.tweet.retweeted,
           favoriteCount: 0,
         }
     },
