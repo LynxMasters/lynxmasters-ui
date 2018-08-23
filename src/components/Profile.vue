@@ -61,7 +61,7 @@
             <b-icon class="fas fa-align-justify"></b-icon>
             <span> All</span>
             </template>
-            <div v-for="i in total">
+            <div class='all' v-for="i in total">
               <reddit v-if="i < threadsLen" :thread="threads[i]"></reddit>
               <twitch v-if="i < streamsLen" :stream="streams[i]"></twitch>
               <twitter v-if="i < tweetsLen" :tweet="tweets[i]"></twitter>
@@ -192,5 +192,11 @@ export default {
   }
   .tweetBtn{
     padding-left: 1.4em;
+  }
+  .all{
+    padding-top: 1em;
+    padding-bottom: 1em;    
+    border-top: 1px solid rgba(219, 219, 219, 0.5);
+
   }
 </style>
