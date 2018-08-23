@@ -1,99 +1,248 @@
 <template>
   <div>
-    <div class="intro column is-8 is-offset-2">
-      <h2 class="title">Super Phat Profile Page</h2>
-    </div>
-    <section>
-      <div class="columns is-centered">
-        <div class="column is-two-fifths">
-          <div class="columns is-centered">
-            <div class="column is-four-fifths">
-              <div class="card">
-                <div class="card-image">
-                  <figure class="image">
-                    <!--
-                    <img :src="imageSrc ? imageSrc : avatar" class="image" alt="profile avatar">
-                    -->
-                    <img src="http://via.placeholder.com/350x400">
-                  </figure>
-                </div>
-                <div class="card-content has-text-centered">
-                  <div class="media">
-                    <div class="media-content has-text-centered">
-                      <!--
-                      <p class="title is-4">{{ tempUser.firstName + ' ' + tempUser.lastName }}</p>
-                      <p class="subtitle is-6">@{{ tempUser.username }}</p>
-                      -->
-                      <p class="title is-3">FirstName LastName</p>
-                      <p class="subtitle is-5">@Usernamwe</p>
-                    </div>
-                  </div>
-                  <div class="content">
-                    <!--
-                    <div>{{ tempUser.email }}</div>
-                    <div>{{ tempUser.address }}</div>
-                    <div>{{ tempUser.city + ' ' + tempUser.state + ' ' + tempUser.zipCode }}</div>
-                    <div>{{ tempUser.country }}</div>
-                    -->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <section class="hero animated fadeIn">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <h1 class="title">
+            Account Management
+          </h1>
         </div>
-        <!-- start other column -->
-        <div class="column is-half">
-          <div class="card">
-            <header class="card-header">
-              <p class="card-header-title is-centered">Personal Information</p>
-            </header>
-            <div class="card-content has-text-centered">
-              <div class="media">
-                <div class="media-content has-text-centered">
-                  <div class="field">
-                    <label class="label">Email</label>
-                    <div class="control has-icons-left has-icons-right">
-                      <input
-                        class="input"
-                        type="email"
-                        placeholder="joey@google.com">
-                      <span class="icon is-small is-left">
-                        <i class="fas fa-envelope"></i>
-                      </span>
-                      <span class="icon is-small is-right" >
-                        <i class="fas fa-exclamation-triangle"></i>
-                      </span>
+      </div>
+    </section>
+
+    <section class="accountManagement animated fadeIn">
+      <div class="columns">
+        <div class="column">
+          <div class="container">
+            <div class="columns is-centered">
+              <div class="column is-3">
+                <div class="card">
+                  <header class="card-header">
+                    <p class="card-header-title is-centered card-name is-primary">
+                      Username
+                    </p>
+                  </header>
+                  <div class="card-image">
+                    <div class="image players-avatar">
+                      <img src="http://via.placeholder.com/150x150" alt="Profile Avatar">
                     </div>
-                    <p class="help is-danger"></p>
                   </div>
-                  <!--
-                  <p class="title is-4">{{ tempUser.firstName + ' ' + tempUser.lastName }}</p>
-                  <p class="subtitle is-6">@{{ tempUser.username }}</p>
-                  -->
-                  <p class="title is-1">FirstName LastName</p>
-                  <p class="subtitle is-6">@Usernamwe</p>
+                  <div class="card-content">
+                    <div class="content has-text-centered">
+                      <div class="field">
+                        <label class="label">Username</label>
+                      </div>
+                      <div class="field has-addons">
+                        <div class="control">
+                          <label class="label">Followers: </label>
+                        </div>
+                        <div class="control">
+                          <label class="label">Following: </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-content">
+                    <div class="content has-text-centered">
+                      <router-link v-bind:to="{ name: 'LinkAccounts' }"
+                                   class="member-linked-accounts" exact>
+                        <i class="fab fa-twitter fa-2x"></i>
+                      </router-link>
+                      <router-link v-bind:to="{ name: 'LinkAccounts' }"
+                                   class="member-linked-accounts" exact>
+                        <i class="fab fa-twitch fa-2x"></i>
+                      </router-link>
+                      <router-link v-bind:to="{ name: 'LinkAccounts' }"
+                                   class="member-linked-accounts" exact>
+                        <i class="fab fa-reddit fa-2x"></i>
+                      </router-link>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="content">
+              <div class="column is-7 tab-top">
+                <b-tabs size="is-medium"
+                        position="is-centered"
+                        type="is-boxed"
+                        v-model="activeTab">
+                  <b-tab-item>
+                    <template slot="header">
+                      <b-icon class="fas fa-info"></b-icon>
+                      <span> Personal Info</span>
+                    </template>
+                    <div class="card">
+                      <div class="card-content has-text-centered">
+                        <div class="media">
+                          <div class="media-content has-text-left">
 
-                <!--
-                <div>{{ tempUser.email }}</div>
-                <div>{{ tempUser.address }}</div>
-                <div>{{ tempUser.city + ' ' + tempUser.state + ' ' + tempUser.zipCode }}</div>
-                <div>{{ tempUser.country }}</div>
-                -->
+                            <div class="field">
+                              <label class="label">First Name</label>
+                              <input
+                                class="input"
+                                type="text"
+                                placeholder=""
+                                required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+                            <div class="field">
+                              <label class="label">Last Name</label>
+                              <input
+                                class="input"
+                                type="text"
+                                placeholder=""
+                                required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+                            <div class="field">
+                              <label class="label">Address</label>
+                              <input
+                                class="input"
+                                type="text"
+                                placeholder=""
+                                required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+                            <div class="field">
+                              <label class="label">City</label>
+                              <input
+                                class="input"
+                                type="text"
+                                placeholder=""
+                                required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+                            <div class="field">
+                              <label class="label">State / Province</label>
+                              <input class="input"
+                                     type="tex"
+                                     placeholder=""
+                                     required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+                            <div class="field">
+                              <label class="label">Zip Code</label>
+                              <input class="input"
+                                     type="tex"
+                                     placeholder=""
+                                     required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+                            <div class="field">
+                              <label class="label">Country</label>
+                              <div class="control">
+                                <div class="select is-fullwidth">
+                                  <select class="input"
+                                          required>
+                                    <option selected>Country</option>
+                                    <!--
+                                    <option v-for="country in countries">
+                                      {{ country.name }}</option>
+                                      -->
+                                  </select>
+                                </div>
+                              </div>
+                              <!--
+                              <p v-if="$v.user.country.$error" class="help is-danger">Country is required</p>
+                              -->
+                            </div>
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </b-tab-item>
+                  <b-tab-item>
+                    <template slot="header">
+                      <b-icon class="fas fa-key"></b-icon>
+                      <span> Password</span>
+                    </template>
+                    <div>OLD PASSWORD THEN NEW PASSWORD 2x STUFF HERE</div>
+                    <twitter-feed twitter-feed="twitter-feed"></twitter-feed>
+                  </b-tab-item>
+                  <b-tab-item>
+                    <template slot="header">
+                      <b-icon class="fas fa-at"></b-icon>
+                      <span> Email</span>
+                    </template>
+                    <div class="card">
+                      <div class="card-content has-text-centered">
+                        <div class="media">
+                          <div class="media-content has-text-left">
+                            <div class="field">
+                              <label class="label">Current Email</label>
+                              <input
+                                class="input"
+                                type="email"
+                                placeholder=""
+                                required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+                            <div class="field">
+                              <label class="label">New Email</label>
+                              <input
+                                class="input"
+                                type="email"
+                                placeholder=""
+                                required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </b-tab-item>
+                </b-tabs>
+
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
   </div>
 </template>
 
 <script>
     export default {
-        name: "AccountManagement"
+        name: "AccountManagement",
+      created () {
+        this.checkAuthentication()
+      },
+      updated() {
+        this.checkAuthentication()
+      },
+      watch: {},
+      computed: {},
+      methods: {
+        checkAuthentication() {
+          let existingToken =  window.localStorage.getItem('token')
+          if (_.isEmpty(existingToken) ) {
+            this.needsAuthWarning()
+            this.$router.replace(this.$route.query.redirect || '/Login')
+          }
+        },
+        needsAuthWarning() {
+          this.$toast.open({
+            duration: 3500,
+            message: 'You need to be logged in to access that page!',
+            position: 'is-top',
+            type: 'is-danger'
+          })
+        },
+      }
     }
 </script>
 
