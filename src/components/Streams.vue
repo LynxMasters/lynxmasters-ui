@@ -14,6 +14,13 @@
           scrolling="<scrolling>"
           allowfullscreen="<allowfullscreen>">
         </iframe>
+        <iframe frameborder="0"
+          scrolling="no"
+          id="chat_embed"
+          v-bind:src="`http://www.twitch.tv/embed/${stream.channel.name}/chat`"
+          height="500"
+          width="650">
+        </iframe>
       </p>
     </div>
     <nav class="level is-mobile">
