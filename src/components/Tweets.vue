@@ -12,7 +12,10 @@
         <br>
         {{tweet.text}}
         <br>
-        <img v-for="media in tweet.entities.media" :key="tweet.id" v-bind:src="media.media_url" height="500" width="500">
+        <img v-if="isImage" v-bind:src="image_url" height="500" width="500">
+        <video v-if="!isImage" height="500" width="500" controls>
+            <source v-bind:src="video_url">
+        </video>
       </p>
     </div>
     <nav class="level is-mobile">
@@ -45,13 +48,30 @@
           isFavorite: this.tweet.favorited,
           isRetweet: this.tweet.retweeted,
           created_at: 0,
-          
+          isImage: true,
+          image_url: '', 
+          video_url: '',
         }
     },
     mounted(){
        this.format_date()
+       this.check_media()
     },
     methods: {
+
+      check_media(){
+        if(this.tweet.hasOwnProperty('extended_entities')){
+      
+          if(this.tweet.extended_entities.media[0].type == 'photo'){
+            this.isImage = true
+            this.image_url = this.tweet.extended_entities.media[0].media_url_https
+          }else{
+            this.isImage = false
+            this.video_url = this.tweet.extended_entities.media[0].video_info.variants[0].url
+          }
+        }
+      },
+
       format_date(){
         let diff = Math.abs(new Date().getTime() - new Date(this.tweet.created_at).getTime())
         this.created_at = Math.floor((diff/1000)/60);
