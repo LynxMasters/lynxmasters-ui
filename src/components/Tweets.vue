@@ -2,13 +2,13 @@
 <article class="media">
   <figure class="media-left">
     <p class="image is-64x64">
-      <img v-bind:src="tweet.user.profile_image_url">
+      <img class="profileImg" v-bind:src="tweet.user.profile_image_url">
     </p>
   </figure>
   <div class="media-content">
     <div class="content">
       <p>
-        <strong>{{tweet.user.name}}</strong> <small>@{{tweet.user.screen_name}}</small> <small>{{ moment.unix(tweet.created_at).format('MM-DD-YYYY') }}</small>
+        <strong>{{tweet.user.name}}</strong> <small>@{{tweet.user.screen_name}}</small> <small>{{ created_at }}m</small>
         <br>
         {{tweet.text}}
         <br>
@@ -20,7 +20,7 @@
         <a class="level-item has-text-grey" @click="">
           <span class="icon is-small"><i class="far fa-comment"></i></span>
         </a>
-        <a class="level-item has-text-grey" @click="retweet">
+        <a class="level-item" @click="retweet">
           <span class="icon is-small padLeft padRight"><i v-bind:class="{'has-text-success': isRetweet, 'has-text-grey': !isRetweet}" class="fas fa-retweet">{{tweet.retweet_count}}</i></span>
         </a>
         <a class="level-item" @click="favorite">
@@ -42,24 +42,38 @@
     },
     data() {
         return {
-          isFavorite: false,
-          isRetweet: false,
+          isFavorite: this.tweet.favorited,
+          isRetweet: this.tweet.retweeted,
+          created_at: 0,
+          
         }
     },
+    mounted(){
+       this.format_date()
+    },
     methods: {
+      format_date(){
+        let diff = Math.abs(new Date().getTime() - new Date(this.tweet.created_at).getTime())
+        this.created_at = Math.floor((diff/1000)/60);
+      },
       retweet() {
        if(!this.isRetweet){
           this.isRetweet = true
+          this.tweet.retweet_count +=1
+          
         }else{
           this.isRetweet = false
+          this.tweet.retweet_count -=1
         }
       },
 
       favorite() {
         if(!this.isFavorite){
           this.isFavorite = true
+          this.tweet.favorite_count +=1
         }else{
           this.isFavorite = false
+          this.tweet.favorite_count -=1
         }
       },
     },
@@ -71,5 +85,8 @@
   }
   .padRight{
     padding-right: 2.0em;
+  }
+  .profileImg{
+    border-radius: 50%;
   }
 </style>

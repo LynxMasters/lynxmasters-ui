@@ -1,12 +1,13 @@
 <template>
 <article class="media">
   <figure class="media-left">
+
     <a class="level-item has-text-grey" @click="upVote">
-      <i v-bind:class="{'has-text-reddit': isUp, 'has-text-grey': !isUp}" class="fas fa-arrow-up"></i>
+      <i v-bind:class="{'has-text-reddit': likes, 'has-text-grey': likes == null}" class="fas fa-arrow-up"></i>
     </a>
-    <strong v-bind:class="{'has-text-reddit': isUp, 'has-text-link': isDown}">{{thread.data.ups}}</strong>
+    <strong v-bind:class="{'has-text-reddit': likes, 'has-text-link': !likes, 'has-text-grey': likes == null}">{{thread.data.ups}}</strong>
     <a class="level-item has-text-grey" @click="downVote">
-      <i class="fas fa-arrow-down" v-bind:class="{'has-text-link': isDown, 'has-text-grey': !isDown}"></i>
+      <i class="fas fa-arrow-down" v-bind:class="{'has-text-link': !likes, 'has-text-grey': likes == null}"></i>
     </a>
   </figure>
   <div class="media-content">
@@ -50,26 +51,32 @@
     },
     data() {
         return {
-          isUp: false,
-          isDown: false,
+          likes: this.thread.data.likes,
         }
     },
     methods: {
       upVote() {
-       if(!this.isUp){
-          this.isUp = true
-          this.isDown = false
+       if(this.likes == null){
+          this.likes = true
+          this.thread.data.ups += 1
+        }else if(!this.likes){
+          this.likes = true
+          this.thread.data.ups += 2
         }else{
-          this.isUp = false
+          this.likes = null
+          this.thread.data.ups -= 1
         }
       },
-
       downVote() {
-        if(!this.isDown){
-          this.isDown = true
-          this.isUp = false
+        if(this.likes == null){
+          this.likes = false
+          this.thread.data.ups -= 1
+        }else if(this.likes){
+          this.likes = false
+          this.thread.data.ups -= 2
         }else{
-          this.isDown = false
+          this.likes = null
+          this.thread.data.ups += 1
         }
       },
     },
