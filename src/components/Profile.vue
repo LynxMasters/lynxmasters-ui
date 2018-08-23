@@ -1,113 +1,128 @@
 <template>
-  <section class="profile animated fadeIn">
-    <div class="columns">
-      <div class="column">
-        <div class="container">
-          <div class="columns is-centered">
-            <div class="column is-3">
-              <div class="card">
-                <header class="card-header">
-                  <p class="card-header-title is-centered card-name is-primary">
-                    Username
-                  </p>
-                </header>
-                <div class="card-image">
-                  <div class="image players-avatar">
-                    <img src="http://via.placeholder.com/150x150" alt="Profile Avatar">
-                  </div>
-                </div>
-                <div class="card-content">
-                  <div class="content has-text-centered">
-                    <div class="field">
-                      <label class="label">Username</label>
-                    </div>
-                    <div class="field has-addons">
-                      <div class="control">
-                        <label class="label">Followers: </label>
-                      </div>
-                      <div class="control">
-                        <label class="label">Following: </label>
-                      </div>
-                    </div>
-                  </div>
+<section class="profile animated fadeIn">
+  <div class="columns">
+    <div class="column">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-3">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title is-centered card-name is-primary">
+                  Username
+                </p>
+              </header>
+              <div class="card-image">
+                <div class="image players-avatar">
+                  <img src="http://via.placeholder.com/150x150" alt="Profile Avatar">
                 </div>
               </div>
-              <div class="card">
-                <div class="card-content">
-                  <div class="content has-text-centered">
-                    <router-link v-bind:to="{ name: 'LinkAccounts' }"
-                                 class="member-linked-accounts" exact>
-                      <i class="fab fa-twitter fa-2x"></i>
-                    </router-link>
-                    <router-link v-bind:to="{ name: 'LinkAccounts' }"
-                                 class="member-linked-accounts" exact>
-                      <i class="fab fa-twitch fa-2x"></i>
-                    </router-link>
-                    <router-link v-bind:to="{ name: 'LinkAccounts' }"
-                                 class="member-linked-accounts" exact>
-                      <i class="fab fa-reddit fa-2x"></i>
-                    </router-link>
+              <div class="card-content">
+                <div class="content has-text-centered">
+                  <div class="field">
+                    <label class="label">Username</label>
+                  </div>
+                  <div class="field has-addons">
+                    <div class="control">
+                      <label class="label">Followers: </label>
+                    </div>
+                    <div class="control">
+                      <label class="label">Following: </label>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="column is-7 tab-top">
-              <b-tabs size="is-medium"
-                      position="is-centered"
-                      type="is-boxed"
-                      v-model="activeTab">
-                <b-tab-item>
-                  <template slot="header">
-                    <b-icon class="fas fa-align-justify"></b-icon>
-                    <span> All</span>
-                  </template>
-                  <div>ALL FEEDS GO HERE</div>
+            <div class="card">
+              <div class="card-content">
+                <div class="content has-text-centered">
+                  <router-link v-bind:to="{ name: 'LinkAccounts' }"
+                  class="member-linked-accounts" exact>
+                  <i class="fab fa-twitter fa-2x"></i>
+                  </router-link>
+                  <router-link v-bind:to="{ name: 'LinkAccounts' }"
+                  class="member-linked-accounts" exact>
+                  <i class="fab fa-twitch fa-2x"></i>
+                  </router-link>
+                  <router-link v-bind:to="{ name: 'LinkAccounts' }"
+                  class="member-linked-accounts" exact>
+                  <i class="fab fa-reddit fa-2x"></i>
+                  </router-link>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-7 tab-top">
+            <b-tabs size="is-medium"
+            position="is-centered"
+            type="is-boxed"
+            v-model="activeTab">
+            <b-tab-item>
+            <template slot="header">
+            <b-icon class="fas fa-align-justify"></b-icon>
+            <span> All</span>
+            </template>
+            <div>ALL FEEDS GO HERE</div>
+            </b-tab-item>
+            <b-tab-item>
+            <template slot="header">
+            <b-icon class="fab fa-twitter"></b-icon>
+            <span> Twitter</span>
+            </template>
+            <twitter :tweet="tweet" v-for="tweet in tweets" :key="tweet.id"></twitter>
+            </b-tab-item>
+            <b-tab-item>
+            <template slot="header">
+            <b-icon class="fab fa-twitch"></b-icon>
+            <span> Twitch</span>
+            </template>
+            <twitch :stream="stream" v-for="stream in streams" :key="stream.id"></twitch>
+              </b-tab-item>
+              <b-tab-item>
+              <template slot="header">
+              <b-icon class="fab fa-reddit"></b-icon>
+              <span> Reddit</span>
+              </template>
+              <reddit :thread="thread" v-for="thread in threads" :key="thread.id">
+              </reddit>
                 </b-tab-item>
-                <b-tab-item>
-                  <template slot="header">
-                    <b-icon class="fab fa-twitter"></b-icon>
-                    <span> Twitter</span>
-                  </template>
-                  <div>TWITTER FEED GOES HERE</div>
-                  <twitter-feed twitter-feed="twitter-feed"></twitter-feed>
-                </b-tab-item>
-                <b-tab-item>
-                  <template slot="header">
-                    <b-icon class="fab fa-twitch"></b-icon>
-                    <span> Twitch</span>
-                  </template>
-                  <div>TWITCH FEED GOES HERE</div>
-                  <twitch-feed></twitch-feed>
-                </b-tab-item>
-                <b-tab-item>
-                  <template slot="header">
-                    <b-icon class="fab fa-reddit"></b-icon>
-                    <span> Reddit</span>
-                  </template>
-                  <div>REDDIT FEED GOES HERE</div>
-                  <reddit-feed></reddit-feed>
-                </b-tab-item>
-
-              </b-tabs>
-
+                </b-tabs>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   </section>
 </template>
 
 <script>
+import UserService from '@/services/UserService'
+import ExternalService from '@/services/externalService'
+import Twitter from './Tweets.vue'
+import Reddit from './Threads.vue'
+import Twitch from './Streams.vue'
+
 export default {
 
+    components: {
+      'twitter': Twitter,
+      'reddit': Reddit,
+      'twitch': Twitch,
+    },
     name: 'Profile',
     data() {
       return {
-        activeTab: 0
+        activeTab: 0,
+        tweets: {},
+        threads:{},
+        streams:{},
+        all:{},
       }
     },
-    mounted() {},
+    mounted() {
+      this.token = window.localStorage.getItem('token')
+      this.getAccountInfo()
+      
+    },
     created () {
       this.checkAuthentication()
     },
@@ -117,6 +132,20 @@ export default {
     watch: {},
     computed: {},
     methods: {
+
+      async getAccountInfo() {
+       await UserService.getAccounts(this.token).then(res => {
+          console.log(res)
+          return ExternalService.feeds(this.token)
+        })
+        .then(feed => {
+          this.tweets = feed.data.twitter
+          this.streams = feed.data.twitch.streams
+          this.threads = feed.data.reddit.data.children 
+          console.log(feed)
+        })
+      },
+
       checkAuthentication() {
         let existingToken =  window.localStorage.getItem('token')
         if (_.isEmpty(existingToken) ) {
@@ -124,6 +153,7 @@ export default {
           this.$router.replace(this.$route.query.redirect || '/Login')
         }
       },
+
       needsAuthWarning() {
         this.$toast.open({
           duration: 3500,
@@ -145,5 +175,8 @@ export default {
   }
   .tab-top {
     margin: 3rem 0 0 0;
+  }
+  .tweetBtn{
+    padding-left: 1.4em;
   }
 </style>
