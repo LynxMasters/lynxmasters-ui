@@ -11,9 +11,9 @@
       </p>
 
       <p>
-        <a class="icon link" href="#"><i class="fab fa-linkedin fa-3x"></i></a>
-        <a class="icon link" href="#"><i class="fab fa-facebook-square fa-3x"></i></a>
-        <a class="icon link" href="#"><i class="fab fa-instagram fa-3x"></i></a>
+        <a class="icon link" href="#"><i class="fab fa-linkedin fa-2x"></i></a>
+        <a class="icon link" href="#"><i class="fab fa-facebook-square fa-2x"></i></a>
+        <a class="icon link" href="#"><i class="fab fa-instagram fa-2x"></i></a>
       </p>
 
       <!-- Legal Disclaimer Modal -->
