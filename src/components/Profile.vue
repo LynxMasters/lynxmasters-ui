@@ -61,9 +61,9 @@
             <b-icon class="fas fa-align-justify"></b-icon>
             <span> All</span>
             </template>
-              <twitch :stream="stream" v-for="stream in streams" :key="stream.id"></twitch>
               <reddit :thread="thread" v-for="thread in threads" :key="thread.id">
               </reddit>
+              <twitch :stream="stream" v-for="stream in streams" :key="stream.id"></twitch>
               <twitter :tweet="tweet" v-for="tweet in tweets" :key="tweet.id"></twitter>
             </b-tab-item>
             <b-tab-item>
