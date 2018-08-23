@@ -61,7 +61,10 @@
             <b-icon class="fas fa-align-justify"></b-icon>
             <span> All</span>
             </template>
-            <div>ALL FEEDS GO HERE</div>
+              <twitch :stream="stream" v-for="stream in streams" :key="stream.id"></twitch>
+              <reddit :thread="thread" v-for="thread in threads" :key="thread.id">
+              </reddit>
+              <twitter :tweet="tweet" v-for="tweet in tweets" :key="tweet.id"></twitter>
             </b-tab-item>
             <b-tab-item>
             <template slot="header">
@@ -101,9 +104,10 @@ import Twitter from './Tweets.vue'
 import Reddit from './Threads.vue'
 import Twitch from './Streams.vue'
 
+
 export default {
 
-    components: {
+    components: { 
       'twitter': Twitter,
       'reddit': Reddit,
       'twitch': Twitch,
@@ -115,7 +119,11 @@ export default {
         tweets: {},
         threads:{},
         streams:{},
-        all:{},
+        tweetsLen: 0,
+        threadsLen: 0,
+        streamsLen: 0,
+        total: 0,
+        
       }
     },
     mounted() {
@@ -141,8 +149,12 @@ export default {
         .then(feed => {
           this.tweets = feed.data.twitter
           this.streams = feed.data.twitch.streams
-          this.threads = feed.data.reddit.data.children 
-          console.log(feed)
+          this.threads = feed.data.reddit.data.children
+          // this.tweetsLen = Object.keys(this.tweets).length
+          // console.log(this.tweetsLen)
+          // this.threadsLen = Object.keys(this.threads).length
+          // this.streamsLen = Object.keys(this.streams).length
+          // this.total = this.tweetsLen + this.threadsLen + this.streamsLen
         })
       },
 
