@@ -8,7 +8,7 @@
   <div class="media-content">
     <div class="content">
       <p>
-        <strong>{{tweet.user.name}}</strong> <small>@{{tweet.user.screen_name}}</small> <small>{{ moment.unix(tweet.created_at).format('MM-DD-YYYY') }}</small>
+        <strong>{{tweet.user.name}}</strong> <small>@{{tweet.user.screen_name}}</small> <small>{{ created_at }}m</small>
         <br>
         {{tweet.text}}
         <br>
@@ -44,10 +44,18 @@
         return {
           isFavorite: this.tweet.favorited,
           isRetweet: this.tweet.retweeted,
-          favoriteCount: 0,
+          created_at: 0,
+          
         }
     },
+    mounted(){
+       this.format_date()
+    },
     methods: {
+      format_date(){
+        let diff = Math.abs(new Date().getTime() - new Date(this.tweet.created_at).getTime())
+        this.created_at = Math.floor((diff/1000)/60);
+      },
       retweet() {
        if(!this.isRetweet){
           this.isRetweet = true
