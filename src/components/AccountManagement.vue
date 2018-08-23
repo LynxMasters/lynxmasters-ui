@@ -46,15 +46,18 @@
                 <div class="card">
                   <div class="card-content">
                     <div class="content has-text-centered">
-                      <a class="member-linked-accounts">
+                      <router-link v-bind:to="{ name: 'LinkAccounts' }"
+                                   class="member-linked-accounts" exact>
                         <i class="fab fa-twitter fa-2x"></i>
-                      </a>
-                      <a class="member-linked-accounts">
+                      </router-link>
+                      <router-link v-bind:to="{ name: 'LinkAccounts' }"
+                                   class="member-linked-accounts" exact>
                         <i class="fab fa-twitch fa-2x"></i>
-                      </a>
-                      <a class="member-linked-accounts">
+                      </router-link>
+                      <router-link v-bind:to="{ name: 'LinkAccounts' }"
+                                   class="member-linked-accounts" exact>
                         <i class="fab fa-reddit fa-2x"></i>
-                      </a>
+                      </router-link>
                     </div>
                   </div>
                 </div>
@@ -215,7 +218,6 @@
 <script>
     export default {
         name: "AccountManagement",
-      /*
       created () {
         this.checkAuthentication()
       },
@@ -240,7 +242,7 @@
             type: 'is-danger'
           })
         },
-      }*/
+      }
     }
 </script>
 
