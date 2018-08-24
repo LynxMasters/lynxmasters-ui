@@ -28,15 +28,15 @@ export default{
   },
 
   profiles(jwt){
-  return Api().post('profiles', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  return Api().get('profiles', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
   },
 
   feeds(jwt){
-  return Api().post('feeds', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  return Api().get('feeds', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
   },
 
   friends(jwt){
-  return Api().post('feeds', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  return Api().get('freinds', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
   },
 }
 

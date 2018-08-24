@@ -1,7 +1,6 @@
 <template>
 <article class="media">
   <figure class="media-left">
-
     <a class="level-item has-text-grey" @click="upVote">
       <i v-bind:class="{'has-text-reddit': likes, 'has-text-grey': likes == null}" class="fas fa-arrow-up"></i>
     </a>
@@ -19,7 +18,7 @@
         <br>
         <div v-if="!thread.data.is_video" class="card-image has-text-centered">
           <img v-bind:src="thread.data.url" height="500"
-          width="500">
+          width="500" type="image/jpeg">
         </div>
         <div v-if="thread.data.is_video" class="card-image has-text-centered">
           <video height="500" width="500" controls>
