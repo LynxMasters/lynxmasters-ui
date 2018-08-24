@@ -6,7 +6,7 @@
           <div class="card">
             <div class="card-image">
               <figure class="image">
-                <img :src="imageSrc ? imageSrc : avatar" class="image" alt="profile avatar">
+                <img :src="imageSrc ? imageSrc : avatar" class="image profile-img" alt="profile avatar">
               </figure>
             </div>
             <div class="card-content has-text-centered">

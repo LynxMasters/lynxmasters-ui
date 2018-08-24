@@ -1,37 +1,37 @@
-// body {
-//   color: $dusk;
-//   font-family: $base-font-family;
-//   font-feature-settings: "kern", "liga", "pnum";
-//   font-size: $base-font-size;
-//   line-height: $base-line-height;
-// }
-//
-// h1,
-// h2,
-// h3,
-// h4,
-// h5,
-// h6,
-// p {
-//   margin: 0 0 $small-spacing;
-// }
-//
-// h4,
-// h4,
-// h5 {
-//   font-family: $secondary-heading-font-family;
-// }
-//
-// h1,
-// h2,
-// h3 {
-//   font-family: $heading-font-family;
-// }
-//
-// p,
-// li {
-//   font-family: $base-font-family;
-// }
+body {
+  color: $dusk;
+  font-family: $base-font-family;
+  font-feature-settings: "kern", "liga", "pnum";
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0 0 $small-spacing;
+}
+
+h4,
+h4,
+h5 {
+  font-family: $secondary-heading-font-family;
+}
+
+h1,
+h2,
+h3 {
+  font-family: $heading-font-family;
+}
+
+p,
+li {
+  font-family: $base-font-family;
+}
 
 h1 {
   @include responsive-type(72px, 78px);
@@ -80,29 +80,6 @@ p {
   font-family: $secondary-heading-font-family;
   font-weight: 400;
 }
-
-// a {
-//   color: $light-blue;
-//   text-decoration: underline;
-//   transition: color $base-duration $base-timing;
-//   position: relative;
-//
-//   &:active,
-//   &:focus,
-//   &:hover {
-//     color: mix(black, $light-blue, 20%);
-//     &::after {
-//       right: -10px
-//     }
-//   }
-//   &::after {
-//     content: '\f105';
-//     font-family: FontAwesome;
-//     position: absolute;
-//     right: -8px;
-//     transition: right 300ms ease;
-//   }
-// }
 
 hr {
   border-bottom: $base-border;

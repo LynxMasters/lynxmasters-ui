@@ -7,7 +7,7 @@
             <div class="column is-3">
               <div class="card">
                 <header class="card-header">
-                  <p class="card-header-title is-centered card-name is-primary">
+                  <p class="card-header-title is-centered card-name is-primary feeds">
                     Username
                   </p>
                 </header>
@@ -56,14 +56,14 @@
                 <b-tab-item>
                   <template slot="header">
                     <b-icon class="fas fa-align-justify"></b-icon>
-                    <span> All</span>
+                    <span class="feeds"> All</span>
                   </template>
                   <div>ALL FEEDS GO HERE</div>
                 </b-tab-item>
                 <b-tab-item>
                   <template slot="header">
                     <b-icon class="fab fa-twitter"></b-icon>
-                    <span> Twitter</span>
+                    <span class="feeds"> Twitter</span>
                   </template>
                   <div>TWITTER FEED GOES HERE</div>
                   <twitter-feed twitter-feed="twitter-feed"></twitter-feed>
@@ -71,7 +71,7 @@
                 <b-tab-item>
                   <template slot="header">
                     <b-icon class="fab fa-twitch"></b-icon>
-                    <span> Twitch</span>
+                    <span class="feeds"> Twitch</span>
                   </template>
                   <div>TWITCH FEED GOES HERE</div>
                   <twitch-feed></twitch-feed>
@@ -79,7 +79,7 @@
                 <b-tab-item>
                   <template slot="header">
                     <b-icon class="fab fa-reddit"></b-icon>
-                    <span> Reddit</span>
+                    <span class="feeds"> Reddit</span>
                   </template>
                   <div>REDDIT FEED GOES HERE</div>
                   <reddit-feed></reddit-feed>

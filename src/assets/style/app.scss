@@ -1,14 +1,15 @@
-@import "partials/main";
+@import "partials/main.sass";
 
 @import "partials/base/base";
 
 // import other partials below...
-@import "partials/navigation";
+@import "partials/navigation.sass";
 @import "partials/landing";
 @import "partials/emailverified";
-@import "partials/signupstepper";
-@import "partials/linkaccounts";
-@import "partials/footer";
+@import "partials/signupstepper.sass";
+@import "partials/linkaccounts.sass";
+@import "partials/footer.sass";
+@import "partials/profile.sass";
 
 /* Other libraries */
 @import "partials/animate.min.css";
