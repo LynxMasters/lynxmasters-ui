@@ -61,10 +61,14 @@
             <b-icon class="fas fa-align-justify"></b-icon>
             <span> All</span>
             </template>
-            <div class='all' v-for="i in total">
-              <reddit v-if="i < threadsLen" :thread="threads[i]"></reddit>
-              <twitch v-if="i < streamsLen" :stream="streams[i]"></twitch>
-              <twitter v-if="i < tweetsLen" :tweet="tweets[i]"></twitter>
+            <div class='all' v-for="i in 100">
+
+              <reddit v-if="i < threadsLen && i == 1" :thread="threads[0]"></reddit>
+              <twitch v-if="i < streamsLen && i == 1" :stream="streams[0]"></twitch>
+              <twitter v-if="i < tweetsLen && i == 1" :tweet="tweets[0]"></twitter>
+              <reddit v-if="i < threadsLen && i >= 1" :thread="threads[i]"></reddit>
+              <twitch v-if="i < streamsLen && i >= 1" :stream="streams[i]"></twitch>
+              <twitter v-if="i < tweetsLen && i >= 1" :tweet="tweets[i]"></twitter>
             </div>
             </b-tab-item>
             <b-tab-item>
@@ -123,7 +127,6 @@ export default {
         tweetsLen: 0,
         threadsLen: 0,
         streamsLen: 0,
-        total: 0,
         
       }
     },
@@ -148,15 +151,16 @@ export default {
           return ExternalService.feeds(this.token)
         })
         .then(feed => {
+          console.log(feed)
           this.tweets = feed.data.twitter
           this.streams = feed.data.twitch.streams
           this.threads = feed.data.reddit.data.children
           this.tweetsLen = Object.keys(this.tweets).length
           console.log(this.tweetsLen)
           this.threadsLen = Object.keys(this.threads).length
+          console.log(this.threadsLen)
           this.streamsLen = Object.keys(this.streams).length
           console.log(this.streamsLen)
-          this.total = this.tweetsLen + this.threadsLen + this.streamsLen
         })
       },
 
