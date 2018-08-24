@@ -13,8 +13,10 @@
         {{tweet.text}}
         <br>
         <img v-if="isImage" v-bind:src="image_url" height="500" width="500">
-        <video v-if="!isImage" height="500" width="500" controls>
-            <source v-bind:src="video_url">
+        <video v-if="!isImage && video_url.content_type == 'video/mp4'"height="500" width="500" controls>
+            <source v-bind:src="video_url.url">
+        </video>
+        <video v-if="!isImage && video_url.content_type != 'video/mp4'" id="video" height="500" width="500">
         </video>
       </p>
     </div>
@@ -67,8 +69,25 @@
             this.image_url = this.tweet.extended_entities.media[0].media_url_https
           }else{
             this.isImage = false
-            this.video_url = this.tweet.extended_entities.media[0].video_info.variants[0].url
+            this.video_url = this.tweet.extended_entities.media[0].video_info.variants[0]
+            if(this.video_url.content_type != 'video/mp4'){
+              //this.videoM3U8()
+            }
           }
+        }
+      },
+
+      videoM3U8(){
+        var video = document.getElementById("video");
+        var videoSrcHls = this.video_url.url
+
+        if(Hls.isSupported()) {
+          var hls = new Hls();
+          hls.loadSource(videoSrcHls);
+          hls.attachMedia(video);
+          hls.on(Hls.Events.MANIFEST_PARSED,function() {
+            video.play();
+          });
         }
       },
 

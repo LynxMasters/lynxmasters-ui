@@ -5,7 +5,7 @@
   <div class="media-content">
     <div class="content">
       <p>
-        <strong>{{stream.channel.display_name}}</strong> <small>Game</small> <small>30m</small>
+        <strong>{{stream.channel.display_name}}</strong> <small>{{stream.game}}</small> <small>{{stream.created_at}}</small>
         <br>
         <iframe v-bind:src="`http://player.twitch.tv/?channel=${stream.channel.name}&autoplay=false`"
           height="500"
