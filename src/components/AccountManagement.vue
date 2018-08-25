@@ -166,7 +166,6 @@
                       <span> Password</span>
                     </template>
                     <div>OLD PASSWORD THEN NEW PASSWORD 2x STUFF HERE</div>
-                    <twitter-feed twitter-feed="twitter-feed"></twitter-feed>
                   </b-tab-item>
                   <b-tab-item>
                     <template slot="header">
@@ -216,8 +215,19 @@
 </template>
 
 <script>
+  import UserService from '@/services/UserService'
     export default {
-        name: "AccountManagement",
+      name: "AccountManagement",
+      data() {
+        return {
+          activeTab: 0,
+          account: {}
+        }
+      },
+      mounted() {
+        this.token = window.localStorage.getItem('token')
+        this.getUserAccountInfo()
+      },
       created () {
         this.checkAuthentication()
       },
@@ -227,6 +237,13 @@
       watch: {},
       computed: {},
       methods: {
+        async getUserAccountInfo() {
+          await UserService.fetchUserAccount(this.token).then(res => {
+            this.account = res.data
+            console.log(res)
+          })
+        },
+
         checkAuthentication() {
           let existingToken =  window.localStorage.getItem('token')
           if (_.isEmpty(existingToken) ) {

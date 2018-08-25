@@ -5,8 +5,11 @@ export default {
     return Api().get('users')
   },
   fetchUser(jwt){
-    return Api().get('user/me', { headers: {'Authorization': jwt }}) 
-  },     
+    return Api().get('user/me', { headers: {'Authorization': jwt }})
+  },
+  fetchUserAccount(jwt){
+    return Api().get('user/account', {headers: {'Authorization': jwt}})
+  },
   addUser(params) {
     return Api().post('users', params)
   },
