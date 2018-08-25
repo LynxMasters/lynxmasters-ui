@@ -238,9 +238,9 @@
       computed: {},
       methods: {
         async getUserAccountInfo() {
-          await UserService.fetchUserAccount(this.token).then(res => {
+          await UserService.fetchUser(this.token).then(res => {
             this.account = res.data
-            console.log(res)
+            console.log(res.data)
           })
         },
 
