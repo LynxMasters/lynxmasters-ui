@@ -19,26 +19,23 @@
                 <div class="card">
                   <header class="card-header">
                     <p class="card-header-title is-centered card-name is-primary">
-                      Username
+                      @{{user.username}}
                     </p>
                   </header>
                   <div class="card-image">
                     <div class="image players-avatar">
-                      <img src="http://via.placeholder.com/150x150" alt="Profile Avatar">
+                      <img v-bind:src="`../static/uploads/${user.avatar}`">
                     </div>
                   </div>
                   <div class="card-content">
                     <div class="content has-text-centered">
+
                       <div class="field">
-                        <label class="label">Username</label>
+                        <label class="label">{{user.firstName}} {{user.lastName}}</label>
                       </div>
-                      <div class="field has-addons">
-                        <div class="control">
-                          <label class="label">Followers: </label>
-                        </div>
-                        <div class="control">
-                          <label class="label">Following: </label>
-                        </div>
+
+                      <div class="field">
+                        <label class="label">Followers: 333</label>
                       </div>
                     </div>
                   </div>
@@ -65,8 +62,7 @@
               <div class="column is-7 tab-top">
                 <b-tabs size="is-medium"
                         position="is-centered"
-                        type="is-boxed"
-                        v-model="activeTab">
+                        type="is-boxed">
                   <b-tab-item>
                     <template slot="header">
                       <b-icon class="fas fa-info"></b-icon>
@@ -80,11 +76,12 @@
                             <div class="field">
                               <label class="label">First Name</label>
                               <input
-                                class="input"
+                                :class="['input', (updateUser.firstName.$error) ? 'is-danger' : '']"
                                 type="text"
                                 placeholder=""
+                                v-model="user.firstName"
                                 required>
-                              <p class="help is-danger"></p>
+                              <p v-if="updateUser.firstName.$error" class="help is-danger">First Name is required</p>
                             </div>
 
                             <div class="field">
@@ -93,6 +90,7 @@
                                 class="input"
                                 type="text"
                                 placeholder=""
+                                v-model="user.lastName"
                                 required>
                               <p class="help is-danger"></p>
                             </div>
@@ -103,6 +101,7 @@
                                 class="input"
                                 type="text"
                                 placeholder=""
+                                v-model="user.address"
                                 required>
                               <p class="help is-danger"></p>
                             </div>
@@ -113,6 +112,7 @@
                                 class="input"
                                 type="text"
                                 placeholder=""
+                                v-model="user.city"
                                 required>
                               <p class="help is-danger"></p>
                             </div>
@@ -120,8 +120,9 @@
                             <div class="field">
                               <label class="label">State / Province</label>
                               <input class="input"
-                                     type="tex"
+                                     type="text"
                                      placeholder=""
+                                     v-model="user.state"
                                      required>
                               <p class="help is-danger"></p>
                             </div>
@@ -129,8 +130,9 @@
                             <div class="field">
                               <label class="label">Zip Code</label>
                               <input class="input"
-                                     type="tex"
+                                     type="text"
                                      placeholder=""
+                                     v-model="user.zipCode"
                                      required>
                               <p class="help is-danger"></p>
                             </div>
@@ -140,18 +142,23 @@
                               <div class="control">
                                 <div class="select is-fullwidth">
                                   <select class="input"
+                                          v-model="user.country"
                                           required>
                                     <option selected>Country</option>
-                                    <!--
                                     <option v-for="country in countries">
                                       {{ country.name }}</option>
-                                      -->
                                   </select>
                                 </div>
                               </div>
                               <!--
                               <p v-if="$v.user.country.$error" class="help is-danger">Country is required</p>
                               -->
+                            </div>
+
+                            <div class="field is-grouped is-pulled-right">
+                              <div class="control">
+                                <button class="button is-link" v-on:click="updateUserInfo()">Save</button>
+                              </div>
                             </div>
 
 
@@ -216,12 +223,54 @@
 
 <script>
   import UserService from '@/services/UserService'
+  import countries from '@/assets/countries.json'
+  import {validationMixin} from 'vuelidate'
+  import {required, numeric, minLength, maxLength} from 'vuelidate/lib/validators'
     export default {
+      mixins: [validationMixin],
       name: "AccountManagement",
       data() {
         return {
-          activeTab: 0,
-          account: {}
+          user: {},
+          updateUser: {
+            firstName: '',
+            lastName: '',
+            address: '',
+            city: '',
+            state: '',
+            zipCode: '',
+            country: ''
+
+          },
+          countries
+        }
+      },
+      validations: {
+        user: {
+          firstName: {
+            required
+          },
+          lastName: {
+            required
+          },
+          address: {
+            required
+          },
+          city: {
+            required
+          },
+          state: {
+            required
+          },
+          zipCode: {
+            required,
+            numeric,
+            minLength: minLength(5),
+            maxLength: maxLength(5)
+          },
+          country: {
+            required
+          }
         }
       },
       mounted() {
@@ -239,11 +288,10 @@
       methods: {
         async getUserAccountInfo() {
           await UserService.fetchUser(this.token).then(res => {
-            this.account = res.data
+            this.user = res.data
             console.log(res.data)
           })
         },
-
         checkAuthentication() {
           let existingToken =  window.localStorage.getItem('token')
           if (_.isEmpty(existingToken) ) {
@@ -259,6 +307,33 @@
             type: 'is-danger'
           })
         },
+        personalInfoSaved() {
+          this.$snackbar.open({
+            message: 'Your personal information was updated!',
+            type: 'is-warning',
+            position: 'is-top',
+            actionText: 'GOT IT!',
+            duration: 5000
+          })
+        },
+        errorAlert() {
+          this.$toast.open({
+            duration: 5000,
+            message: `There was a problem saving!`,
+            position: 'is-bottom',
+            type: 'is-danger'
+          })
+        },
+        async updateUserInfo() {
+          await UserService.updateUser(this.user,this.token).then(res => {
+            if (res.data.errors) {
+              this.errors = res.data.errors
+              this.errorAlert()
+            } else {
+              this.personalInfoSaved()
+            }
+          })
+        }
       }
     }
 </script>

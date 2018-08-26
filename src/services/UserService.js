@@ -10,6 +10,9 @@ export default {
   addUser(params) {
     return Api().post('users', params)
   },
+  updateUser(params, jwt) {
+    return Api().put('user/account', params, { headers: {'Authorization': jwt }})
+  },
   checkUserIdentifiers(params) {
     return Api().post('users/identifiers', {params})
   },
