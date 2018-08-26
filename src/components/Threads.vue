@@ -30,10 +30,10 @@
     <nav class="level is-mobile">
       <div class="level-left">
         <a class="level-item has-text-grey">
-          <span class="icon is-small"><i class="fas fa-comment"></i></span>
+          <span class="icon is-small"><i class="fas fa-comment">{{thread.data.num_comments}}</i></span>
         </a>
         <a class="level-item has-text-grey">
-          <span class="icon is-small"><i class="fas fa-share"></i></span>
+          <span class="icon is-small padLeft"><i class="fas fa-share"></i></span>
         </a>
       </div>
     </nav>
@@ -82,6 +82,12 @@
   }
 </script>  
 <style scoped>
+  .padLeft{
+    padding-left: 2.0em;
+  }
+  .padRight{
+    padding-right: 2.0em;
+  }
   .has-text-reddit{
     color: rgb(255, 69, 0);
   }
