@@ -76,72 +76,78 @@
                             <div class="field">
                               <label class="label">First Name</label>
                               <input
-                                :class="['input', (updateUser.firstName.$error) ? 'is-danger' : '']"
+                                :class="['input', ($v.user.firstName.$error) ? 'is-danger' : '']"
                                 type="text"
                                 placeholder=""
                                 v-model="user.firstName"
                                 required>
-                              <p v-if="updateUser.firstName.$error" class="help is-danger">First Name is required</p>
+                              <p v-if="$v.user.firstName.$error" class="help is-danger">First Name is required</p>
                             </div>
 
                             <div class="field">
                               <label class="label">Last Name</label>
                               <input
-                                class="input"
+                                :class="['input', ($v.user.lastName.$error) ? 'is-danger' : '']"
                                 type="text"
                                 placeholder=""
                                 v-model="user.lastName"
                                 required>
-                              <p class="help is-danger"></p>
+                              <p v-if="$v.user.lastName.$error" class="help is-danger">Last Name is required</p>
                             </div>
 
                             <div class="field">
                               <label class="label">Address</label>
                               <input
-                                class="input"
+                                :class="['input', ($v.user.address.$error) ? 'is-danger' : '']"
                                 type="text"
                                 placeholder=""
                                 v-model="user.address"
                                 required>
-                              <p class="help is-danger"></p>
+                              <p v-if="$v.user.address.$error" class="help is-danger">Address is required</p>
                             </div>
 
                             <div class="field">
                               <label class="label">City</label>
                               <input
-                                class="input"
+                                :class="['input', ($v.user.city.$error) ? 'is-danger' : '']"
                                 type="text"
                                 placeholder=""
                                 v-model="user.city"
                                 required>
-                              <p class="help is-danger"></p>
+                              <p v-if="$v.user.city.$error" class="help is-danger">City is required</p>
                             </div>
 
                             <div class="field">
                               <label class="label">State / Province</label>
-                              <input class="input"
-                                     type="text"
-                                     placeholder=""
-                                     v-model="user.state"
-                                     required>
-                              <p class="help is-danger"></p>
+                              <input
+                                :class="['input', ($v.user.state.$error) ? 'is-danger' : '']"
+                                type="text"
+                                placeholder=""
+                                v-model="user.state"
+                                required>
+                              <p v-if="$v.user.state.$error" class="help is-danger">State / Province is required</p>
                             </div>
 
                             <div class="field">
                               <label class="label">Zip Code</label>
-                              <input class="input"
-                                     type="text"
-                                     placeholder=""
-                                     v-model="user.zipCode"
-                                     required>
-                              <p class="help is-danger"></p>
+                              <input
+                                :class="['input', ($v.user.zipCode.$error) ? 'is-danger' : '']"
+                                type="text"
+                                placeholder=""
+                                v-model="user.zipCode"
+                                required>
+                              <p v-if="$v.user.zipCode.$error && !user.zipCode.length > 0" class="help is-danger">Zip code is required</p>
+                              <p v-if="!$v.user.zipCode.numeric" class="help is-danger">Zip code must only be numbers</p>
+                              <p v-if="!$v.user.zipCode.minLength || !$v.user.zipCode.maxLength" class="help is-danger">
+                                Zip code must have at least {{ $v.user.zipCode.$params.minLength.min }} numbers.
+                              </p>
                             </div>
 
                             <div class="field">
                               <label class="label">Country</label>
                               <div class="control">
                                 <div class="select is-fullwidth">
-                                  <select class="input"
+                                  <select :class="['input', ($v.user.country.$error) ? 'is-danger' : '']"
                                           v-model="user.country"
                                           required>
                                     <option selected>Country</option>
@@ -150,9 +156,7 @@
                                   </select>
                                 </div>
                               </div>
-                              <!--
                               <p v-if="$v.user.country.$error" class="help is-danger">Country is required</p>
-                              -->
                             </div>
 
                             <div class="field is-grouped is-pulled-right">
@@ -232,16 +236,6 @@
       data() {
         return {
           user: {},
-          updateUser: {
-            firstName: '',
-            lastName: '',
-            address: '',
-            city: '',
-            state: '',
-            zipCode: '',
-            country: ''
-
-          },
           countries
         }
       },
