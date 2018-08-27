@@ -15,7 +15,7 @@
           <b-icon class="fas fa-align-justify"></b-icon>
           <span> All</span>
           </template>
-          <div class='all' v-for="i in 50">
+          <div class='all' v-for="i in 8">
             <reddit v-if="i < threadsLen && i == 1" :thread="threads[0]"></reddit>
             <twitch v-if="i <= streamsLen && i == 1" :stream="streams[0]"></twitch>
             <twitter v-if="i < tweetsLen && i == 1" :tweet="tweets[0]"></twitter>
@@ -24,19 +24,19 @@
             <twitter v-if="i < tweetsLen && i >= 1" :tweet="tweets[i]"></twitter>
           </div>
           </b-tab-item>
-          <b-tab-item v-if="accounts.twitter.oauth_token != null">
+          <b-tab-item v-if="accounts.twitter.oauth_secret != null">
           <template slot="header">
           <b-icon class="fab fa-twitter"></b-icon>
           <span> Twitter</span>
           </template>
-          <twitter :tweet="tweet" v-for="tweet in tweets" :key="tweet.id"></twitter>
+          <twitter :tweet="tweet" v-for="tweet in tweets" :key="tweet.id"></twitter> 
           </b-tab-item>
           <b-tab-item v-if="accounts.twitch.access_token != null">
           <template slot="header">
           <b-icon class="fab fa-twitch"></b-icon>
           <span> Twitch</span>
           </template>
-          <twitch :stream="stream" v-for="stream in streams" :key="stream.id"></twitch>
+         <twitch :stream="stream" v-for="stream in streams" :key="stream.id"></twitch>
           </b-tab-item>
           <b-tab-item v-if="accounts.reddit.access_token != null">
           <template slot="header">
@@ -44,7 +44,7 @@
           <span> Reddit</span>
           </template>
           <reddit :thread="thread" v-for="thread in threads" :key="thread.id">
-          </reddit>
+          </reddit> -->
           </b-tab-item>
           </b-tabs>
         </div>
@@ -77,6 +77,7 @@ export default {
       return {
         activeTab: 0,
         accounts:{},
+        feeds:{},
         tweets: {},
         threads:{},
         streams:{},
@@ -86,13 +87,17 @@ export default {
         
       }
     },
-    mounted() {
-      this.token = window.localStorage.getItem('token')
+     computed() {
       this.getAccountInfo()
-      
     },
-    created () {
+    beforeMount() {  
+    },
+    created() {
       this.checkAuthentication()
+      this.token = window.localStorage.getItem('token')
+      this.$store.dispatch('feeds/fetchFeeds', this.token)
+      this.$store.dispatch('accounts/fetchAccounts', this.token)
+      this.getAccountInfo() 
     },
     updated() {
       this.checkAuthentication()
@@ -101,24 +106,20 @@ export default {
     computed: {},
     methods: {
 
-      async getAccountInfo() {
-       await UserService.getAccounts(this.token).then(res => {
-          this.accounts = res.data
-          console.log(res)
-          return ExternalService.feeds(this.token)
-        })
-        .then(feed => {
-          console.log(feed)
-          this.tweets = feed.data.twitter
-          this.streams = feed.data.twitch.streams
-          this.threads = feed.data.reddit.data.children
-          this.tweetsLen = Object.keys(this.tweets).length
-          console.log(this.tweetsLen)
-          this.threadsLen = Object.keys(this.threads).length
-          console.log(this.threadsLen)
-          this.streamsLen = Object.keys(this.streams).length
-          console.log(this.streamsLen)
-        })
+      getAccountInfo() {
+        this.accounts = this.$store.getters['accounts/getAccounts']
+        console.log(this.accounts)
+        this.feeds = this.$store.getters['feeds/getFeeds']
+        console.log(this.feeds)
+        this.tweets = this.feeds.twitter
+        this.streams = this.feeds.twitch
+        this.threads = this.feeds.reddit
+        this.tweetsLen = Object.keys(this.tweets).length
+        console.log(this.tweetsLen)
+        this.threadsLen = Object.keys(this.threads).length
+        console.log(this.threadsLen)
+        this.streamsLen = Object.keys(this.streams).length
+        console.log(this.streamsLen)
       },
 
       checkAuthentication() {

@@ -13,16 +13,16 @@ const getters = {
 
 const mutations = {
   setAccounts(state, payload){
-    state.feeds = payload.feeds
+    state.accounts = payload.data
     state.fetched = true
   },
 }
 
 const actions = {
-  fetchAccounts (context) {
+  fetchAccounts (context, payload) {
     if(!state.fetched){
-      return UserService.getAccounts(jwt)
-      .then(feeds =>{
+      return UserService.getAccounts(payload)
+      .then(accounts =>{
         context.commit('setAccounts', accounts)
       })
       .catch(error =>{

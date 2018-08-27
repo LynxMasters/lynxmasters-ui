@@ -29,8 +29,9 @@
     </div>
     <nav class="level is-mobile">
       <div class="level-left">
-        <a class="level-item has-text-grey">
+        <a class="level-item has-text-grey" @click="showComments = true">
           <span class="icon is-small"><i class="fas fa-comment">{{thread.data.num_comments}}</i></span>
+          <comments v-show='showComments' @close="showComments = false"></comments>
         </a>
         <a class="level-item has-text-grey">
           <span class="icon is-small padLeft"><i class="fas fa-share"></i></span>
@@ -43,14 +44,20 @@
   </div>
 </article>
 </template>
-<script>
+<script> 
+import Comments from './Comments.vue'
  export default {
+
+    components:{
+      'comments': Comments,
+    },
     props: {
      thread:{}
     },
     data() {
         return {
           likes: this.thread.data.likes,
+          showComments: false
         }
     },
     methods: {
