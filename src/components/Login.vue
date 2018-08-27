@@ -157,8 +157,11 @@
               _.isEmpty(linkedAccounts.twitch.access_token)) {
               this.$router.push('LinkAccounts')
             } else {
-              this.$store.dispatch('feeds/fetchFeeds', res.data.token)
-              this.$router.push('Profile')
+              this.$store.dispatch('accounts/fetchAccounts', res.data.token)
+              setTimeout(() => {
+                this.$router.push('Profile')
+              }, 3000)
+              
             }
           }
         })

@@ -29,15 +29,15 @@
       <div class="content has-text-centered">
         <router-link v-bind:to="{ name: 'LinkAccounts' }"
         class="member-linked-accounts" exact>
-        <i v-if="accounts.twitter.oauth_secret != null" class="fab fa-twitter fa-2x"></i>
+        <i v-if="accounts.twitter.linked" class="fab fa-twitter fa-2x"></i>
         </router-link>
         <router-link v-bind:to="{ name: 'LinkAccounts' }"
         class="member-linked-accounts" exact>
-        <i v-if="accounts.twitch.access_token != null" class="fab fa-twitch fa-2x"></i>
+        <i v-if="accounts.twitch.linked" class="fab fa-twitch fa-2x"></i>
         </router-link>
         <router-link v-bind:to="{ name: 'LinkAccounts' }"
         class="member-linked-accounts" exact>
-        <i v-if="accounts.reddit.access_token != null" class="fab fa-reddit fa-2x"></i>
+        <i v-if="accounts.reddit.linked" class="fab fa-reddit fa-2x"></i>
         </router-link>
       </div>
     </div>

@@ -5,6 +5,7 @@ import stepperState from './modules/stepper'
 import userState from './modules/user'
 import accountState from './modules/accounts'
 import feedState from './modules/feeds'
+import profileState from './modules/profiles'
 
 Vue.use(Vuex)
 
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     stepper: stepperState,
     user: userState,
     accounts: accountState,
+    profiles: profileState,
     feeds: feedState,
   }
 })

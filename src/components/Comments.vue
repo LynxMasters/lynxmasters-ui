@@ -19,7 +19,7 @@
           <div class="modal-footer">
             <slot name="footer">
               default footer
-              <button class="modal-default-button" v-on:click.stop="close">
+              <button class="modal-default-button" v-on:click.stop="$emit('close')">
                 OK
               </button>
             </slot>
@@ -33,11 +33,7 @@
 export default {
 
   props:{},   
-  methods:{
-    close() {
-      this.$emit('close')
-    },
-  }
+  methods:{},
 }
 </script>
 <style>

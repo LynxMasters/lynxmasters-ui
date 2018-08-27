@@ -30,8 +30,8 @@ const actions = {
       })
     }
   },
-  unlinkTwitter (context) {
-    return ExternalService.twitterUNLINK(jwt)
+  unlinkTwitter (context, payload) {
+    return ExternalService.twitterUNLINK(payload)
     .then(accounts =>{
       context.commit('setAccounts', accounts)
     })
@@ -39,8 +39,8 @@ const actions = {
       console.log(error)
     })
   },
-  unlinkTwitch (context) {
-    return ExternalService.twitchUNLINK(jwt)
+  unlinkTwitch (context, payload) {
+    return ExternalService.twitchUNLINK(payload)
     .then(accounts =>{
       context.commit('setAccounts', accounts)
     })
@@ -48,8 +48,8 @@ const actions = {
       console.log(error)
     })
   },
-  unlinkReddit (context) {
-    return ExternalService.redditUNLINK(jwt)
+  unlinkReddit (context, payload) {
+    return ExternalService.redditUNLINK(payload)
     .then(accounts =>{
       context.commit('setAccounts', accounts)
     })

@@ -24,27 +24,27 @@
             <twitter v-if="i < tweetsLen && i >= 1" :tweet="tweets[i]"></twitter>
           </div>
           </b-tab-item>
-          <b-tab-item v-if="accounts.twitter.oauth_secret != null">
+          <b-tab-item v-if="accounts.twitter.linked">
           <template slot="header">
           <b-icon class="fab fa-twitter"></b-icon>
           <span> Twitter</span>
           </template>
           <twitter :tweet="tweet" v-for="tweet in tweets" :key="tweet.id"></twitter> 
           </b-tab-item>
-          <b-tab-item v-if="accounts.twitch.access_token != null">
+          <b-tab-item v-if="accounts.twitch.linked">
           <template slot="header">
           <b-icon class="fab fa-twitch"></b-icon>
           <span> Twitch</span>
           </template>
          <twitch :stream="stream" v-for="stream in streams" :key="stream.id"></twitch>
           </b-tab-item>
-          <b-tab-item v-if="accounts.reddit.access_token != null">
+          <b-tab-item v-if="accounts.reddit.linked">
           <template slot="header">
           <b-icon class="fab fa-reddit"></b-icon>
           <span> Reddit</span>
           </template>
           <reddit :thread="thread" v-for="thread in threads" :key="thread.id">
-          </reddit> -->
+          </reddit>
           </b-tab-item>
           </b-tabs>
         </div>
@@ -76,19 +76,27 @@ export default {
     data() {
       return {
         activeTab: 0,
-        accounts:{},
-        feeds:{},
-        tweets: {},
-        threads:{},
-        streams:{},
-        tweetsLen: 0,
-        threadsLen: 0,
-        streamsLen: 0,
-        
+        tweetsLen: 10,
+        threadsLen: 10,
+        streamsLen: 0,       
       }
     },
-     computed() {
-      this.getAccountInfo()
+    computed: {
+      accounts(){
+        return this.$store.getters['accounts/getAccounts']
+      },
+      tweets(){
+        //this.tweetsLen = Object.keys(this.$store.getters['feeds/getTweets']).length
+        return this.$store.getters['feeds/getTweets']
+      },
+      streams(){
+        //this.streamsLen = Object.keys(this.$store.getters['feeds/getStreams']).length
+        return this.$store.getters['feeds/getStreams']
+      },
+      threads(){
+        //this.threadsLen = Object.keys(this.$store.getters['feeds/getThreads']).length
+        return this.$store.getters['feeds/getThreads']
+      },
     },
     beforeMount() {  
     },
@@ -97,30 +105,12 @@ export default {
       this.token = window.localStorage.getItem('token')
       this.$store.dispatch('feeds/fetchFeeds', this.token)
       this.$store.dispatch('accounts/fetchAccounts', this.token)
-      this.getAccountInfo() 
     },
     updated() {
       this.checkAuthentication()
     },
     watch: {},
-    computed: {},
     methods: {
-
-      getAccountInfo() {
-        this.accounts = this.$store.getters['accounts/getAccounts']
-        console.log(this.accounts)
-        this.feeds = this.$store.getters['feeds/getFeeds']
-        console.log(this.feeds)
-        this.tweets = this.feeds.twitter
-        this.streams = this.feeds.twitch
-        this.threads = this.feeds.reddit
-        this.tweetsLen = Object.keys(this.tweets).length
-        console.log(this.tweetsLen)
-        this.threadsLen = Object.keys(this.threads).length
-        console.log(this.threadsLen)
-        this.streamsLen = Object.keys(this.streams).length
-        console.log(this.streamsLen)
-      },
 
       checkAuthentication() {
         let existingToken =  window.localStorage.getItem('token')

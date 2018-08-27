@@ -10,7 +10,16 @@ const state = {
 const getters = {
   getFeeds (state) {
     return state
-  }
+  },
+  getTweets(state){
+    return state.twitter
+  },
+  getStreams(state){
+    return state.twitch
+  },
+  getThreads(state){
+    return state.reddit
+  },
 }
 
 const mutations = {
