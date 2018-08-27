@@ -12,13 +12,22 @@
   <div class="media-content">
     <div class="content">
       <p>
-        <strong>r/{{thread.data.subreddit}}</strong> <small>Posted by u/{{thread.data.author}}</small> <small>{{ moment.unix(thread.data.created).format('MM-DD-YYYY') }}</small>
+        <strong class="subreddit">r/{{thread.data.subreddit}}</strong> <small class="creator">Posted by u/{{thread.data.author}}</small> <small>{{ moment.unix(thread.data.created).format('MM-DD-YYYY') }}</small>
         <br>
         <strong>{{thread.data.title}}</strong>
         <br>
         <div v-if="!thread.data.is_video" class="card-image has-text-centered">
-          <img v-bind:src="thread.data.url" height="500"
-          width="500" type="image/jpeg">
+          <!-- <img v-bind:src="thread.data.url" height="500" -->
+          <div v-if="thread.data.media.oembed === null">
+           <img v-bind:src="thread.data.preview.images[0].source.url" height="500"
+           width="500">
+         </div>
+         <div v-if="thread.data.media.oembed">
+           <img v-bind:src="thread.data.media.oembed.thumbnail_url" height="500"
+           width="500">
+         </div>
+         <br>
+         <a class="url" v-bind:href="thread.data.url" target="_blank">See More</a>
         </div>
         <div v-if="thread.data.is_video" class="card-image has-text-centered">
           <video height="500" width="500" controls>
@@ -44,7 +53,7 @@
   </div>
 </article>
 </template>
-<script> 
+<script>
 import Comments from './Comments.vue'
  export default {
 
@@ -87,7 +96,7 @@ import Comments from './Comments.vue'
       },
     },
   }
-</script>  
+</script>
 <style scoped>
   .padLeft{
     padding-left: 2.0em;

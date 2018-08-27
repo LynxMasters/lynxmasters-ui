@@ -1,0 +1,96 @@
+body {
+  color: $dusk;
+  font-family: $base-font-family;
+  font-feature-settings: "kern", "liga", "pnum";
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0 0 $small-spacing;
+}
+
+h4,
+h4,
+h5 {
+  font-family: $secondary-heading-font-family;
+}
+
+h1,
+h2,
+h3 {
+  font-family: $heading-font-family;
+}
+
+p,
+li {
+  font-family: $base-font-family;
+}
+
+h1 {
+  @include responsive-type(72px, 78px);
+  font-weight: $bold-font;
+  color: $dusk;
+}
+
+h2 {
+  @include responsive-type(42px, 48px);
+  font-weight: $bold-font;
+  color: $dark-blue;
+}
+
+h3 {
+  @include responsive-type(32px, 48px);
+  color: $dark-blue;
+  font-weight: $bold-font;
+}
+
+h4 {
+  @include responsive-type(21px, 30px);
+  color: $green;
+  font-weight: $medium-font;
+}
+
+h5 {
+  @include responsive-type(18px, 30px);
+  color: $green;
+  font-weight: $medium-font;
+}
+
+h6 {
+  @include responsive-type(14px, 18px);
+  color: $tan;
+  font-family: $secondary-heading-font-family;
+}
+
+p {
+  @include responsive-type(16px, 24px);
+  color: $dusk;
+}
+
+.label {
+  @include responsive-type(16px, 24px);
+  color: $dusk;
+  font-family: $secondary-heading-font-family;
+  font-weight: 400;
+}
+
+hr {
+  border-bottom: $base-border;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  margin: $base-spacing 0;
+}
+
+img,
+picture {
+  margin: 0;
+  max-width: 100%;
+}
