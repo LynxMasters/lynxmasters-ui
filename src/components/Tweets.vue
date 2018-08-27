@@ -8,7 +8,7 @@
   <div class="media-content">
     <div class="content">
       <p>
-        <strong>{{tweet.user.name}}</strong> <small>@{{tweet.user.screen_name}}</small> <small>{{ created_at }}m</small>
+        <strong class="users">{{tweet.user.name}}</strong> <small class="creator">@{{tweet.user.screen_name}}</small> <small>{{ created_at }}m</small>
         <br>
         {{tweet.text}}
         <br>
@@ -51,7 +51,7 @@
           isRetweet: this.tweet.retweeted,
           created_at: 0,
           isImage: true,
-          image_url: '', 
+          image_url: '',
           video_url: '',
         }
     },
@@ -63,7 +63,7 @@
 
       check_media(){
         if(this.tweet.hasOwnProperty('extended_entities')){
-      
+
           if(this.tweet.extended_entities.media[0].type == 'photo'){
             this.isImage = true
             this.image_url = this.tweet.extended_entities.media[0].media_url_https
@@ -99,7 +99,7 @@
        if(!this.isRetweet){
           this.isRetweet = true
           this.tweet.retweet_count +=1
-          
+
         }else{
           this.isRetweet = false
           this.tweet.retweet_count -=1

@@ -5,7 +5,7 @@
   <div class="media-content">
     <div class="content">
       <p>
-        <strong>{{stream.channel.display_name}}</strong> <small>{{stream.game}}</small> <small>{{stream.created_at}}</small>
+        <strong class="channel">{{stream.channel.display_name}}</strong> <small class="creator">{{stream.game}}</small> <small>{{stream.created_at}}</small>
         <br>
         <iframe v-bind:src="`http://player.twitch.tv/?channel=${stream.channel.name}&autoplay=false`"
           height="500"
@@ -62,7 +62,7 @@
       },
     },
   }
-</script> 
+</script>
 <style scoped>
   .hideChat{
     visibility: hidden;

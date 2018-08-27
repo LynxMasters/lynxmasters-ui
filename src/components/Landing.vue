@@ -172,12 +172,46 @@
               <div class="card is-shady card-equal-height">
                 <div class="card-image has-text-centered">
                   <!-- TEAM MEMBER IMAGE GOES HERE -->
-                  <img src="https://randomuser.me/api/portraits/lego/2.jpg">
+                  <!-- <img src="https://randomuser.me/api/portraits/lego/2.jpg"> -->
+                  <div class="ty-animation">
+                    <div class="aquarium">
+                      <div class="aquarium__table"></div>
+                      <div class="aquarium__aquarium">
+                        <div class="aquarium__water"></div>
+                        <div class="aquarium__bubble"></div>
+                        <div class="aquarium__bubble"></div>
+                        <div class="aquarium__bubble"></div>
+                        <div class="aquarium__bubble"></div>
+                        <div class="aquarium__bubble"></div>
+                        <div class="aquarium__bubble"></div>
+                        <div class="aquarium__bubble"></div>
+                        <div class="aquarium__bubble"></div>
+                      </div>
+                      <div class="aquarium__drops">
+                        <div class="aquarium__drop"></div>
+                        <div class="aquarium__water-column"></div>
+                        <div class="aquarium__splash"></div>
+                        <div class="aquarium__splash"></div>
+                      </div>
+                      <div class="aquarium__sponge-box">
+                        <div class="aquarium__body">
+                          <div class="aquarium__body-stripe"></div>
+                          <div class="aquarium__body-hole"></div>
+                        </div>
+                        <div class="aquarium__face">
+                          <div class="aquarium__mouth"></div>
+                          <div class="aquarium__smile"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="card-content member-desc">
-                  <div class="content">
+                  <div class="content ty-content">
                     <h4 class="has-text-centered">Tyler Corwin</h4>
-                    <p>Purus semper eget duis at sdfdsf sdfsdf sdf sdfsdfd stellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>
+                    <p>Full Stack PHP developer</p>
+                    <p>Specializes in front end development.</p>
+                    <p>I like <span class="shiny">shiny</span> things</p>
                   </div>
                 </div>
                 <footer class="card-footer">

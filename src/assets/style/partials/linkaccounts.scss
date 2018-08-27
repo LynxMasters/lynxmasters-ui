@@ -4,8 +4,21 @@
 }
 .twitter-img {
   height: 300px;
-  width: 300px;
+  width: auto;
 }
 .vue-progress-path .progress {
   stroke: #54a9ff;
+}
+
+.shiny {
+  animation: pulse 5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    color: #00ff7f;
+  }
+  100% {
+    color: #ff0000;
+  }
 }
