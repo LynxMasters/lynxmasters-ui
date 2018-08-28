@@ -37,7 +37,8 @@
                       v-model="user.password"
                       v-on:input="checkFormFields"
                       v-bind:class="{'is-danger': errors.password, 'is-danger': error.password }"
-                      placeholder="supersecretpassword">
+                      placeholder="supersecretpassword"
+                      @keyup.enter="validateForm()">
                     <span class="icon is-small is-left">
                         <i class="fas  fa-unlock-alt"></i>
                       </span>
