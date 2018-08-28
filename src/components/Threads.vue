@@ -19,7 +19,7 @@
         <div v-if="!thread.data.is_video" class="card-image has-text-centered">
          <img v-if="!img" :src="mediaURL" width="500" height="500">
          <video v-if="img" height="500" width="500" controls>
-            <source v-bind:src="thread.data.secure_media.reddit_video.fallback_url">
+            <source v-bind:src="mediaURL">
           </video>
          <br>
          <a class="url" v-bind:href="thread.data.url" target="_blank">See More</a>
