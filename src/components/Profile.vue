@@ -15,7 +15,7 @@
           <b-icon class="fas fa-align-justify"></b-icon>
           <span> All</span>
           </template>
-           <div v-if="!tweets.isLoaded || !streams.isLoaded || !threads.isLoaded" class='has-text-center'>
+           <div v-if="!tweets.isLoaded || !streams.isLoaded || !threads.isLoaded" position="is-centered">
             <loading></loading>
           </div>
           <div v-else class='all' v-for="i in 8">
