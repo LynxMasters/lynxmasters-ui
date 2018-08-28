@@ -15,8 +15,10 @@
           <b-icon class="fas fa-align-justify"></b-icon>
           <span> All</span>
           </template>
-           <div v-if="!tweets.isLoaded || !streams.isLoaded || !threads.isLoaded" position="is-centered">
-            <loading></loading>
+           <div class="column is-12" v-if="!tweets.isLoaded || !streams.isLoaded || !threads.isLoaded" >
+            <div class="content has-text-centered">
+                <loading></loading>
+            </div>
           </div>
           <div v-else class='all' v-for="i in 8">
             <reddit v-if="i < threadsLen && i == 1" :thread="threads[0]"></reddit>
