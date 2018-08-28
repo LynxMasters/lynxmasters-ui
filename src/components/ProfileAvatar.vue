@@ -3,7 +3,7 @@
   <div class="card">
     <header class="card-header">
       <p class="card-header-title is-centered card-name is-primary">
-        {{user.username}}
+        @{{user.username}}
       </p>
     </header>
     <div class="card-image">
