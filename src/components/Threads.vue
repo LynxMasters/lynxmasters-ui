@@ -83,10 +83,10 @@ import Comments from './Comments.vue'
             this.mediaURL = this.thread.data.preview.images[0].source.url
           }
         }else{
-          if(this.thread.data.url.includes('.jpg')){
+          if(this.thread.data.url.includes('.jpg') || this.thread.data.url.includes('.png') || this.thread.data.url.includes('.gif')){
           this.mediaURL = this.thread.data.url
           }else{
-            this.mediaURL = this.thread.data.url + '.png'
+            this.mediaURL = this.thread.data.url + '.jpg'
           }
         } 
       },
