@@ -159,6 +159,7 @@
               this.$router.push('LinkAccounts')
             } else {
               this.$store.dispatch('accounts/fetchAccounts', res.data.token)
+              this.$store.dispatch('feeds/fetchFeeds', res.data.token)
               setTimeout(() => {
                 this.$router.push('Profile')
               }, 3000)

@@ -76,8 +76,8 @@ export default {
     data() {
       return {
         activeTab: 0,
-        tweetsLen: 10,
-        threadsLen: 10,
+        tweetsLen: 0,
+        threadsLen: 0,
         streamsLen: 0,       
       }
     },
@@ -86,15 +86,15 @@ export default {
         return this.$store.getters['accounts/getAccounts']
       },
       tweets(){
-        //this.tweetsLen = Object.keys(this.$store.getters['feeds/getTweets']).length
+        this.tweetsLen = Object.keys(this.$store.getters['feeds/getTweets']).length
         return this.$store.getters['feeds/getTweets']
       },
       streams(){
-        //this.streamsLen = Object.keys(this.$store.getters['feeds/getStreams']).length
+        this.streamsLen = Object.keys(this.$store.getters['feeds/getStreams']).length
         return this.$store.getters['feeds/getStreams']
       },
       threads(){
-        //this.threadsLen = Object.keys(this.$store.getters['feeds/getThreads']).length
+        this.threadsLen = Object.keys(this.$store.getters['feeds/getThreads']).length
         return this.$store.getters['feeds/getThreads']
       },
     },
