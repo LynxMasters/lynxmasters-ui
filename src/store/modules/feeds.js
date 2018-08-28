@@ -37,6 +37,8 @@ const actions = {
     if(new Date(state.requested_at) < new Date().getTime()){
       return ExternalService.feeds(payload)
       .then(feeds => {
+        console.log('feeds')
+        console.log(feeds)
         context.commit('setFeeds', feeds)
       })
       .catch(error => {

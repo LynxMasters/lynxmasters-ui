@@ -17,15 +17,15 @@
         <strong>{{thread.data.title}}</strong>
         <br>
         <div v-if="!thread.data.is_video" class="card-image has-text-centered">
-          <!-- <img v-bind:src="thread.data.url" height="500" -->
-          <div v-if="thread.data.media.oembed === null">
+         <img :src="gifURL" width="500" height="500">
+         <!--  <div v-if="isGif">
            <img v-bind:src="thread.data.preview.images[0].source.url" height="500"
            width="500">
          </div>
-         <div v-if="thread.data.media.oembed">
-           <img v-bind:src="thread.data.media.oembed.thumbnail_url" height="500"
+         <div v-else>
+           <img v-bind:src="gifURL" height="500"
            width="500">
-         </div>
+         </div> -->
          <br>
          <a class="url" v-bind:href="thread.data.url" target="_blank">See More</a>
         </div>
@@ -66,10 +66,29 @@ import Comments from './Comments.vue'
     data() {
         return {
           likes: this.thread.data.likes,
+          isGif: false,
+          gifURL: null,
           showComments: false
         }
     },
+    created(){
+      this.check_media()
+    },
     methods: {
+      check_media(){
+          this.gifURL = this.thread.data.url.replace(/(gifv)+/g, "gif")
+          // if(this.tweet.extended_entities.media[0].type == 'photo'){
+          //   this.isImage = true
+          //   this.image_url = this.tweet.extended_entities.media[0].media_url_https
+          // }else{
+          //   this.isImage = false
+          //   this.video_url = this.tweet.extended_entities.media[0].video_info.variants[0]
+          //   if(this.video_url.content_type != 'video/mp4'){
+          //     //this.videoM3U8()
+          //   }
+          // }
+        
+      },
       upVote() {
        if(this.likes == null){
           this.likes = true
