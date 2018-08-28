@@ -16,28 +16,28 @@
         <div class="field">
           <label class="label">{{user.username}}</label>
         </div>
-        <div class="field has-addons">
-          <div class="control">
-            <label class="label">Followers: 666</label>
-          </div>
-        </div>
+        <!-- <div class="content has-text-centered">
+        </div> -->
       </div>
     </div>
   </div>
   <div class="card">
     <div class="card-content">
       <div class="content has-text-centered">
+        <div class="field">
+            <label class="label">Linked Accounts</label>
+         </div>
         <router-link v-bind:to="{ name: 'LinkAccounts' }"
         class="member-linked-accounts" exact>
-        <i v-if="accounts.twitter.oauth_token != null" class="fab fa-twitter fa-2x"></i>
+        <i v-if="accounts.twitter.linked" class="fab fa-twitter fa-2x"></i>
         </router-link>
         <router-link v-bind:to="{ name: 'LinkAccounts' }"
         class="member-linked-accounts" exact>
-        <i v-if="accounts.twitch.access_token != null" class="fab fa-twitch fa-2x"></i>
+        <i v-if="accounts.twitch.linked" class="fab fa-twitch fa-2x"></i>
         </router-link>
         <router-link v-bind:to="{ name: 'LinkAccounts' }"
         class="member-linked-accounts" exact>
-        <i v-if="accounts.reddit.access_token != null" class="fab fa-reddit fa-2x"></i>
+        <i v-if="accounts.reddit.linked" class="fab fa-reddit fa-2x"></i>
         </router-link>
       </div>
     </div>

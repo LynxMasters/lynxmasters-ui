@@ -12,13 +12,22 @@
   <div class="media-content">
     <div class="content">
       <p>
-        <strong>r/{{thread.data.subreddit}}</strong> <small>Posted by u/{{thread.data.author}}</small> <small>{{ moment.unix(thread.data.created).format('MM-DD-YYYY') }}</small>
+        <strong class="subreddit">r/{{thread.data.subreddit}}</strong> <small class="creator">Posted by u/{{thread.data.author}}</small> <small>{{ moment.unix(thread.data.created).format('MM-DD-YYYY') }}</small>
         <br>
         <strong>{{thread.data.title}}</strong>
         <br>
         <div v-if="!thread.data.is_video" class="card-image has-text-centered">
-          <img v-bind:src="thread.data.url" height="500"
-          width="500" type="image/jpeg">
+         <img :src="gifURL" width="500" height="500">
+         <!--  <div v-if="isGif">
+           <img v-bind:src="thread.data.preview.images[0].source.url" height="500"
+           width="500">
+         </div>
+         <div v-else>
+           <img v-bind:src="gifURL" height="500"
+           width="500">
+         </div> -->
+         <br>
+         <a class="url" v-bind:href="thread.data.url" target="_blank">See More</a>
         </div>
         <div v-if="thread.data.is_video" class="card-image has-text-centered">
           <video height="500" width="500" controls>
@@ -29,11 +38,12 @@
     </div>
     <nav class="level is-mobile">
       <div class="level-left">
-        <a class="level-item has-text-grey">
-          <span class="icon is-small"><i class="fas fa-comment"></i></span>
+        <a class="level-item has-text-grey" @click="showComments = true">
+          <span class="icon is-small"><i class="fas fa-comment">{{thread.data.num_comments}}</i></span>
+          <comments v-show='showComments' @close="showComments = false"></comments>
         </a>
         <a class="level-item has-text-grey">
-          <span class="icon is-small"><i class="fas fa-share"></i></span>
+          <span class="icon is-small padLeft"><i class="fas fa-share"></i></span>
         </a>
       </div>
     </nav>
@@ -44,16 +54,41 @@
 </article>
 </template>
 <script>
+import Comments from './Comments.vue'
  export default {
+
+    components:{
+      'comments': Comments,
+    },
     props: {
      thread:{}
     },
     data() {
         return {
           likes: this.thread.data.likes,
+          isGif: false,
+          gifURL: null,
+          showComments: false
         }
     },
+    created(){
+      this.check_media()
+    },
     methods: {
+      check_media(){
+          this.gifURL = this.thread.data.url.replace(/(gifv)+/g, "gif")
+          // if(this.tweet.extended_entities.media[0].type == 'photo'){
+          //   this.isImage = true
+          //   this.image_url = this.tweet.extended_entities.media[0].media_url_https
+          // }else{
+          //   this.isImage = false
+          //   this.video_url = this.tweet.extended_entities.media[0].video_info.variants[0]
+          //   if(this.video_url.content_type != 'video/mp4'){
+          //     //this.videoM3U8()
+          //   }
+          // }
+        
+      },
       upVote() {
        if(this.likes == null){
           this.likes = true
@@ -80,8 +115,14 @@
       },
     },
   }
-</script>  
+</script>
 <style scoped>
+  .padLeft{
+    padding-left: 2.0em;
+  }
+  .padRight{
+    padding-right: 2.0em;
+  }
   .has-text-reddit{
     color: rgb(255, 69, 0);
   }

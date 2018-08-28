@@ -37,7 +37,8 @@
                       v-model="user.password"
                       v-on:input="checkFormFields"
                       v-bind:class="{'is-danger': errors.password, 'is-danger': error.password }"
-                      placeholder="supersecretpassword">
+                      placeholder="supersecretpassword"
+                      @keyup.enter="validateForm()">
                     <span class="icon is-small is-left">
                         <i class="fas  fa-unlock-alt"></i>
                       </span>
@@ -157,7 +158,12 @@
               _.isEmpty(linkedAccounts.twitch.access_token)) {
               this.$router.push('LinkAccounts')
             } else {
-              this.$router.push('Profile')
+              this.$store.dispatch('accounts/fetchAccounts', res.data.token)
+              this.$store.dispatch('feeds/fetchFeeds', res.data.token)
+              setTimeout(() => {
+                this.$router.push('Profile')
+              }, 3000)
+              
             }
           }
         })
