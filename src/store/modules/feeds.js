@@ -1,9 +1,15 @@
 import ExternalService from '@/services/externalService'
 
 const state = {
-  twitter:{},
-  twitch:{},
-  reddit:{},
+  twitter:{
+    isLoaded: false
+  },
+  twitch:{
+    isLoaded: false
+  },
+  reddit:{
+    isLoaded: false
+  },
   requested_at: 0,
 }
 
@@ -25,8 +31,11 @@ const getters = {
 const mutations = {
   setFeeds (state, payload) {
    state.twitter = payload.data.twitter
+   state.twitter.isLoaded = true
    state.twitch = payload.data.twitch.streams
+   state.twitch.isLoaded = true
    state.reddit = payload.data.reddit.data.children
+   state.reddit.isLoaded = true
    state.requested_at = new Date().getTime() + (5*60*1000) 
   }
 }

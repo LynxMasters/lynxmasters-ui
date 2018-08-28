@@ -11,15 +11,15 @@
         <img v-bind:src="`../static/uploads/${user.avatar}`">
       </div>
     </div>
-    <div class="card-content">
+    <!-- <div class="card-content">
       <div class="content has-text-centered">
         <div class="field">
           <label class="label">{{user.username}}</label>
         </div>
-        <!-- <div class="content has-text-centered">
-        </div> -->
+         <div class="content has-text-centered">
+        </div> 
       </div>
-    </div>
+    </div> -->
   </div>
   <div class="card">
     <div class="card-content">

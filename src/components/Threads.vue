@@ -62,6 +62,7 @@ import Comments from './Comments.vue'
         return {
           likes: this.thread.data.likes,
           mediaURL: null,
+          mediaALT: null,
           showComments: false,
           img: false
         }
@@ -74,6 +75,7 @@ import Comments from './Comments.vue'
         if(this.thread.data.url.includes('gifv')){
           this.mediaURL = this.thread.data.url.replace(/(gifv)+/g, "gif") 
         }else if(this.thread.data.url.includes('imgur')){
+          this.mediaALT = this.thread.data.preview.images[0].source.url
           this.mediaURL = this.thread.data.url + ".jpg"
         }else if(!this.thread.data.url.includes('redd.it')){
           if(this.thread.data.preview.hasOwnProperty('reddit_video_preview')){
