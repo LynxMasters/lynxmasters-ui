@@ -86,7 +86,7 @@ import Comments from './Comments.vue'
           if(this.thread.data.url.includes('.jpg')){
           this.mediaURL = this.thread.data.url
           }else{
-            this.mediaURL = this.thread.data.url + '.jpg'
+            this.mediaURL = this.thread.data.url + '.png'
           }
         } 
       },
