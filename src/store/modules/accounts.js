@@ -2,6 +2,7 @@ import ExternalService from '@/services/externalService'
 import UserService from '@/services/UserService'
 const state = {
   accounts: {},
+  
   fetched: false
 }
 

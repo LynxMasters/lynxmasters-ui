@@ -1,9 +1,15 @@
 import ExternalService from '@/services/externalService'
 
 const state = {
-  twitter:{},
-  twitch:{},
-  reddit:{},
+  twitter:{
+    isLoaded: false
+  },
+  twitch:{
+    isLoaded: false
+  },
+  reddit:{
+    isLoaded: false
+  },
   fetched: false,
 }
 
@@ -26,9 +32,12 @@ const mutations = {
   setProfiles (state, payload) {
    state.twitter = payload.data.twitter
    state.twitter.profile_image_url_https = payload.data.twitter.profile_image_url_https.replace(/_normal/g, "")
+   state.twitter.isLoaded = true
    state.twitch = payload.data.twitch
+   state.twitch.isLoaded = true
    state.reddit = payload.data.reddit
    state.reddit.icon_img = payload.data.reddit.icon_img.replace(/(amp;)+/g, "")
+   state.reddit.isLoaded = true
    state.fetched = true   
   },
   setRequested(state, payload){

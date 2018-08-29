@@ -1,7 +1,7 @@
 <template>
     <transition name="fade" mode="out-in">
         <div class="column is-4"
-             v-if="!isLoaded">
+             v-if="!reddit.isLoaded">
           <div class="card is-shady card-equal-height">
             <header class="card-header">
               <p class="card-header-title is-centered">
@@ -10,23 +10,13 @@
             </header>
             <div class="card-content">
               <div class="content has-text-centered">
-                <loading-progress
-                  class="progress-twitter"
-                  :progress="progress"
-                  :indeterminate="indeterminate"
-                  :counter-clockwise="counterClockwise"
-                  :hide-background="hideBackground"
-                  size="64"
-                  rotate
-                  fillDuration="2"
-                  rotationDuration="1"
-                />
+                <loading></loading>
               </div>
             </div>
           </div>
         </div>
         <div class="column is-4 animated fadeIn"
-             v-if="accounts.reddit.linked && isLoaded">
+             v-if="accounts.reddit.linked && reddit.isLoaded">
           <div class="card is-shady card-equal-height">
             <header class="card-header">
               <p class="card-header-title">
@@ -54,7 +44,7 @@
           </div>
         </div>
         <div class="column is-4 animated fadeIn"
-             v-if="!accounts.reddit.linked && isLoaded">
+             v-if="!accounts.reddit.linked && reddit.isLoaded">
           <div class="card is-shady card-equal-height">
             <div class="card-image has-text-centered">
               <i class="fab fa-reddit fa-7x"></i>
@@ -74,31 +64,30 @@
     </transition>
 </template>
 <script>
+  import Loading from './Loading.vue'
   export default {
     name: 'RedditProfile',
     
     props:{
       accounts:{}
     },
+    components: { 
+      'loading': Loading
+    },
     data() {
       return {
         token: null,
-        isLoaded: true,
-        indeterminate: true,
-        progress: 0,
-        counterClockwise: false,
-        hideBackground: false,
-        img: null
       }
     },
     computed:{
       reddit(){
-        this.isLoaded = true
         return this.$store.getters['profiles/getReddit']
       },
     },
     created(){
     this.token = window.localStorage.getItem('token')
+    },
+    mounted(){
     },
     methods:{
 

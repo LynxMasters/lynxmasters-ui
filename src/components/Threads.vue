@@ -17,15 +17,10 @@
         <strong>{{thread.data.title}}</strong>
         <br>
         <div v-if="!thread.data.is_video" class="card-image has-text-centered">
-         <img :src="gifURL" width="500" height="500">
-         <!--  <div v-if="isGif">
-           <img v-bind:src="thread.data.preview.images[0].source.url" height="500"
-           width="500">
-         </div>
-         <div v-else>
-           <img v-bind:src="gifURL" height="500"
-           width="500">
-         </div> -->
+         <img v-if="!img" :src="mediaURL" width="500" height="500">
+         <video v-if="img" height="500" width="500" controls>
+            <source v-bind:src="mediaURL">
+          </video>
          <br>
          <a class="url" v-bind:href="thread.data.url" target="_blank">See More</a>
         </div>
@@ -66,9 +61,10 @@ import Comments from './Comments.vue'
     data() {
         return {
           likes: this.thread.data.likes,
-          isGif: false,
-          gifURL: null,
-          showComments: false
+          mediaURL: null,
+          mediaALT: null,
+          showComments: false,
+          img: false
         }
     },
     created(){
@@ -76,18 +72,28 @@ import Comments from './Comments.vue'
     },
     methods: {
       check_media(){
-          this.gifURL = this.thread.data.url.replace(/(gifv)+/g, "gif")
-          // if(this.tweet.extended_entities.media[0].type == 'photo'){
-          //   this.isImage = true
-          //   this.image_url = this.tweet.extended_entities.media[0].media_url_https
-          // }else{
-          //   this.isImage = false
-          //   this.video_url = this.tweet.extended_entities.media[0].video_info.variants[0]
-          //   if(this.video_url.content_type != 'video/mp4'){
-          //     //this.videoM3U8()
-          //   }
-          // }
-        
+        if(this.thread.data.url.includes('gifv')){
+          this.mediaURL = this.thread.data.url.replace(/(gifv)+/g, "gif") 
+        }else if(this.thread.data.url.includes('imgur')){
+          if(this.thread.data.url.includes('.jpg') || this.thread.data.url.includes('.png') || this.thread.data.url.includes('.gif')){
+            this.mediaURL = this.thread.data.url
+          }else{
+            this.mediaURL = this.thread.data.url + '.jpg'
+          }
+        }else if(!this.thread.data.url.includes('redd.it')){
+          if(this.thread.data.preview.hasOwnProperty('reddit_video_preview')){
+            this.img = true
+            this.mediaURL = this.thread.data.preview.reddit_video_preview.scrubber_media_url
+          }else{
+            this.mediaURL = this.thread.data.preview.images[0].source.url
+          }
+        }else{
+          if(this.thread.data.url.includes('.jpg') || this.thread.data.url.includes('.png') || this.thread.data.url.includes('.gif')){
+          this.mediaURL = this.thread.data.url
+          }else{
+            this.mediaURL = this.thread.data.url + '.jpg'
+          }
+        } 
       },
       upVote() {
        if(this.likes == null){

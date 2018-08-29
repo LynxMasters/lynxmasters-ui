@@ -5,7 +5,7 @@
         <div class="columns is-centered">
           <div class="column is-half">
             <div class="card">
-              <div class="card-content">
+              <div v-if='!isLoading' class="card-content">
                 <div class="field animated flipInX has-text-centered" v-if="errors.email || errors.password">
                   <span class="tag is-danger">Email or Password is incorrect</span>
                 </div>
@@ -58,6 +58,20 @@
                   </div>
                 </div>
               </div>
+               <div class="card-content" v-if="isLoading">
+                <div class="content has-text-centered">
+                  <loading-progress
+                    :progress="progress"
+                    :indeterminate="indeterminate"
+                    :counter-clockwise="counterClockwise"
+                    :hide-background="hideBackground"
+                    size="64"
+                    rotate
+                    fillDuration="2"
+                    rotationDuration="1"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -87,7 +101,12 @@
         error: {
           email: '',
           password: ''
-        }
+        },
+        isLoading: false,
+        indeterminate: true,
+        progress: 0,
+        counterClockwise: false,
+        hideBackground: false,
       }
     },
     methods: {
@@ -158,6 +177,7 @@
               _.isEmpty(linkedAccounts.twitch.access_token)) {
               this.$router.push('LinkAccounts')
             } else {
+              this.isLoading = true
               this.$store.dispatch('accounts/fetchAccounts', res.data.token)
               this.$store.dispatch('feeds/fetchFeeds', res.data.token)
               setTimeout(() => {
