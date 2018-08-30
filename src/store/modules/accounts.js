@@ -2,7 +2,6 @@ import ExternalService from '@/services/externalService'
 import UserService from '@/services/UserService'
 const state = {
   accounts: {},
-  
   fetched: false
 }
 
@@ -17,6 +16,9 @@ const mutations = {
     state.accounts = payload.data
     state.fetched = true
   },
+  setFetched(state){
+    state.fetched = false
+  }
 }
 
 const actions = {
@@ -52,6 +54,8 @@ const actions = {
   unlinkReddit (context, payload) {
     return ExternalService.redditUNLINK(payload)
     .then(accounts =>{
+      console.log('accounts')
+      console.log(accounts)
       context.commit('setAccounts', accounts)
     })
     .catch(error =>{

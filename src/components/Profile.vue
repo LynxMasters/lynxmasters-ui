@@ -21,12 +21,12 @@
             </div>
           </div>
           <div v-else class='all' v-for="i in 8">
-            <reddit v-if="i < threadsLen && i == 1" :thread="threads[0]"></reddit>
-            <twitch v-if="i <= streamsLen && i == 1" :stream="streams[0]"></twitch>
-            <twitter v-if="i < tweetsLen && i == 1" :tweet="tweets[0]"></twitter>
-            <reddit v-if="i < threadsLen && i >= 1" :thread="threads[i]"></reddit>
-            <twitch v-if="i < streamsLen && i >= 1" :stream="streams[i]"></twitch>
-            <twitter v-if="i < tweetsLen && i >= 1" :tweet="tweets[i]"></twitter>
+            <reddit v-if="i < threadsLen && i == 1&& accounts.reddit.linked" :thread="threads[0]"></reddit>
+            <twitch v-if="i <= streamsLen && i == 1 && accounts.twitch.linked" :stream="streams[0]"></twitch>
+            <twitter v-if="i < tweetsLen && i == 1 && accounts.twitter.linked" :tweet="tweets[0]"></twitter>
+            <reddit v-if="i < threadsLen && i >= 1 && accounts.reddit.linked" :thread="threads[i]"></reddit>
+            <twitch v-if="i < streamsLen && i >= 1 && accounts.twitch.linked" :stream="streams[i]"></twitch>
+            <twitter v-if="i < tweetsLen && i >= 1&& accounts.twitter.linked" :tweet="tweets[i]"></twitter>
           </div>
           </b-tab-item>
           <b-tab-item v-if="accounts.twitter.linked">
@@ -102,16 +102,16 @@ export default {
         return this.$store.getters['accounts/getAccounts']
       },
       tweets(){
-        this.tweetsLen = Object.keys(this.$store.getters['feeds/getTweets']).length
-        return this.$store.getters['feeds/getTweets']
+        this.tweetsLen = Object.keys(this.$store.getters['feeds/getTwitter']).length
+        return this.$store.getters['feeds/getTwitter']
       },
       streams(){
-        this.streamsLen = Object.keys(this.$store.getters['feeds/getStreams']).length
-        return this.$store.getters['feeds/getStreams']
+        this.streamsLen = Object.keys(this.$store.getters['feeds/getTwitch']).length
+        return this.$store.getters['feeds/getTwitch']
       },
       threads(){
-        this.threadsLen = Object.keys(this.$store.getters['feeds/getThreads']).length
-        return this.$store.getters['feeds/getThreads']
+        this.threadsLen = Object.keys(this.$store.getters['feeds/getReddit']).length
+        return this.$store.getters['feeds/getReddit']
       },
     },
     beforeMount() {  
@@ -119,7 +119,9 @@ export default {
     created() {
       this.checkAuthentication()
       this.token = window.localStorage.getItem('token')
-      this.$store.dispatch('feeds/fetchFeeds', this.token)
+      this.$store.dispatch('feeds/fetchReddit', this.token)
+      this.$store.dispatch('feeds/fetchTwitter', this.token)
+      this.$store.dispatch('feeds/fetchTwitch', this.token)
       this.$store.dispatch('accounts/fetchAccounts', this.token)
     },
     updated() {
