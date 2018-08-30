@@ -96,6 +96,7 @@
       },
 
       unlinkTwitch (context) {
+        this.$store.commit('accounts/setFetched')
         this.$store.commit('profiles/setRequested')
         this.$store.dispatch('accounts/unlinkTwitch', this.token)
         this.accounts.twitch.linked = false
