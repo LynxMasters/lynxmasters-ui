@@ -35,7 +35,7 @@ const mutations = {
    state.requested_at = new Date().getTime() + (5*60*1000) 
   },
   setTwitch (state, payload) {
-   state.twitch = payload.data
+   state.twitch = payload.data.streams
    state.twitch.isLoaded = true
    state.requested_at = new Date().getTime() + (5*60*1000) 
   },
