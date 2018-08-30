@@ -117,12 +117,12 @@ export default {
     },
     created() {
       this.checkAuthentication()
-      this.token = window.localStorage.getItem('token'
-
-      this.$store.dispatch('accounts/fetchAccounts', this.token)  
+      this.token = window.localStorage.getItem('token')
+      
       this.$store.dispatch('feeds/fetchReddit', this.token)
       this.$store.dispatch('feeds/fetchTwitter', this.token)
       this.$store.dispatch('feeds/fetchTwitch', this.token)
+      this.$store.dispatch('accounts/fetchAccounts', this.token)
     },
     updated() {
       this.checkAuthentication()
