@@ -32,24 +32,24 @@ const mutations = {
   setReddit (state, payload) {
    state.reddit = payload.data.data.children
    state.reddit.isLoaded = true
-   state.requested_at = new Date().getTime() + (5*60*1000) 
+   state.reddit.requested_at = new Date().getTime() + (5*60*1000) 
   },
   setTwitch (state, payload) {
    state.twitch = payload.data.streams
    state.twitch.isLoaded = true
-   state.requested_at = new Date().getTime() + (5*60*1000) 
+   state.twitch.requested_at = new Date().getTime() + (5*60*1000) 
   },
   setTwitter (state, payload) {
    state.twitter = payload.data
    state.twitter.isLoaded = true
-   state.requested_at = new Date().getTime() + (5*60*1000) 
+   state.twitter.requested_at = new Date().getTime() + (5*60*1000) 
   }
 }
 
 const actions = {
   fetchReddit (context, payload) {
-    console.log(new Date(state.reddit.requested_at).getTime()+ '<' +new Date().getTime())
-    if(new Date(state.reddit.requested_at) < new Date().getTime()){
+    console.log(state.reddit.requested_at+ '<' +new Date().getTime())
+    if(state.reddit.requested_at < new Date().getTime()){
       return ExternalService.feedsReddit(payload)
       .then(feeds => {
         console.log('feeds')
@@ -62,8 +62,8 @@ const actions = {
     }
   },
   fetchTwitch (context, payload) {
-    console.log(new Date(state.twitch.requested_at).getTime()+ '<' +new Date().getTime())
-    if(new Date(state.twitch.requested_at) < new Date().getTime()){
+    console.log(state.twitch.requested_at+ '<' +new Date().getTime())
+    if(state.twitch.requested_at < new Date().getTime()){
       return ExternalService.feedsTwitch(payload)
       .then(feeds => {
         console.log('feeds')
@@ -76,8 +76,8 @@ const actions = {
     }
   },
   fetchTwitter (context, payload) {
-    console.log(new Date(state.twitter.requested_at).getTime()+ '<' +new Date().getTime())
-    if(new Date(state.twitter.requested_at) < new Date().getTime()){
+    console.log(state.twitter.requested_at+ '<' +new Date().getTime())
+    if(state.twitter.requested_at < new Date().getTime()){
       return ExternalService.feedsTwitter(payload)
       .then(feeds => {
         console.log('feeds')

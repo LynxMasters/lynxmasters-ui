@@ -38,9 +38,9 @@ const mutations = {
   },
 
   setTwitch (state, payload) {
-       state.twitch = payload.data
-       state.twitch.isLoaded = true  
-       state.twitch.fetched = true
+   state.twitch = payload.data
+   state.twitch.isLoaded = true  
+   state.twitch.fetched = true
   },
 
   setTwitter (state, payload) {

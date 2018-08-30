@@ -21,8 +21,7 @@
             </div>
           </div>
           <div v-else class='all' v-for="i in 8">
-            <reddit v-if="i < threadsLen && i == 1&& accounts.reddit.linked" :thread="threads[0]"></reddit>
-            <twitch v-if="i <= streamsLen && i == 1 && accounts.twitch.linked" :stream="streams[0]"></twitch>
+            <reddit v-if="i < threadsLen && i == 1 && accounts.reddit.linked" :thread="threads[0]"></reddit>
             <twitter v-if="i < tweetsLen && i == 1 && accounts.twitter.linked" :tweet="tweets[0]"></twitter>
             <reddit v-if="i < threadsLen && i >= 1 && accounts.reddit.linked" :thread="threads[i]"></reddit>
             <twitch v-if="i < streamsLen && i >= 1 && accounts.twitch.linked" :stream="streams[i]"></twitch>
