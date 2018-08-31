@@ -1,5 +1,5 @@
 <template>
-<li>  
+ <div> 
 <article class="media">
   <votes :ups='comment.data.ups' :likes='comment.data.likes'></votes>
   <div class="media-content">
@@ -19,13 +19,11 @@
     </nav>
   </div>
 </article>
-<ul class='tree' v-if="hasChildren">
-      <comments v-for="child in children" :key="child.id" :comment="child"></comments>
-</ul>
-</li>
+<div class='tree' v-if="hasChildren">
+  <comments v-for="child in children" :key="child.id" :comment="child"></comments>
+</div>
+</div>
 </template>
-
-
 <script>
   import RedditVotes from './RedditVotes.vue'
   import ExternalServices from '@/services/externalService'
@@ -64,7 +62,13 @@
 </script>
 <style>
 .tree{
-  padding-left: 20px;
+  padding-left: 50px;
   margin: 6px 0;
+}
+.threadline {
+    display: block;
+    height: 100%;
+    width: 50%;
+    border-right: 2px solid rgb(237, 239, 241);
 }
 </style>

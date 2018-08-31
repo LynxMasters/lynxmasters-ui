@@ -33,9 +33,7 @@
             </div>
           </div>
         </article>
-        <ul class="tree">
           <comments :comment="comment" v-for="comment in comments" :key="comment.id" ></comments>
-        </ul>
       </div>
     </div>
   </div>
