@@ -1,40 +1,70 @@
 <template>
+<li>  
 <article class="media">
-  <votes></votes>
+  <votes :ups='comment.data.ups' :likes='comment.data.likes'></votes>
   <div class="media-content">
-    <div class="content">
+  <div class="content">
       <p>
-        <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
+        <small class="creator">{{comment.data.author}}</small>
         <br>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+        <p>{{comment.data.body}}</p>
       </p>
     </div>
     <nav class="level is-mobile">
       <div class="level-left">
-        <a class="level-item">
-          <span class="icon is-small"><i class="fas fa-reply"></i></span>
-        </a>
-        <a class="level-item">
-          <span class="icon is-small"><i class="fas fa-retweet"></i></span>
-        </a>
-        <a class="level-item">
-          <span class="icon is-small"><i class="fas fa-heart"></i></span>
+        <a class="level-item has-text-grey">
+          <span class="icon is-small"><i class="fas fa-comment">Reply</i></span>
         </a>
       </div>
     </nav>
   </div>
 </article>
+<ul class='tree' v-if="hasChildren">
+      <comments v-for="child in children" :key="child.id" :comment="child"></comments>
+</ul>
+</li>
 </template>
+
+
 <script>
   import RedditVotes from './RedditVotes.vue'
   import ExternalServices from '@/services/externalService'
   export default{
-
+    name: 'comments',
     components:{
       'votes': RedditVotes,
     },
     props:{
       comment:{}
+    },
+    data(){
+      return{
+        children: null,
+        hasChildren: false
+      }
+    },
+    mounted(){
+      console.log('comment')
+      console.log(this.comment)
+      this.unwrapData()
+    },
+    methods:{
+      unwrapData(){
+        if(this.comment.data.replies != ''){
+          if(!this.comment.data.replies.data.hasOwnProperty('name')){
+          this.children = this.comment.data.replies.data.children
+          this.hasChildren = true
+          }
+          console.log('child')
+          console.log(this.children)
+        }
+      }
     }
   }
 </script>
+<style>
+.tree{
+  padding-left: 20px;
+  margin: 6px 0;
+}
+</style>

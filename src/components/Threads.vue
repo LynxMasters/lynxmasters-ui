@@ -7,7 +7,7 @@
       <div class="level-left">
         <a class="level-item has-text-grey" @click="showComments = true">
           <span class="icon is-small"><i class="fas fa-comment">{{thread.data.num_comments}}</i></span>
-          <commentsmodal :showComments="showComments" :thread="thread" v-show='showComments' @close="showComments = false"></commentsmodal>
+          <commentsmodal :thread="thread" v-if='showComments' @close="showComments = false"></commentsmodal>
         </a>
         <a class="level-item has-text-grey">
           <span class="icon is-small padLeft"><i class="fas fa-share"></i></span>

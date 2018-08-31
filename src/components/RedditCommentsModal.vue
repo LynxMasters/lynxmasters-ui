@@ -33,7 +33,9 @@
             </div>
           </div>
         </article>
-        <comments v-for="comment in comments" :key="comment.id" v-if="showComments"></comments>
+        <ul class="tree">
+          <comments :comment="comment" v-for="comment in comments" :key="comment.id" ></comments>
+        </ul>
       </div>
     </div>
   </div>
@@ -45,7 +47,6 @@ import RedditVotes from './RedditVotes.vue'
 import RedditComments from './RedditComments.vue'
 import ExternalServices from '@/services/externalService'
 export default {
-  name: 'CommentsModal',
   components:{
     'comments':RedditComments,
     'redditcontent': RedditContent,
@@ -54,7 +55,6 @@ export default {
 
   props:{
     thread:{},
-    showComments: null,
   },
   data(){
     return{
@@ -68,9 +68,12 @@ export default {
   methods:{
     async fetchComments(){
       await ExternalServices.commentsReddit(this.token, this.thread.data.id)
-      .then(res => {
-        console.log(res)
-        this.comments = res.data[1].data.children 
+      .then(res => { 
+        return res
+      })
+      .then(info =>{
+        this.comments = info.data[1].data.children
+        console.log(this.comments)
       })
     }
   },
@@ -133,4 +136,5 @@ export default {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
+
 </style>
