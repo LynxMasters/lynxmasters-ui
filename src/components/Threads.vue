@@ -7,7 +7,7 @@
       <div class="level-left">
         <a class="level-item has-text-grey" @click="showComments = true">
           <span class="icon is-small"><i class="fas fa-comment">{{thread.data.num_comments}}</i></span>
-          <commentsmodal :thread="thread" v-show='showComments' @close="showComments = false"></commentsmodal>
+          <commentsmodal :showComments="showComments" :thread="thread" v-show='showComments' @close="showComments = false"></commentsmodal>
         </a>
         <a class="level-item has-text-grey">
           <span class="icon is-small padLeft"><i class="fas fa-share"></i></span>
@@ -33,15 +33,11 @@ import CommentsModal from './RedditCommentsModal.vue'
     },
     props: {
      thread:{},
-     isComment: false,
     },
     data() {
         return {
-          likes: this.thread.data.likes,
-          mediaURL: null,
           mediaALT: null,
           showComments: false,
-          img: false
         }
     },
     created(){

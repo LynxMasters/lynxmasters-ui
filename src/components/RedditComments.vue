@@ -33,27 +33,8 @@
     components:{
       'votes': RedditVotes,
     },
-
     props:{
-      id36:{}
-    },
-    data(){
-      return{
-        comments:{}, 
-      }
-    },
-    mounted(){
-      //this.fetchComments()
-      this.token = window.localStorage.getItem('token')
-    },
-    methods:{
-      async fetchComments(){
-        await ExternalServices.commentsReddit(this.token, this.id36)
-        .then(res => {
-          console.log(res)
-          this.comments = res.data 
-        })
-      }
-    },
+      comment:{}
+    }
   }
 </script>

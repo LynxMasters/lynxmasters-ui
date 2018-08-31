@@ -23,7 +23,7 @@
           <div class="media-content">
             <div class="field">
               <p class="control">
-                <textarea class="textarea" placeholder="Add a comment...">{{thread.data.url}}</textarea>
+                <textarea class="textarea" placeholder="Add a comment..."></textarea>
               </p>
             </div>
             <div class="field">
@@ -33,7 +33,7 @@
             </div>
           </div>
         </article>
-        <comments :id36="thread.data.id"></comments>
+        <comments v-for="comment in comments" :key="comment.id" v-if="showComments"></comments>
       </div>
     </div>
   </div>
@@ -51,20 +51,28 @@ export default {
     'redditcontent': RedditContent,
     'votes': RedditVotes
   },
+
   props:{
     thread:{},
+    showComments: null,
   },
-  mounted(){
-    this.token = window.localStorage.getItem('token')
-    //this.fetchComments()
+  data(){
+    return{
+      comments:{},     
+    }
+  },
+  created(){
+    this.token = window.localStorage.getItem('token')     
+    this.fetchComments() 
   },
   methods:{
     async fetchComments(){
-      await ExternalServices.redditComments(this.token, comment.data.permalink)
+      await ExternalServices.commentsReddit(this.token, this.thread.data.id)
       .then(res => {
-        this.comments = res.data
+        console.log(res)
+        this.comments = res.data[1].data.children 
       })
-    }  
+    }
   },
 }
 </script>
