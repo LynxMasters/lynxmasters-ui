@@ -32,7 +32,9 @@ const mutations = {
 
   setReddit (state, payload) {
    state.reddit = payload.data
+   if(payload.data.hasOwnProperty('icon_img')){
    state.reddit.icon_img = payload.data.icon_img.replace(/(amp;)+/g, "")
+   }
    state.reddit.isLoaded = true
    state.reddit.fetched = true   
   },
@@ -45,7 +47,9 @@ const mutations = {
 
   setTwitter (state, payload) {
    state.twitter = payload.data
+   if(payload.data.hasOwnProperty('profile_image_url_https')){
    state.twitter.profile_image_url_https = payload.data.profile_image_url_https.replace(/_normal/g, "")
+   }
    state.twitter.isLoaded = true
    state.twitter.fetched = true   
   },
