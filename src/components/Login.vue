@@ -179,7 +179,10 @@
             } else {
               this.isLoading = true
               this.$store.dispatch('accounts/fetchAccounts', res.data.token)
-              this.$store.dispatch('feeds/fetchFeeds', res.data.token)
+              this.$store.dispatch('feeds/fetchReddit', res.data.token)
+              this.$store.dispatch('feeds/fetchTwitch', res.data.token)
+              this.$store.dispatch('feeds/fetchTwitter', res.data.token)
+
               setTimeout(() => {
                 this.$router.push('Profile')
               }, 3000)
