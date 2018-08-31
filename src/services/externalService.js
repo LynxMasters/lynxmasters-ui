@@ -27,12 +27,28 @@ export default{
   return Api().post('unlink/reddit', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
   },
 
-  profiles(jwt){
-  return Api().get('profiles', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  profilesReddit(jwt){
+  return Api().get('profiles/reddit', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
   },
 
-  feeds(jwt){
-  return Api().get('feeds', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  profilesTwitch(jwt){
+  return Api().get('profiles/twitch', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  },
+
+  profilesTwitter(jwt){
+  return Api().get('profiles/twitter', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  },
+
+  feedsReddit(jwt){
+  return Api().get('feeds/Reddit', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  },
+
+  feedsTwitch(jwt){
+  return Api().get('feeds/Twitch', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  },
+
+  feedsTwitter(jwt){
+  return Api().get('feeds/Twitter', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
   },
 
   friends(jwt){

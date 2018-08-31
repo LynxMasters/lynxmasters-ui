@@ -95,6 +95,7 @@
         window.location = 'http://localhost:8081/auth/reddit?token=' + this.token
       },
       unlinkReddit (context) {
+        this.$store.commit('accounts/setFetched')
         this.$store.commit('profiles/setRequested')
         this.$store.dispatch('accounts/unlinkReddit', this.token)
         this.accounts.reddit.linked = false
