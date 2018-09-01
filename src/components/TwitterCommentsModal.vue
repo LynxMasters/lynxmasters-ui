@@ -1,8 +1,8 @@
 <template>
 <transition name="modal">
-  <div class="modal-mask">
-    <div class="modal-wrapper">
-      <div class="modal-container">
+  <div class="modal-mask-twitter">
+    <div class="modal-wrapper-twitter">
+      <div class="modal-container-twitter">
         <article class="media">
           <avatar :avatar="tweet.user.profile_image_url"></avatar>
           <div class="media-content">
@@ -58,7 +58,7 @@ export default {
 }
 </script>
 <style>
-.modal-mask {
+.modal-mask-twitter {
   position: fixed;
   z-index: 9998;
   top: 0;
@@ -70,12 +70,12 @@ export default {
   transition: opacity .3s ease;
 }
 
-.modal-wrapper {
+.modal-wrapper-twitter {
   display: table-cell;
   vertical-align: middle;
 }
 
-.modal-container {
+.modal-container-twitter {
   width: 40%;
   height: 40%;
   margin: 0px auto;
@@ -87,24 +87,24 @@ export default {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-.modal-header h3 {
+.modal-header-twitter h3 {
   margin-top: 0;
   color: #42b983;
 }
 
-.modal-body {
+.modal-body-twitter {
   margin: 20px 0;
 }
 
-.modal-default-button {
+.modal-default-button-twitter {
   float: right;
 }
 
-.modal-enter {
+.modal-enter-twitter {
   opacity: 0;
 }
 
-.modal-leave-active {
+.modal-leave-active-twitter {
   opacity: 0;
 }
 
