@@ -82,16 +82,4 @@ export default {
 </script>
 <style>
 
-.reddit-content{
-  padding: 0px 50px;
-  background-color: white;
-}
-.bg-off-white{
-  background-color: #f3f3f3;
-}
-.bg-black{
-  background-color: #000000;
-  overflow-y: auto;
-}
-
 </style>

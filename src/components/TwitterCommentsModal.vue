@@ -1,22 +1,16 @@
 <template>
-<transition name="modal">
-  <div class="modal-mask-twitter">
-    <div class="modal-wrapper-twitter">
-      <div class="modal-container-twitter">
-         <div class="modal-header has-text-centered">
-            <slot name="header">
-              Reply to {{tweet.user.name}}
-            </slot>
-        </div>
-        <article class="media">
+<div class="modal is-active">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Reply to {{tweet.user.name}}</p>
+      <button class="delete" v-on:click.stop="$emit('close')"></button>
+    </header>
+    <section class="modal-card-body">
+        <article class="media bg-white">
           <avatar :avatar="tweet.user.profile_image_url"></avatar>
           <div class="media-content">
             <twittercontent :tweet="tweet" :isTweet="false"></twittercontent>
-            <nav class="level is-mobile"> 
-            </nav>
-          </div>
-          <div class="media-right">
-            <button class="delete" v-on:click.stop="$emit('close')"></button>
           </div>
         </article>
         <article class="media">
@@ -26,17 +20,14 @@
                 <textarea class="textarea" placeholder="Tweet your reply"></textarea>
               </p>
             </div>
-            <div class="field">
-              <p class="control">
-              <button class="button level-item">Reply</button>
-              </p>
-            </div>
           </div>
         </article>
-      </div>
-    </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success">Reply</button>
+    </footer>
   </div>
-</transition>
+</div>
 </template>
 <script>
 import TwitterContent from './TwitterContent.vue'
