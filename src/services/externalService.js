@@ -50,7 +50,9 @@ export default{
   feedsTwitter(jwt){
   return Api().get('feeds/Twitter', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
   },
-
+  commentsReddit(jwt, id36){
+  return Api().get('comments/reddit?id36='+id36, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  },
   friends(jwt){
   return Api().get('freinds', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
   },
