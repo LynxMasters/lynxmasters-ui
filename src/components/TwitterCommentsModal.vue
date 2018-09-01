@@ -1,0 +1,117 @@
+<template>
+<transition name="modal">
+  <div class="modal-mask">
+    <div class="modal-wrapper">
+      <div class="modal-container">
+        <article class="media">
+          <avatar :avatar="tweet.user.profile_image_url"></avatar>
+          <div class="media-content">
+            <twittercontent :tweet="tweet" :isTweet="false"></twittercontent>
+            <nav class="level is-mobile"> 
+            </nav>
+          </div>
+          <div class="media-right">
+            <button class="delete" v-on:click.stop="$emit('close')"></button>
+          </div>
+        </article>
+        <article class="media">
+          <div class="media-content">
+            <div class="field">
+              <p class="control">
+                <textarea class="textarea" placeholder="Tweet your reply"></textarea>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control">
+              <button class="button">Reply</button>
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</transition>
+</template>
+<script>
+import TwitterContent from './TwitterContent.vue'
+import TwitterAvatar from './TwitterAvatar.vue'
+import ExternalServices from '@/services/externalService'
+export default {
+  components:{
+    'twittercontent': TwitterContent,
+    'avatar': TwitterAvatar
+  },
+
+  props:{
+    tweet:{},
+  },
+  data(){
+    return{     
+    }
+  },
+  created(){
+    this.token = window.localStorage.getItem('token')     
+  },
+  methods:{
+  },
+}
+</script>
+<style>
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  width: 40%;
+  height: 40%;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.modal-header h3 {
+  margin-top: 0;
+  color: #42b983;
+}
+
+.modal-body {
+  margin: 20px 0;
+}
+
+.modal-default-button {
+  float: right;
+}
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+</style>

@@ -43,7 +43,7 @@
           <b-icon class="fab fa-twitch"></b-icon>
           <span> Twitch</span>
           </template>
-          <div v-if="!streams.isLoaded" class='all has-text-center'>
+          <div v-if="!streams.isLoaded && streamsLen > 0" class='all has-text-center'>
             <loading></loading>
           </div>
           <twitch v-else :stream="stream" v-for="stream in streams" :key="stream.id"></twitch>
