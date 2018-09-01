@@ -3,34 +3,32 @@
   <div class="modal-mask-twitter">
     <div class="modal-wrapper-twitter">
       <div class="modal-container-twitter">
-         <div class="modal-header has-text-centered">
+        <div class="modal-header has-text-centered">
             <slot name="header">
-              Reply to {{tweet.user.name}}
+              Quote Tweet
             </slot>
-        </div>
+          </div>
         <article class="media">
+          <div class="media-content">
+            <div class="field">
+              <p class="control">
+                <input class="input is-rounded" type="text" placeholder="Add a comment...">
+              </p>
+            </div>
+          </div>
+        </article>
+        <article class="media bg-white">
           <avatar :avatar="tweet.user.profile_image_url"></avatar>
           <div class="media-content">
             <twittercontent :tweet="tweet" :isTweet="false"></twittercontent>
             <nav class="level is-mobile"> 
+              <div class="level-left">
+                <button class="button">Retweet</button>
+              </div>
             </nav>
           </div>
           <div class="media-right">
             <button class="delete" v-on:click.stop="$emit('close')"></button>
-          </div>
-        </article>
-        <article class="media">
-          <div class="media-content">
-            <div class="field">
-              <p class="control">
-                <textarea class="textarea" placeholder="Tweet your reply"></textarea>
-              </p>
-            </div>
-            <div class="field">
-              <p class="control">
-              <button class="button level-item">Reply</button>
-              </p>
-            </div>
           </div>
         </article>
       </div>
@@ -82,7 +80,7 @@ export default {
 
 .modal-container-twitter {
   width: 40%;
-  height: 40%;
+  height: 30%;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
@@ -117,6 +115,12 @@ export default {
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+.twitter-light-blue{
+  background-color: #e8f5fd;
+}
+.bg-white{
+  background-color: #ffff;
 }
 
 </style>

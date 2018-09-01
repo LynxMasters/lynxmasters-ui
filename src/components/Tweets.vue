@@ -10,7 +10,7 @@
           <comments :tweet="tweet" v-if='showComments' @close="showComments = false"></comments>
         </a>
         <a class="level-item" @click="retweet">
-          <span class="icon is-small padLeft padRight"><i v-bind:class="{'has-text-success': isRetweet, 'has-text-grey': !isRetweet}" class="fas fa-retweet">{{tweet.retweet_count}}</i></span>
+          <span class="icon is-small padLeft padRight"><i v-bind:class="{'has-text-success': isRetweet, 'has-text-grey': !isRetweet}" class="fas fa-retweet">{{tweet.retweet_count}}</i></span><retweets :tweet="tweet" v-if='showRetweet' @close="showRetweet = false"></retweets>
         </a>
         <a class="level-item" @click="favorite">
           <span class="icon is-small padLeft"><i v-bind:class="{'has-text-danger fas fa-heart': isFavorite, 'has-text-grey': !isFavorite}" class="far fa-heart">{{tweet.favorite_count}}</i></span>
@@ -28,11 +28,13 @@
   import TwitterAvatar from './TwitterAvatar.vue'
   import TwitterContent from './TwitterContent.vue'
   import TwitterCommentsModal from './TwitterCommentsModal'
+  import TwitterRetweetModal from './TwitterRetweetModal'
  export default {
     components:{
       'avatar': TwitterAvatar,
       'twittercontent': TwitterContent,
-      'comments': TwitterCommentsModal
+      'comments': TwitterCommentsModal,
+      'retweets': TwitterRetweetModal
     },
     props: {
      tweet:{}
@@ -40,6 +42,7 @@
     data() {
         return {
           showComments: false,
+          showRetweet: false,
           isFavorite: this.tweet.favorited,
           isRetweet: this.tweet.retweeted,
         }
@@ -51,6 +54,7 @@
        if(!this.isRetweet){
           this.isRetweet = true
           this.tweet.retweet_count +=1
+          this.showRetweet = true
           
         }else{
           this.isRetweet = false
