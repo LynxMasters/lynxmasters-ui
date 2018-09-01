@@ -1,9 +1,13 @@
 <template>
-<transition name="modal">
-  <div class="modal-mask">
-    <div class="modal-wrapper">
-      <div class="modal-container">
-        <article class="media">
+<div class="modal is-active">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">r/{{thread.data.subreddit}}</p>
+      <button class="delete" v-on:click.stop="$emit('close')"></button>
+    </header>
+    <section class="modal-card-body">
+      <article class="media">
           <votes :ups="thread.data.ups" :likes="thread.data.likes"></votes>
           <div class="media-content">
             <redditcontent :thread="thread.data"></redditcontent>
@@ -14,9 +18,6 @@
                 </a>
               </div>
             </nav>
-          </div>
-          <div class="media-right">
-            <button class="delete" v-on:click.stop="$emit('close')"></button>
           </div>
         </article>
         <article class="media">
@@ -33,11 +34,13 @@
             </div>
           </div>
         </article>
-          <comments :comment="comment" v-for="comment in comments" :key="comment.id" ></comments>
-      </div>
-    </div>
+        <comments :comment="comment" v-for="comment in comments" :key="comment.id" ></comments>
+    </section>
+    <footer class="modal-card-foot">
+  
+    </footer>
   </div>
-</transition>
+</div>
 </template>
 <script>
 import RedditContent from './RedditContent.vue'
@@ -78,61 +81,17 @@ export default {
 }
 </script>
 <style>
-.modal-mask {
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, .5);
-  display: table;
-  transition: opacity .3s ease;
-}
 
-.modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
+.reddit-content{
+  padding: 0px 50px;
+  background-color: white;
 }
-
-.modal-container {
-  width: 95%;
-  height: 85%;
-  margin: 0px auto;
-  padding: 20px 30px;
-  background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-  transition: all .3s ease;
-  font-family: Helvetica, Arial, sans-serif;
+.bg-off-white{
+  background-color: #f3f3f3;
+}
+.bg-black{
+  background-color: #000000;
   overflow-y: auto;
-}
-
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
-}
-
-.modal-body {
-  margin: 20px 0;
-}
-
-.modal-default-button {
-  float: right;
-}
-
-.modal-enter {
-  opacity: 0;
-}
-
-.modal-leave-active {
-  opacity: 0;
-}
-
-.modal-enter .modal-container,
-.modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
 }
 
 </style>
