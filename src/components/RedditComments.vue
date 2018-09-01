@@ -50,7 +50,9 @@
       unwrapData(){
         if(this.comment.data.replies != ''){
           if(!this.comment.data.replies.data.hasOwnProperty('name')){
+
           this.children = this.comment.data.replies.data.children
+          this.children.pop()
           this.hasChildren = true
           }
           console.log('child')
