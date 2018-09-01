@@ -13,7 +13,7 @@
     <nav class="level is-mobile">
       <div class="level-left">
         <a class="level-item has-text-grey">
-          <span class="icon is-small"><i class="fas fa-comment">Reply</i></span>
+          <span class="icon is-small"><i class="fas fa-comment"><small>Reply</small></i></span>
         </a>
       </div>
     </nav>
