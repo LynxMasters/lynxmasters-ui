@@ -1,7 +1,7 @@
 <template>
 <div class="modal is-active">
   <div class="modal-background"></div>
-  <div class="modal-card">
+  <div class="modal-card reddit-content">
     <header class="modal-card-head">
       <p class="modal-card-title">r/{{thread.data.subreddit}}</p>
       <button class="delete" v-on:click.stop="$emit('close')"></button>
@@ -81,5 +81,7 @@ export default {
 }
 </script>
 <style>
-
+  .reddit-content{
+    width: 50%;
+  }
 </style>
