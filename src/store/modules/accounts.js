@@ -1,7 +1,17 @@
 import ExternalService from '@/services/externalService'
 import UserService from '@/services/UserService'
 const state = {
-  accounts: {},
+  accounts: {
+    twitter:{
+      linked: false
+    },
+    twitch:{
+      linked: false
+    },
+    reddit:{
+      linked: false
+    },
+  },
   fetched: false
 }
 
