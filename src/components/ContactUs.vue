@@ -70,7 +70,7 @@
 
             <div class="field is-grouped">
               <div class="control">
-                <button class="button is-link" v-on:click="">Submit</button>
+                <button class="button is-link" v-on:click="submitForm()">Submit</button>
               </div>
               <div class="control">
                 <button class="button" v-on:click="clearForm()">Cancel</button>
@@ -104,9 +104,22 @@
           this.contactCard.contactEmail = ''
           this.contactCard.contactSubject = ''
           this.contactCard.contactMessage = ''
-        }
+        },
+        submitForm() {
+          this.$snackbar.open({
+            message: 'An email has been sent to Lynxmasters.info we will be in touch soon!',
+            type: 'is-warning',
+            position: 'is-top',
+            actionText: 'GOT IT!',
+            indefinite: true,
+          }),
+          this.contactCard.contactName = ''
+          this.contactCard.contactEmail = ''
+          this.contactCard.contactSubject = ''
+          this.contactCard.contactMessage = ''
       }
     }
+  }
 </script>
 
 <style scoped>

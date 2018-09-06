@@ -11,9 +11,9 @@
       </p>
 
       <p>
-        <a class="icon link social-icons" href="#"><i class="fab fa-linkedin fa-2x"></i></a>
-        <a class="icon link social-icons" href="#"><i class="fab fa-facebook-square fa-2x"></i></a>
-        <a class="icon link social-icons" href="#"><i class="fab fa-instagram fa-2x"></i></a>
+        <a class="icon link social-icons" href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+        <a class="icon link social-icons" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a>
+        <a class="icon link social-icons" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
       </p>
 
       <!-- Legal Disclaimer Modal -->
