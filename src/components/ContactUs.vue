@@ -86,37 +86,55 @@
 </template>
 
 <script>
-    export default {
-      name: "ContactUs",
-      data () {
-        return {
-          contactCard: {
-            contactName: '',
-            contactEmail: '',
-            contactSubject: '',
-            contactMessage: '',
-          }
+  import _ from 'lodash'
+  export default {
+    name: "ContactUs",
+    data() {
+      return {
+        contactCard: {
+          contactName: '',
+          contactEmail: '',
+          contactSubject: '',
+          contactMessage: '',
         }
+      }
+    },
+    methods: {
+      clearForm() {
+        this.contactCard.contactName = ''
+        this.contactCard.contactEmail = ''
+        this.contactCard.contactSubject = ''
+        this.contactCard.contactMessage = ''
       },
-      methods:{
-        clearForm() {
+      errorMsg(message) {
+        this.$toast.open({
+          duration: 3500,
+          message: message,
+          position: 'is-top',
+          type: 'is-danger'
+        })
+      },
+      successAlert(message) {
+        this.$toast.open({
+          duration: 3500,
+          message: message,
+          position: 'is-top',
+          type: 'is-success'
+        })
+      },
+      submitForm() {
+        if (!_.isEmpty(this.contactCard.contactName)
+          && !_.isEmpty(this.contactCard.contactEmail)
+          && !_.isEmpty(this.contactCard.contactSubject)
+          && !_.isEmpty(this.contactCard.contactMessage)) {
+          this.successAlert("Your email has been sent to LynxMasters")
           this.contactCard.contactName = ''
           this.contactCard.contactEmail = ''
           this.contactCard.contactSubject = ''
           this.contactCard.contactMessage = ''
-        },
-        submitForm() {
-          this.$snackbar.open({
-            message: 'An email has been sent to Lynxmasters.info we will be in touch soon!',
-            type: 'is-warning',
-            position: 'is-top',
-            actionText: 'GOT IT!',
-            indefinite: true,
-          }),
-          this.contactCard.contactName = ''
-          this.contactCard.contactEmail = ''
-          this.contactCard.contactSubject = ''
-          this.contactCard.contactMessage = ''
+        } else {
+          this.errorMsg("Please fill out all required fields")
+        }
       }
     }
   }
