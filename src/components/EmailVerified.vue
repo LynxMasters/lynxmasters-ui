@@ -1,41 +1,38 @@
 <template>
   <div class="verification">
-    <section class="hero is-info">
+    <section class="hero is-light is-medium foot-fill">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">
-            Lynxmasters Verification
-          </h1>
-        </div>
-      </div>
-    </section>
-    <div class="columns is-centered">
-      <div class="column is-half">
-        <div class="card">
-          <div class="card-content">
-            <p class="title has-text-centered">
-              Hold tight. We're just verifying everything!
-            </p>
-          </div>
-          <div class="card-content has-text-centered">
-            <div class="circle-loader"
-                v-bind:class="isVerified">
-              <div class="checkmark draw"
-                v-bind:class="display"></div>
-            </div>
-            <div>
-              <div v-if="verified">
-                <p>
-                  <span class="tag is-warning is-large animated pulse">
-                    Thank you {{ user.firstName + ' ' +  user.lastName }}!
-                  </span>
-                </p>
+          <div class="columns is-centered">
+            <div class="column is-half">
+              <div class="card">
+                <div class="card-content">
+                  <p class="title has-text-centered">
+                    Hold tight...<br> We're just verifying everything!
+                  </p>
+                </div>
+                <div class="card-content has-text-centered">
+                  <div class="circle-loader"
+                       v-bind:class="isVerified">
+                    <div class="checkmark draw"
+                         v-bind:class="display"></div>
+                  </div>
+                  <div>
+                    <div v-if="verified">
+                      <p>
+                        <span class="tag is-warning is-large animated pulse">
+                          Thank you {{ user.firstName + ' ' +  user.lastName }}!
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -105,5 +102,8 @@
 <style scoped type="scss">
   .no-display {
     display: block!important;
+  }
+  .foot-fill {
+    margin-bottom: -5rem;
   }
 </style>
