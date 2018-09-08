@@ -58,19 +58,18 @@
                   </div>
                 </div>
               </div>
-               <div class="card-content" v-if="isLoading">
-                <div class="content has-text-centered">
-                  <loading-progress
-                    :progress="progress"
-                    :indeterminate="indeterminate"
-                    :counter-clockwise="counterClockwise"
-                    :hide-background="hideBackground"
-                    size="64"
-                    rotate
-                    fillDuration="2"
-                    rotationDuration="1"
-                  />
-                </div>
+               <div class="has-text-centered" v-if="isLoading">
+                 <loading-progress
+                   :progress="progress"
+                   :indeterminate="indeterminate"
+                   :counter-clockwise="counterClockwise"
+                   :hide-background="hideBackground"
+                   size="128"
+                   rotate
+                   fillDuration="2"
+                   rotationDuration="1"
+                 />
+                <div class="title is-5" style="padding-bottom: 2rem;">Loading your content....</div>
               </div>
             </div>
           </div>
@@ -186,7 +185,7 @@
               setTimeout(() => {
                 this.$router.push('Profile')
               }, 3000)
-              
+
             }
           }
         })
