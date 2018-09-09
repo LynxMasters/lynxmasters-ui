@@ -31,10 +31,6 @@
                     <div class="content has-text-centered">
 
                       <div class="field">
-                        <label class="label">{{user.firstName}} {{user.lastName}}</label>
-                      </div>
-
-                      <div class="field">
                         <label class="label">Followers: 333</label>
                       </div>
                     </div>
@@ -65,7 +61,7 @@
                         type="is-boxed">
                   <b-tab-item>
                     <template slot="header">
-                      <b-icon class="fas fa-info"></b-icon>
+                      <b-icon class="fas fa-info fa-xs"></b-icon>
                       <span> Personal Info</span>
                     </template>
                     <div class="card">
@@ -173,7 +169,7 @@
                   </b-tab-item>
                   <b-tab-item>
                     <template slot="header">
-                      <b-icon class="fas fa-key"></b-icon>
+                      <b-icon class="fas fa-key fa-xs"></b-icon>
                       <span> Password</span>
                     </template>
                     <div class="card">
@@ -225,7 +221,7 @@
                   </b-tab-item>
                   <b-tab-item>
                     <template slot="header">
-                      <b-icon class="fas fa-at"></b-icon>
+                      <b-icon class="fas fa-at fa-xs"></b-icon>
                       <span> Email</span>
                     </template>
                     <div class="card">
