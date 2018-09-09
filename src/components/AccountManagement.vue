@@ -283,7 +283,6 @@
         async getUserAccountInfo() {
           await UserService.fetchUser(this.token).then(res => {
             this.user = res.data
-            console.log(res.data)
           })
         },
         checkAuthentication() {

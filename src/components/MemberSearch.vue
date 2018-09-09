@@ -123,7 +123,6 @@
       async getUsers() {
         this.dataLoaded = false
         const response = await UserService.fetchUsers()
-        // console.log(response.data)
         this.lynxUsers = response.data.users
         this.dataLoaded = true
       },
