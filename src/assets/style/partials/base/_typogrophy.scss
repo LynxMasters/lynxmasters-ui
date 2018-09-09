@@ -94,3 +94,11 @@ picture {
   margin: 0;
   max-width: 100%;
 }
+
+a {
+  color: $link-color;
+
+  &:hover {
+    color: darken($link-color, 10);
+  }
+}
