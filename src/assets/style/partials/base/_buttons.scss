@@ -1,0 +1,62 @@
+@mixin makeButton($color: $light-blue) {
+  appearance: none;
+  border: 0;
+  color: $white;
+  background-color: $color;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $base-font-family;
+  -webkit-font-smoothing: antialiased;
+  padding: 10px 48px;
+  text-decoration: none;
+  transition: background-color $base-duration $base-timing;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    background-color: mix(black, $color, 40%);
+    color: #fff;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.lynx-btn {
+  @include makeButton()
+}
+
+.is-primary {
+  color: $primary-color;
+}
+
+.button.is-primary {
+  background-color: $primary-color;
+
+  &:hover {
+    background-color: darken($primary-color, 10);
+  }
+}
+
+.is-link {
+  color: $link-color;
+}
+
+.button.is-link {
+  background-color: $link-color;
+
+  &:hover {
+    background-color: darken($link-color, 10);
+  }
+}
+
+.tabs li.is-active a {
+  border-bottom-color: $link-color;
+  color: $link-color;
+}
+
+

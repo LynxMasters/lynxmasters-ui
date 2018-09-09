@@ -15,35 +15,49 @@
           <b-icon class="fas fa-align-justify"></b-icon>
           <span> All</span>
           </template>
-          <div class='all' v-for="i in 50">
-            <reddit v-if="i < threadsLen && i == 1" :thread="threads[0]"></reddit>
-            <twitch v-if="i <= streamsLen && i == 1" :stream="streams[0]"></twitch>
-            <twitter v-if="i < tweetsLen && i == 1" :tweet="tweets[0]"></twitter>
-            <reddit v-if="i < threadsLen && i >= 1" :thread="threads[i]"></reddit>
-            <twitch v-if="i < streamsLen && i >= 1" :stream="streams[i]"></twitch>
-            <twitter v-if="i < tweetsLen && i >= 1" :tweet="tweets[i]"></twitter>
+           <div class="column is-12" v-if="!tweets.isLoaded || !streams.isLoaded || !threads.isLoaded" >
+            <div class="content has-text-centered">
+                <loading></loading>
+            </div>
+          </div>
+          <div v-else class='all' v-for="i in 8">
+            <reddit v-if="i < threads.len && i == 1 && accounts.reddit.linked" :thread="threads[0]"></reddit>
+            <twitch v-if="i < streams.len && i == 1 && accounts.twitch.linked" :stream="streams[0]"></twitch>
+            <twitter v-if="i < tweets.len && i == 1 && accounts.twitter.linked" :tweet="tweets[0]"></twitter>
+            <reddit v-if="i < threads.len && i >= 1 && accounts.reddit.linked" :thread="threads[i]"></reddit>
+            <twitch v-if="i < streams.len && i >= 1 && accounts.twitch.linked" :stream="streams[i]"></twitch>
+            <twitter v-if="i < tweets.len && i >= 1&& accounts.twitter.linked" :tweet="tweets[i]"></twitter>
           </div>
           </b-tab-item>
-          <b-tab-item v-if="accounts.twitter.oauth_token != null">
+          <b-tab-item v-if="accounts.twitter.linked">
           <template slot="header">
           <b-icon class="fab fa-twitter"></b-icon>
           <span> Twitter</span>
           </template>
-          <twitter :tweet="tweet" v-for="tweet in tweets" :key="tweet.id"></twitter>
+          <div v-if="!tweets.isLoaded" class='all has-text-center'>
+            <loading></loading>
+          </div>
+          <twitter v-else :tweet="tweet" v-for="tweet in tweets" :key="tweet.id"></twitter> 
           </b-tab-item>
-          <b-tab-item v-if="accounts.twitch.access_token != null">
+          <b-tab-item v-if="accounts.twitch.linked">
           <template slot="header">
           <b-icon class="fab fa-twitch"></b-icon>
           <span> Twitch</span>
           </template>
-          <twitch :stream="stream" v-for="stream in streams" :key="stream.id"></twitch>
+          <div v-if="!streams.isLoaded" class='all has-text-center'>
+            <loading></loading>
+          </div>
+          <twitch v-else :stream="stream" v-for="stream in streams" :key="stream.id"></twitch>
           </b-tab-item>
-          <b-tab-item v-if="accounts.reddit.access_token != null">
+          <b-tab-item v-if="accounts.reddit.linked">
           <template slot="header">
           <b-icon class="fab fa-reddit"></b-icon>
           <span> Reddit</span>
           </template>
-          <reddit :thread="thread" v-for="thread in threads" :key="thread.id">
+          <div v-if="!threads.isLoaded" class='all has-text-center'>
+            <loading></loading>
+          </div>
+          <reddit v-else :thread="thread" v-for="thread in threads" :key="thread.id">
           </reddit>
           </b-tab-item>
           </b-tabs>
@@ -62,6 +76,7 @@ import ProfileCard from './ProfileAvatar.vue'
 import Twitter from './Tweets.vue'
 import Reddit from './Threads.vue'
 import Twitch from './Streams.vue'
+import Loading from './Loading.vue'
 
 
 export default {
@@ -71,55 +86,44 @@ export default {
       'twitter': Twitter,
       'reddit': Reddit,
       'twitch': Twitch,
+      'loading': Loading
     },
     name: 'Profile',
     data() {
       return {
         activeTab: 0,
-        accounts:{},
-        tweets: {},
-        threads:{},
-        streams:{},
-        tweetsLen: 0,
-        threadsLen: 0,
-        streamsLen: 0,
-        
       }
     },
-    mounted() {
-      this.token = window.localStorage.getItem('token')
-      this.getAccountInfo()
-      
+    computed: {
+      accounts(){
+        return this.$store.getters['accounts/getAccounts']
+      },
+      tweets(){
+        return this.$store.getters['feeds/getTwitter']
+      },
+      streams(){
+        return this.$store.getters['feeds/getTwitch']
+      },
+      threads(){
+        return this.$store.getters['feeds/getReddit']
+      },
     },
-    created () {
+    beforeMount() {  
+    },
+    created() {
       this.checkAuthentication()
+      this.token = window.localStorage.getItem('token')
+      
+      this.$store.dispatch('feeds/fetchReddit', this.token)
+      this.$store.dispatch('feeds/fetchTwitter', this.token)
+      this.$store.dispatch('feeds/fetchTwitch', this.token)
+      this.$store.dispatch('accounts/fetchAccounts', this.token)
     },
     updated() {
       this.checkAuthentication()
     },
     watch: {},
-    computed: {},
     methods: {
-
-      async getAccountInfo() {
-       await UserService.getAccounts(this.token).then(res => {
-          this.accounts = res.data
-          console.log(res)
-          return ExternalService.feeds(this.token)
-        })
-        .then(feed => {
-          console.log(feed)
-          this.tweets = feed.data.twitter
-          this.streams = feed.data.twitch.streams
-          this.threads = feed.data.reddit.data.children
-          this.tweetsLen = Object.keys(this.tweets).length
-          console.log(this.tweetsLen)
-          this.threadsLen = Object.keys(this.threads).length
-          console.log(this.threadsLen)
-          this.streamsLen = Object.keys(this.streams).length
-          console.log(this.streamsLen)
-        })
-      },
 
       checkAuthentication() {
         let existingToken =  window.localStorage.getItem('token')
@@ -158,6 +162,5 @@ export default {
     padding-top: 1em;
     padding-bottom: 1em;    
     border-top: 1px solid rgba(219, 219, 219, 0.5);
-
   }
 </style>

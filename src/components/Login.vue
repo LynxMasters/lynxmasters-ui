@@ -5,7 +5,7 @@
         <div class="columns is-centered">
           <div class="column is-half">
             <div class="card">
-              <div class="card-content">
+              <div v-if='!isLoading' class="card-content">
                 <div class="field animated flipInX has-text-centered" v-if="errors.email || errors.password">
                   <span class="tag is-danger">Email or Password is incorrect</span>
                 </div>
@@ -37,7 +37,8 @@
                       v-model="user.password"
                       v-on:input="checkFormFields"
                       v-bind:class="{'is-danger': errors.password, 'is-danger': error.password }"
-                      placeholder="supersecretpassword">
+                      placeholder="supersecretpassword"
+                      @keyup.enter="validateForm()">
                     <span class="icon is-small is-left">
                         <i class="fas  fa-unlock-alt"></i>
                       </span>
@@ -56,6 +57,19 @@
                     <button class="button is-text">Cancel</button>
                   </div>
                 </div>
+              </div>
+               <div class="has-text-centered" v-if="isLoading">
+                 <loading-progress
+                   :progress="progress"
+                   :indeterminate="indeterminate"
+                   :counter-clockwise="counterClockwise"
+                   :hide-background="hideBackground"
+                   size="128"
+                   rotate
+                   fillDuration="2"
+                   rotationDuration="1"
+                 />
+                <div class="title is-5" style="padding-bottom: 2rem;">Loading your content....</div>
               </div>
             </div>
           </div>
@@ -86,7 +100,12 @@
         error: {
           email: '',
           password: ''
-        }
+        },
+        isLoading: false,
+        indeterminate: true,
+        progress: 0,
+        counterClockwise: false,
+        hideBackground: false,
       }
     },
     methods: {
@@ -138,9 +157,7 @@
       async confirmUser() {
         await Authentication.loginUser(this.user).then(res => {
           if (res.data.errors) {
-            console.log('THERE ARE ERRORS')
             this.errors = res.data.errors
-            console.log(this.errors)
           } else if (res.data.status === 400) {
             this.errorMsg('Email does not exist!')
           } else if (res.data.status === 401) {
@@ -157,7 +174,16 @@
               _.isEmpty(linkedAccounts.twitch.access_token)) {
               this.$router.push('LinkAccounts')
             } else {
-              this.$router.push('Profile')
+              this.isLoading = true
+              this.$store.dispatch('accounts/fetchAccounts', res.data.token)
+              this.$store.dispatch('feeds/fetchReddit', res.data.token)
+              this.$store.dispatch('feeds/fetchTwitch', res.data.token)
+              this.$store.dispatch('feeds/fetchTwitter', res.data.token)
+
+              setTimeout(() => {
+                this.$router.push('Profile')
+              }, 3000)
+
             }
           }
         })
