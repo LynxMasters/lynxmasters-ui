@@ -180,6 +180,35 @@
                       <div class="card-content has-text-centered">
                         <div class="media">
                           <div class="media-content has-text-left">
+                            <div class="field">
+                              <label class="label">Old password</label>
+                              <input
+                                class="input"
+                                type="password"
+                                placeholder=""
+                                required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+                            <div class="field">
+                              <label class="label">New Password</label>
+                              <input
+                                class="input"
+                                type="password"
+                                placeholder=""
+                                required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+                            <div class="field">
+                              <label class="label">Confirm New Password</label>
+                              <input
+                                class="input"
+                                type="password"
+                                placeholder=""
+                                required>
+                              <p class="help is-danger"></p>
+                            </div>
 
 
                             <div class="field is-grouped is-pulled-right">
