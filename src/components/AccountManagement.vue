@@ -403,12 +403,18 @@
             await UserService.updateUser(this.user,this.token).then(res => {
               if (res.data.errors) {
                 this.errors = res.data.errors
+                this.tempUser.tempOldEmail = ''
+                this.tempUser.tempNewEmail = ''
                 this.errorAlert()
               } else {
+                this.tempUser.tempOldEmail = ''
+                this.tempUser.tempNewEmail = ''
                 this.infoSaved()
               }
             })
           } else {
+            this.tempUser.tempOldEmail = ''
+            this.tempUser.tempNewEmail = ''
             this.errorAlert()
           }
         },
