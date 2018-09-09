@@ -153,7 +153,7 @@
             <div class="column is-4">
               <div class="card is-shady card-equal-height">
                 <div class="card-image has-text-centered">
-                  <!-- <img src="https://media.licdn.com/dms/image/C5603AQHDM9VSgtp4Mw/profile-displayphoto-shrink_800_800/0?e=1541635200&v=beta&t=Rq9xnhodxbYRJ4xAETn67Diqku8Tvp8ZFBWzgScJEjQ" > -->
+                   <img src="../assets/images/iana.jpeg" >
                 </div>
                 <div class="card-content">
                   <div class="content">
@@ -222,7 +222,7 @@
             <div class="column is-4">
               <div class="card is-shady card-equal-height">
                 <div class="card-image has-text-centered">
-                  <!-- <img src="https://media.licdn.com/dms/image/C5103AQEllhARYaXiRg/profile-displayphoto-shrink_800_800/0?e=1541635200&v=beta&t=4M3h-JybDjtGFiNX__BdHesQZfYOqFf6c6eAViGvTQI"> -->
+                   <img src="../assets/images/jameson.jpeg">
                 </div>
                 <div class="card-content member-desc">
                   <div class="content">
@@ -240,7 +240,7 @@
             <div class="column is-4">
               <div class="card is-shady card-equal-height">
                 <div class="card-image has-text-centered">
-                  <!-- <img id="nickImg" src="http://www.hummerhomes.com/images/properties/1533464335.gif"> -->
+                   <img src="../assets/images/nick.jpeg">
                 </div>
                 <div class="card-content">
                   <div class="content">
