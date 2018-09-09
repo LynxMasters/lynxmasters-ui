@@ -58,7 +58,8 @@
 	          }else{
 	            this.mediaURL = this.thread.url + '.jpg'
 	          }
-	        } 
+	        }
+	        this.mediaURL.replace("http", "https")
           },
 		}
 	}
