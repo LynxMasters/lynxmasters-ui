@@ -44,6 +44,7 @@
 	            this.mediaURL = this.thread.url
 	          }else{
 	            this.mediaURL = this.thread.url + '.jpg'
+	            this.mediaURL.replace("http", "https")
 	          }
 	        }else if(!this.thread.url.includes('redd.it')){
 	          if(this.thread.preview.hasOwnProperty('reddit_video_preview')){
