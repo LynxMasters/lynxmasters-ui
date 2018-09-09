@@ -153,13 +153,11 @@
             <div class="column is-4">
               <div class="card is-shady card-equal-height">
                 <div class="card-image has-text-centered">
-                  <!-- TEAM MEMBER IMAGE GOES HERE -->
-                  <!-- <img src="https://randomuser.me/api/portraits/lego/4.jpg"> -->
-                  <img src="https://media.licdn.com/dms/image/C5603AQHDM9VSgtp4Mw/profile-displayphoto-shrink_800_800/0?e=1541635200&v=beta&t=Rq9xnhodxbYRJ4xAETn67Diqku8Tvp8ZFBWzgScJEjQ">
+                  <img src="https://media.licdn.com/dms/image/C5603AQHDM9VSgtp4Mw/profile-displayphoto-shrink_800_800/0?e=1541635200&v=beta&t=Rq9xnhodxbYRJ4xAETn67Diqku8Tvp8ZFBWzgScJEjQ" >
                 </div>
-                <div class="card-content member-desc">
+                <div class="card-content">
                   <div class="content">
-                    <h4 class="has-text-centered">Ian Arsenault</h4>
+                    <h4>Ian Arsenault</h4>
                     <p>Incredible MEVN stack developer</p>
                     <p>Specializes in back end development</p>
                   </div>
@@ -173,8 +171,6 @@
             <div class="column is-4">
               <div class="card is-shady card-equal-height">
                 <div class="card-image has-text-centered">
-                  <!-- TEAM MEMBER IMAGE GOES HERE -->
-                  <!-- <img src="https://randomuser.me/api/portraits/lego/2.jpg"> -->
                   <div class="ty-animation">
                     <div class="aquarium">
                       <div class="aquarium__table"></div>
@@ -208,9 +204,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="card-content member-desc">
+                <div class="card-content">
                   <div class="content ty-content">
-                    <h4 class="has-text-centered">Tyler Corwin</h4>
+                    <h4>Tyler Corwin</h4>
                     <p>Full Stack PHP developer</p>
                     <p>Specializes in front end development.</p>
                   </div>
@@ -226,13 +222,11 @@
             <div class="column is-4">
               <div class="card is-shady card-equal-height">
                 <div class="card-image has-text-centered">
-                  <!-- TEAM MEMBER IMAGE GOES HERE -->
-                  <!-- <img src="https://randomuser.me/api/portraits/lego/1.jpg"> -->
                   <img src="https://media.licdn.com/dms/image/C5103AQEllhARYaXiRg/profile-displayphoto-shrink_800_800/0?e=1541635200&v=beta&t=4M3h-JybDjtGFiNX__BdHesQZfYOqFf6c6eAViGvTQI">
                 </div>
                 <div class="card-content member-desc">
                   <div class="content">
-                    <h4 class="has-text-centered">Jameson Arsenault</h4>
+                    <h4>Jameson Arsenault</h4>
                     <p>Excellent MEVN stack developer</p>
                     <p>Specializes in both front and back end development</p>
                   </div>
@@ -246,13 +240,11 @@
             <div class="column is-4">
               <div class="card is-shady card-equal-height">
                 <div class="card-image has-text-centered">
-                  <!-- TEAM MEMBER IMAGE GOES HERE -->
-                  <!-- <img src="https://randomuser.me/api/portraits/lego/5.jpg"> -->
                   <img id="nickImg" src="http://www.hummerhomes.com/images/properties/1533464335.gif">
                 </div>
-                <div class="card-content member-desc">
-                  <div class="content nick-content">
-                    <h4 class="has-text-centered">Nicholas Montalbano</h4>
+                <div class="card-content">
+                  <div class="content">
+                    <h4>Nicholas Montalbano</h4>
                     <p>Our resident Hacker</p>
                     <p>Specializes in back end security</p>
                   </div>
