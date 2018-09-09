@@ -37,6 +37,7 @@
     	},
 		methods:{
 	      check_media(){
+	      	
 	        if(this.thread.url.includes('gifv')){
 	          this.mediaURL = this.thread.url.replace(/(gifv)+/g, "gif") 
 	        }else if(this.thread.url.includes('imgur')){
@@ -45,6 +46,7 @@
 	          }else{
 	            this.mediaURL = this.thread.url + '.jpg'
 	          }
+	          this.mediaURL.replace("http", "https")
 	        }else if(!this.thread.url.includes('redd.it')){
 	          if(this.thread.preview.hasOwnProperty('reddit_video_preview')){
 	            this.img = true
@@ -58,7 +60,7 @@
 	          }else{
 	            this.mediaURL = this.thread.url + '.jpg'
 	          }
-	        } 
+	        }
           },
 		}
 	}

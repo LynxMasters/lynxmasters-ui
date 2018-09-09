@@ -92,7 +92,7 @@
 
     	linkTwitter() {
         	//window.location = 'http://localhost:8081/auth/twitter?token=' + this.token
-          window.location = 'https://lynxmasters.com/auth/twitter?token=' + this.token
+          window.location = 'https://lynxmasters.com/api/v1/auth/twitter?token=' + this.token
       	},
     	unlinkTwitter (context) {
         this.$store.commit('accounts/setFetched')
