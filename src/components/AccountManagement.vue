@@ -176,7 +176,52 @@
                       <b-icon class="fas fa-key"></b-icon>
                       <span> Password</span>
                     </template>
-                    <div>OLD PASSWORD THEN NEW PASSWORD 2x STUFF HERE</div>
+                    <div class="card">
+                      <div class="card-content has-text-centered">
+                        <div class="media">
+                          <div class="media-content has-text-left">
+                            <div class="field">
+                              <label class="label">Old password</label>
+                              <input
+                                class="input"
+                                type="password"
+                                placeholder=""
+                                required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+                            <div class="field">
+                              <label class="label">New Password</label>
+                              <input
+                                class="input"
+                                type="password"
+                                placeholder=""
+                                required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+                            <div class="field">
+                              <label class="label">Confirm New Password</label>
+                              <input
+                                class="input"
+                                type="password"
+                                placeholder=""
+                                required>
+                              <p class="help is-danger"></p>
+                            </div>
+
+
+                            <div class="field is-grouped is-pulled-right">
+                              <div class="control">
+                                <button class="button is-link" v-on:click="updatePassword()">Save</button>
+                              </div>
+                            </div>
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </b-tab-item>
                   <b-tab-item>
                     <template slot="header">
@@ -205,6 +250,13 @@
                                 placeholder=""
                                 required>
                               <p class="help is-danger"></p>
+                            </div>
+
+
+                            <div class="field is-grouped is-pulled-right">
+                              <div class="control">
+                                <button class="button is-link" v-on:click="updateUserInfo()">Save</button>
+                              </div>
                             </div>
 
 
@@ -326,6 +378,9 @@
               this.personalInfoSaved()
             }
           })
+        },
+        updatePassword(){
+          console.log('byaaaaa')
         }
       }
     }
