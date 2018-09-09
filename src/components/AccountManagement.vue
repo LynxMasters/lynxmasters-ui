@@ -31,10 +31,6 @@
                     <div class="content has-text-centered">
 
                       <div class="field">
-                        <label class="label">{{user.firstName}} {{user.lastName}}</label>
-                      </div>
-
-                      <div class="field">
                         <label class="label">Followers: 333</label>
                       </div>
                     </div>
@@ -65,7 +61,7 @@
                         type="is-boxed">
                   <b-tab-item>
                     <template slot="header">
-                      <b-icon class="fas fa-info"></b-icon>
+                      <b-icon class="fas fa-info fa-xs"></b-icon>
                       <span> Personal Info</span>
                     </template>
                     <div class="card">
@@ -173,7 +169,7 @@
                   </b-tab-item>
                   <b-tab-item>
                     <template slot="header">
-                      <b-icon class="fas fa-key"></b-icon>
+                      <b-icon class="fas fa-key fa-xs"></b-icon>
                       <span> Password</span>
                     </template>
                     <div class="card">
@@ -198,6 +194,10 @@
                                 placeholder=""
                                 required>
                               <p class="help is-danger"></p>
+                            </div>
+
+                            <div class="field animated flipInX" v-if="$v.user.confirmPassword && !$v.user.confirmPassword.sameAsPassword">
+                              <span class="tag is-danger">Passwords Do Not Match!</span>
                             </div>
 
                             <div class="field">
@@ -225,37 +225,39 @@
                   </b-tab-item>
                   <b-tab-item>
                     <template slot="header">
-                      <b-icon class="fas fa-at"></b-icon>
+                      <b-icon class="fas fa-at fa-xs"></b-icon>
                       <span> Email</span>
                     </template>
                     <div class="card">
                       <div class="card-content has-text-centered">
                         <div class="media">
                           <div class="media-content has-text-left">
+
                             <div class="field">
                               <label class="label">Current Email</label>
-                              <input
-                                class="input"
-                                type="email"
-                                placeholder=""
-                                required>
-                              <p class="help is-danger"></p>
+                              <div class="control">
+                                <input :class="['input', ($v.tempUser.tempOldEmail.$error) ? 'is-danger' : '']"
+                                       type="text"
+                                       placeholder="Current Email"
+                                       v-model="tempUser.tempOldEmail">
+                              </div>
+                              <p v-if="$v.tempUser.tempOldEmail.$error" class="help is-danger">This email is invalid</p>
                             </div>
 
                             <div class="field">
                               <label class="label">New Email</label>
-                              <input
-                                class="input"
-                                type="email"
-                                placeholder=""
-                                required>
-                              <p class="help is-danger"></p>
+                              <div class="control">
+                                <input :class="['input', ($v.tempUser.tempNewEmail.$error) ? 'is-danger' : '']"
+                                       type="text"
+                                       placeholder="New Email"
+                                       v-model="tempUser.tempNewEmail">
+                              </div>
+                              <p v-if="$v.tempUser.tempNewEmail.$error" class="help is-danger">This email is invalid</p>
                             </div>
-
 
                             <div class="field is-grouped is-pulled-right">
                               <div class="control">
-                                <button class="button is-link" v-on:click="updateUserInfo()">Save</button>
+                                <button class="button is-link" v-on:click="updateUserEmail()">Save</button>
                               </div>
                             </div>
 
@@ -281,13 +283,18 @@
   import UserService from '@/services/UserService'
   import countries from '@/assets/countries.json'
   import {validationMixin} from 'vuelidate'
-  import {required, numeric, minLength, maxLength} from 'vuelidate/lib/validators'
+  import {required, numeric, minLength, maxLength, email, sameAs} from 'vuelidate/lib/validators'
     export default {
       mixins: [validationMixin],
       name: "AccountManagement",
       data() {
         return {
           user: {},
+          tempUser: {
+            tempOldEmail: '',
+            tempNewEmail: '',
+            password: ''
+          },
           countries
         }
       },
@@ -316,6 +323,17 @@
           },
           country: {
             required
+          }
+        },
+        tempUser: {
+          tempOldEmail: {
+            required,
+            email,
+            sameAsEmail: sameAs('this.user.email')
+          },
+          tempNewEmail: {
+            required,
+            email
           }
         }
       },
@@ -352,9 +370,9 @@
             type: 'is-danger'
           })
         },
-        personalInfoSaved() {
+        infoSaved() {
           this.$snackbar.open({
-            message: 'Your personal information was updated!',
+            message: 'Your information was updated!',
             type: 'is-warning',
             position: 'is-top',
             actionText: 'GOT IT!',
@@ -365,7 +383,7 @@
           this.$toast.open({
             duration: 5000,
             message: `There was a problem saving!`,
-            position: 'is-bottom',
+            position: 'is-top',
             type: 'is-danger'
           })
         },
@@ -375,9 +393,30 @@
               this.errors = res.data.errors
               this.errorAlert()
             } else {
-              this.personalInfoSaved()
+              this.infoSaved()
             }
           })
+        },
+        async updateUserEmail() {
+          if (this.user.email === this.tempUser.tempOldEmail && !(this.tempUser.tempNewEmail === this.tempUser.tempOldEmail)){
+            this.user.email = this.tempUser.tempNewEmail
+            await UserService.updateUser(this.user,this.token).then(res => {
+              if (res.data.errors) {
+                this.errors = res.data.errors
+                this.tempUser.tempOldEmail = ''
+                this.tempUser.tempNewEmail = ''
+                this.errorAlert()
+              } else {
+                this.tempUser.tempOldEmail = ''
+                this.tempUser.tempNewEmail = ''
+                this.infoSaved()
+              }
+            })
+          } else {
+            this.tempUser.tempOldEmail = ''
+            this.tempUser.tempNewEmail = ''
+            this.errorAlert()
+          }
         },
         updatePassword(){
           console.log('byaaaaa')
