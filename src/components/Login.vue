@@ -157,9 +157,7 @@
       async confirmUser() {
         await Authentication.loginUser(this.user).then(res => {
           if (res.data.errors) {
-            console.log('THERE ARE ERRORS')
             this.errors = res.data.errors
-            console.log(this.errors)
           } else if (res.data.status === 400) {
             this.errorMsg('Email does not exist!')
           } else if (res.data.status === 401) {

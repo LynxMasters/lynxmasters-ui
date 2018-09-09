@@ -29,3 +29,34 @@
 .lynx-btn {
   @include makeButton()
 }
+
+.is-primary {
+  color: $primary-color;
+}
+
+.button.is-primary {
+  background-color: $primary-color;
+
+  &:hover {
+    background-color: darken($primary-color, 10);
+  }
+}
+
+.is-link {
+  color: $link-color;
+}
+
+.button.is-link {
+  background-color: $link-color;
+
+  &:hover {
+    background-color: darken($link-color, 10);
+  }
+}
+
+.tabs li.is-active a {
+  border-bottom-color: $link-color;
+  color: $link-color;
+}
+
+

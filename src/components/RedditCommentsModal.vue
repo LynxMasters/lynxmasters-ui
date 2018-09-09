@@ -37,7 +37,7 @@
         <comments :comment="comment" v-for="comment in comments" :key="comment.id" ></comments>
     </section>
     <footer class="modal-card-foot">
-  
+
     </footer>
   </div>
 </div>
@@ -59,22 +59,21 @@ export default {
   },
   data(){
     return{
-      comments:{},     
+      comments:{},
     }
   },
   created(){
-    this.token = window.localStorage.getItem('token')     
-    this.fetchComments() 
+    this.token = window.localStorage.getItem('token')
+    this.fetchComments()
   },
   methods:{
     async fetchComments(){
       await ExternalServices.commentsReddit(this.token, this.thread.data.id)
-      .then(res => { 
+      .then(res => {
         return res
       })
       .then(info =>{
         this.comments = info.data[1].data.children
-        console.log(this.comments)
       })
     }
   },

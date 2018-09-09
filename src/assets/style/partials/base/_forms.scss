@@ -103,3 +103,22 @@ select {
   max-width: 100%;
   width: auto;
 }
+
+input:active, input:focus {
+  border-color: $info-color !important;
+  box-shadow: 0 0 0 0.125em rgba($info-color, 0.2) !important;
+}
+
+textarea:active, textarea:focus {
+  border-color: $info-color !important;
+  box-shadow: 0 0 0 0.125em rgba($info-color, 0.2) !important;
+}
+
+select:active, select:focus {
+  border-color: $info-color !important;
+  box-shadow: 0 0 0 0.125em rgba($info-color, 0.2) !important;
+}
+
+.is-active a span{
+  color: $info-color;
+}

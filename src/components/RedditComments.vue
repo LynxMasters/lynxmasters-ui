@@ -1,5 +1,5 @@
 <template>
- <div> 
+ <div>
 <article class="media">
   <votes :ups='comment.data.ups' :likes='comment.data.likes'></votes>
   <div class="media-content">
@@ -42,8 +42,6 @@
       }
     },
     mounted(){
-      console.log('comment')
-      console.log(this.comment)
       this.unwrapData()
     },
     methods:{
@@ -55,8 +53,6 @@
           this.children.pop()
           this.hasChildren = true
           }
-          console.log('child')
-          console.log(this.children)
         }
       }
     }

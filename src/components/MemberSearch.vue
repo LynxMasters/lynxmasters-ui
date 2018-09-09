@@ -66,9 +66,9 @@
                 </div>
                 <footer class="card-footer">
                   <router-link v-bind:to="{ name: 'Profile', params: { id: user._id } }"
-                               class="card-footer-item is-primary">Profile
+                               class="card-footer-item is-link">Profile
                   </router-link>
-                  <a href="#" class="card-footer-item is-primary"
+                  <a href="#" class="card-footer-item is-link"
                      @click="followUser(user)">Follow</a>
                 </footer>
               </div>
@@ -123,7 +123,6 @@
       async getUsers() {
         this.dataLoaded = false
         const response = await UserService.fetchUsers()
-        // console.log(response.data)
         this.lynxUsers = response.data.users
         this.dataLoaded = true
       },

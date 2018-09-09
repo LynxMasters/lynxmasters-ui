@@ -64,8 +64,6 @@ const actions = {
   unlinkReddit (context, payload) {
     return ExternalService.redditUNLINK(payload)
     .then(accounts =>{
-      console.log('accounts')
-      console.log(accounts)
       context.commit('setAccounts', accounts)
     })
     .catch(error =>{
