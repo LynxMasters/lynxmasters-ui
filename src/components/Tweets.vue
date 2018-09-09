@@ -1,6 +1,6 @@
 <template>
 <article class="media">
-  <avatar :avatar="tweet.user.profile_image_url"></avatar>
+  <avatar :avatar="tweet.user.profile_image_url_https"></avatar>
   <div class="media-content">
     <twittercontent :tweet="tweet" :isTweet="true"></twittercontent>
     <nav class="level is-mobile">
