@@ -63,6 +63,7 @@ const actions = {
     if(state.reddit.requested_at < new Date().getTime()){
       return ExternalService.feedsReddit(payload)
       .then(feeds => {
+        console.log(feeds)
         context.commit('setReddit', feeds)
       })
       .catch(error => {
@@ -85,6 +86,7 @@ const actions = {
     if(state.twitter.requested_at < new Date().getTime()){
       return ExternalService.feedsTwitter(payload)
       .then(feeds => {
+        console.log(feeds)
         context.commit('setTwitter', feeds)
       })
       .catch(error => {
