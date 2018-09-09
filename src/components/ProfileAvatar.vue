@@ -2,7 +2,7 @@
 <div class="column is-3">
   <div class="card">
     <header class="card-header">
-      <p class="card-header-title is-centered card-name is-primary">
+      <p class="card-header-title is-centered card-name">
         @{{user.username}}
       </p>
     </header>
