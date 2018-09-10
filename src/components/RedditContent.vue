@@ -43,10 +43,8 @@
 	        }else if(this.thread.url.includes('imgur')){
 	          if(this.thread.url.includes('.jpg') || this.thread.url.includes('.png') || this.thread.url.includes('.gif')){
 	            this.mediaURL = this.thread.url
-	            this.mediaURL.replace('http', 'https')
 	          }else{
 	            this.mediaURL = this.thread.url + '.jpg'
-	            this.mediaURL.replace('http', 'https')
 	          }
 	          this.mediaURL.replace("http", "https")
 	        }else if(!this.thread.url.includes('redd.it')){
