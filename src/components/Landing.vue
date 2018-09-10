@@ -245,8 +245,8 @@
                 <div class="card-content">
                   <div class="content">
                     <h4>Nicholas Montalbano</h4>
-                    <p>Our resident Hacker</p>
-                    <p>Specializes in back end security</p>
+                    <p>Full stack developer</p>
+                    <p>Specializes in security</p>
                   </div>
                 </div>
                 <footer class="card-footer">
