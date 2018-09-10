@@ -1,7 +1,17 @@
 import ExternalService from '@/services/externalService'
 import UserService from '@/services/UserService'
 const state = {
-  accounts: {},
+  accounts: {
+    twitter:{
+      linked: false
+    },
+    twitch:{
+      linked: false
+    },
+    reddit:{
+      linked: false
+    },
+  },
   fetched: false
 }
 
@@ -54,8 +64,6 @@ const actions = {
   unlinkReddit (context, payload) {
     return ExternalService.redditUNLINK(payload)
     .then(accounts =>{
-      console.log('accounts')
-      console.log(accounts)
       context.commit('setAccounts', accounts)
     })
     .catch(error =>{

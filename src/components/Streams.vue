@@ -7,7 +7,7 @@
       <p>
         <strong>{{stream.channel.display_name}}</strong> <small>{{stream.game}}</small> <small>{{stream.created_at}}</small>
         <br>
-        <iframe v-bind:src="`http://player.twitch.tv/?channel=${stream.channel.name}&autoplay=false`"
+        <iframe v-bind:src="`https://player.twitch.tv/?channel=${stream.channel.name}&autoplay=false`"
           height="500"
           width="650"
           frameborder="<frameborder>"
@@ -18,7 +18,7 @@
           <iframe frameborder="0"
             scrolling="no"
             id="chat_embed"
-            v-bind:src="`http://www.twitch.tv/embed/${stream.channel.name}/chat`"
+            v-bind:src="`https://www.twitch.tv/embed/${stream.channel.name}/chat`"
             height="500"
             width="650">
           </iframe>

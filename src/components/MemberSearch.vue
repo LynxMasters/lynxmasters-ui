@@ -4,10 +4,10 @@
       <div class="hero-body">
         <div class="container has-text-centered">
           <h1 class="title">
-            LynxMaster Search
+            LynxMasters Search
           </h1>
           <h2 class="subtitle">
-            Search through all LynxMaster users
+            Search through all LynxMasters users
           </h2>
           <div class="columns is-centered">
             <div class="column is-4">
@@ -28,7 +28,16 @@
       </div>
     </section>
 
-    <loading-indicator :data-loaded="dataLoaded"></loading-indicator>
+    <section  v-if="!dataLoaded" class="hero is-medium">
+      <div class="hero-body has-text-centered">
+        <div class="container">
+          <loading></loading>
+          <h2 class="subtitle">
+            Loading LynxMasters Members...
+          </h2>
+        </div>
+      </div>
+    </section>
 
     <template v-if="dataLoaded">
       <div v-if="lynxUsers && lynxUsers.length > 0">
@@ -57,25 +66,11 @@
                 </div>
                 <footer class="card-footer">
                   <router-link v-bind:to="{ name: 'Profile', params: { id: user._id } }"
-                               class="card-footer-item is-primary">Profile
+                               class="card-footer-item is-link">Profile
                   </router-link>
-                  <a href="#" class="card-footer-item is-primary"
+                  <a href="#" class="card-footer-item is-link"
                      @click="followUser(user)">Follow</a>
                 </footer>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div v-else>
-        <div class="columns is-centered">
-          <div class="column is-4">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image">
-                </figure>
-              </div>
-              <div class="card-content">
               </div>
             </div>
           </div>
@@ -87,10 +82,12 @@
 
 <script>
   import UserService from '@/services/UserService'
-  import LoadingIndicator from "./LoadingIndicator.vue"
+  import Loading from "./Loading.vue"
+  import defaultImage from '@/assets/images/default-avatar.png'
+
   export default {
     name: "MemberSearch",
-    components: {LoadingIndicator},
+    components: {Loading},
     data() {
       return {
         lynxUsers: [],
@@ -126,7 +123,6 @@
       async getUsers() {
         this.dataLoaded = false
         const response = await UserService.fetchUsers()
-        // console.log(response.data)
         this.lynxUsers = response.data.users
         this.dataLoaded = true
       },

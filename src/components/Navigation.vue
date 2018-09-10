@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar is-dark nav-contain" id="navigation">
+  <nav class="navbar nav-overlay-hotfix is-dark nav-contain" id="navigation">
     <div class="navbar-brand">
       <router-link v-bind:to="{ name: 'Landing' }" class="navbar-item" active-class="link-is-active" exact>
         <img src="../../static/landing-images/lynxLogo-light.png" alt="LynxMasters Logo">
@@ -93,5 +93,8 @@
 </script>
 
 <style scoped>
+.nav-overlay-hotfix{
+    z-index: auto;
+  }
 
 </style>

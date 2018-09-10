@@ -91,9 +91,11 @@
     methods:{
 
     	linkTwitter() {
-        	window.location = 'http://localhost:8081/auth/twitter?token=' + this.token
+        	//window.location = 'http://localhost:8081/auth/twitter?token=' + this.token
+          window.location = 'https://lynxmasters.com/api/v1/auth/twitter?token=' + this.token
       	},
     	unlinkTwitter (context) {
+        this.$store.commit('accounts/setFetched')
 		    this.$store.commit('profiles/setRequested')
 		    this.$store.dispatch('accounts/unlinkTwitter', this.token)
 		    this.accounts.twitter.linked = false

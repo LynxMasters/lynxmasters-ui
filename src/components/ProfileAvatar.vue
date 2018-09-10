@@ -2,24 +2,15 @@
 <div class="column is-3">
   <div class="card">
     <header class="card-header">
-      <p class="card-header-title is-centered card-name is-primary">
+      <p class="card-header-title is-centered card-name">
         @{{user.username}}
       </p>
     </header>
     <div class="card-image">
       <div class="image players-avatar">
-        <img v-bind:src="`../static/uploads/${user.avatar}`">
+        <img :src="profileAvatar(user.avatar)" class="image" alt="profile avatar">
       </div>
     </div>
-    <!-- <div class="card-content">
-      <div class="content has-text-centered">
-        <div class="field">
-          <label class="label">{{user.username}}</label>
-        </div>
-         <div class="content has-text-centered">
-        </div> 
-      </div>
-    </div> -->
   </div>
   <div class="card">
     <div class="card-content">
@@ -45,26 +36,30 @@
 </div>
 </template>
 <script>
-import UserService from '@/services/UserService'
- export default {
+  import defaultProfileImage from '@/assets/images/default_profile.png'
+  import UserService from '@/services/UserService'
+
+  export default {
     props: {
-     accounts: {},
+      accounts: {},
     },
     mounted() {
       this.token = window.localStorage.getItem('token')
       this.fetchProfile()
     },
-    data(){
-      return{
-        user:{},
+    data() {
+      return {
+        user: {},
       }
     },
     methods: {
-      async fetchProfile(){
-        await UserService.fetchUser(this.token).then(res =>{
+      async fetchProfile() {
+        await UserService.fetchUser(this.token).then(res => {
           this.user = res.data
-          console.log(this.user)
         })
+      },
+      profileAvatar(image) {
+        return image ? `/static/uploads/${image}` : defaultProfileImage
       }
     },
   }

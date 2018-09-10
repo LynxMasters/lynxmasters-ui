@@ -92,7 +92,8 @@
     methods:{
 
       linkReddit() {
-        window.location = 'http://localhost:8081/auth/reddit?token=' + this.token
+        //window.location = 'http://localhost:8081/auth/reddit?token=' + this.token
+        window.location = 'https://lynxmasters.com/api/v1/auth/reddit?token=' + this.token
       },
       unlinkReddit (context) {
         this.$store.commit('accounts/setFetched')

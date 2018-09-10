@@ -69,7 +69,7 @@
                   <div class="content">
                     <h4 class="has-text-centered">Twitter</h4>
                     <p>Twitter is an online news and social networking service on which users post and interact with messages known as "tweets".</p>
-                    <p><a href="#">Learn more</a></p>
+                    <p><a href="https://about.twitter.com/" target="_blank">Learn more</a></p>
                   </div>
                 </div>
               </div>
@@ -83,7 +83,7 @@
                   <div class="content">
                     <h4 class="has-text-centered">Reddit</h4>
                     <p>Reddit is home to thousands of communities, endless conversation, and authentic human connection. Whether you're into breaking news, sports, TV fan theories, or a never-ending stream of the internet's cutest animals, there's a community on Reddit for you.</p>
-                    <p><a href="#">Learn more</a></p>
+                    <p><a href="https://www.redditinc.com/" target="_blank">Learn more</a></p>
                   </div>
                 </div>
               </div>
@@ -98,7 +98,7 @@
                     <h4 class="has-text-centered">Twitch</h4>
                     <p>The community where millions of people and thousands of interests collide in a beautiful explosion of video games, pop culture, and conversation. With chat built into every stream, you don’t just watch on Twitch, you’re a part of the show. From classic tv show marathons to esports tournaments, if you can imagine it, it’s probably live on Twitch right now.
                     </p>
-                    <p><a href="#">Learn more</a></p>
+                    <p><a href="https://www.twitch.tv/p/about/" target="_blank">Learn more</a></p>
                   </div>
                 </div>
               </div>
@@ -153,36 +153,67 @@
             <div class="column is-4">
               <div class="card is-shady card-equal-height">
                 <div class="card-image has-text-centered">
-                  <!-- TEAM MEMBER IMAGE GOES HERE -->
-                  <img src="https://randomuser.me/api/portraits/lego/4.jpg">
+                   <img src="../assets/images/iana.jpeg" >
                 </div>
-                <div class="card-content member-desc">
+                <div class="card-content">
                   <div class="content">
-                    <h4 class="has-text-centered">Ian Arsenault</h4>
-                    <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>
+                    <h4>Ian Arsenault</h4>
+                    <p>Incredible MEVN stack developer</p>
+                    <p>Specializes in back end development</p>
                   </div>
                 </div>
                 <footer class="card-footer">
-                  <a href="#" class="card-footer-item"><i class="fab fa-github fa-2x"></i></a>
-                  <a href="#" class="card-footer-item"><i class="fab fa-linkedin-in fa-2x"></i></a>
+                  <a href="https://github.com/ianarsenault" target="_blank" class="card-footer-item"><i class="fab fa-github fa-2x"></i></a>
+                  <a href="https://www.linkedin.com/in/arsenaultian/" target="_blank" class="card-footer-item"><i class="fab fa-linkedin-in fa-2x"></i></a>
                 </footer>
               </div>
             </div>
             <div class="column is-4">
               <div class="card is-shady card-equal-height">
                 <div class="card-image has-text-centered">
-                  <!-- TEAM MEMBER IMAGE GOES HERE -->
-                  <img src="https://randomuser.me/api/portraits/lego/2.jpg">
+                  <div class="ty-animation">
+                    <div class="aquarium">
+                      <div class="aquarium__table"></div>
+                      <div class="aquarium__aquarium">
+                        <div class="aquarium__water"></div>
+                        <div class="aquarium__bubble"></div>
+                        <div class="aquarium__bubble"></div>
+                        <div class="aquarium__bubble"></div>
+                        <div class="aquarium__bubble"></div>
+                        <div class="aquarium__bubble"></div>
+                        <div class="aquarium__bubble"></div>
+                        <div class="aquarium__bubble"></div>
+                        <div class="aquarium__bubble"></div>
+                      </div>
+                      <div class="aquarium__drops">
+                        <div class="aquarium__drop"></div>
+                        <div class="aquarium__water-column"></div>
+                        <div class="aquarium__splash"></div>
+                        <div class="aquarium__splash"></div>
+                      </div>
+                      <div class="aquarium__sponge-box">
+                        <div class="aquarium__body">
+                          <div class="aquarium__body-stripe"></div>
+                          <div class="aquarium__body-hole"></div>
+                        </div>
+                        <div class="aquarium__face">
+                          <div class="aquarium__mouth"></div>
+                          <div class="aquarium__smile"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="card-content member-desc">
-                  <div class="content">
-                    <h4 class="has-text-centered">Tyler Corwin</h4>
-                    <p>Purus semper eget duis at sdfdsf sdfsdf sdf sdfsdfd stellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>
+                <div class="card-content">
+                  <div class="content ty-content">
+                    <h4>Tyler Corwin</h4>
+                    <p>Full Stack PHP developer</p>
+                    <p>Specializes in front end development.</p>
                   </div>
                 </div>
                 <footer class="card-footer">
-                  <a href="#" class="card-footer-item"><i class="fab fa-github fa-2x"></i></a>
-                  <a href="#" class="card-footer-item"><i class="fab fa-linkedin-in fa-2x"></i></a>
+                  <a href="https://github.com/tylerdcorwin" target="_blank" class="card-footer-item"><i class="fab fa-github fa-2x"></i></a>
+                  <a href="https://www.linkedin.com/in/tyler-corwin-5a973b9b/" target="_blank" class="card-footer-item"><i class="fab fa-linkedin-in fa-2x"></i></a>
                 </footer>
               </div>
             </div>
@@ -191,35 +222,35 @@
             <div class="column is-4">
               <div class="card is-shady card-equal-height">
                 <div class="card-image has-text-centered">
-                  <!-- TEAM MEMBER IMAGE GOES HERE -->
-                  <img src="https://randomuser.me/api/portraits/lego/1.jpg">
+                   <img src="../assets/images/jameson.jpeg">
                 </div>
                 <div class="card-content member-desc">
                   <div class="content">
-                    <h4 class="has-text-centered">Jameson Arsenault</h4>
-                    <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>
+                    <h4>Jameson Arsenault</h4>
+                    <p>Excellent MEVN stack developer</p>
+                    <p>Specializes in both front and back end development</p>
                   </div>
                 </div>
                 <footer class="card-footer">
-                  <a href="#" class="card-footer-item"><i class="fab fa-github fa-2x"></i></a>
-                  <a href="#" class="card-footer-item"><i class="fab fa-linkedin-in fa-2x"></i></a>
+                  <a href="https://github.com/j-arsenault" target="_blank" class="card-footer-item"><i class="fab fa-github fa-2x"></i></a>
+                  <a href="https://www.linkedin.com/in/jameson-arsenault-85836b117/" target="_blank" class="card-footer-item"><i class="fab fa-linkedin-in fa-2x"></i></a>
                 </footer>
               </div>
             </div>
             <div class="column is-4">
               <div class="card is-shady card-equal-height">
                 <div class="card-image has-text-centered">
-                  <!-- TEAM MEMBER IMAGE GOES HERE -->
-                  <img src="https://randomuser.me/api/portraits/lego/5.jpg">
+                   <img src="../assets/images/nick.jpeg">
                 </div>
-                <div class="card-content member-desc">
+                <div class="card-content">
                   <div class="content">
-                    <h4 class="has-text-centered">Nicholas Montalbano</h4>
-                    <p>Purus semper eget duis at sdfdsf sdfsdf sdf sdfsdfd stellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>
+                    <h4>Nicholas Montalbano</h4>
+                    <p>Full stack developer</p>
+                    <p>Specializes in security</p>
                   </div>
                 </div>
                 <footer class="card-footer">
-                  <a href="#" class="card-footer-item"><i class="fab fa-github fa-2x"></i></a>
+                  <a href="https://github.com/nmonty9" target="_blank" class="card-footer-item"><i class="fab fa-github fa-2x"></i></a>
                   <a href="#" class="card-footer-item"><i class="fab fa-linkedin-in fa-2x"></i></a>
                 </footer>
               </div>

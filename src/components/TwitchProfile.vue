@@ -92,10 +92,12 @@
     methods:{
 
       linkTwitch() {
-        window.location = 'http://localhost:8081/auth/twitch?token=' + this.token
+        //window.location = 'http://localhost:8081/auth/twitch?token=' + this.token
+        window.location = 'https://lynxmasters.com/api/v1/auth/twitch?token=' + this.token
       },
 
       unlinkTwitch (context) {
+        this.$store.commit('accounts/setFetched')
         this.$store.commit('profiles/setRequested')
         this.$store.dispatch('accounts/unlinkTwitch', this.token)
         this.accounts.twitch.linked = false

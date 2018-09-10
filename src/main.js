@@ -4,15 +4,15 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Buefy from 'buefy'
-import 'buefy/lib/buefy.css'
 import VueScrollTo from 'vue-scrollto'
 import scrollSpy from 'vue2-scrollspy';
-import Bulma from 'bulma/css/bulma.css'
-import './assets/style/app.scss'
 import store from './store/store'
 import moment from 'moment'
 import VueProgress from 'vue-progress-path'
 require('vue2-animate/dist/vue2-animate.min.css')
+import Bulma from 'bulma/css/bulma.css'
+import 'buefy/lib/buefy.css'
+import './assets/style/app.scss'
 
 
 Vue.use(Buefy)

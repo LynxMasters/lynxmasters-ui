@@ -58,19 +58,18 @@
                   </div>
                 </div>
               </div>
-               <div class="card-content" v-if="isLoading">
-                <div class="content has-text-centered">
-                  <loading-progress
-                    :progress="progress"
-                    :indeterminate="indeterminate"
-                    :counter-clockwise="counterClockwise"
-                    :hide-background="hideBackground"
-                    size="64"
-                    rotate
-                    fillDuration="2"
-                    rotationDuration="1"
-                  />
-                </div>
+               <div class="has-text-centered" v-if="isLoading">
+                 <loading-progress
+                   :progress="progress"
+                   :indeterminate="indeterminate"
+                   :counter-clockwise="counterClockwise"
+                   :hide-background="hideBackground"
+                   size="128"
+                   rotate
+                   fillDuration="2"
+                   rotationDuration="1"
+                 />
+                <div class="title is-5" style="padding-bottom: 2rem;">Loading your content....</div>
               </div>
             </div>
           </div>
@@ -158,9 +157,7 @@
       async confirmUser() {
         await Authentication.loginUser(this.user).then(res => {
           if (res.data.errors) {
-            console.log('THERE ARE ERRORS')
             this.errors = res.data.errors
-            console.log(this.errors)
           } else if (res.data.status === 400) {
             this.errorMsg('Email does not exist!')
           } else if (res.data.status === 401) {
@@ -179,11 +176,14 @@
             } else {
               this.isLoading = true
               this.$store.dispatch('accounts/fetchAccounts', res.data.token)
-              this.$store.dispatch('feeds/fetchFeeds', res.data.token)
+              this.$store.dispatch('feeds/fetchReddit', res.data.token)
+              this.$store.dispatch('feeds/fetchTwitch', res.data.token)
+              this.$store.dispatch('feeds/fetchTwitter', res.data.token)
+
               setTimeout(() => {
                 this.$router.push('Profile')
               }, 3000)
-              
+
             }
           }
         })
