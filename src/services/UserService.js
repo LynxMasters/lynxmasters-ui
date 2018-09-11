@@ -2,7 +2,7 @@ import Api from '@/services/Api'
 
 export default {
   fetchUsers(jwt) {
-    return Api().get('users', { headers: {'Authorization': jwt, 'Content-Type': 'multipart/form-data'} } )
+    return Api().get('users', { headers: {'Authorization': jwt, 'Content-Type': 'application/json'} } )
   },
   fetchUser(jwt){
     return Api().get('user/me', { headers: {'Authorization': jwt }})
