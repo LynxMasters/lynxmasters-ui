@@ -92,8 +92,8 @@
     methods:{
 
       linkTwitch() {
-        //window.location = 'http://localhost:8081/auth/twitch?token=' + this.token
-        window.location = 'https://lynxmasters.com/api/v1/auth/twitch?token=' + this.token
+        window.location = 'http://localhost:8081/api/v1/auth/twitch?token=' + this.token
+        //window.location = 'https://lynxmasters.com/api/v1/auth/twitch?token=' + this.token
       },
 
       unlinkTwitch (context) {

@@ -108,6 +108,7 @@
     },
     mounted() {
       this.getUsers()
+      this.token = window.localStorage.getItem('token')
     },
     computed: {
       filteredDataArray() {
@@ -122,7 +123,7 @@
     methods: {
       async getUsers() {
         this.dataLoaded = false
-        const response = await UserService.fetchUsers()
+        const response = await UserService.fetchUsers(token)
         this.lynxUsers = response.data.users
         this.dataLoaded = true
       },
