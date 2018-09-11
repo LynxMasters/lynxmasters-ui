@@ -65,7 +65,7 @@
                   </div>
                 </div>
                 <footer class="card-footer">
-                  <router-link v-bind:to="{ name: 'Profile', params: { id: user._id } }"
+                  <router-link v-bind:to="{ name: 'Member', params: { username: user.username } }"
                                class="card-footer-item is-link">Profile
                   </router-link>
                   <a href="#" class="card-footer-item is-link"
@@ -107,7 +107,7 @@
       }
     },
     mounted() {
-      this.getUsers()
+      this.getUsers() 
     },
     computed: {
       filteredDataArray() {
@@ -125,6 +125,7 @@
         const response = await UserService.fetchUsers(window.localStorage.getItem('token'))
         this.lynxUsers = response.data.users
         this.dataLoaded = true
+        this.$store.dispatch('member/resetState')  
       },
       profileAvatar(image) {
         return image ? `/static/uploads/${image}` : defaultImage

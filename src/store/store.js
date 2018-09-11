@@ -6,6 +6,7 @@ import userState from './modules/user'
 import accountState from './modules/accounts'
 import feedState from './modules/feeds'
 import profileState from './modules/profiles'
+import memberState from './modules/member'
 
 Vue.use(Vuex)
 
@@ -17,5 +18,6 @@ export default new Vuex.Store({
     accounts: accountState,
     profiles: profileState,
     feeds: feedState,
+    member: memberState
   }
 })

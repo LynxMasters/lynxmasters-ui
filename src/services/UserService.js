@@ -21,5 +21,8 @@ export default {
   },
   getAccounts(jwt) {
     return Api().get('accounts/', { headers: {'Authorization': jwt, 'Content-Type': 'multipart/form-data' } })
+  },
+  getMember(jwt) {
+    return Api().get('member/', { headers: {'Authorization': jwt, 'Content-Type': 'multipart/form-data' } })
   }
 }
