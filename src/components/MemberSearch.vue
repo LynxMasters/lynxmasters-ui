@@ -122,7 +122,7 @@
     methods: {
       async getUsers() {
         this.dataLoaded = false
-        const response = await UserService.fetchUsers()
+        const response = await UserService.fetchUsers(window.localStorage.getItem('token'))
         this.lynxUsers = response.data.users
         this.dataLoaded = true
       },
