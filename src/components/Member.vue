@@ -4,7 +4,7 @@
     <div class="column">
       <div class="container">
         <div class="columns is-centered">
-        <profileCard :accounts="accounts"></profileCard>
+        <!-- <profileCard :accounts="accounts"></profileCard> -->
         <div class="column is-7 tab-top">
           <b-tabs size="is-medium"
           position="is-centered"
@@ -21,15 +21,15 @@
             </div>
           </div>
           <div v-else class='all' v-for="i in 8">
-            <reddit v-if="i < threads.len && i == 1 && accounts.reddit.linked" :thread="threads[0]"></reddit>
-            <twitch v-if="i < streams.len && i == 1 && accounts.twitch.linked" :stream="streams[0]"></twitch>
-            <twitter v-if="i < tweets.len && i == 1 && accounts.twitter.linked" :tweet="tweets[0]"></twitter>
-            <reddit v-if="i < threads.len && i >= 1 && accounts.reddit.linked" :thread="threads[i]"></reddit>
-            <twitch v-if="i < streams.len && i >= 1 && accounts.twitch.linked" :stream="streams[i]"></twitch>
-            <twitter v-if="i < tweets.len && i >= 1&& accounts.twitter.linked" :tweet="tweets[i]"></twitter>
+            <reddit v-if="i < threads.len && i == 1 && threads.linked" :thread="threads[0]"></reddit>
+            <twitch v-if="i < streams.len && i == 1 && streams.linked" :stream="streams[0]"></twitch>
+            <twitter v-if="i < tweets.len && i == 1 && tweets.linked" :tweet="tweets[0]"></twitter>
+            <reddit v-if="i < threads.len && i >= 1 && threads.linked" :thread="threads[i]"></reddit>
+            <twitch v-if="i < streams.len && i >= 1 && streams.linked" :stream="streams[i]"></twitch>
+            <twitter v-if="i < tweets.len && i >= 1&& tweets.linked" :tweet="tweets[i]"></twitter>
           </div>
           </b-tab-item>
-          <b-tab-item v-if="accounts.twitter.linked">
+          <b-tab-item v-if="tweets.linked">
           <template slot="header">
           <b-icon class="fab fa-twitter"></b-icon>
           <span> Twitter</span>
@@ -39,7 +39,7 @@
           </div>
           <twitter v-else :tweet="tweet" v-for="tweet in tweets" :key="tweet.id"></twitter> 
           </b-tab-item>
-          <b-tab-item v-if="accounts.twitch.linked">
+          <b-tab-item v-if="streams.linked">
           <template slot="header">
           <b-icon class="fab fa-twitch"></b-icon>
           <span> Twitch</span>
@@ -49,7 +49,7 @@
           </div>
           <twitch v-else :stream="stream" v-for="stream in streams" :key="stream.id"></twitch>
           </b-tab-item>
-          <b-tab-item v-if="accounts.reddit.linked">
+          <b-tab-item v-if="threads.linked">
           <template slot="header">
           <b-icon class="fab fa-reddit"></b-icon>
           <span> Reddit</span>
@@ -95,17 +95,14 @@ export default {
       }
     },
     computed: {
-      accounts(){
-        return this.$store.getters['accounts/getAccounts']
-      },
       tweets(){
-        return this.$store.getters['feeds/getTwitter']
+        return this.$store.getters['member/getTwitter']
       },
       streams(){
-        return this.$store.getters['feeds/getTwitch']
+        return this.$store.getters['member/getTwitch']
       },
       threads(){
-        return this.$store.getters['feeds/getReddit']
+        return this.$store.getters['member/getReddit']
       },
     },
     beforeMount() {  
@@ -113,10 +110,10 @@ export default {
     created() {
       this.checkAuthentication()
       this.token = window.localStorage.getItem('token')
-      this.$store.dispatch('feeds/fetchReddit', this.token)
-      this.$store.dispatch('feeds/fetchTwitter', this.token)
-      this.$store.dispatch('feeds/fetchTwitch', this.token)
-      this.$store.dispatch('accounts/fetchAccounts', this.token)     
+      this.payload = {'token': this.token, 'username': this.$route.params.username}
+      this.$store.dispatch('member/fetchReddit', this.payload)
+      this.$store.dispatch('member/fetchTwitter', this.payload)
+      this.$store.dispatch('member/fetchTwitch', this.payload)    
     },
     updated() {
       this.checkAuthentication()

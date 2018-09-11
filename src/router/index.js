@@ -9,6 +9,7 @@ import LinkAccounts from '@/components/LinkAccounts'
 import AccountManagement from '@/components/AccountManagement'
 import PageNotFound from '@/components/PageNotFound'
 import Search from '@/components/MemberSearch'
+import Member from '@/components/Member'
 
 Vue.use(Router)
 
@@ -39,6 +40,11 @@ export default new Router({
       path: '/profile',
       name: 'Profile',
       component: Profile
+    },
+    {
+      path: '/:username',
+      name: 'Member',
+      component: Member
     },
     {
       path: '/verification',
