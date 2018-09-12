@@ -65,13 +65,10 @@ const mutations = {
    state.twitter.isLoaded = true
    state.twitter.requested_at = new Date().getTime() + (5*60*1000)
   },
-  setRedditCount(state){
-
-  },
   setVotes(state, payload){
-    // let index = state.reddit.threads.findIndex(x => x.data == payload.id);
-    // console.log(index)
-    state.reddit.threads[0].data.likes = payload.likes
+    let index = state.reddit.threads.findIndex(x => x.data.id == payload.id);
+    console.log(index)
+    state.reddit.threads[index].data.likes = payload.likes
   }
 }
 
