@@ -15,6 +15,12 @@ const state = {
     len: 0,
     isLoaded: false,
     requested_at: 0,
+    threads:[
+      {
+        likes: null
+      }
+    ],
+    count: 0
   },
 }
 
@@ -29,12 +35,15 @@ const getters = {
   getTwitter(state){
     return state.twitter
   },
+  getVotes(state){
+    return state.reddit.threads[0].likes
+  }
 }
 
 const mutations = {
   setReddit (state, payload) {
    if(!payload.data.hasOwnProperty('error')){
-    state.reddit = payload.data.data.children
+    state.reddit.threads = payload.data.data.children
     state.reddit.len = payload.data.data.dist
    }
    state.reddit.isLoaded = true
@@ -55,6 +64,14 @@ const mutations = {
    }
    state.twitter.isLoaded = true
    state.twitter.requested_at = new Date().getTime() + (5*60*1000)
+  },
+  setRedditCount(state){
+
+  },
+  setVotes(state, payload){
+    // let index = state.reddit.threads.findIndex(x => x.data == payload.id);
+    // console.log(index)
+    state.reddit.threads[0].data.likes = payload.likes
   }
 }
 

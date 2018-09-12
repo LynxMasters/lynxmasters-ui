@@ -18,6 +18,6 @@ export default new Vuex.Store({
     accounts: accountState,
     profiles: profileState,
     feeds: feedState,
-    member: memberState
+    member: memberState,
   }
 })

@@ -21,10 +21,10 @@
             </div>
           </div>
           <div v-else class='all' v-for="i in 8">
-            <reddit v-if="i < threads.len && i == 1 && accounts.reddit.linked" :thread="threads[0]"></reddit>
+            <reddit v-if="i < threads.len && i == 1 && accounts.reddit.linked" :thread="threads.threads[0]"></reddit>
             <twitch v-if="i < streams.len && i == 1 && accounts.twitch.linked" :stream="streams[0]"></twitch>
             <twitter v-if="i < tweets.len && i == 1 && accounts.twitter.linked" :tweet="tweets[0]"></twitter>
-            <reddit v-if="i < threads.len && i >= 1 && accounts.reddit.linked" :thread="threads[i]"></reddit>
+            <reddit v-if="i < threads.len && i >= 1 && accounts.reddit.linked" :thread="threads.threads[i]"></reddit>
             <twitch v-if="i < streams.len && i >= 1 && accounts.twitch.linked" :stream="streams[i]"></twitch>
             <twitter v-if="i < tweets.len && i >= 1&& accounts.twitter.linked" :tweet="tweets[i]"></twitter>
           </div>
@@ -57,7 +57,7 @@
           <div v-if="!threads.isLoaded" class='all has-text-center'>
             <loading></loading>
           </div>
-          <reddit v-else :thread="thread" v-for="thread in threads" :key="thread.id">
+          <reddit v-else :thread="thread" v-for="thread in threads.threads" :key="thread.id">
           </reddit>
           </b-tab-item>
           </b-tabs>
