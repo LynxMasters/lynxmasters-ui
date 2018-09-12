@@ -17,7 +17,8 @@ const state = {
     requested_at: 0,
     threads:[
       {
-        likes: null
+        likes: null,
+        ups: null
       }
     ],
     count: 0
@@ -35,9 +36,6 @@ const getters = {
   getTwitter(state){
     return state.twitter
   },
-  getVotes(state){
-    return state.reddit.threads[0].likes
-  }
 }
 
 const mutations = {
@@ -69,6 +67,7 @@ const mutations = {
     let index = state.reddit.threads.findIndex(x => x.data.id == payload.id);
     console.log(index)
     state.reddit.threads[index].data.likes = payload.likes
+    state.reddit.threads[index].data.ups = payload.ups
   }
 }
 
@@ -108,6 +107,18 @@ const actions = {
       })
     }
   },
+  postVotes (context, payload) {
+    if(state.twitter.requested_at < new Date().getTime()){
+      return ExternalService.votesReddit(payload.id)
+      .then(result => {
+        console.log(result)
+        context.commit('setVotes', paload)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    }
+  }
 }
 
 export default {
