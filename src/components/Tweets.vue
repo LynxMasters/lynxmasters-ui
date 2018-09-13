@@ -55,9 +55,11 @@
           this.isRetweet = true
           this.tweet.retweet_count +=1
           this.showRetweet = true 
+          this.$store.commit('feeds/setRetweet', {id: this.tweet.id, retweeted: this.isRetweet, retweet_count: this.tweet.retweet_count})
         }else{
           this.isRetweet = false
           this.tweet.retweet_count -=1
+          this.$store.commit('feeds/setRetweet', {id: this.tweet.id, retweeted: this.isRetweet, retweet_count: this.tweet.retweet_count})
         }
       },
 

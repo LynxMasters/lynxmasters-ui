@@ -82,6 +82,12 @@ const mutations = {
     console.log(index)
     state.twitter.tweets[index].favorited = payload.favorited
     state.twitter.tweets[index].favorite_count = payload.favorite_count
+  },
+  setRetweet(state, payload){
+    let index = state.twitter.tweets.findIndex(x => x.id == payload.id);
+    console.log(index)
+    state.twitter.tweets[index].retweeted = payload.retweeted
+    state.twitter.tweets[index].retweet_count = payload.retweet_count
   }
 }
 
