@@ -5,6 +5,14 @@ const state = {
     len: 0,
     isLoaded: false,
     requested_at: 0,
+    tweets:[
+      {
+        favorite_count: null,
+        favorited: null,
+        retweeted: null,
+        retweet_count: null
+      }
+    ]
   },
   twitch:{
     len: 0,
@@ -57,7 +65,7 @@ const mutations = {
   },
   setTwitter (state, payload) {
    if(!payload.data.hasOwnProperty('error')){
-    state.twitter = payload.data
+    state.twitter.tweets = payload.data
     state.twitter.len = payload.data.length
    }
    state.twitter.isLoaded = true
@@ -68,6 +76,12 @@ const mutations = {
     console.log(index)
     state.reddit.threads[index].data.likes = payload.likes
     state.reddit.threads[index].data.ups = payload.ups
+  },
+  setFavorite(state, payload){
+    let index = state.twitter.tweets.findIndex(x => x.id == payload.id);
+    console.log(index)
+    state.twitter.tweets[index].favorited = payload.favorited
+    state.twitter.tweets[index].favorite_count = payload.favorite_count
   }
 }
 

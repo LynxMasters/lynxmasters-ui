@@ -54,8 +54,7 @@
        if(!this.isRetweet){
           this.isRetweet = true
           this.tweet.retweet_count +=1
-          this.showRetweet = true
-          
+          this.showRetweet = true 
         }else{
           this.isRetweet = false
           this.tweet.retweet_count -=1
@@ -66,9 +65,11 @@
         if(!this.isFavorite){
           this.isFavorite = true
           this.tweet.favorite_count +=1
+          this.$store.commit('feeds/setFavorite', {id: this.tweet.id, favorited: this.isFavorite, favorite_count: this.tweet.favorite_count})
         }else{
           this.isFavorite = false
           this.tweet.favorite_count -=1
+          this.$store.commit('feeds/setFavorite', {id: this.tweet.id, favorited: this.tweet.isFavorite, favorite_count: this.tweet.favorite_count})
         }
       },
     },

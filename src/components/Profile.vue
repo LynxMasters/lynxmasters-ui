@@ -23,10 +23,10 @@
           <div v-else class='all' v-for="i in 8">
             <reddit v-if="i < threads.len && i == 1 && accounts.reddit.linked" :thread="threads.threads[0]"></reddit>
             <twitch v-if="i < streams.len && i == 1 && accounts.twitch.linked" :stream="streams[0]"></twitch>
-            <twitter v-if="i < tweets.len && i == 1 && accounts.twitter.linked" :tweet="tweets[0]"></twitter>
+            <twitter v-if="i < tweets.len && i == 1 && accounts.twitter.linked" :tweet="tweets.tweets[0]"></twitter>
             <reddit v-if="i < threads.len && i >= 1 && accounts.reddit.linked" :thread="threads.threads[i]"></reddit>
             <twitch v-if="i < streams.len && i >= 1 && accounts.twitch.linked" :stream="streams[i]"></twitch>
-            <twitter v-if="i < tweets.len && i >= 1&& accounts.twitter.linked" :tweet="tweets[i]"></twitter>
+            <twitter v-if="i < tweets.len && i >= 1&& accounts.twitter.linked" :tweet="tweets.tweets[i]"></twitter>
           </div>
           </b-tab-item>
           <b-tab-item v-if="accounts.twitter.linked">
@@ -37,7 +37,7 @@
           <div v-if="!tweets.isLoaded" class='all has-text-center'>
             <loading></loading>
           </div>
-          <twitter v-else :tweet="tweet" v-for="tweet in tweets" :key="tweet.id"></twitter> 
+          <twitter v-else :tweet="tweet" v-for="tweet in tweets.tweets" :key="tweet.id"></twitter> 
           </b-tab-item>
           <b-tab-item v-if="accounts.twitch.linked">
           <template slot="header">
