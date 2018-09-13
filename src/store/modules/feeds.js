@@ -131,7 +131,7 @@ const actions = {
     return ExternalService.voteReddit(payload)
     .then(result => {
       console.log(result)
-      context.commit('setVotes', paload)
+      context.commit('setVotes', payload)
     })
     .catch(error => {
       console.log(error)
