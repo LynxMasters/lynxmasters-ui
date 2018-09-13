@@ -128,16 +128,14 @@ const actions = {
     }
   },
   postVotes (context, payload) {
-    if(state.twitter.requested_at < new Date().getTime()){
-      return ExternalService.votesReddit(payload.id)
-      .then(result => {
-        console.log(result)
-        context.commit('setVotes', paload)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-    }
+    return ExternalService.votesReddit(payload.id)
+    .then(result => {
+      console.log(result)
+      context.commit('setVotes', paload)
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
 }
 
