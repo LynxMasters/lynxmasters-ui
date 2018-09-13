@@ -50,20 +50,20 @@ export default{
   membersTwitter(jwt, username){
   return Api().get('members/twitter?username='+username, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
   },
-  votesReddit(jwt, id){
-  return Api().post('votes/reddit', {data: id}, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  votesReddit(jwt, vote){
+  return Api().post('vote/reddit', {data: vote}, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
   },
-  commentReddit(jwt, payload){
-  return Api().post('comment/reddit', {data: payload}, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  commentReddit(jwt, comment){
+  return Api().post('comment/reddit', {data: comment}, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
   },
-  commentTwitter(jwt, payload){
-  return Api().post('comment/twitter', {data: payload}, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  commentTwitter(jwt, comment){
+  return Api().post('comment/twitter', {data: comment}, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
   },
-  retweetTwitter(jwt, payload){
-  return Api().post('retweet/twitter', {data: payload}, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  retweetTwitter(jwt, retweet){
+  return Api().post('retweet/twitter', {data: retweet}, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
   },
-  favoriteTwitter(jwt, id){
-  return Api().post('favorite/twitter', {data: id}, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  favoriteTwitter(jwt, favorite){
+  return Api().post('favorite/twitter', {data: favorite}, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
   }
 }
 
