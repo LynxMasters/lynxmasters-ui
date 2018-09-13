@@ -53,17 +53,17 @@ export default{
   voteReddit(vote){
   return Api().post('vote/reddit', {data: vote}, { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },
-  commentReddit(jwt, comment){
-  return Api().post('comment/reddit', {data: comment}, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  commentReddit(comment){
+  return Api().post('comment/reddit', {data: comment}, { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },
-  commentTwitter(jwt, comment){
-  return Api().post('comment/twitter', {data: comment}, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  commentTwitter(comment){
+  return Api().post('comment/twitter', {data: comment}, { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },
-  retweetTwitter(jwt, retweet){
-  return Api().post('retweet/twitter', {data: retweet}, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  retweetTwitter(retweet){
+  return Api().post('retweet/twitter', {data: retweet}, { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },
-  favoriteTwitter(jwt, favorite){
-  return Api().post('favorite/twitter', {data: favorite}, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  favoriteTwitter(favorite){
+  return Api().post('favorite/twitter', {data: favorite}, { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   }
 }
 

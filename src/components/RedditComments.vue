@@ -1,7 +1,7 @@
 <template>
  <div>
 <article class="media">
-  <votes :ups='comment.data.ups' :likes='comment.data.likes'></votes>
+  <votes :id='comment.data.name' :ups='comment.data.ups' :likes='comment.data.likes'></votes>
   <div class="media-content">
   <div class="content">
       <p>
@@ -12,11 +12,23 @@
     </div>
     <nav class="level is-mobile">
       <div class="level-left">
-        <a class="level-item has-text-grey">
+        <a class="level-item has-text-grey" v-on:click="isReply = true">
           <span class="icon is-small"><i class="fas fa-comment"><small>Reply</small></i></span>
         </a>
       </div>
     </nav>
+  <div class="content" v-if="isReply">
+    <div class="field">
+        <p class="control">
+          <textarea class="textarea" v-model="text" placeholder="Reply..."></textarea>
+        </p>
+    </div>
+      <div class="field">
+      <p class="control">
+      <button v-on:click="postReply" class="button">Comment</button>
+      </p>
+    </div>
+  </div>
   </div>
 </article>
 <div class='tree' v-if="hasChildren">
@@ -38,7 +50,12 @@
     data(){
       return{
         children: null,
-        hasChildren: false
+        hasChildren: false,
+        isReply: false,
+        content: {
+          id: this.comment.data.name,
+          text: null,
+        }
       }
     },
     mounted(){
@@ -54,6 +71,14 @@
           this.hasChildren = true
           }
         }
+      },
+    async postReply(){
+      this.isReply = false
+      await ExternalServices.commentReddit(this.content)
+        .then(res => {
+          return res
+          console.log(res)
+        })
       }
     }
   }
