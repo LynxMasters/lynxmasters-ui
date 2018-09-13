@@ -64,7 +64,10 @@
           if(!this.comment.data.replies.data.hasOwnProperty('name')){
 
           this.children = this.comment.data.replies.data.children
-          this.children.pop()
+          let index = this.children.length-1
+          if(this.children[index].kind == 'more'){
+            this.children.pop()
+          }
           this.hasChildren = true
           }
         }
