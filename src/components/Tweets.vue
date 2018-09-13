@@ -10,10 +10,10 @@
           <comments :tweet="tweet" v-if='showComments' @close="showComments = false"></comments>
         </a>
         <a class="level-item" @click="retweet">
-          <span class="icon is-small padLeft padRight"><i v-bind:class="{'has-text-success': isRetweet, 'has-text-grey': !isRetweet}" class="fas fa-retweet">{{tweet.retweet_count}}</i></span><retweets :tweet="tweet" v-if='showRetweet' @close="showRetweet = false"></retweets>
+          <span class="icon is-small padLeft padRight"><i v-bind:class="{'has-text-success': tweet.retweeted, 'has-text-grey': !tweet.retweeted}" class="fas fa-retweet">{{tweet.retweet_count}}</i></span><retweets :tweet="tweet" v-if='showRetweet' @close="showRetweet = false"></retweets>
         </a>
         <a class="level-item" @click="favorite">
-          <span class="icon is-small padLeft"><i v-bind:class="{'has-text-danger fas fa-heart': isFavorite, 'has-text-grey': !isFavorite}" class="far fa-heart">{{tweet.favorite_count}}</i></span>
+          <span class="icon is-small padLeft"><i v-bind:class="{'has-text-danger fas fa-heart': tweet.favorited, 'has-text-grey': !tweet.favorited}" class="far fa-heart">{{tweet.favorite_count}}</i></span>
         </a>
       </div>
     </nav>
@@ -43,35 +43,33 @@
         return {
           showComments: false,
           showRetweet: false,
-          isFavorite: this.tweet.favorited,
-          isRetweet: this.tweet.retweeted,
         }
     },
     mounted(){
     },
     methods: {
       retweet() {
-       if(!this.isRetweet){
-          this.isRetweet = true
+       if(!this.tweet.retweeted){
+          this.tweet.retweeted = true
           this.tweet.retweet_count +=1
           this.showRetweet = true 
-          this.$store.commit('feeds/setRetweet', {id: this.tweet.id, retweeted: this.isRetweet, retweet_count: this.tweet.retweet_count})
+          this.$store.commit('feeds/setRetweet', {id: this.tweet.id, retweeted: this.tweet.retweeted, retweet_count: this.tweet.retweet_count})
         }else{
-          this.isRetweet = false
+          this.tweet.retweeted = false
           this.tweet.retweet_count -=1
-          this.$store.commit('feeds/setRetweet', {id: this.tweet.id, retweeted: this.isRetweet, retweet_count: this.tweet.retweet_count})
+          this.$store.commit('feeds/setRetweet', {id: this.tweet.id, retweeted: this.tweet.retweeted, retweet_count: this.tweet.retweet_count})
         }
       },
 
       favorite() {
-        if(!this.isFavorite){
-          this.isFavorite = true
+        if(!this.tweet.favorited){
+          this.tweet.favorited = true
           this.tweet.favorite_count +=1
-          this.$store.commit('feeds/setFavorite', {id: this.tweet.id, favorited: this.isFavorite, favorite_count: this.tweet.favorite_count})
+          this.$store.commit('feeds/setFavorite', {id: this.tweet.id, favorited: this.tweet.favorited, favorite_count: this.tweet.favorite_count})
         }else{
-          this.isFavorite = false
+          this.tweet.favorited = false
           this.tweet.favorite_count -=1
-          this.$store.commit('feeds/setFavorite', {id: this.tweet.id, favorited: this.tweet.isFavorite, favorite_count: this.tweet.favorite_count})
+          this.$store.commit('feeds/setFavorite', {id: this.tweet.id, favorited: this.tweet.favorited, favorite_count: this.tweet.favorite_count})
         }
       },
     },
