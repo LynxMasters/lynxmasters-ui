@@ -14,30 +14,39 @@
 		props:{
 			ups: null,
 			likes: null,
+			id: null,
+		},
+		created(){
 		},
 		methods:{
 		  upVote() {
 	       if(this.likes == null){
 	          this.likes = true
 	          this.ups += 1
+	          this.$store.commit('feeds/setVotes', {id: this.id, likes: this.likes, ups: this.ups})
 	        }else if(!this.likes){
 	          this.likes = true
 	          this.ups += 2
+	       	  this.$store.commit('feeds/setVotes', {id: this.id, likes: this.likes, ups: this.ups})
 	        }else{
 	          this.likes = null
 	          this.ups -= 1
+	          this.$store.commit('feeds/setVotes', {id: this.id, likes: this.likes, ups: this.ups})
 	        }
 	      },
 	      downVote() {
 	        if(this.likes == null){
 	          this.likes = false
 	          this.ups -= 1
+	          this.$store.commit('feeds/setVotes', {id: this.id, likes: this.likes, ups: this.ups})
 	        }else if(this.likes){
 	          this.likes = false
 	          this.ups -= 2
+	          this.$store.commit('feeds/setVotes', {id: this.id, likes: this.likes, ups: this.ups})
 	        }else{
 	          this.likes = null
 	          this.ups += 1
+	          this.$store.commit('feeds/setVotes', {id: this.id, likes: this.likes, ups: this.ups})
 	        }
 	      },
 		}
