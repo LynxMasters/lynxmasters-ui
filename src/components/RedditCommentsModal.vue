@@ -79,7 +79,7 @@ export default {
       })
     },
     postComment(){
-     this.$store.dispatch('feeds/postCommentReddit', {id: this.comment.data.name, text: this.text })
+     this.$store.dispatch('feeds/postCommentReddit', {id: this.thread.data.name, text: this.text })
     }
   },
 }
