@@ -10,7 +10,7 @@
           <comments :tweet="tweet" v-if='showComments' @close="showComments = false"></comments>
         </a>
         <a class="level-item" @click="retweet">
-          <span class="icon is-small padLeft padRight"><i v-bind:class="{'has-text-success': tweet.retweeted, 'has-text-grey': !tweet.retweeted}" class="fas fa-retweet">{{tweet.retweet_count}}</i></span><retweets :tweet="tweet" v-if='showRetweet' @close="showRetweet = false"></retweets>
+          <span class="icon is-small padLeft padRight"><i v-bind:class="{'has-text-success': tweet.retweeted, 'has-text-grey': !tweet.retweeted}" class="fas fa-retweet">{{tweet.retweet_count}}</i></span><!-- <retweets :tweet="tweet" v-if='showRetweet' @close="showRetweet = false"></retweets> -->
         </a>
         <a class="level-item" @click="favorite">
           <span class="icon is-small padLeft"><i v-bind:class="{'has-text-danger fas fa-heart': tweet.favorited, 'has-text-grey': !tweet.favorited}" class="far fa-heart">{{tweet.favorite_count}}</i></span>
