@@ -28,12 +28,12 @@
 	        }else if(!this.likes){
 	          this.likes = true
 	          this.ups += 2
-	       	  this.$store.commit('feeds/setVotes', 
+	       	  this.$store.dispatch('feeds/postVotes', 
 	       	  	{id: this.id, likes: this.likes, ups: this.ups, dir: 1})
 	        }else{
 	          this.likes = null
 	          this.ups -= 1
-	          this.$store.commit('feeds/setVotes', 
+	          this.$store.dispatch('feeds/postVotes', 
 	          	{id: this.id, likes: this.likes, ups: this.ups, dir: 0})
 	        }
 	      },
@@ -41,17 +41,17 @@
 	        if(this.likes == null){
 	          this.likes = false
 	          this.ups -= 1
-	          this.$store.commit('feeds/setVotes', 
+	          this.$store.dispatch('feeds/postVotes', 
 	          	{id: this.id, likes: this.likes, ups: this.ups, dir: -1})
 	        }else if(this.likes){
 	          this.likes = false
 	          this.ups -= 2
-	          this.$store.commit('feeds/setVotes', 
+	          this.$store.dispatch('feeds/postVotes', 
 	          	{id: this.id, likes: this.likes, ups: this.ups, dir: -1})
 	        }else{
 	          this.likes = null
 	          this.ups += 1
-	          this.$store.commit('feeds/setVotes', 
+	          this.$store.dispatch('feeds/postVotes', 
 	          	{id: this.id, likes: this.likes, ups: this.ups, dir: 0})
 	        }
 	      },
