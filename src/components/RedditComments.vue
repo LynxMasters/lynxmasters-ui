@@ -52,10 +52,7 @@
         children: null,
         hasChildren: false,
         isReply: false,
-        content: {
-          id: this.comment.data.name,
-          text: null,
-        }
+        text: null
       }
     },
     mounted(){
@@ -74,7 +71,7 @@
       },
       postReply(){
         this.isReply = false
-        this.$store.dispatch('feeds/postCommentReddit', this.content)
+        this.$store.dispatch('feeds/postCommentReddit', {id: this.comment.data.name, text: this.text })
      } 
     }
   }

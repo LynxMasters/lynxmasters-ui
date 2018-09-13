@@ -24,7 +24,7 @@
           <div class="media-content">
             <div class="field">
               <p class="control">
-                <textarea class="textarea" v-model="content.text" placeholder="Add a comment..."></textarea>
+                <textarea class="textarea" v-model="text" placeholder="Add a comment..."></textarea>
               </p>
             </div>
             <div class="field">
@@ -60,10 +60,7 @@ export default {
   data(){
     return{
       comments:{},
-      content: {
-        id: this.thread.data.name,
-        text: null
-      }
+      text: null
     }
   },
   created(){
@@ -82,7 +79,7 @@ export default {
       })
     },
     postComment(){
-     this.$store.dispatch('feeds/postCommentReddit', this.content)
+     this.$store.dispatch('feeds/postCommentReddit', {id: this.comment.data.name, text: this.text })
     }
   },
 }
