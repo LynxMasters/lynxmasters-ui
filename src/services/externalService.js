@@ -50,8 +50,8 @@ export default{
   membersTwitter(jwt, username){
   return Api().get('members/twitter?username='+username, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
   },
-  votesReddit(jwt, vote){
-  return Api().post('vote/reddit', {data: vote}, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  voteReddit(vote){
+  return Api().post('vote/reddit', {data: vote}, { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },
   commentReddit(jwt, comment){
   return Api().post('comment/reddit', {data: comment}, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
