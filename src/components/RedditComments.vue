@@ -72,14 +72,10 @@
           }
         }
       },
-    async postReply(){
-      this.isReply = false
-      await ExternalServices.commentReddit(this.content)
-        .then(res => {
-          return res
-          console.log(res)
-        })
-      }
+      postReply(){
+        this.isReply = false
+        this.$store.dispatch('feeds/postCommentReddit', this.content)
+     } 
     }
   }
 </script>

@@ -81,12 +81,8 @@ export default {
         console.log(this.comments)
       })
     },
-    async postComment(){
-      await ExternalServices.commentReddit(this.content)
-      .then(res => {
-        return res
-        console.log(res)
-      })
+    postComment(){
+     this.$store.dispatch('feeds/postCommentReddit', this.content)
     }
   },
 }
