@@ -6,12 +6,12 @@
     {{tweet.text}}
     <br>
     <div v-if="isTweet">
-      <img v-if="isImage" v-bind:src="image_url" height="500" width="500">
-      <video v-if="!isImage && video_url.content_type == 'video/mp4'"height="500" width="500" controls>
+      <img v-if="isImage" v-lazy="image_url" height="500" width="500">
+      <video v-if="isVideo && video_url.content_type == 'video/mp4'"height="500" width="500" controls>
         <source v-bind:src="video_url.url">
       </video>
-      <video v-if="!isImage && video_url.content_type != 'video/mp4'" id="video" height="500" width="500">
-      </video>
+      <!-- <video v-if="!isImage && video_url.content_type != 'video/mp4'" id="video" height="500" width="500"> 
+      </video>-->
     </div>
   </p>
 </div>
@@ -25,14 +25,17 @@
     data() {
       return {
         created_at: 0,
-        isImage: true,
+        isImage: null,
+        isVideo: null,
         image_url: null, 
         video_url: null,
       }
     },
+    created(){
+      this.check_media()
+    },
     mounted(){
        this.format_date()
-       this.check_media()
     },
     methods: {
 
@@ -43,7 +46,7 @@
             this.isImage = true
             this.image_url = this.tweet.extended_entities.media[0].media_url_https
           }else{
-            this.isImage = false
+            this.isVideo = true
             this.video_url = this.tweet.extended_entities.media[0].video_info.variants[0]
             if(this.video_url.content_type != 'video/mp4'){
               //this.videoM3U8()

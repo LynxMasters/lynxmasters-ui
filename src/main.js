@@ -13,6 +13,7 @@ require('vue2-animate/dist/vue2-animate.min.css')
 import Bulma from 'bulma/css/bulma.css'
 import 'buefy/lib/buefy.css'
 import './assets/style/app.scss'
+import VueLazyload from 'vue-lazyload'
 
 
 Vue.use(Buefy)
@@ -20,6 +21,7 @@ Vue.use(scrollSpy)
 Vue.use(VueScrollTo)
 Vue.use(VueProgress)
 Vue.prototype.moment = moment
+Vue.use(VueLazyload)
 
 Vue.config.productionTip = false
 

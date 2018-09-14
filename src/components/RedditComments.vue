@@ -16,7 +16,7 @@
           <span class="icon is-small"><i class="fas fa-comment"><small>Reply</small></i></span>
         </a>
       </div>
-    </nav>
+    </nav>  
   <div class="content" v-if="isReply">
     <div class="field">
         <p class="control">

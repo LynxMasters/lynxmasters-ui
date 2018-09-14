@@ -6,7 +6,7 @@
         <strong>{{thread.title}}</strong>
         <br>
         <div v-if="!thread.is_video" class="card-image has-text-centered">
-         <img v-if="!img" :src="mediaURL" width="500" height="500">
+         <img v-if="!img" v-lazy="mediaURL" width="500" height="500">
          <video v-if="img" height="500" width="500" controls>
             <source v-bind:src="mediaURL">
           </video>
