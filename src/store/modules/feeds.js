@@ -72,7 +72,7 @@ const mutations = {
    state.twitter.requested_at = new Date().getTime() + (5*60*1000)
   },
   setVotes(state, payload){
-    let index = state.reddit.threads.findIndex(x => x.data.id == payload.id);
+    let index = state.reddit.threads.findIndex(x => x.data.name == payload.id);
     console.log(index)
     state.reddit.threads[index].data.likes = payload.likes
     state.reddit.threads[index].data.ups = payload.ups
@@ -128,15 +128,53 @@ const actions = {
     }
   },
   postVotes (context, payload) {
-    return ExternalService.votesReddit(payload.id)
+    return ExternalService.voteReddit(payload)
     .then(result => {
       console.log(result)
-      context.commit('setVotes', paload)
+      context.commit('setVotes', payload)
     })
     .catch(error => {
       console.log(error)
     })
-  }
+  },
+  postCommentReddit (context, payload) {
+    return ExternalService.commentReddit(payload)
+    .then(result => {
+      console.log(result)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  },
+  postCommentTwitter (context, payload) {
+    return ExternalService.commentTwitter(payload)
+    .then(result => {
+      console.log(result)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  },
+  postRetweet (context, payload) {
+    return ExternalService.retweetTwitter(payload)
+    .then(result => {
+      console.log(result)
+      context.commit('setRetweet', payload)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  },   
+  postFavorite (context, payload) {
+    return ExternalService.favoriteTwitter(payload)
+    .then(result => {
+      console.log(result)
+      context.commit('setFavorite', payload)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  },    
 }
 
 export default {

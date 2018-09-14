@@ -8,7 +8,7 @@
     </header>
     <section class="modal-card-body">
       <article class="media">
-          <votes :ups="thread.data.ups" :likes="thread.data.likes"></votes>
+          <votes :id="thread.data.name" :ups="thread.data.ups" :likes="thread.data.likes"></votes>
           <div class="media-content">
             <redditcontent :thread="thread.data"></redditcontent>
             <nav class="level is-mobile">
@@ -24,12 +24,12 @@
           <div class="media-content">
             <div class="field">
               <p class="control">
-                <textarea class="textarea" placeholder="Add a comment..."></textarea>
+                <textarea class="textarea" v-model="text" placeholder="Add a comment..."></textarea>
               </p>
             </div>
             <div class="field">
               <p class="control">
-              <button class="button">Comment</button>
+              <button v-on:click="postComment" class="button">Comment</button>
               </p>
             </div>
           </div>
@@ -60,6 +60,7 @@ export default {
   data(){
     return{
       comments:{},
+      text: null
     }
   },
   created(){
@@ -74,7 +75,11 @@ export default {
       })
       .then(info =>{
         this.comments = info.data[1].data.children
+        console.log(this.comments)
       })
+    },
+    postComment(){
+     this.$store.dispatch('feeds/postCommentReddit', {id: this.thread.data.name, text: this.text })
     }
   },
 }

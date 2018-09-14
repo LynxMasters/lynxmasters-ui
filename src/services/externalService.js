@@ -2,18 +2,6 @@ const axios = require('axios')
 import Api from '@/services/Api'
 
 export default{
-	
-	twitchPOST(info){   
-	return Api().post('twitch'+info.method, {data: info}, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
-	}, 
-
-  twitterPOST(info){
-  return Api().post('twitter'+info.method, {data: info}, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
-  }, 	
-
-  redditPOST(info){
-  return Api().post('reddit'+info.method, { data: info }, { headers: {'Authorization': info.jwt, 'Content-Type': 'application/json' } })
-  },
 
   twitchUNLINK(jwt){   
   return Api().post('unlink/twitch', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
@@ -62,8 +50,20 @@ export default{
   membersTwitter(jwt, username){
   return Api().get('members/twitter?username='+username, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
   },
-  votesReddit(jwt, payload){
-  return Api().post('votes/reddit', {data: payload}, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  voteReddit(vote){
+  return Api().post('vote/reddit', {data: vote}, { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
+  },
+  commentReddit(comment){
+  return Api().post('comment/reddit', {data: comment}, { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
+  },
+  commentTwitter(comment){
+  return Api().post('comment/twitter', {data: comment}, { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
+  },
+  retweetTwitter(retweet){
+  return Api().post('retweet/twitter', {data: retweet}, { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
+  },
+  favoriteTwitter(favorite){
+  return Api().post('favorite/twitter', {data: favorite}, { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   }
 }
 

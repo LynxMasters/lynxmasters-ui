@@ -1,7 +1,7 @@
 <template>
  <div>
 <article class="media">
-  <votes :ups='comment.data.ups' :likes='comment.data.likes'></votes>
+  <votes :id='comment.data.name' :ups='comment.data.ups' :likes='comment.data.likes'></votes>
   <div class="media-content">
   <div class="content">
       <p>
@@ -12,11 +12,23 @@
     </div>
     <nav class="level is-mobile">
       <div class="level-left">
-        <a class="level-item has-text-grey">
+        <a class="level-item has-text-grey" v-on:click="isReply = true">
           <span class="icon is-small"><i class="fas fa-comment"><small>Reply</small></i></span>
         </a>
       </div>
-    </nav>
+    </nav>  
+  <div class="content" v-if="isReply">
+    <div class="field">
+        <p class="control">
+          <textarea class="textarea" v-model="text" placeholder="Reply..."></textarea>
+        </p>
+    </div>
+      <div class="field">
+      <p class="control">
+      <button v-on:click="postReply" class="button">Comment</button>
+      </p>
+    </div>
+  </div>
   </div>
 </article>
 <div class='tree' v-if="hasChildren">
@@ -38,7 +50,9 @@
     data(){
       return{
         children: null,
-        hasChildren: false
+        hasChildren: false,
+        isReply: false,
+        text: null
       }
     },
     mounted(){
@@ -50,11 +64,18 @@
           if(!this.comment.data.replies.data.hasOwnProperty('name')){
 
           this.children = this.comment.data.replies.data.children
-          this.children.pop()
+          let index = this.children.length-1
+          if(this.children[index].kind == 'more'){
+            this.children.pop()
+          }
           this.hasChildren = true
           }
         }
-      }
+      },
+      postReply(){
+        this.isReply = false
+        this.$store.dispatch('feeds/postCommentReddit', {id: this.comment.data.name, text: this.text })
+     } 
     }
   }
 </script>

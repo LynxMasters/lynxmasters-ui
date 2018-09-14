@@ -10,7 +10,7 @@
           <comments :tweet="tweet" v-if='showComments' @close="showComments = false"></comments>
         </a>
         <a class="level-item" @click="retweet">
-          <span class="icon is-small padLeft padRight"><i v-bind:class="{'has-text-success': tweet.retweeted, 'has-text-grey': !tweet.retweeted}" class="fas fa-retweet">{{tweet.retweet_count}}</i></span><retweets :tweet="tweet" v-if='showRetweet' @close="showRetweet = false"></retweets>
+          <span class="icon is-small padLeft padRight"><i v-bind:class="{'has-text-success': tweet.retweeted, 'has-text-grey': !tweet.retweeted}" class="fas fa-retweet">{{tweet.retweet_count}}</i></span><!-- <retweets :tweet="tweet" v-if='showRetweet' @close="showRetweet = false"></retweets> -->
         </a>
         <a class="level-item" @click="favorite">
           <span class="icon is-small padLeft"><i v-bind:class="{'has-text-danger fas fa-heart': tweet.favorited, 'has-text-grey': !tweet.favorited}" class="far fa-heart">{{tweet.favorite_count}}</i></span>
@@ -53,11 +53,11 @@
           this.tweet.retweeted = true
           this.tweet.retweet_count +=1
           this.showRetweet = true 
-          this.$store.commit('feeds/setRetweet', {id: this.tweet.id, retweeted: this.tweet.retweeted, retweet_count: this.tweet.retweet_count})
+          this.$store.dispatch('feeds/postRetweet', {id: this.tweet.id_str, retweeted: this.tweet.retweeted, retweet_count: this.tweet.retweet_count})
         }else{
           this.tweet.retweeted = false
           this.tweet.retweet_count -=1
-          this.$store.commit('feeds/setRetweet', {id: this.tweet.id, retweeted: this.tweet.retweeted, retweet_count: this.tweet.retweet_count})
+          this.$store.dispatch('feeds/postRetweet', {id: this.tweet.id_str, retweeted: this.tweet.retweeted, retweet_count: this.tweet.retweet_count})
         }
       },
 
@@ -65,11 +65,11 @@
         if(!this.tweet.favorited){
           this.tweet.favorited = true
           this.tweet.favorite_count +=1
-          this.$store.commit('feeds/setFavorite', {id: this.tweet.id, favorited: this.tweet.favorited, favorite_count: this.tweet.favorite_count})
+          this.$store.dispatch('feeds/postFavorite', {id: this.tweet.id_str, favorited: this.tweet.favorited, favorite_count: this.tweet.favorite_count})
         }else{
           this.tweet.favorited = false
           this.tweet.favorite_count -=1
-          this.$store.commit('feeds/setFavorite', {id: this.tweet.id, favorited: this.tweet.favorited, favorite_count: this.tweet.favorite_count})
+          this.$store.dispatch('feeds/postFavorite', {id: this.tweet.id_str, favorited: this.tweet.favorited, favorite_count: this.tweet.favorite_count})
         }
       },
     },

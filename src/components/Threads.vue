@@ -1,6 +1,6 @@
 <template>
 <article class="media">
-  <votes :id="thread.data.id" :ups="thread.data.ups" :likes="thread.data.likes"></votes>
+  <votes :id="thread.data.name" :ups="thread.data.ups" :likes="thread.data.likes"></votes>
   <div class="media-content">
     <redditcontent :thread="thread.data"></redditcontent>
     <nav class="level is-mobile">
