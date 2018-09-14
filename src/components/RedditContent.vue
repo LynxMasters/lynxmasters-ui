@@ -6,8 +6,8 @@
         <strong>{{thread.title}}</strong>
         <br>
         <div v-if="!thread.is_video" class="card-image has-text-centered">
-         <img v-if="!img" v-lazy="mediaURL" width="500" height="500">
-         <video v-if="img" height="500" width="500" controls>
+         <img v-if="isImage" v-lazy="mediaURL" width="500" height="500">
+         <video v-if="isVideo" height="500" width="500" controls>
             <source v-bind:src="mediaURL">
           </video>
          <br>
@@ -29,7 +29,8 @@
 		data() {
          return {
           mediaURL: null,
-          img: false,
+          isImage: null,
+          isVideo: null
           }
     	},
     	created(){
@@ -39,26 +40,43 @@
 	      check_media(){
 	      	
 	        if(this.thread.url.includes('gifv')){
+	        	this.isImage = true
 	          this.mediaURL = this.thread.url.replace(/(gifv)+/g, "gif") 
+	        
 	        }else if(this.thread.url.includes('imgur')){
+	          this.isImage = true
 	          if(this.thread.url.includes('.jpg') || this.thread.url.includes('.png') || this.thread.url.includes('.gif')){
 	            this.mediaURL = this.thread.url
 	          }else{
+	          	if(this.thread.url.includes('gallery')){
+	          		this.mediaURL = this.thread.thumbnail
+	          	}else{
 	            this.mediaURL = this.thread.url + '.jpg'
+	        	}
 	          }
 	          this.mediaURL.replace("http", "https")
+	        
 	        }else if(!this.thread.url.includes('redd.it')){
-	          if(this.thread.preview.hasOwnProperty('reddit_video_preview')){
-	            this.img = true
-	            this.mediaURL = this.thread.preview.reddit_video_preview.scrubber_media_url
-	          }else{
-	            this.mediaURL = this.thread.preview.images[0].source.url
+	          if(this.thread.hasOwnProperty('preview')){
+		          if(this.thread.preview.hasOwnProperty('reddit_video_preview')){
+		            this.isVideo = true
+		            this.mediaURL = this.thread.preview.reddit_video_preview.scrubber_media_url
+		          }else{
+		          	this.isImage = true
+		            this.mediaURL = this.thread.preview.images[0].source.url
+		          }
 	          }
+	        
 	        }else{
+	        	this.isImage = true
 	          if(this.thread.url.includes('.jpg') || this.thread.url.includes('.png') || this.thread.url.includes('.gif')){
 	          this.mediaURL = this.thread.url
 	          }else{
+	          	if(this.thread.url.includes('v.redd.it')){
+	          		this.mediaURL = this.thread.preview.images[0].source.url
+	          	}else{
 	            this.mediaURL = this.thread.url + '.jpg'
+	          	}
 	          }
 	        }
           },
