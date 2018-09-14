@@ -95,10 +95,8 @@
           })
         }else{
             //this.user = this.$store.getters['member/getMember']
-            console.log(this.username)
           await UserService.getMember(this.username).then(res => {
             this.user = res.data
-            console.log(this.user)
           })
         }
       },

@@ -7,6 +7,7 @@
         <br>
         <div v-if="!thread.is_video" class="card-image has-text-centered">
          <img v-if="isImage" v-lazy="mediaURL" width="500" height="500">
+         <img v-if="isGif" v-bind:src="mediaURL" width="500" height="500">
          <video v-if="isVideo" height="500" width="500" controls>
             <source v-bind:src="mediaURL">
           </video>
@@ -30,7 +31,8 @@
          return {
           mediaURL: null,
           isImage: null,
-          isVideo: null
+          isVideo: null,
+          isGif: null
           }
     	},
     	created(){
@@ -78,6 +80,10 @@
 	            this.mediaURL = this.thread.url + '.jpg'
 	          	}
 	          }
+	        }
+	        if(this.mediaURL.includes('.gif')){
+	        	// this.isImage = false
+	        	// this.isGif = true
 	        }
           },
 		}
