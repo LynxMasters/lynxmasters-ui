@@ -2,7 +2,7 @@
 <section class="profile animated fadeIn">
   <div class="columns is-centered">
     <div class="column is-7">
-       <profileCard :isMember="true"></profileCard>
+       <profileCard :username="$route.params.username" :isMember="true"></profileCard>
     </div>
   </div>
   <div class="columns">

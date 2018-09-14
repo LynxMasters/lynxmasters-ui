@@ -75,7 +75,8 @@
 
   export default {
     props: {
-      isMember: false
+      isMember: false,
+      username: null
     },
     mounted() {
       this.token = window.localStorage.getItem('token')
@@ -93,7 +94,12 @@
             this.user = res.data
           })
         }else{
-            this.user = this.$store.getters['member/getMember']
+            //this.user = this.$store.getters['member/getMember']
+            console.log(this.username)
+          await UserService.getMember(this.username).then(res => {
+            this.user = res.data
+            console.log(this.user)
+          })
         }
       },
       profileAvatar(image) {
