@@ -55,7 +55,7 @@
         text: null
       }
     },
-    mounted(){
+    created(){
       this.unwrapData()
     },
     methods:{
