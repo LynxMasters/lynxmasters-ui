@@ -15,6 +15,9 @@ const state = {
     linked: false,
     isLoaded: false,
   },
+  member:{
+
+  },
 }
 
 const getters = {
@@ -28,8 +31,8 @@ const getters = {
   getTwitter(state){
     return state.twitter
   },
-  getAccounts(state){
-    return state.accounts
+  getMember(state){
+    return state.member
   }
 }
 
@@ -60,6 +63,9 @@ const mutations = {
    }
    state.twitter.isLoaded = true
    state.twitter.requested_at = new Date().getTime() + (5*60*1000)
+  },
+  setMember(state, payload){
+    state.member = payload
   },
   setReset(state) {
     state.twitter.len = 0

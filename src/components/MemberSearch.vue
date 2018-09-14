@@ -65,9 +65,7 @@
                   </div>
                 </div>
                 <footer class="card-footer">
-                  <router-link v-bind:to="{ name: 'Member', params: { username: user.username } }"
-                               class="card-footer-item is-link">Profile
-                  </router-link>
+                  <a  @click="member(user)" class="card-footer-item is-link">Profile</a>
                   <a href="#" class="card-footer-item is-link"
                      @click="followUser(user)">Follow</a>
                 </footer>
@@ -129,6 +127,13 @@
       },
       profileAvatar(image) {
         return image ? `/static/uploads/${image}` : defaultImage
+      },
+      member(user){
+        this.$store.commit('member/setMember', user)
+        this.$router.push({
+          name: 'Member', 
+          params: { username: user.username }
+        });
       }
     }
   }
