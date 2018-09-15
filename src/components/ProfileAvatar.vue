@@ -39,7 +39,7 @@
     </figure>
   </div>
   <div class="column is-4">
-    <h1 class="title">{{user.username}}</h1> 
+    <h1 class="title has-text-centered">{{user.username}}</h1>
     <nav class="level is-mobile">
       <div class="level-item has-text-centered">
         <div>
@@ -65,7 +65,7 @@
           <p>789</p>
         </div>
       </div>
-    </nav>   
+    </nav>
   </div>
 </div>
 </template>
