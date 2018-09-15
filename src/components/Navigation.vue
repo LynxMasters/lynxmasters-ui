@@ -96,8 +96,4 @@
 .nav-overlay-hotfix{
     z-index: auto;
   }
-.is-active a span {
-    color: #ffffff;
-}  
-
 </style>
