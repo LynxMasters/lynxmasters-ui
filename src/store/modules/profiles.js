@@ -102,7 +102,11 @@ const mutations = {
     }
     if(payload == 2){
       state.stats.posts = state.twitch.profile.display_name
-      state.stats.likes = state.twitch.profile.bio
+      if(!state.twitch.profile.bio == null){
+        state.stats.likes = state.twitch.profile.bio
+      }else{
+        state.stats.likes = "none"
+      }
       state.stats.followers = Math.floor(Math.random() * 100) + 1;
       state.stats.following = Math.floor(Math.random() * 100) + 1;
       
