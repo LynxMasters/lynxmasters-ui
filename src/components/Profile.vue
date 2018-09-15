@@ -168,5 +168,6 @@ export default {
   }
   .media{
     background-color: #fafafa;
+    padding: 1rem;
   }
 </style>
