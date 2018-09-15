@@ -50,7 +50,7 @@
       <div class="level-item has-text-centered">
         <div>
           <p class="heading">{{profile.col2}}</p>
-          <p>{{profile.likes}}</p>
+          <p v-html="profileBioOrLikes"></p>
         </div>
       </div>
       <div class="level-item has-text-centered">
@@ -72,6 +72,7 @@
 <script>
   import defaultProfileImage from '@/assets/images/default_profile.png'
   import UserService from '@/services/UserService'
+  import _ from 'lodash'
 
   export default {
     props: {
@@ -83,6 +84,9 @@
     computed:{
       profile(){
         return this.$store.getters['profiles/getStats']
+      },
+      profileBioOrLikes() {
+        return _.isNull(this.profile.likes) ? "&nbsp;" : this.profile.likes
       }
     },
     created(){
