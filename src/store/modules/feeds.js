@@ -18,6 +18,7 @@ const state = {
     len: 0,
     isLoaded: false,
     requested_at: 0,
+    streams:[]
   },
   reddit:{
     len: 0,
@@ -28,8 +29,7 @@ const state = {
         likes: null,
         ups: null
       }
-    ],
-    count: 0
+    ]
   },
 }
 
@@ -57,8 +57,11 @@ const mutations = {
   },
   setTwitch (state, payload) {
    if(!payload.data.hasOwnProperty('error')){
-    state.twitch = payload.data.streams
+    state.twitch.streams = payload.data.streams
     state.twitch.len  = payload.data.total
+    if(state.twitch.len == null){
+      state.twitch.len = 0
+    }
    }
    state.twitch.isLoaded = true
    state.twitch.requested_at = new Date().getTime() + (5*60*1000)
@@ -92,7 +95,7 @@ const mutations = {
 }
 
 const actions = {
-  fetchReddit (context, payload) {
+  async fetchReddit (context, payload) {
     if(state.reddit.requested_at < new Date().getTime()){
       return ExternalService.feedsReddit(payload)
       .then(feeds => {
@@ -104,10 +107,11 @@ const actions = {
       })
     }
   },
-  fetchTwitch (context, payload) {
+  async fetchTwitch (context, payload) {
     if(state.twitch.requested_at < new Date().getTime()){
       return ExternalService.feedsTwitch(payload)
       .then(feeds => {
+        console.log(feeds)
         context.commit('setTwitch', feeds)
       })
       .catch(error => {
@@ -115,7 +119,7 @@ const actions = {
       })
     }
   },
-  fetchTwitter (context, payload) {
+  async fetchTwitter (context, payload) {
     if(state.twitter.requested_at < new Date().getTime()){
       return ExternalService.feedsTwitter(payload)
       .then(feeds => {

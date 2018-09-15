@@ -2,7 +2,7 @@
 <section class="profile animated fadeIn">
   <div class="columns is-centered">
     <div class="column is-7">
-       <profileCard :accounts="accounts"></profileCard>
+       <profileCard></profileCard>
     </div>
   </div>
   <div class="columns">
@@ -19,18 +19,18 @@
           <b-icon class="fas fa-align-justify"></b-icon>
           <span> All</span>
           </template>
-           <div class="column is-12" v-if="!tweets.isLoaded || !streams.isLoaded || !threads.isLoaded" >
+           <div class="column is-12" v-if="!twitter.isLoaded || !twitch.isLoaded || !reddit.isLoaded">
             <div class="content has-text-centered">
-                <loading></loading>
+               <loading></loading>
             </div>
           </div>
-          <div v-else class='all' v-for="i in 8">
-            <reddit v-if="i < threads.len && i == 1 && accounts.reddit.linked" :thread="threads.threads[0]"></reddit>
-            <twitch v-if="i < streams.len && i == 1 && accounts.twitch.linked" :stream="streams[0]"></twitch>
-            <twitter v-if="i < tweets.len && i == 1 && accounts.twitter.linked" :tweet="tweets.tweets[0]"></twitter>
-            <reddit v-if="i < threads.len && i >= 1 && accounts.reddit.linked" :thread="threads.threads[i]"></reddit>
-            <twitch v-if="i < streams.len && i >= 1 && accounts.twitch.linked" :stream="streams[i]"></twitch>
-            <twitter v-if="i < tweets.len && i >= 1&& accounts.twitter.linked" :tweet="tweets.tweets[i]"></twitter>
+          <div v-else class='all'  v-for="i in 8">
+            <reddit v-if="i < reddit.len && i == 1 && accounts.reddit.linked" :thread="reddit.threads[0]"></reddit>
+            <twitch v-if="i < twitch.len && i == 1 && accounts.twitch.linked" :stream="twitch.streams[0]"></twitch>
+            <twitter v-if="i < twitter.len && i == 1 && accounts.twitter.linked" :tweet="twitter.tweets[0]"></twitter>
+            <reddit v-if="i < reddit.len && i >= 1 && accounts.reddit.linked" :thread="reddit.threads[i]"></reddit>
+            <twitch v-if="i < twitch.len && i >= 1 && accounts.twitch.linked" :stream="twitch.streams[i]"></twitch>
+            <twitter v-if="i < twitter.len && i >= 1&& accounts.twitter.linked" :tweet="twitter.tweets[i]"></twitter>
           </div>
           </b-tab-item>
           <b-tab-item v-if="accounts.twitter.linked">
@@ -38,30 +38,30 @@
           <b-icon class="fab fa-twitter"></b-icon>
           <span> Twitter</span>
           </template>
-          <div v-if="!tweets.isLoaded" class='all has-text-center'>
+          <div v-if="!twitter.isLoaded" class='all has-text-center'>
             <loading></loading>
           </div>
-          <twitter v-else :tweet="tweet" v-for="tweet in tweets.tweets" :key="tweet.id"></twitter> 
+          <twitter v-else :tweet="tweet" v-for="tweet in twitter.tweets" :key="tweet.id"></twitter> 
           </b-tab-item>
           <b-tab-item v-if="accounts.twitch.linked">
           <template slot="header">
           <b-icon class="fab fa-twitch"></b-icon>
           <span> Twitch</span>
           </template>
-          <div v-if="!streams.isLoaded" class='all has-text-center'>
+          <div v-if="!twitch.isLoaded" class='all has-text-center'>
             <loading></loading>
           </div>
-          <twitch v-else :stream="stream" v-for="stream in streams" :key="stream.id"></twitch>
+          <twitch v-else :stream="stream" v-for="stream in twitch.streams" :key="stream.id"></twitch>
           </b-tab-item>
           <b-tab-item v-if="accounts.reddit.linked">
           <template slot="header">
           <b-icon class="fab fa-reddit"></b-icon>
           <span> Reddit</span>
           </template>
-          <div v-if="!threads.isLoaded" class='all has-text-center'>
+          <div v-if="!reddit.isLoaded" class='all has-text-center'>
             <loading></loading>
           </div>
-          <reddit v-else :thread="thread" v-for="thread in threads.threads" :key="thread.id">
+          <reddit v-else :thread="thread" v-for="thread in reddit.threads" :key="thread.id">
           </reddit>
           </b-tab-item>
           </b-tabs>
@@ -102,13 +102,13 @@ export default {
       accounts(){
         return this.$store.getters['accounts/getAccounts']
       },
-      tweets(){
+      twitter(){
         return this.$store.getters['feeds/getTwitter']
       },
-      streams(){
+      twitch(){
         return this.$store.getters['feeds/getTwitch']
       },
-      threads(){
+      reddit(){
         return this.$store.getters['feeds/getReddit']
       },
     },
