@@ -20,7 +20,11 @@ const state = {
     posts: 168,
     followers: 334,
     following: 99,
-    likes: 269
+    likes: 269,
+    col1: "Posts",
+    col2: "Likes",
+    col3: "Followers",
+    col4: "Following",
   }
 }
 
@@ -72,27 +76,44 @@ const mutations = {
   setStats(state, payload){
     if(payload == 0){
       state.stats.posts = Math.floor(Math.random() * 500) + 200;
-      state.stats.followers = Math.floor(Math.random() * 900) + 400;
-      state.stats.following = Math.floor(Math.random() * 900) + 300;
-      state.stats.likes = Math.floor(Math.random() * 300) + 100;
+      state.stats.likes = Math.floor(Math.random() * 900) + 400;
+      state.stats.followers = Math.floor(Math.random() * 900) + 300;
+      state.stats.following = Math.floor(Math.random() * 300) + 100;
+      state.stats.col1 = "Posts"
+      state.stats.col2 = "Likes"
+      state.stats.col3 = "Followers"
+      state.stats.col4 = "Following"
     }
     if(payload == 1){
-      state.stats.posts = Math.floor(Math.random() * 100) + 1;
-      state.stats.followers = Math.floor(Math.random() * 100) + 1;
-      state.stats.following = Math.floor(Math.random() * 100) + 1;
-      state.stats.likes = Math.floor(Math.random() * 100) + 1;
+      state.stats.posts = state.twitter.profile.screen_name
+      state.stats.likes = state.twitter.profile.favourites_count
+      state.stats.followers = state.twitter.profile.followers_count
+      state.stats.following= state.twitter.profile.friends_count
+      state.stats.col1 = "Screen Name"
+      state.stats.col2 = "Likes"
+      state.stats.col3 = "Followers"
+      state.stats.col4 = "Following"
     }
     if(payload == 2){
-      state.stats.posts = Math.floor(Math.random() * 100) + 1;
+      state.stats.posts = state.twitch.profile.display_name
+      state.stats.likes = state.twitch.profile.bio
       state.stats.followers = Math.floor(Math.random() * 100) + 1;
       state.stats.following = Math.floor(Math.random() * 100) + 1;
-      state.stats.likes = Math.floor(Math.random() * 100) + 1;
+      
+      state.stats.col1 = "Screen Name"
+      state.stats.col2 = "Bio"
+      state.stats.col3 = "Followers"
+      state.stats.col4 = "Following"
     }
     if(payload == 3){
-      state.stats.posts = Math.floor(Math.random() * 100) + 1;
-      state.stats.followers = Math.floor(Math.random() * 100) + 1;
-      state.stats.following = Math.floor(Math.random() * 100) + 1;
-      state.stats.likes = Math.floor(Math.random() * 100) + 1;
+      state.stats.posts = state.reddit.profile.subreddit.display_name_prefixed
+      state.stats.likes = state.reddit.profile.comment_karma
+      state.stats.followers = state.reddit.profile.subreddit.subscribers
+      state.stats.following = state.reddit.profile.num_friends  
+      state.stats.col1 = "Screen Name"
+      state.stats.col2 = "Karma"
+      state.stats.col3 = "Followers"
+      state.stats.col4 = "Following"
     }
   }
 }
@@ -100,7 +121,7 @@ const mutations = {
 const actions = {
   async fetchReddit (context, payload) {
     if(!state.reddit.fetched){
-      return ExternalService.profilesReddit(payload)
+      return ExternalService.profilesReddit()
       .then(profiles => {
         context.commit('setReddit', profiles)
       })
@@ -112,7 +133,7 @@ const actions = {
   },
   async fetchTwitch(context, payload) {
     if(!state.twitch.fetched){
-      return ExternalService.profilesTwitch(payload)
+      return ExternalService.profilesTwitch()
       .then(profiles => {
         context.commit('setTwitch', profiles)
       })
@@ -123,7 +144,7 @@ const actions = {
   },
   async fetchTwitter (context, payload) {
     if(!state.twitter.fetched){
-      return ExternalService.profilesTwitter(payload)
+      return ExternalService.profilesTwitter()
       .then(profiles => {
         context.commit('setTwitter', profiles)
       })

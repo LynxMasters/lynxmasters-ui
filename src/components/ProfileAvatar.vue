@@ -43,26 +43,26 @@
     <nav class="level is-mobile">
       <div class="level-item has-text-centered">
         <div>
-          <p class="heading">Posts</p>
+          <p class="heading">{{profile.col1}}</p>
           <p>{{profile.posts}}</p>
         </div>
       </div>
       <div class="level-item has-text-centered">
         <div>
-          <p class="heading">Followers</p>
-          <p>{{profile.followers}}</p>
+          <p class="heading">{{profile.col2}}</p>
+          <p>{{profile.likes}}</p>
         </div>
       </div>
       <div class="level-item has-text-centered">
         <div>
-          <p class="heading">Following</p>
+          <p class="heading">{{profile.col3}}</p>
           <p>{{profile.followers}}</p>
         </div>
       </div>
       <div class="level-item has-text-centere d">
         <div>
-          <p class="heading">Likes</p>
-          <p>{{profile.likes}}</p>
+          <p class="heading">{{profile.col4}}</p>
+          <p>{{profile.following}}</p>
         </div>
       </div>
     </nav>
@@ -87,6 +87,11 @@
       profile(){
         return this.$store.getters['profiles/getStats']
       }
+    },
+    created(){
+      this.$store.dispatch('profiles/fetchReddit')
+      this.$store.dispatch('profiles/fetchTwitch')
+      this.$store.dispatch('profiles/fetchTwitter')
     },
     mounted() {
       this.token = window.localStorage.getItem('token')

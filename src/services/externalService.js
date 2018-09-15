@@ -15,16 +15,16 @@ export default{
   return Api().post('unlink/reddit', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
   },
 
-  profilesReddit(jwt){
-  return Api().get('profiles/reddit', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  profilesReddit(){
+  return Api().get('profiles/reddit', { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },
 
-  profilesTwitch(jwt){
-  return Api().get('profiles/twitch', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  profilesTwitch(){
+  return Api().get('profiles/twitch', { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },
 
-  profilesTwitter(jwt){
-  return Api().get('profiles/twitter', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  profilesTwitter(){
+  return Api().get('profiles/twitter', { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },
 
   feedsReddit(jwt){

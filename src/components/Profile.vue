@@ -166,7 +166,7 @@ export default {
   .all{
     padding-top: 1em;
     padding-bottom: 1em;    
-    border-top: 1px solid rgba(219, 219, 219, 0.5);
+    
   }
   .media{
     background-color: #fafafa;
