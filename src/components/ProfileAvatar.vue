@@ -59,7 +59,7 @@
           <p>{{profile.followers}}</p>
         </div>
       </div>
-      <div class="level-item has-text-centere d">
+      <div class="level-item has-text-centered">
         <div>
           <p class="heading">{{profile.col4}}</p>
           <p>{{profile.following}}</p>
