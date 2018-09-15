@@ -51,14 +51,18 @@ const mutations = {
    if(payload.data.hasOwnProperty('icon_img')){
    state.reddit.profile.icon_img = payload.data.icon_img.replace(/(amp;)+/g, "")
    }
-   state.reddit.isLoaded = true
-   state.reddit.fetched = true
+   setTimeout(() => {
+     state.reddit.isLoaded = true
+     state.reddit.fetched = true     
+   }, 1500)
   },
 
   setTwitch (state, payload) {
    state.twitch.profile = payload.data
-   state.twitch.isLoaded = true
-   state.twitch.fetched = true
+   setTimeout(() => {
+     state.twitch.isLoaded = true
+     state.twitch.fetched = true     
+   }, 1500)
   },
 
   setTwitter (state, payload) {
@@ -66,8 +70,10 @@ const mutations = {
    if(payload.data.hasOwnProperty('profile_image_url_https')){
    state.twitter.profile.profile_image_url_https = payload.data.profile_image_url_https.replace(/_normal/g, "")
    }
-   state.twitter.isLoaded = true
-   state.twitter.fetched = true
+   setTimeout(() => {
+     state.twitter.isLoaded = true
+     state.twitter.fetched = true     
+   }, 1500)
   },
 
   setRequested(state, payload){
