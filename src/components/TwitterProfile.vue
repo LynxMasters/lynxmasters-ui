@@ -27,13 +27,13 @@
               </p>
             </header>
             <div class="card-image has-text-centered">
-              <img :src="twitter.profile_image_url_https" class="twitter-img">
+              <img :src="twitter.profile.profile_image_url_https" class="twitter-img">
             </div>
             <div class="card-content">
               <div class="content">
-                <h4 class="has-text-centered">@{{ twitter.screen_name }}</h4>
-                <h5 class="has-text-centered">Followers: {{ twitter.followers_count }} Following: {{ twitter.friends_count }}</h5>
-                <h5 class="has-text-centered">Date Created: {{ moment(twitter.created_at).format('YYYY-MM-DD') }}</h5>
+                <h4 class="has-text-centered">@{{ twitter.profile.screen_name }}</h4>
+                <h5 class="has-text-centered">Followers: {{ twitter.profile.followers_count }} Following: {{ twitter.profile.friends_count }}</h5>
+                <h5 class="has-text-centered">Date Created: {{ moment(twitter.profile.created_at).format('YYYY-MM-DD') }}</h5>
               </div>
             </div>
             <footer class="card-footer">

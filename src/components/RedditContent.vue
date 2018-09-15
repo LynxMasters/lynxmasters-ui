@@ -81,12 +81,12 @@
 	          	}
 	          }
 	        }
-	        if(this.mediaURL != null){
-		        if(this.mediaURL.includes('.gif')){
-		        	this.isImage = false
-		        	this.isGif = true
-		        }
-	    	}
+	     //    if(this.mediaURL != null){
+		    //     if(this.mediaURL.includes('.gif')){
+		    //     	this.isImage = false
+		    //     	this.isGif = true
+		    //     }
+	    	// }
           },
 		}
 	}

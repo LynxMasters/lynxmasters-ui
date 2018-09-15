@@ -4,16 +4,19 @@ const state = {
     len: 0,
     linked: false,
     isLoaded: false,
+    tweets:[]
   },
   twitch:{
     len: 0,
     linked: false,
     isLoaded: false,
+    streams:[]
   },
   reddit:{
     len: 0,
     linked: false,
     isLoaded: false,
+    threads:[]
   },
   member:{
 
@@ -39,7 +42,7 @@ const getters = {
 const mutations = {
   setReddit (state, payload) {
    if(!payload.data.hasOwnProperty('error')){
-    state.reddit = payload.data.data.children
+    state.reddit.threads = payload.data.data.children
     state.reddit.len = payload.data.data.dist
     state.reddit.linked = true
    }
@@ -48,7 +51,7 @@ const mutations = {
   },
   setTwitch (state, payload) {
    if(!payload.data.hasOwnProperty('error')){
-    state.twitch = payload.data.streams
+    state.twitch.streams = payload.data.streams
     state.twitch.len  = payload.data.total
     state.twitch.linked = true
    }
@@ -57,7 +60,7 @@ const mutations = {
   },
   setTwitter (state, payload) {
    if(!payload.data.hasOwnProperty('error')){
-    state.twitter = payload.data
+    state.twitter.tweets = payload.data
     state.twitter.len = payload.data.length
     state.twitter.linked = true
    }

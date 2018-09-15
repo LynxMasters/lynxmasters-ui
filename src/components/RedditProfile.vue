@@ -27,13 +27,13 @@
               </p>
             </header>
             <div class="card-image has-text-centered">
-              <img :src="reddit.icon_img" height="300" width="300">
+              <img :src="reddit.profile.icon_img" height="300" width="300">
             </div>
             <div class="card-content">
               <div class="content">
-                <h4 class="has-text-centered">u/{{reddit.name }}</h4>
-                <h5 class="has-text-centered">{{ reddit.link_karma }} Post Karma</h5>
-                <h5 class="has-text-centered">{{ reddit.comment_karma }} Comment Karma</h5>
+                <h4 class="has-text-centered">u/{{reddit.profile.name }}</h4>
+                <h5 class="has-text-centered">{{ reddit.profile.link_karma }} Post Karma</h5>
+                <h5 class="has-text-centered">{{ reddit.profile.comment_karma }} Comment Karma</h5>
                 <h5 class="has-text-centered">Date Created: {{ moment.unix(reddit.created).format('YYYY-MM-DD') }}</h5>
               </div>
             </div>
