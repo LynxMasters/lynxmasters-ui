@@ -24,14 +24,28 @@
                   </header>
                   <div class="card-image">
                     <div class="image players-avatar">
-                      <img v-bind:src="`../static/uploads/${user.avatar}`">
+                      <img :src="imageSrc ? imageSrc : avatar" class="image">
                     </div>
                   </div>
                   <div class="card-content">
                     <div class="content has-text-centered">
-
-                      <div class="field">
-                        <label class="label">Followers: 333</label>
+                      <div class="file is-centered is-small">
+                        <label class="file-label">
+                          <input @change="uploadImage"
+                                 type="file"
+                                 name="avatar"
+                                 accept="image/*"
+                                 ref="fileInput"
+                                 class="button is-fullwidth file-input is-info">
+                          <span class="file-cta">
+                            <span class="file-icon">
+                              <i class="fas fa-upload"></i>
+                            </span>
+                            <span class="file-label">
+                              Upload New Profile Image
+                            </span>
+                          </span>
+                        </label>
                       </div>
                     </div>
                   </div>
@@ -284,7 +298,9 @@
   import countries from '@/assets/countries.json'
   import {validationMixin} from 'vuelidate'
   import {required, numeric, minLength, maxLength, email, sameAs} from 'vuelidate/lib/validators'
-    export default {
+  import defaultImage from '@/assets/images/default_profile.png'
+
+  export default {
       mixins: [validationMixin],
       name: "AccountManagement",
       data() {
@@ -295,6 +311,7 @@
             tempNewEmail: '',
             password: ''
           },
+          imageSrc: '',
           countries
         }
       },
@@ -348,11 +365,16 @@
         this.checkAuthentication()
       },
       watch: {},
-      computed: {},
+      computed: {
+        avatar() {
+          return this.user.avatar ? `../static/uploads/${this.user.avatar}` : defaultImage
+        }
+      },
       methods: {
         async getUserAccountInfo() {
           await UserService.fetchUser(this.token).then(res => {
             this.user = res.data
+            console.log(this.user.avatar)
           })
         },
         checkAuthentication() {
@@ -371,11 +393,10 @@
           })
         },
         infoSaved() {
-          this.$snackbar.open({
+          this.$toast.open({
             message: 'Your information was updated!',
-            type: 'is-warning',
+            type: 'is-success',
             position: 'is-top',
-            actionText: 'GOT IT!',
             duration: 5000
           })
         },
@@ -420,6 +441,29 @@
         },
         updatePassword(){
           console.log('byaaaaa')
+        },
+        uploadImage(e) {
+          let files = e.target.files
+          if(!files[0]) {
+            return
+          }
+          let data = new FormData()
+          data.append('user', this.user.firstName + this.user.lastName)
+          data.append('image', files[0])
+          let reader = new FileReader()
+          let fileName = files[0].name
+          reader.onload = (e) => {
+            this.user.avatar = `${this.user.firstName + this.user.lastName}.${fileName.substr(fileName.lastIndexOf('.') + 1)}`
+            this.imageSrc = e.target.result
+          }
+
+          UserService.uploadAvatar(data).then(res => {
+            reader.readAsDataURL(files[0])
+            this.user.avatar = res.data.filename
+            this.updateUserInfo()
+          }).catch(error => {
+            console.log(error)
+          })
         }
       }
     }
