@@ -1,10 +1,14 @@
 <template>
 <section class="profile animated fadeIn">
+  <div class="columns is-centered">
+    <div class="column is-7">
+       <profileCard :username="$route.params.username" :isMember="true"></profileCard>
+    </div>
+  </div>
   <div class="columns">
     <div class="column">
       <div class="container">
         <div class="columns is-centered">
-        <!-- <profileCard :accounts="accounts"></profileCard> -->
         <div class="column is-7 tab-top">
           <b-tabs size="is-medium"
           position="is-centered"
@@ -113,7 +117,7 @@ export default {
       this.payload = {'token': this.token, 'username': this.$route.params.username}
       this.$store.dispatch('member/fetchReddit', this.payload)
       this.$store.dispatch('member/fetchTwitter', this.payload)
-      this.$store.dispatch('member/fetchTwitch', this.payload)    
+      this.$store.dispatch('member/fetchTwitch', this.payload)   
     },
     updated() {
       this.checkAuthentication()
@@ -158,5 +162,8 @@ export default {
     padding-top: 1em;
     padding-bottom: 1em;    
     border-top: 1px solid rgba(219, 219, 219, 0.5);
+  }
+  .media{
+    background-color: #fafafa;
   }
 </style>

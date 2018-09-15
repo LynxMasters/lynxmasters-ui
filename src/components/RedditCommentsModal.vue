@@ -75,6 +75,7 @@ export default {
       })
       .then(info =>{
         this.comments = info.data[1].data.children
+        this.comments.pop()
         console.log(this.comments)
       })
     },

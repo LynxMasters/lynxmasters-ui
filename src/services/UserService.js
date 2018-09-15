@@ -22,7 +22,7 @@ export default {
   getAccounts(jwt) {
     return Api().get('accounts/', { headers: {'Authorization': jwt, 'Content-Type': 'multipart/form-data' } })
   },
-  getMember(jwt) {
-    return Api().get('member/', { headers: {'Authorization': jwt, 'Content-Type': 'multipart/form-data' } })
+  getMember(username) {
+    return Api().get('member?username='+username, { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'multipart/form-data' } })
   }
 }

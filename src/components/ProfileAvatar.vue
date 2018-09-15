@@ -1,6 +1,6 @@
 <template>
-<div class="column is-3">
-  <div class="card">
+<div class="columns">
+<!--   <div class="card">
     <header class="card-header">
       <p class="card-header-title is-centered card-name">
         @{{user.username}}
@@ -32,6 +32,40 @@
         </router-link>
       </div>
     </div>
+  </div> -->
+  <div class="column is-2 is-offset-2">
+    <figure class="image is-150x150">
+          <img class="round" :src="profileAvatar(user.avatar)">
+    </figure>
+  </div>
+  <div class="column is-4">
+    <h1 class="title">{{user.username}}</h1> 
+    <nav class="level is-mobile">
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Posts</p>
+          <p>3,456</p>
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Following</p>
+          <p>123</p>
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Followers</p>
+          <p>456K</p>
+        </div>
+      </div>
+      <div class="level-item has-text-centere d">
+        <div>
+          <p class="heading">Likes</p>
+          <p>789</p>
+        </div>
+      </div>
+    </nav>   
   </div>
 </div>
 </template>
@@ -41,7 +75,8 @@
 
   export default {
     props: {
-      accounts: {},
+      isMember: false,
+      username: null
     },
     mounted() {
       this.token = window.localStorage.getItem('token')
@@ -54,9 +89,16 @@
     },
     methods: {
       async fetchProfile() {
-        await UserService.fetchUser(this.token).then(res => {
-          this.user = res.data
-        })
+        if(!this.isMember){
+          await UserService.fetchUser(this.token).then(res => {
+            this.user = res.data
+          })
+        }else{
+            //this.user = this.$store.getters['member/getMember']
+          await UserService.getMember(this.username).then(res => {
+            this.user = res.data
+          })
+        }
       },
       profileAvatar(image) {
         return image ? `/static/uploads/${image}` : defaultProfileImage
@@ -64,3 +106,11 @@
     },
   }
 </script>
+<style>
+  .round{
+    border-radius: 50%;
+  }
+  .divider{
+    border-bottom: 1px solid rgba(219, 219, 219, 0.5);
+  }
+</style>
