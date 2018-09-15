@@ -117,7 +117,7 @@ export default {
       this.payload = {'token': this.token, 'username': this.$route.params.username}
       this.$store.dispatch('member/fetchReddit', this.payload)
       this.$store.dispatch('member/fetchTwitter', this.payload)
-      this.$store.dispatch('member/fetchTwitch', this.payload)   
+      this.$store.dispatch('member/fetchTwitch', this.payload)
     },
     updated() {
       this.checkAuthentication()
