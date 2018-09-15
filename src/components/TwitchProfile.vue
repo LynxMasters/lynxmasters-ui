@@ -27,13 +27,13 @@
               </p>
             </header>
             <div class="card-image has-text-centered">
-              <img :src="twitch.logo">
+              <img :src="twitch.profile.logo">
             </div>
             <div class="card-content">
               <div class="content">
-                <h4 class="has-text-centered">  {{ twitch.display_name }}</h4>
-                <h5 class="has-text-centered">Bio: {{ twitch.bio }}</h5>
-                <h5 class="has-text-centered">Date Created: {{ moment(twitch.created_at).format('YYYY-MM-DD') }}</h5>
+                <h4 class="has-text-centered">  {{ twitch.profile.display_name }}</h4>
+                <h5 class="has-text-centered">Bio: {{ twitch.profile.bio }}</h5>
+                <h5 class="has-text-centered">Date Created: {{ moment(twitch.profile.created_at).format('YYYY-MM-DD') }}</h5>
               </div>
             </div>
             <footer class="card-footer">

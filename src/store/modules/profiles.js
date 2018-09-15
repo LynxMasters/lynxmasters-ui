@@ -4,14 +4,17 @@ const state = {
   twitter:{
     isLoaded: false,
     fetched: false,
+    profile:[]
   },
   twitch:{
     isLoaded: false,
     fetched: false,
+    profile:[]
   },
   reddit:{
     isLoaded: false,
     fetched: false,
+    profile:[]
   },
 }
 
@@ -31,24 +34,24 @@ const getters = {
 const mutations = {
 
   setReddit (state, payload) {
-   state.reddit = payload.data
+   state.reddit.profile = payload.data
    if(payload.data.hasOwnProperty('icon_img')){
-   state.reddit.icon_img = payload.data.icon_img.replace(/(amp;)+/g, "")
+   state.reddit.profile.icon_img = payload.data.icon_img.replace(/(amp;)+/g, "")
    }
    state.reddit.isLoaded = true
    state.reddit.fetched = true
   },
 
   setTwitch (state, payload) {
-   state.twitch = payload.data
+   state.twitch.profile = payload.data
    state.twitch.isLoaded = true
    state.twitch.fetched = true
   },
 
   setTwitter (state, payload) {
-   state.twitter = payload.data
+   state.twitter.profile = payload.data
    if(payload.data.hasOwnProperty('profile_image_url_https')){
-   state.twitter.profile_image_url_https = payload.data.profile_image_url_https.replace(/_normal/g, "")
+   state.twitter.profile.profile_image_url_https = payload.data.profile_image_url_https.replace(/_normal/g, "")
    }
    state.twitter.isLoaded = true
    state.twitter.fetched = true
@@ -60,7 +63,7 @@ const mutations = {
 }
 
 const actions = {
-  fetchReddit (context, payload) {
+  async fetchReddit (context, payload) {
     if(!state.reddit.fetched){
       return ExternalService.profilesReddit(payload)
       .then(profiles => {
@@ -72,7 +75,7 @@ const actions = {
       })
     }
   },
-  fetchTwitch(context, payload) {
+  async fetchTwitch(context, payload) {
     if(!state.twitch.fetched){
       return ExternalService.profilesTwitch(payload)
       .then(profiles => {
@@ -83,7 +86,7 @@ const actions = {
       })
     }
   },
-  fetchTwitter (context, payload) {
+  async fetchTwitter (context, payload) {
     if(!state.twitter.fetched){
       return ExternalService.profilesTwitter(payload)
       .then(profiles => {
