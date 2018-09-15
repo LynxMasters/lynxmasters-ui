@@ -120,10 +120,12 @@ export default {
       this.$store.dispatch('feeds/fetchReddit', this.token)
       this.$store.dispatch('feeds/fetchTwitter', this.token)
       this.$store.dispatch('feeds/fetchTwitch', this.token)
-      this.$store.dispatch('accounts/fetchAccounts', this.token)     
+      this.$store.dispatch('accounts/fetchAccounts', this.token)  
+      this.$store.commit('profiles/setStats', this.activeTab)   
     },
     updated() {
       this.checkAuthentication()
+      this.$store.commit('profiles/setStats', this.activeTab)  
     },
     watch: {},
     methods: {

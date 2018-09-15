@@ -44,25 +44,25 @@
       <div class="level-item has-text-centered">
         <div>
           <p class="heading">Posts</p>
-          <p>3,456</p>
-        </div>
-      </div>
-      <div class="level-item has-text-centered">
-        <div>
-          <p class="heading">Following</p>
-          <p>123</p>
+          <p>{{profile.posts}}</p>
         </div>
       </div>
       <div class="level-item has-text-centered">
         <div>
           <p class="heading">Followers</p>
-          <p>456K</p>
+          <p>{{profile.followers}}</p>
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Following</p>
+          <p>{{profile.followers}}</p>
         </div>
       </div>
       <div class="level-item has-text-centere d">
         <div>
           <p class="heading">Likes</p>
-          <p>789</p>
+          <p>{{profile.likes}}</p>
         </div>
       </div>
     </nav>   
@@ -76,7 +76,17 @@
   export default {
     props: {
       isMember: false,
-      username: null
+      username: null,
+    },
+    watch: {
+      profile(){
+        return this.$store.getters['profiles/getStats']
+      }
+    },
+    computed:{
+      profile(){
+        return this.$store.getters['profiles/getStats']
+      }
     },
     mounted() {
       this.token = window.localStorage.getItem('token')
@@ -94,7 +104,6 @@
             this.user = res.data
           })
         }else{
-            //this.user = this.$store.getters['member/getMember']
           await UserService.getMember(this.username).then(res => {
             this.user = res.data
           })

@@ -16,6 +16,12 @@ const state = {
     fetched: false,
     profile:[]
   },
+  stats:{
+    posts: 168,
+    followers: 334,
+    following: 99,
+    likes: 269
+  }
 }
 
 const getters = {
@@ -28,6 +34,9 @@ const getters = {
   },
   getReddit(state){
     return state.reddit
+  },
+  getStats(state){
+    return state.stats
   },
 }
 
@@ -59,6 +68,32 @@ const mutations = {
 
   setRequested(state, payload){
     state.fetched = false
+  },
+  setStats(state, payload){
+    if(payload == 0){
+      state.stats.posts = Math.floor(Math.random() * 500) + 200;
+      state.stats.followers = Math.floor(Math.random() * 900) + 400;
+      state.stats.following = Math.floor(Math.random() * 900) + 300;
+      state.stats.likes = Math.floor(Math.random() * 300) + 100;
+    }
+    if(payload == 1){
+      state.stats.posts = Math.floor(Math.random() * 100) + 1;
+      state.stats.followers = Math.floor(Math.random() * 100) + 1;
+      state.stats.following = Math.floor(Math.random() * 100) + 1;
+      state.stats.likes = Math.floor(Math.random() * 100) + 1;
+    }
+    if(payload == 2){
+      state.stats.posts = Math.floor(Math.random() * 100) + 1;
+      state.stats.followers = Math.floor(Math.random() * 100) + 1;
+      state.stats.following = Math.floor(Math.random() * 100) + 1;
+      state.stats.likes = Math.floor(Math.random() * 100) + 1;
+    }
+    if(payload == 3){
+      state.stats.posts = Math.floor(Math.random() * 100) + 1;
+      state.stats.followers = Math.floor(Math.random() * 100) + 1;
+      state.stats.following = Math.floor(Math.random() * 100) + 1;
+      state.stats.likes = Math.floor(Math.random() * 100) + 1;
+    }
   }
 }
 

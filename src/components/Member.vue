@@ -2,7 +2,7 @@
 <section class="profile animated fadeIn">
   <div class="columns is-centered">
     <div class="column is-7">
-       <profileCard :isMember="true"></profileCard>
+       <profileCard :username="this.$route.params.username" :isMember="true"></profileCard>
     </div>
   </div>
   <div class="columns">
@@ -117,7 +117,7 @@ export default {
       this.payload = {'token': this.token, 'username': this.$route.params.username}
       this.$store.dispatch('member/fetchReddit', this.payload)
       this.$store.dispatch('member/fetchTwitter', this.payload)
-      this.$store.dispatch('member/fetchTwitch', this.payload)   
+      this.$store.dispatch('member/fetchTwitch', this.payload)
     },
     updated() {
       this.checkAuthentication()
