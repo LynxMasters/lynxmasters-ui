@@ -78,14 +78,15 @@
       isMember: false,
       username: null,
     },
-    watch: {
-      profile(){
-        return this.$store.getters['profiles/getStats']
-      }
-    },
+    watch: {},
     computed:{
+
       profile(){
-        return this.$store.getters['profiles/getStats']
+        if(isMember){
+          return this$store.getters['profiles/fakeStats']
+        }else{
+          return this.$store.getters['profiles/getStats']
+        }
       }
     },
     created(){
