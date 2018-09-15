@@ -42,9 +42,9 @@
     <template v-if="dataLoaded">
       <div v-if="lynxUsers && lynxUsers.length > 0">
         <div class="container">
-          <div id="player" class="columns is-multiline">
-            <div class="column is-4" v-for="(user) in lynxUsers">
-              <div class="card bottom-space shadow-animate">
+          <div id="member" class="columns is-multiline">
+            <div class="column is-4 same-height" v-for="(user) in lynxUsers">
+              <div class="card bottom-space">
                 <div class="card-image">
                   <figure class="image">
                     <img :src="profileAvatar(user.avatar)" class="image" alt="profile avatar">
@@ -81,7 +81,7 @@
 <script>
   import UserService from '@/services/UserService'
   import Loading from "./Loading.vue"
-  import defaultImage from '@/assets/images/default-avatar.png'
+  import defaultImage from '@/assets/images/default_profile.png'
 
   export default {
     name: "MemberSearch",
@@ -105,7 +105,7 @@
       }
     },
     mounted() {
-      this.getUsers() 
+      this.getUsers()
     },
     computed: {
       filteredDataArray() {
@@ -123,7 +123,7 @@
         const response = await UserService.fetchUsers(window.localStorage.getItem('token'))
         this.lynxUsers = response.data.users
         this.dataLoaded = true
-        this.$store.dispatch('member/resetState')  
+        this.$store.dispatch('member/resetState')
       },
       profileAvatar(image) {
         return image ? `/static/uploads/${image}` : defaultImage
@@ -131,7 +131,7 @@
       member(user){
         this.$store.commit('member/setMember', user)
         this.$router.push({
-          name: 'Member', 
+          name: 'Member',
           params: { username: user.username }
         });
       }
