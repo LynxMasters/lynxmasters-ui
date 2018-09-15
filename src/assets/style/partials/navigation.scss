@@ -5,3 +5,27 @@
 .nav-contain {
   padding: 0 1.5rem
 }
+@media screen and (max-width: 1087px) {
+  .navbar-menu {
+    background-color: transparent;
+  }
+  .navbar-menu.is-active {
+    display: block;
+  }
+  .navbar-item {
+    border-bottom: 1px solid;
+  }
+  .navbar-menu a span {
+    color: whitesmoke;
+  }
+  .navbar-menu a:hover {
+    color: whitesmoke;
+    background: #4b4b4b;
+  }
+}
+
+@media screen and (min-width: 1087px) {
+  .navbar-menu a span {
+    color: whitesmoke;
+  }
+}
