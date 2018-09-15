@@ -121,6 +121,7 @@ export default {
     },
     updated() {
       this.checkAuthentication()
+      this.$store.commit('profiles/fakeStats', this.activeTab) 
     },
     watch: {},
     methods: {

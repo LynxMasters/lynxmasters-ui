@@ -79,9 +79,6 @@
       username: null,
     },
     watch: {
-      profile(){
-        return this.$store.getters['profiles/getStats']
-      }
     },
     computed:{
       profile(){

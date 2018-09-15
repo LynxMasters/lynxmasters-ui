@@ -121,6 +121,48 @@ const mutations = {
       state.stats.col3 = "Followers"
       state.stats.col4 = "Following"
     }
+  },
+  fakeStats(state, payload){
+    if(payload == 0){
+      state.stats.posts = Math.floor(Math.random() * 500) + 200;
+      state.stats.likes = Math.floor(Math.random() * 900) + 400;
+      state.stats.followers = Math.floor(Math.random() * 900) + 300;
+      state.stats.following = Math.floor(Math.random() * 300) + 100;
+      state.stats.col1 = "Posts"
+      state.stats.col2 = "Likes"
+      state.stats.col3 = "Followers"
+      state.stats.col4 = "Following"
+    }
+    if(payload == 1){
+      state.stats.posts = Math.floor(Math.random() * 500) + 200;
+      state.stats.likes = Math.floor(Math.random() * 900) + 400;
+      state.stats.followers = Math.floor(Math.random() * 900) + 300;
+      state.stats.following = Math.floor(Math.random() * 300) + 100;
+      state.stats.col1 = "Posts"
+      state.stats.col2 = "Likes"
+      state.stats.col3 = "Followers"
+      state.stats.col4 = "Following"
+    }
+    if(payload == 2){
+      state.stats.posts = Math.floor(Math.random() * 500) + 200;
+      state.stats.likes = Math.floor(Math.random() * 900) + 400;
+      state.stats.followers = Math.floor(Math.random() * 900) + 300;
+      state.stats.following = Math.floor(Math.random() * 300) + 100;
+      state.stats.col1 = "Posts"
+      state.stats.col2 = "Likes"
+      state.stats.col3 = "Followers"
+      state.stats.col4 = "Following"
+    }
+    if(payload == 3){
+      state.stats.posts = Math.floor(Math.random() * 500) + 200;
+      state.stats.likes = Math.floor(Math.random() * 900) + 400;
+      state.stats.followers = Math.floor(Math.random() * 900) + 300;
+      state.stats.following = Math.floor(Math.random() * 300) + 100;
+      state.stats.col1 = "Posts"
+      state.stats.col2 = "Likes"
+      state.stats.col3 = "Followers"
+      state.stats.col4 = "Following"
+    }
   }
 }
 

@@ -124,6 +124,7 @@
         this.lynxUsers = response.data.users
         this.dataLoaded = true
         this.$store.dispatch('member/resetState')
+        this.$store.dispatch('profile/resetStats')
       },
       profileAvatar(image) {
         return image ? `/static/uploads/${image}` : defaultImage
