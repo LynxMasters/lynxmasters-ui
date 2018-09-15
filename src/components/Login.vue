@@ -179,6 +179,9 @@
               this.$store.dispatch('feeds/fetchReddit', res.data.token)
               this.$store.dispatch('feeds/fetchTwitch', res.data.token)
               this.$store.dispatch('feeds/fetchTwitter', res.data.token)
+              this.$store.dispatch('profiles/fetchReddit', res.data.token)
+              this.$store.dispatch('profiles/fetchTwitch', res.data.token)
+              this.$store.dispatch('profiles/fetchTwitter', res.data.token)
 
               setTimeout(() => {
                 this.$router.push('Profile')

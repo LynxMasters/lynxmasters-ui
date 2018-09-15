@@ -44,6 +44,10 @@ const getters = {
   getTwitter(state){
     return state.twitter
   },
+  getVotes: (state) => (id) => {
+    let index = state.reddit.threads.findIndex(x => x.data.name == id);
+    return state.reddit.threads[index].data
+  }
 }
 
 const mutations = {
