@@ -44,9 +44,9 @@
     created () {
       this.token = window.localStorage.getItem('token')
       this.checkAuthentication()
-      this.$store.dispatch('reddit/fetchProfile', this.token)
-      this.$store.dispatch('twitch/fetchProfile', this.token)
-      this.$store.dispatch('twitter/fetchProfile', this.token)
+      this.$store.dispatch('reddit/fetchProfile')
+      this.$store.dispatch('twitch/fetchProfile')
+      this.$store.dispatch('twitter/fetchProfile')
     },
     updated() {
       this.checkAuthentication()

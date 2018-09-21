@@ -16,7 +16,14 @@ const state = {
     data:[]
   },
   stats:{
-    
+    col1Val: 168,
+    col2Val: 334,
+    col3Val: null,
+    col4Val: null,
+    col1: "Screen Name",
+    col2: "Bio",
+    col3: null,
+    col4: null,
   }
 }
 
@@ -27,6 +34,9 @@ const getters = {
   },
   getProfile(state){
     return state.profile
+  },
+  getStats(state){
+    return state.stats
   }
 }
 
@@ -46,6 +56,9 @@ const mutations = {
   },
   setProfile (state, payload) {
    state.profile.data = payload.data
+   state.stats.col1Val = payload.data.display_name
+   state.stats.col2Val = payload.data.bio
+
    setTimeout(() => {
      state.profile.isLoaded = true
      state.profile.linked = true  
@@ -85,7 +98,7 @@ const actions = {
   },
 
   unlinkTwitch (context, payload) {
-    return ExternalService.twitchUNLINK(payload)
+    return ExternalService.twitchUNLINK()
     .then(account =>{
       context.commit('setRequested')
     })

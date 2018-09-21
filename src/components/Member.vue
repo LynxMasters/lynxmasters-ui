@@ -114,14 +114,14 @@ export default {
     created() {
       this.checkAuthentication()
       this.token = window.localStorage.getItem('token')
-      this.payload = {'token': this.token, 'username': this.$route.params.username}
+      this.payload = {'username': this.$route.params.username}
       this.$store.dispatch('member/fetchReddit', this.payload)
       this.$store.dispatch('member/fetchTwitter', this.payload)
       this.$store.dispatch('member/fetchTwitch', this.payload)
     },
     updated() {
       this.checkAuthentication()
-      this.$store.commit('profiles/fakeStats', this.activeTab) 
+       
     },
     watch: {},
     methods: {

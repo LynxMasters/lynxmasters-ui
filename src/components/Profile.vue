@@ -114,15 +114,12 @@ export default {
     created() {
       this.checkAuthentication()
       this.token = window.localStorage.getItem('token')
-      this.$store.dispatch('reddit/fetchThreads', this.token)
-      this.$store.dispatch('twitter/fetchTweets', this.token)
-      this.$store.dispatch('twitch/fetchStreams', this.token)
-      this.$store.dispatch('accounts/fetchAccounts', this.token)  
-      this.$store.commit('profiles/setStats', this.activeTab)   
+      this.$store.dispatch('reddit/fetchThreads')
+      this.$store.dispatch('twitter/fetchTweets')
+      this.$store.dispatch('twitch/fetchStreams')
     },
     updated() {
       this.checkAuthentication()
-      this.$store.commit('profiles/setStats', this.activeTab)  
     },
     watch: {},
     methods: {

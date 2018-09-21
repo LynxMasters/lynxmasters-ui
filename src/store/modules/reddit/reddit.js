@@ -20,7 +20,14 @@ const state = {
     data:[]
   },
   stats:{
-    
+    col1Val: 168,
+    col2Val: 334,
+    col3Val: 99,
+    col4Val: 269,
+    col1: "Screen Name",
+    col2: "Karma",
+    col3: "Followers",
+    col4: "Following",
   }
 }
 
@@ -35,6 +42,9 @@ const getters = {
   getVotes: (state) => (id) => {
     let index = state.threads.thread.findIndex(x => x.data.name == id);
     return state.reddit.threads[index].data
+  },
+  getStats(state){
+    return state.stats
   }
 }
 
@@ -54,6 +64,10 @@ const mutations = {
     state.profile.data.icon_img = payload.data.icon_img.replace(/(amp;)+/g, "")
     state.profile.linked = true
     state.profile.requested = true
+    state.stats.col1Val = payload.data.subreddit.display_name_prefixed
+    state.stats.col2Val = payload.data.comment_karma + payload.data.link_karma
+    state.stats.col3Val = payload.data.subreddit.subscribers
+    state.stats.col4Val = payload.data.num_friends
    }
    setTimeout(() => {
      state.profile.isLoaded = true     
@@ -118,7 +132,7 @@ const actions = {
   },
 
   unlinkReddit (context, payload) {
-    return ExternalService.redditUNLINK(payload)
+    return ExternalService.redditUNLINK()
     .then(account =>{
       context.commit('setRequested')
     })

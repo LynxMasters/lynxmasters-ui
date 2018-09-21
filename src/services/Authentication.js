@@ -5,6 +5,6 @@ export default {
     return Api().post('auth/login', params)
   },
   verify() {
-    return Api().post('verify/token', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+    return Api().post('verify/token', { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },
 }

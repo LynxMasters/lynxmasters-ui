@@ -44,25 +44,26 @@
       <div class="level-item has-text-centered">
         <div>
           <p class="heading">{{profile.col1}}</p>
-          <p>{{profile.posts}}</p>
+          <p>{{profile.col1Val}}</p>
         </div>
       </div>
       <div class="level-item has-text-centered">
         <div>
           <p class="heading">{{profile.col2}}</p>
-          <p v-html="profileBioOrLikes"></p>
+          <!-- <p v-html="profileBioOrLikes"></p> -->
+          <p>{{profile.col2Val}}</p>
         </div>
       </div>
       <div class="level-item has-text-centered">
         <div>
           <p class="heading">{{profile.col3}}</p>
-          <p>{{profile.followers}}</p>
+          <p>{{profile.col3Val}}</p>
         </div>
       </div>
       <div class="level-item has-text-centered">
         <div>
           <p class="heading">{{profile.col4}}</p>
-          <p>{{profile.following}}</p>
+          <p>{{profile.col4Val}}</p>
         </div>
       </div>
     </nav>
@@ -78,21 +79,33 @@
     props: {
       isMember: false,
       username: null,
+      active: 1,
     },
     watch: {
     },
     computed:{
       profile(){
-        return this.$store.getters['profiles/getStats']
+        
+        return this.$store.getters['twitch/getStats']
+      
+        if(this.active == 1){
+          return this.$store.getters['twitter/getStats']
+        }
+        if(this.active == 2){
+          return this.$store.getters['twitch/getStats']
+        }
+        if(this.active == 3){
+          return this.$store.getters['reddit/getStats']
+        }
       },
       profileBioOrLikes() {
-        return _.isNull(this.profile.likes) ? "&nbsp;" : this.profile.likes
+        return _.isNull(this.profile.col2Val) ? "&nbsp;" : this.profile.likes
       }
     },
     created(){
-      this.$store.dispatch('profiles/fetchReddit')
-      this.$store.dispatch('profiles/fetchTwitch')
-      this.$store.dispatch('profiles/fetchTwitter')
+      this.$store.dispatch('reddit/fetchProfile')
+      this.$store.dispatch('twitch/fetchProfile')
+      this.$store.dispatch('twitter/fetchProfile')
     },
     mounted() {
       this.token = window.localStorage.getItem('token')

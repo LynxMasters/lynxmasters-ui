@@ -23,7 +23,14 @@ const state = {
     data:[]
   },
   stats:{
-    
+    col1Val: 168,
+    col2Val: 334,
+    col3Val: 99,
+    col4Val: 269,
+    col1: "Screen Name",
+    col2: "Likes",
+    col3: "Followers",
+    col4: "Following",
   }
 }
 
@@ -35,6 +42,9 @@ const getters = {
   getProfile(state){
     return state.profile
   },
+  getStats(state){
+    return state.stats
+  }
 }
 
 const mutations = {
@@ -52,9 +62,13 @@ const mutations = {
   setProfile (state, payload) {
    state.profile.data = payload.data
    if(payload.data.hasOwnProperty('profile_image_url_https')){
-   state.profile.data.profile_image_url_https = payload.data.profile_image_url_https.replace(/_normal/g, "")
-   state.profile.linked = true 
-   state.profile.requested = true
+     state.profile.data.profile_image_url_https = payload.data.profile_image_url_https.replace(/_normal/g, "")
+     state.profile.linked = true 
+     state.profile.requested = true
+     state.stats.col1Val = payload.data.screen_name
+     state.stats.col2Val = payload.data.favourites_count
+     state.stats.col3Val = payload.data.followers_count
+     state.stats.col4Val = payload.data.friends_count
    }
    setTimeout(() => {
      state.profile.isLoaded = true    
@@ -140,7 +154,7 @@ const actions = {
   },
 
   unlinkTwitter (context, payload) {
-    return ExternalService.twitterUNLINK(payload)
+    return ExternalService.twitterUNLINK()
     .then(account =>{
       context.commit('setRequested')
     })

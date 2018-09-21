@@ -95,7 +95,7 @@
         
       },
       unlinkReddit (context) {
-        this.$store.dispatch('reddit/unlinkReddit', this.token)
+        this.$store.dispatch('reddit/unlinkReddit')
         this.reddit.linked = false
       },
     },

@@ -3,16 +3,16 @@ import Api from '@/services/Api'
 
 export default{
 
-  twitchUNLINK(jwt){   
-  return Api().post('unlink/twitch', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  twitchUNLINK(){   
+  return Api().post('unlink/twitch', { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   }, 
 
-  twitterUNLINK(jwt){
-  return Api().post('unlink/twitter', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  twitterUNLINK(){
+  return Api().post('unlink/twitter', { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },  
 
-  redditUNLINK(jwt){
-  return Api().post('unlink/reddit', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  redditUNLINK(){
+  return Api().post('unlink/reddit', { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },
 
   profilesReddit(){
@@ -27,28 +27,28 @@ export default{
   return Api().get('profiles/twitter', { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },
 
-  feedsReddit(jwt){
-  return Api().get('feeds/reddit', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  feedsReddit(){
+  return Api().get('feeds/reddit', { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },
 
-  feedsTwitch(jwt){
-  return Api().get('feeds/twitch', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  feedsTwitch(){
+  return Api().get('feeds/twitch', { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },
 
-  feedsTwitter(jwt){
-  return Api().get('feeds/twitter', { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  feedsTwitter(){
+  return Api().get('feeds/twitter', { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },
-  commentsReddit(jwt, id36){
-  return Api().get('comments/reddit?id36='+id36, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  commentsReddit(id36){
+  return Api().get('comments/reddit?id36='+id36, { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },
-  membersReddit(jwt, username){
-  return Api().get('members/reddit?username='+username, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  membersReddit(username){
+  return Api().get('members/reddit?username='+username, { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },
-  membersTwitch(jwt, username){
-  return Api().get('members/twitch?username='+username, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  membersTwitch(username){
+  return Api().get('members/twitch?username='+username, { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },
-  membersTwitter(jwt, username){
-  return Api().get('members/twitter?username='+username, { headers: {'Authorization': jwt, 'Content-Type': 'application/json' } })
+  membersTwitter(username){
+  return Api().get('members/twitter?username='+username, { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },
   voteReddit(vote){
   return Api().post('vote/reddit', {data: vote}, { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
