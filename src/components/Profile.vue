@@ -160,7 +160,7 @@ export default {
       },
 
       redditMore() {
-        ExternalService.feedsRedditMore(this.reddit.thread[24].data.name)
+        ExternalService.feedsRedditMore(this.reddit.thread[this.reddit.thread.length-1].data.name)
         .then(res => {
           console.log(res)
           this.reddit.thread = this.reddit.thread.concat(res.data.data.children)

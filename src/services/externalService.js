@@ -66,7 +66,7 @@ export default{
   return Api().post('favorite/twitter', {data: favorite}, { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },
   feedsRedditMore(id36){
-  return Api().get('feeds/reddit/more?=id36'+id36, { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
+  return Api().get('feeds/reddit/more?id36='+id36, { headers: {'Authorization': window.localStorage.getItem('token'), 'Content-Type': 'application/json' } })
   },
 }
 
