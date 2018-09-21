@@ -34,7 +34,7 @@
                 <h4 class="has-text-centered">u/{{reddit.data.name }}</h4>
                 <h5 class="has-text-centered">{{ reddit.data.link_karma }} Post Karma</h5>
                 <h5 class="has-text-centered">{{ reddit.data.comment_karma }} Comment Karma</h5>
-                <h5 class="has-text-centered">Date Created: {{ moment.unix(reddit.created).format('YYYY-MM-DD') }}</h5>
+                <h5 class="has-text-centered">Date Created: {{ moment.unix(reddit.data.created_utc).format('YYYY-MM-DD') }}</h5>
               </div>
             </div>
             <footer class="card-footer">
