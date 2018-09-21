@@ -102,7 +102,8 @@ export default {
     watch:{
       bottom(bottom) {
         if (bottom) {
-          this.redditMore()
+          //this.redditMore()
+          this.twitterMore()
         }
       }
     },
@@ -165,7 +166,15 @@ export default {
           console.log(res)
           this.reddit.thread = this.reddit.thread.concat(res.data.data.children)
         })
-        
+      },
+
+      twitterMore() {
+        ExternalService.feedsTwitterMore(this.twitter.tweet[this.twitter.tweet.length-1].id_str)
+        .then(res => {
+          console.log(res)
+          res.data.shift()
+          this.twitter.tweet = this.twitter.tweet.concat(res.data)
+        })
       }
     }
  }
