@@ -6,15 +6,15 @@
     </div>
     <div id="social" class="columns features">
       <!-- BEGIN TWITTER CARDS -->
-      <twitter :accounts="accounts"></twitter>
+      <twitter></twitter>
       <!-- END TWITTER CARDS -->
 
       <!-- BEGIN TWITCH CARDS -->
-      <twitch :accounts="accounts"></twitch>
+      <twitch></twitch>
       <!-- END TWITCH CARDS -->
 
       <!--  BEGIN REDDIT CARDS -->
-      <reddit :accounts="accounts"></reddit>
+      <reddit></reddit>
       <!-- END REDDIT CARDS -->
     </div>
   </section>
@@ -22,9 +22,9 @@
 
 <script>
 
-  import Twitter from './TwitterProfile.vue'
-  import Reddit from './RedditProfile.vue'
-  import Twitch from './TwitchProfile.vue'
+  import Twitter from './twitter/TwitterProfile.vue'
+  import Reddit from './reddit/RedditProfile.vue'
+  import Twitch from './twitch/TwitchProfile.vue'
 
   export default {
     name: 'LinkAccounts',
@@ -40,23 +40,18 @@
       'twitch': Twitch,
     },
     computed:{
-      accounts(){
-        return this.$store.getters['accounts/getAccounts']
-      },
     },
     created () {
       this.token = window.localStorage.getItem('token')
       this.checkAuthentication()
-      this.$store.dispatch('accounts/fetchAccounts', this.token)
-      this.$store.dispatch('profiles/fetchReddit', this.token)
-      this.$store.dispatch('profiles/fetchTwitch', this.token)
-      this.$store.dispatch('profiles/fetchTwitter', this.token)
+      this.$store.dispatch('reddit/fetchProfile')
+      this.$store.dispatch('twitch/fetchProfile')
+      this.$store.dispatch('twitter/fetchProfile')
     },
     updated() {
       this.checkAuthentication()
     },
     mounted() {
-      // this.token = window.localStorage.getItem('token')
     },
     watch: {},
     methods:{

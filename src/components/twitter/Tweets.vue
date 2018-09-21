@@ -53,11 +53,11 @@
           this.tweet.retweeted = true
           this.tweet.retweet_count +=1
           this.showRetweet = true 
-          this.$store.dispatch('feeds/postRetweet', {id: this.tweet.id_str, retweeted: this.tweet.retweeted, retweet_count: this.tweet.retweet_count})
+          this.$store.dispatch('twitter/postRetweet', {id: this.tweet.id_str, retweeted: this.tweet.retweeted, retweet_count: this.tweet.retweet_count})
         }else{
           this.tweet.retweeted = false
           this.tweet.retweet_count -=1
-          this.$store.dispatch('feeds/postRetweet', {id: this.tweet.id_str, retweeted: this.tweet.retweeted, retweet_count: this.tweet.retweet_count})
+          this.$store.dispatch('twitter/postRetweet', {id: this.tweet.id_str, retweeted: this.tweet.retweeted, retweet_count: this.tweet.retweet_count})
         }
       },
 
@@ -65,11 +65,11 @@
         if(!this.tweet.favorited){
           this.tweet.favorited = true
           this.tweet.favorite_count +=1
-          this.$store.dispatch('feeds/postFavorite', {id: this.tweet.id_str, favorited: this.tweet.favorited, favorite_count: this.tweet.favorite_count})
+          this.$store.dispatch('twitter/postFavorite', {id: this.tweet.id_str, favorited: this.tweet.favorited, favorite_count: this.tweet.favorite_count})
         }else{
           this.tweet.favorited = false
           this.tweet.favorite_count -=1
-          this.$store.dispatch('feeds/postFavorite', {id: this.tweet.id_str, favorited: this.tweet.favorited, favorite_count: this.tweet.favorite_count})
+          this.$store.dispatch('twitter/postFavorite', {id: this.tweet.id_str, favorited: this.tweet.favorited, favorite_count: this.tweet.favorite_count})
         }
       },
     },

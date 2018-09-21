@@ -77,9 +77,9 @@
 import UserService from '@/services/UserService'
 import ExternalService from '@/services/externalService'
 import ProfileCard from './ProfileAvatar.vue'
-import Twitter from './Tweets.vue'
-import Reddit from './Threads.vue'
-import Twitch from './Streams.vue'
+import Twitter from './twitter/Tweets.vue'
+import Reddit from './reddit/Threads.vue'
+import Twitch from './twitch/Streams.vue'
 import Loading from './Loading.vue'
 
 
@@ -114,14 +114,14 @@ export default {
     created() {
       this.checkAuthentication()
       this.token = window.localStorage.getItem('token')
-      this.payload = {'token': this.token, 'username': this.$route.params.username}
+      this.payload = {'username': this.$route.params.username}
       this.$store.dispatch('member/fetchReddit', this.payload)
       this.$store.dispatch('member/fetchTwitter', this.payload)
       this.$store.dispatch('member/fetchTwitch', this.payload)
     },
     updated() {
       this.checkAuthentication()
-      this.$store.commit('profiles/fakeStats', this.activeTab) 
+       
     },
     watch: {},
     methods: {

@@ -372,7 +372,7 @@
       },
       methods: {
         async getUserAccountInfo() {
-          await UserService.fetchUser(this.token).then(res => {
+          await UserService.fetchUser().then(res => {
             this.user = res.data
           })
         },
@@ -420,7 +420,7 @@
         async updateUserEmail() {
           if (this.user.email === this.tempUser.tempOldEmail && !(this.tempUser.tempNewEmail === this.tempUser.tempOldEmail)){
             this.user.email = this.tempUser.tempNewEmail
-            await UserService.updateUser(this.user,this.token).then(res => {
+            await UserService.updateUser(this.user).then(res => {
               if (res.data.errors) {
                 this.errors = res.data.errors
                 this.tempUser.tempOldEmail = ''

@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="column is-4 animated fadeIn"
-             v-if="accounts.reddit.linked && reddit.isLoaded">
+             v-if="reddit.linked && reddit.isLoaded">
           <div class="card is-shady card-equal-height">
             <header class="card-header">
               <p class="card-header-title">
@@ -27,14 +27,14 @@
               </p>
             </header>
             <div class="card-image has-text-centered">
-              <img :src="reddit.profile.icon_img" height="300" width="300">
+              <img :src="reddit.data.icon_img" height="300" width="300">
             </div>
             <div class="card-content">
               <div class="content">
-                <h4 class="has-text-centered">u/{{reddit.profile.name }}</h4>
-                <h5 class="has-text-centered">{{ reddit.profile.link_karma }} Post Karma</h5>
-                <h5 class="has-text-centered">{{ reddit.profile.comment_karma }} Comment Karma</h5>
-                <h5 class="has-text-centered">Date Created: {{ moment.unix(reddit.created).format('YYYY-MM-DD') }}</h5>
+                <h4 class="has-text-centered">u/{{reddit.data.name }}</h4>
+                <h5 class="has-text-centered">{{ reddit.data.link_karma }} Post Karma</h5>
+                <h5 class="has-text-centered">{{ reddit.data.comment_karma }} Comment Karma</h5>
+                <h5 class="has-text-centered">Date Created: {{ moment.unix(reddit.data.created_utc).format('YYYY-MM-DD') }}</h5>
               </div>
             </div>
             <footer class="card-footer">
@@ -44,7 +44,7 @@
           </div>
         </div>
         <div class="column is-4 animated fadeIn"
-             v-if="!accounts.reddit.linked && reddit.isLoaded">
+             v-if="!reddit.linked && reddit.isLoaded">
           <div class="card is-shady card-equal-height">
             <div class="card-image has-text-centered">
               <i class="fab fa-reddit fa-7x"></i>
@@ -64,12 +64,11 @@
     </transition>
 </template>
 <script>
-  import Loading from './Loading.vue'
+  import Loading from '../Loading.vue'
   export default {
-    name: 'RedditProfile',
+    name: 'Redditdata',
     
     props:{
-      accounts:{}
     },
     components: { 
       'loading': Loading
@@ -81,7 +80,7 @@
     },
     computed:{
       reddit(){
-        return this.$store.getters['profiles/getReddit']
+        return this.$store.getters['reddit/getProfile']
       },
     },
     created(){
@@ -96,10 +95,8 @@
         
       },
       unlinkReddit (context) {
-        this.$store.commit('accounts/setFetched')
-        this.$store.commit('profiles/setRequested')
-        this.$store.dispatch('accounts/unlinkReddit', this.token)
-        this.accounts.reddit.linked = false
+        this.$store.dispatch('reddit/unlinkReddit')
+        this.reddit.linked = false
       },
     },
   }

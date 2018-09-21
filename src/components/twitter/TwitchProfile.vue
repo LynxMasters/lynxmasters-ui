@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="column is-4 animated fadeIn"
-             v-if="twitch.isLoaded && accounts.twitch.linked">
+             v-if="twitch.isLoaded && twitch.linked">
           <div class="card is-shady card-equal-height">
             <header class="card-header">
               <p class="card-header-title">
@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="column is-4 animated fadeIn"
-             v-if="twitch.isLoaded && !accounts.twitch.linked">
+             v-if="twitch.isLoaded && !twitch.linked">
           <div class="card is-shady card-equal-height">
             <div class="card-image has-text-centered">
               <i class="fab fa-twitch fa-7x"></i>
@@ -64,7 +64,7 @@
   </transition>
 </template>
 <script>
-  import Loading from './Loading.vue'
+  import Loading from '../Loading.vue'
   export default {
     name: 'TwitchProfile',
     

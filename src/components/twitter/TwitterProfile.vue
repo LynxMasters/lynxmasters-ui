@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="column is-4 animated fadeIn"
-             v-if="accounts.twitter.linked && twitter.isLoaded">
+             v-if="twitter.linked && twitter.isLoaded">
           <div class="card is-shady card-equal-height">
             <header class="card-header">
               <p class="card-header-title">
@@ -27,13 +27,13 @@
               </p>
             </header>
             <div class="card-image has-text-centered">
-              <img :src="twitter.profile.profile_image_url_https" class="twitter-img">
+              <img :src="twitter.data.profile_image_url_https" class="twitter-img">
             </div>
             <div class="card-content">
               <div class="content">
-                <h4 class="has-text-centered">@{{ twitter.profile.screen_name }}</h4>
-                <h5 class="has-text-centered">Followers: {{ twitter.profile.followers_count }} Following: {{ twitter.profile.friends_count }}</h5>
-                <h5 class="has-text-centered">Date Created: {{ moment(twitter.profile.created_at).format('YYYY-MM-DD') }}</h5>
+                <h4 class="has-text-centered">@{{ twitter.data.screen_name }}</h4>
+                <h5 class="has-text-centered">Followers: {{ twitter.data.followers_count }} Following: {{ twitter.data.friends_count }}</h5>
+                <h5 class="has-text-centered">Date Created: {{ moment(twitter.data.created_at).format('YYYY-MM-DD') }}</h5>
               </div>
             </div>
             <footer class="card-footer">
@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="column is-4 animated fadeIn"
-             v-if="!accounts.twitter.linked && twitter.isLoaded">
+             v-if="!twitter.linked && twitter.isLoaded">
           <div class="card is-shady card-equal-height">
             <div class="card-image has-text-centered">
               <i class="fab fa-twitter fa-7x"></i>
@@ -63,12 +63,11 @@
     </transition>
 </template>
 <script>
-  import Loading from './Loading.vue'
+  import Loading from '../Loading.vue'
   export default {
-    name: 'TwitterProfile',
+    name: 'Twitterdata',
     
     props:{
-    	accounts:{}
     },
     components: { 
       'loading': Loading
@@ -80,7 +79,7 @@
     },
     computed:{
     	twitter(){
-        	return this.$store.getters['profiles/getTwitter']
+        	return this.$store.getters['twitter/getProfile']
       	},
     },
     created(){
@@ -94,10 +93,8 @@
         	window.location = process.env.TWITTER_URL + this.token
       	},
     	unlinkTwitter (context) {
-        this.$store.commit('accounts/setFetched')
-		    this.$store.commit('profiles/setRequested')
-		    this.$store.dispatch('accounts/unlinkTwitter', this.token)
-		    this.accounts.twitter.linked = false
+		    this.$store.dispatch('twitter/unlinkTwitter', this.token)
+		    this.twitter.linked = false
   		},
     }
   }   
