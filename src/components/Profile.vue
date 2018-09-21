@@ -96,6 +96,14 @@ export default {
     data() {
       return {
         activeTab: 0,
+        bottom: false,
+      }
+    },
+    watch:{
+      bottom(bottom) {
+        if (bottom) {
+          this.redditMore()
+        }
       }
     },
     computed: {
@@ -117,11 +125,13 @@ export default {
       this.$store.dispatch('reddit/fetchThreads')
       this.$store.dispatch('twitter/fetchTweets')
       this.$store.dispatch('twitch/fetchStreams')
+      window.addEventListener('scroll', () => {
+        this.bottom = this.bottomVisible()
+      })
     },
     updated() {
       this.checkAuthentication()
     },
-    watch: {},
     methods: {
 
       checkAuthentication() {
@@ -140,6 +150,23 @@ export default {
           type: 'is-danger'
         })
       },
+
+      bottomVisible() {
+        const scrollY = window.scrollY
+        const visible = document.documentElement.clientHeight
+        const pageHeight = document.documentElement.scrollHeight
+        const bottomOfPage = visible + scrollY >= pageHeight
+        return bottomOfPage || pageHeight < visible
+      },
+
+      redditMore() {
+        ExternalService.feedsRedditMore(this.reddit.thread[24].data.name)
+        .then(res => {
+          console.log(res)
+          this.reddit.thread = this.reddit.thread.concat(res.data.data.children)
+        })
+        
+      }
     }
  }
 </script>
