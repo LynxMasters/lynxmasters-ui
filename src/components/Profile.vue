@@ -102,8 +102,12 @@ export default {
     watch:{
       bottom(bottom) {
         if (bottom) {
-          //this.redditMore()
+          if(this.activeTab == 1){
           this.twitterMore()
+          }
+          if(this.activeTab==3){
+            this.redditMore()
+          }
         }
       }
     },
