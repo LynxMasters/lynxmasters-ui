@@ -3,17 +3,17 @@ import ExternalService from '@/services/externalService'
 const state = {
   twitter:{
     isLoaded: false,
-    fetched: false,
+    linked: false,
     profile:[]
   },
   twitch:{
     isLoaded: false,
-    fetched: false,
+    linked: false,
     profile:[]
   },
   reddit:{
     isLoaded: false,
-    fetched: false,
+    linked: false,
     profile:[]
   },
   stats:{
@@ -50,10 +50,10 @@ const mutations = {
    state.reddit.profile = payload.data
    if(payload.data.hasOwnProperty('icon_img')){
    state.reddit.profile.icon_img = payload.data.icon_img.replace(/(amp;)+/g, "")
+   state.reddit.linked = true
    }
    setTimeout(() => {
-     state.reddit.isLoaded = true
-     state.reddit.fetched = true     
+     state.reddit.isLoaded = true     
    }, 1500)
   },
 
@@ -61,7 +61,7 @@ const mutations = {
    state.twitch.profile = payload.data
    setTimeout(() => {
      state.twitch.isLoaded = true
-     state.twitch.fetched = true     
+     state.twitch.linked = true     
    }, 1500)
   },
 
@@ -69,10 +69,10 @@ const mutations = {
    state.twitter.profile = payload.data
    if(payload.data.hasOwnProperty('profile_image_url_https')){
    state.twitter.profile.profile_image_url_https = payload.data.profile_image_url_https.replace(/_normal/g, "")
+   state.twitter.linked = true 
    }
    setTimeout(() => {
-     state.twitter.isLoaded = true
-     state.twitter.fetched = true     
+     state.twitter.isLoaded = true    
    }, 1500)
   },
 

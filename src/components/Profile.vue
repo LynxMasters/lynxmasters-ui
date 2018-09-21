@@ -25,15 +25,15 @@
             </div>
           </div>
           <div v-else class='all'  v-for="i in 8">
-            <reddit v-if="i < reddit.len && i == 1 && accounts.reddit.linked" :thread="reddit.threads[0]"></reddit>
-            <twitch v-if="i < twitch.len && i == 1 && accounts.twitch.linked" :stream="twitch.streams[0]"></twitch>
-            <twitter v-if="i < twitter.len && i == 1 && accounts.twitter.linked" :tweet="twitter.tweets[0]"></twitter>
-            <reddit v-if="i < reddit.len && i >= 1 && accounts.reddit.linked" :thread="reddit.threads[i]"></reddit>
-            <twitch v-if="i < twitch.len && i >= 1 && accounts.twitch.linked" :stream="twitch.streams[i]"></twitch>
-            <twitter v-if="i < twitter.len && i >= 1&& accounts.twitter.linked" :tweet="twitter.tweets[i]"></twitter>
+            <reddit v-if="i < reddit.len && i == 1 && reddit.linked" :thread="reddit.thread[0]"></reddit>
+            <twitch v-if="i < twitch.len && i == 1 && twitch.linked" :stream="twitch.stream[0]"></twitch>
+            <twitter v-if="i < twitter.len && i == 1 && twitter.linked" :tweet="twitter.tweet[0]"></twitter>
+            <reddit v-if="i < reddit.len && i >= 1 && reddit.linked" :thread="reddit.thread[i]"></reddit>
+            <twitch v-if="i < twitch.len && i >= 1 && twitch.linked" :stream="twitch.stream[i]"></twitch>
+            <twitter v-if="i < twitter.len && i >= 1&& twitter.linked" :tweet="twitter.tweet[i]"></twitter>
           </div>
           </b-tab-item>
-          <b-tab-item v-if="accounts.twitter.linked">
+          <b-tab-item v-if="twitter.linked">
           <template slot="header">
           <b-icon class="fab fa-twitter"></b-icon>
           <span> Twitter</span>
@@ -41,9 +41,9 @@
           <div v-if="!twitter.isLoaded" class='all has-text-center'>
             <loading></loading>
           </div>
-          <twitter v-else :tweet="tweet" v-for="tweet in twitter.tweets" :key="tweet.id"></twitter> 
+          <twitter v-else :tweet="data" v-for="data in twitter.tweet" :key="data.id"></twitter> 
           </b-tab-item>
-          <b-tab-item v-if="accounts.twitch.linked">
+          <b-tab-item v-if="twitch.linked">
           <template slot="header">
           <b-icon class="fab fa-twitch"></b-icon>
           <span> Twitch</span>
@@ -51,9 +51,9 @@
           <div v-if="!twitch.isLoaded" class='all has-text-center'>
             <loading></loading>
           </div>
-          <twitch v-else :stream="stream" v-for="stream in twitch.streams" :key="stream.id"></twitch>
+          <twitch v-else :stream="data" v-for="data in twitch.stream" :key="data.id"></twitch>
           </b-tab-item>
-          <b-tab-item v-if="accounts.reddit.linked">
+          <b-tab-item v-if="reddit.linked">
           <template slot="header">
           <b-icon class="fab fa-reddit"></b-icon>
           <span> Reddit</span>
@@ -61,7 +61,7 @@
           <div v-if="!reddit.isLoaded" class='all has-text-center'>
             <loading></loading>
           </div>
-          <reddit v-else :thread="thread" v-for="thread in reddit.threads" :key="thread.id">
+          <reddit v-else :thread="data" v-for="data in reddit.thread" :key="data.id">
           </reddit>
           </b-tab-item>
           </b-tabs>
@@ -77,9 +77,9 @@
 import UserService from '@/services/UserService'
 import ExternalService from '@/services/externalService'
 import ProfileCard from './ProfileAvatar.vue'
-import Twitter from './Tweets.vue'
-import Reddit from './Threads.vue'
-import Twitch from './Streams.vue'
+import Twitter from './twitter/Tweets.vue'
+import Reddit from './reddit/Threads.vue'
+import Twitch from './twitch/Streams.vue'
 import Loading from './Loading.vue'
 
 
@@ -99,17 +99,14 @@ export default {
       }
     },
     computed: {
-      accounts(){
-        return this.$store.getters['accounts/getAccounts']
-      },
       twitter(){
-        return this.$store.getters['feeds/getTwitter']
+        return this.$store.getters['twitter/getTweets']
       },
       twitch(){
-        return this.$store.getters['feeds/getTwitch']
+        return this.$store.getters['twitch/getStreams']
       },
       reddit(){
-        return this.$store.getters['feeds/getReddit']
+        return this.$store.getters['reddit/getThreads']
       },
     },
     beforeMount() {  
@@ -117,9 +114,9 @@ export default {
     created() {
       this.checkAuthentication()
       this.token = window.localStorage.getItem('token')
-      this.$store.dispatch('feeds/fetchReddit', this.token)
-      this.$store.dispatch('feeds/fetchTwitter', this.token)
-      this.$store.dispatch('feeds/fetchTwitch', this.token)
+      this.$store.dispatch('reddit/fetchThreads', this.token)
+      this.$store.dispatch('twitter/fetchTweets', this.token)
+      this.$store.dispatch('twitch/fetchStreams', this.token)
       this.$store.dispatch('accounts/fetchAccounts', this.token)  
       this.$store.commit('profiles/setStats', this.activeTab)   
     },

@@ -5,6 +5,7 @@ const state = {
     len: 0,
     isLoaded: false,
     requested_at: 0,
+    linked: false,
     tweets:[
       {
         favorite_count: null,
@@ -18,12 +19,14 @@ const state = {
     len: 0,
     isLoaded: false,
     requested_at: 0,
+    linked: false,
     streams:[]
   },
   reddit:{
     len: 0,
     isLoaded: false,
     requested_at: 0,
+    linked: false,
     threads:[
       {
         likes: null,
@@ -55,6 +58,7 @@ const mutations = {
    if(!payload.data.hasOwnProperty('error')){
     state.reddit.threads = payload.data.data.children
     state.reddit.len = payload.data.data.dist
+    state.reddit.linked = true
    }
    state.reddit.isLoaded = true
    state.reddit.requested_at = new Date().getTime() + (5*60*1000)
@@ -63,6 +67,7 @@ const mutations = {
    if(!payload.data.hasOwnProperty('error')){
     state.twitch.streams = payload.data.streams
     state.twitch.len  = payload.data.total
+    state.twitch.linked =true
     if(state.twitch.len == null){
       state.twitch.len = 0
     }
@@ -74,6 +79,7 @@ const mutations = {
    if(!payload.data.hasOwnProperty('error')){
     state.twitter.tweets = payload.data
     state.twitter.len = payload.data.length
+    state.twitter.linked = true
    }
    state.twitter.isLoaded = true
    state.twitter.requested_at = new Date().getTime() + (5*60*1000)

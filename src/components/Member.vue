@@ -77,9 +77,9 @@
 import UserService from '@/services/UserService'
 import ExternalService from '@/services/externalService'
 import ProfileCard from './ProfileAvatar.vue'
-import Twitter from './Tweets.vue'
-import Reddit from './Threads.vue'
-import Twitch from './Streams.vue'
+import Twitter from './twitter/Tweets.vue'
+import Reddit from './reddit/Threads.vue'
+import Twitch from './twitch/Streams.vue'
 import Loading from './Loading.vue'
 
 

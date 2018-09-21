@@ -84,7 +84,7 @@ const mutations = {
 }
 
 const actions = {
-  fetchReddit (context, payload) {
+  async fetchReddit (context, payload) {
     return ExternalService.membersReddit(payload.token, payload.username)
     .then(feeds => {
       console.log(feeds)
@@ -94,7 +94,7 @@ const actions = {
       console.log(error)
     })
   },
-  fetchTwitch (context, payload) {
+  async fetchTwitch (context, payload) {
     return ExternalService.membersTwitch(payload.token, payload.username)
     .then(feeds => {
       context.commit('setTwitch', feeds)
@@ -103,7 +103,7 @@ const actions = {
       console.log(error)
     })  
   },
-  fetchTwitter (context, payload) {
+  async fetchTwitter (context, payload) {
     return ExternalService.membersTwitter(payload.token, payload.username)
       .then(feeds => {
         console.log(feeds)
