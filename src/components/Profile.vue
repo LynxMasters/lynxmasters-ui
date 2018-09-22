@@ -180,6 +180,10 @@ export default {
           this.twitter.tweet = this.twitter.tweet.concat(res.data)
         })
       }
+    },
+    destroyed(){
+      this.twitter.tweet.splice(24, this.twitter.tweet.length-25)
+      this.reddit.thread.splice(24, this.reddit.thread.length-25)
     }
  }
 </script>
