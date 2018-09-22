@@ -2,7 +2,7 @@
 <section class="profile animated fadeIn">
   <div class="columns is-centered">
     <div class="column is-7">
-       <profileCard :isMember="false"></profileCard>
+       <profileCard :activeTab="activeTab" :isMember="false"></profileCard>
     </div>
   </div>
   <div class="columns">

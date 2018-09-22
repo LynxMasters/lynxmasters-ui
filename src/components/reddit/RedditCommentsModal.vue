@@ -69,7 +69,7 @@ export default {
   },
   methods:{
     async fetchComments(){
-      await ExternalServices.commentsReddit(this.token, this.thread.data.id)
+      await ExternalServices.commentsReddit(this.thread.data.id)
       .then(res => {
         return res
       })
