@@ -103,9 +103,9 @@ export default {
       bottom(bottom) {
         if (bottom) {
           if(this.activeTab == 1){
-          this.twitterMore()
+           this.twitterMore()
           }
-          if(this.activeTab==3){
+          if(this.activeTab == 3){
             this.redditMore()
           }
         }

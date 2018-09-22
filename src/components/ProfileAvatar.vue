@@ -79,15 +79,15 @@
     props: {
       isMember: false,
       username: null,
-      activeTab: 0,
+      activeTab: null,
     },
     watch: {
     },
     computed:{
       profile(){
-        
-        return this.$store.getters['twitch/getStats']
-      
+        if(this.activeTab == 0){
+          return this.$store.getters['twitter/getStats']
+        }
         if(this.activeTab == 1){
           return this.$store.getters['twitter/getStats']
         }
