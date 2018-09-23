@@ -2,7 +2,7 @@
 <section class="profile animated fadeIn">
   <div class="columns is-centered">
     <div class="column is-7">
-       <profileCard :isMember="false"></profileCard>
+       <profileCard :activeTab="activeTab" :isMember="false"></profileCard>
     </div>
   </div>
   <div class="columns">
@@ -103,9 +103,9 @@ export default {
       bottom(bottom) {
         if (bottom) {
           if(this.activeTab == 1){
-          this.twitterMore()
+           this.twitterMore()
           }
-          if(this.activeTab==3){
+          if(this.activeTab == 3){
             this.redditMore()
           }
         }
@@ -180,6 +180,10 @@ export default {
           this.twitter.tweet = this.twitter.tweet.concat(res.data)
         })
       }
+    },
+    destroyed(){
+      this.twitter.tweet.splice(24, this.twitter.tweet.length-25)
+      this.reddit.thread.splice(24, this.reddit.thread.length-25)
     }
  }
 </script>

@@ -79,22 +79,22 @@
     props: {
       isMember: false,
       username: null,
-      active: 1,
+      activeTab: null,
     },
     watch: {
     },
     computed:{
       profile(){
-        
-        return this.$store.getters['twitch/getStats']
-      
-        if(this.active == 1){
+        if(this.activeTab == 0){
           return this.$store.getters['twitter/getStats']
         }
-        if(this.active == 2){
+        if(this.activeTab == 1){
+          return this.$store.getters['twitter/getStats']
+        }
+        if(this.activeTab == 2){
           return this.$store.getters['twitch/getStats']
         }
-        if(this.active == 3){
+        if(this.activeTab == 3){
           return this.$store.getters['reddit/getStats']
         }
       },
