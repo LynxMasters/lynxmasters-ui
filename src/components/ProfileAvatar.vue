@@ -1,9 +1,9 @@
 <template>
-<div class="columns">
-<!--   <div class="card">
+<div class="column is-3">
+  <div class="card">
     <header class="card-header">
       <p class="card-header-title is-centered card-name">
-        @{{user.username}}
+        {{user.username}}
       </p>
     </header>
     <div class="card-image">
@@ -16,24 +16,16 @@
     <div class="card-content">
       <div class="content has-text-centered">
         <div class="field">
-            <label class="label">Linked Accounts</label>
+            <i class="fab fa-instagram fa-2x"></i>
+            <i class="fab fa-twitter fa-2x"></i>
+            <i class="fab fa-twitch fa-2x"></i>
+            <i class="fab fa-reddit fa-2x"></i>
+            <i class="fab fa-spotify fa-2x"></i>
          </div>
-        <router-link v-bind:to="{ name: 'LinkAccounts' }"
-        class="member-linked-accounts" exact>
-        <i v-if="accounts.twitter.linked" class="fab fa-twitter fa-2x"></i>
-        </router-link>
-        <router-link v-bind:to="{ name: 'LinkAccounts' }"
-        class="member-linked-accounts" exact>
-        <i v-if="accounts.twitch.linked" class="fab fa-twitch fa-2x"></i>
-        </router-link>
-        <router-link v-bind:to="{ name: 'LinkAccounts' }"
-        class="member-linked-accounts" exact>
-        <i v-if="accounts.reddit.linked" class="fab fa-reddit fa-2x"></i>
-        </router-link>
       </div>
     </div>
-  </div> -->
-  <div class="column is-2 is-offset-2">
+  </div>
+<!--   <div class="column is-2 is-offset-2">
     <figure class="image is-150x150">
           <img class="round" :src="profileAvatar(user.avatar)">
     </figure>
@@ -50,7 +42,7 @@
       <div class="level-item has-text-centered">
         <div>
           <p class="heading">{{profile.col2}}</p>
-          <!-- <p v-html="profileBioOrLikes"></p> -->
+         p v-html="profileBioOrLikes"></p> 
           <p>{{profile.col2Val}}</p>
         </div>
       </div>
@@ -67,7 +59,7 @@
         </div>
       </div>
     </nav>
-  </div>
+  </div> -->
 </div>
 </template>
 <script>

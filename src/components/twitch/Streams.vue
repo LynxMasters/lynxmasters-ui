@@ -9,7 +9,7 @@
         <br>
         <iframe v-bind:src="`https://player.twitch.tv/?channel=${stream.channel.name}&autoplay=false`"
           height="500"
-          width="650"
+          width="500"
           frameborder="<frameborder>"
           scrolling="<scrolling>"
           allowfullscreen="<allowfullscreen>">
@@ -20,7 +20,7 @@
             id="chat_embed"
             v-bind:src="`https://www.twitch.tv/embed/${stream.channel.name}/chat`"
             height="500"
-            width="650">
+            width="500">
           </iframe>
         </div>
       </p>

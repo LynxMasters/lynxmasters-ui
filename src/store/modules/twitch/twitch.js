@@ -45,7 +45,7 @@ const mutations = {
   setStreams (state, payload) {
    if(!payload.data.hasOwnProperty('error')){
     state.streams.stream = payload.data.streams
-    state.streams.len  = payload.data.total
+    state.streams.len  = payload.data._total
     state.streams.linked = true
     if(state.streams.len == null){
       state.streams.len = 0
