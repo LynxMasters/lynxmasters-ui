@@ -50,6 +50,11 @@
       }
     },
     methods: {
+      async fetchProfile() {
+        await UserService.fetchUser(this.token).then(res => {
+          this.user = res.data
+        })
+      },
       profileAvatar(image) {
         return image ? `/static/uploads/${image}` : defaultProfileImage
       }

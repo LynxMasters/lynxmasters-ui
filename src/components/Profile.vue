@@ -6,7 +6,7 @@
         <profileCard  :isMember="false"></profileCard>
         <br>
         <nav class="panel">
-          <p class="panel-heading">
+          <p class="panel-heading no-margin">
             Filter
           </p>
           <a class="panel-block" v-on:click="filter('all')">
@@ -50,7 +50,7 @@
         <b-tab-item>
         <template slot="header">
         <b-icon class="fas fa-align-justify"></b-icon>
-        <span> Feeds</span>
+        <!-- <span> Feeds</span> -->
         </template>
         <div class="column is-12" v-if="!twitter.isLoaded || !twitch.isLoaded || !reddit.isLoaded">
           <div class="content has-text-centered">
@@ -69,19 +69,19 @@
         <b-tab-item >
         <template slot="header">
         <b-icon class="fas fa-clipboard-list"></b-icon>
-        <span> Posts</span>
+        <!-- <span> Posts</span> -->
         </template>
         </b-tab-item>
         <b-tab-item >
         <template slot="header">
         <b-icon class="fas fa-heart"></b-icon>
-        <span> Likes</span>
+        <!-- <span> Likes</span> -->
         </template>
         </b-tab-item>
         <b-tab-item >
         <template slot="header">
         <b-icon class="fas fa-user-friends"></i>"></b-icon>
-        <span> Followers</span>
+       <!--  <span> Followers</span> -->
         </template>
         </b-tab-item>
         </b-tabs>
@@ -265,11 +265,13 @@ export default {
                 this.filterTwitch = true
                 this.filterTwitter = true
                 break;
+
             case 'reddit':
                 this.filterReddit = true
                 this.filterTwitch = false
                 this.filterTwitter = false 
                 break;
+
             case 'twitter':
                 this.filterReddit = false
                 this.filterTwitch = false
@@ -283,7 +285,7 @@ export default {
                 break;
 
             default:
-                 this.filterReddit = true
+                this.filterReddit = true
                 this.filterTwitch = true
                 this.filterTwitter = true     
         }
@@ -315,6 +317,9 @@ export default {
     padding-top: 1em;
     padding-bottom: 1em;    
     
+  }
+  .no-margin {
+    margin: 0;
   }
   .media{
     background-color: #fafafa;
