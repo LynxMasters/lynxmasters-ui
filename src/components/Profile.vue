@@ -2,142 +2,139 @@
 <section class="profile animated fadeIn">
   <div class="container">
     <div class="columns is-centered">
-    <profileCard :activeTab="activeTab" :isMember="false"></profileCard>
-    <div class="column is-6 tab-top">
-      <b-tabs size="is-medium"
-      position="is-centered"
-      type="is-boxed"
-      v-model="activeTab">
-      <div class="level-center">
-        <div class="level-item">
-          <a class="button fab fa-twitter fa-2x"> Tweet</a>
-          <a class="button fab fa-reddit fa-2x"> Post</a>
-          <a class="button fab fa-instagram fa-2x"> Upload</a>
-        </div>
+      <div class="column is-3">
+        <profileCard  :isMember="false"></profileCard>
+        <br>
+        <nav class="panel">
+          <p class="panel-heading">
+            Filter
+          </p>
+          <a class="panel-block" v-on:click="filter('all')">
+            <span class="panel-icon">
+              <i class="fas fa-align-justify" aria-hidden="true"></i>
+            </span>
+            All
+          </a>
+          <a class="panel-block" v-on:click="filter('reddit')">
+            <span class="panel-icon">
+              <i class="fab fa-reddit fa-1x" aria-hidden="true"></i>
+            </span>
+            Reddit
+          </a>
+          <a class="panel-block" v-on:click="filter('twitter')">
+            <span class="panel-icon">
+              <i class="fab fa-twitter fa-1x" aria-hidden="true"></i>
+            </span>
+            Twitter
+          </a>
+          <a class="panel-block" v-on:click="filter('twitch')">
+            <span class="panel-icon">
+              <i class="fab fa-twitch fa-1x" aria-hidden="true"></i>
+            </span>
+            Twitch
+          </a>
+        </nav>
       </div>
-      <b-tab-item>
-      <template slot="header">
-      <b-icon class="fas fa-align-justify"></b-icon>
-      <span> Feeds</span>
-      </template>
-      <div class="column is-12" v-if="!twitter.isLoaded || !twitch.isLoaded || !reddit.isLoaded">
-        <div class="content has-text-centered">
-          <loading></loading>
-        </div>
-      </div>
-      <div v-else class='all'  v-for="i in count">
-        <reddit v-if="filterReddit && i < reddit.len && i == 1 && reddit.linked" :thread="reddit.thread[0]"></reddit>
-        <twitch v-if="filterTwitch && i < twitch.len && i == 1 && twitch.linked" :stream="twitch.stream[0]"></twitch>
-        <twitter v-if="filterTwitter && i < twitter.len && i == 1 && twitter.linked" :tweet="twitter.tweet[0]"></twitter>
-        <reddit v-if="filterReddit && i < reddit.len && i >= 1 && reddit.linked" :thread="reddit.thread[i]"></reddit>
-        <twitch v-if="filterTwitch && i < twitch.len && i >= 1 && twitch.linked" :stream="twitch.stream[i]"></twitch>
-        <twitter v-if="filterTwitter && i < twitter.len && i >= 1&& twitter.linked" :tweet="twitter.tweet[i]"></twitter>
-      </div>
-      </b-tab-item>
-      <b-tab-item >
-      <template slot="header">
-      <b-icon class="fas fa-clipboard-list"></b-icon>
-      <span> Posts</span>
-      </template>
-      <!-- <div v-if="!twitter.isLoaded" class='all has-text-center'>
-        <loading></loading>
-      </div>
-      <twitter v-else :tweet="data" v-for="data in twitter.tweet" :key="data.id"></twitter>  -->
-      </b-tab-item>
-      <b-tab-item >
-      <template slot="header">
-      <b-icon class="fas fa-heart"></b-icon>
-      <span> Likes</span>
-      </template>
-      <!-- <div v-if="!twitch.isLoaded" class='all has-text-center'>
-        <loading></loading>
-      </div>
-      <twitch v-else :stream="data" v-for="data in twitch.stream" :key="data.id"></twitch> -->
-      </b-tab-item>
-      <b-tab-item >
-      <template slot="header">
-      <b-icon class="fas fa-user-friends"></i>"></b-icon>
-      <span> Followers</span>
-      </template>
-      <!-- <div v-if="!reddit.isLoaded" class='all has-text-center'>
-        <loading></loading>
-      </div>
-      <reddit v-else :thread="data" v-for="data in reddit.thread" :key="data.id">
-      </reddit> -->
-      </b-tab-item>
-      </b-tabs>
-    </div>  
-    <div class="column is-4">
-      <div class="columns">
-        <div class="column is-4 has-text-centered">
-          <div class="box">
-            <strong>Posts</strong>
-            <p>5K</p>
+      <div class="column is-6 tab-top">
+        <b-tabs size="is-medium"
+        position="is-centered"
+        type="is-boxed"
+        v-model="activeTab">
+        <div class="level-center">
+          <div class="level-item">
+            <a class="button fab fa-twitter fa-2x"> Tweet</a>
+            <a class="button fab fa-reddit fa-2x"> Post</a>
+            <a class="button fab fa-instagram fa-2x"> Upload</a>
           </div>
         </div>
-        <div class="column is-4 has-text-centered">
-            <div class="box">  
-            <strong>Likes</strong>
-            <p>2K</p>   
+        <b-tab-item>
+        <template slot="header">
+        <b-icon class="fas fa-align-justify"></b-icon>
+        <span> Feeds</span>
+        </template>
+        <div class="column is-12" v-if="!twitter.isLoaded || !twitch.isLoaded || !reddit.isLoaded">
+          <div class="content has-text-centered">
+            <loading></loading>
           </div>
         </div>
-      </div>
-      <div class="columns">
-        <div class="column is-4 has-text-centered">
-          <div class="box">
-            <strong>Followers</strong>
-            <p>199</p>
-          </div>
+        <div v-else class='all'  v-for="i in count">
+          <reddit v-if="filterReddit && i < reddit.len && i == 1 && reddit.linked" :thread="reddit.thread[0]"></reddit>
+          <twitch v-if="filterTwitch && i < twitch.len && i == 1 && twitch.linked" :stream="twitch.stream[0]"></twitch>
+          <twitter v-if="filterTwitter && i < twitter.len && i == 1 && twitter.linked" :tweet="twitter.tweet[0]"></twitter>
+          <reddit v-if="filterReddit && i < reddit.len && i >= 1 && reddit.linked" :thread="reddit.thread[i]"></reddit>
+          <twitch v-if="filterTwitch && i < twitch.len && i >= 1 && twitch.linked" :stream="twitch.stream[i]"></twitch>
+          <twitter v-if="filterTwitter && i < twitter.len && i >= 1&& twitter.linked" :tweet="twitter.tweet[i]"></twitter>
         </div>
-        <div class="column is-4 has-text-centered">
-            <div class="box">  
-            <strong>Views</strong>
-            <p>5</p>   
-          </div>
-        </div>
-      </div>
-      <div class="columns">
-        <div class="column is-8 has-text-centered">
-          <div class="box">
-            <h4 class="card-header-title is-centered card-name">Trending</h4>
-            <p><strong><a class="has-text-twitter">#Redsox</a></strong> <small>24k Tweets</small></p>
-            <p><strong><a class="has-text-twitter">#Debate</a></strong> <small>2k Tweets</small></p>
-            <p><strong><a class="has-text-reddit">r/gifs</a></strong> <small>24k Subscribers</small></p>
-            <p><strong><a class="has-text-twitch">Ninja</a></strong> <small>2k Viewers</small></p>
-            <p><strong><a class="has-text-twitter">#Trump</a></strong> <small>245k Tweets</small></p>
-            <p><strong><a class="has-text-reddit">r/funny</a></strong> <small>100k Subscribers</small></p>
-            <p><strong><a class="has-text-twitch">Shroud</a></strong> <small>245k Viewers</small></p>
-            <p><strong><a class="has-text-reddit">r/aww</a></strong> <small>44k Subscribers</small></p>
-            <p><strong><a class="has-text-twitch">DrDisrespect</a></strong> <small>245k Viewers</small></p>
-            <p><strong><a class="has-text-twitter">#Nasa</a></strong> <small>44k Tweets</small></p>
-          </div>
-        </div>
+        </b-tab-item>
+        <b-tab-item >
+        <template slot="header">
+        <b-icon class="fas fa-clipboard-list"></b-icon>
+        <span> Posts</span>
+        </template>
+        </b-tab-item>
+        <b-tab-item >
+        <template slot="header">
+        <b-icon class="fas fa-heart"></b-icon>
+        <span> Likes</span>
+        </template>
+        </b-tab-item>
+        <b-tab-item >
+        <template slot="header">
+        <b-icon class="fas fa-user-friends"></i>"></b-icon>
+        <span> Followers</span>
+        </template>
+        </b-tab-item>
+        </b-tabs>
       </div>  
-
-<!--       <div class="tile is-ancestor">
-        <div class="tile is-vertical is-8">
-          <div class="tile">
-            <div class="tile is-parent is-vertical">
-              <article class="tile is-child notification has-text-centered">
-                <p class="subtitle">Trending</p>
-                <p><strong>#Redsox</strong> <small>24k Tweets</small></p>
-                <p><strong>#Debate</strong> <small>2k Tweets</small></p>
-                <p><strong>r/gifs</strong> <small>24k Subscribers</small></p>
-                <p><strong>Ninja</strong> <small>2k Viewers</small></p>
-                <p><strong>#Trump</strong> <small>245k Tweets</small></p>
-                <p><strong>r/funny</strong> <small>100k Subscribers</small></p>
-                <p><strong>Shroud</strong> <small>245k Viewers</small></p>
-                <p><strong>r/aww</strong> <small>44k Subscribers</small></p>
-                <p><strong>DrDisrespect</strong> <small>245k Viewers</small></p>
-                <p><strong>#Nasa</strong> <small>44k Tweets</small></p>
-              </article>
+      <div class="column is-4">
+        <div class="columns">
+          <div class="column is-4 has-text-centered">
+            <div class="box">
+              <strong>Posts</strong>
+              <p>5K</p>
+            </div>
+          </div>
+          <div class="column is-4 has-text-centered">
+              <div class="box">  
+              <strong>Likes</strong>
+              <p>2K</p>   
             </div>
           </div>
         </div>
-      </div> -->
+        <div class="columns">
+          <div class="column is-4 has-text-centered">
+            <div class="box">
+              <strong>Followers</strong>
+              <p>199</p>
+            </div>
+          </div>
+          <div class="column is-4 has-text-centered">
+              <div class="box">  
+              <strong>Views</strong>
+              <p>5</p>   
+            </div>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-8 has-text-centered">
+            <div class="box">
+              <h4 class="card-header-title is-centered card-name">Trending</h4>
+              <p><strong><a class="has-text-twitter">#Redsox</a></strong> <small>24k Tweets</small></p>
+              <p><strong><a class="has-text-twitter">#Debate</a></strong> <small>2k Tweets</small></p>
+              <p><strong><a class="has-text-reddit">r/gifs</a></strong> <small>24k Subscribers</small></p>
+              <p><strong><a class="has-text-twitch">Ninja</a></strong> <small>2k Viewers</small></p>
+              <p><strong><a class="has-text-twitter">#Trump</a></strong> <small>245k Tweets</small></p>
+              <p><strong><a class="has-text-reddit">r/funny</a></strong> <small>100k Subscribers</small></p>
+              <p><strong><a class="has-text-twitch">Shroud</a></strong> <small>245k Viewers</small></p>
+              <p><strong><a class="has-text-reddit">r/aww</a></strong> <small>44k Subscribers</small></p>
+              <p><strong><a class="has-text-twitch">DrDisrespect</a></strong> <small>245k Viewers</small></p>
+              <p><strong><a class="has-text-twitter">#Nasa</a></strong> <small>44k Tweets</small></p>
+            </div>
+          </div>
+        </div> 
+      </div>
     </div>
   </div>
-</div>
 </section>
 </template>
 
@@ -170,7 +167,7 @@ export default {
         count: 4,
         filterReddit: true,
         filterTwitter: true,
-        filterTwitch: false,
+        filterTwitch: true,
       }
     },
     watch:{
@@ -260,6 +257,36 @@ export default {
           this.twitter.tweet = this.twitter.tweet.concat(res.data)
           this.twitter.len = this.twitter.len + 100
         })
+      },
+      filter(service){
+        switch(service) {
+            case 'all':
+                this.filterReddit = true
+                this.filterTwitch = true
+                this.filterTwitter = true
+                break;
+            case 'reddit':
+                this.filterReddit = true
+                this.filterTwitch = false
+                this.filterTwitter = false 
+                break;
+            case 'twitter':
+                this.filterReddit = false
+                this.filterTwitch = false
+                this.filterTwitter = true 
+                break;
+
+            case 'twitch':
+                this.filterReddit = false
+                this.filterTwitch = true
+                this.filterTwitter = false 
+                break;
+
+            default:
+                 this.filterReddit = true
+                this.filterTwitch = true
+                this.filterTwitter = true     
+        }
       }
     },
     destroyed(){
