@@ -173,14 +173,8 @@ export default {
     watch:{
       bottom(bottom) {
         if (bottom) {
-          // if(this.activeTab == 1){
-          //  this.twitterMore()
-          // }
-          // if(this.activeTab == 3){
-          //   this.redditMore()
-          // }
           this.count = this.count + 4
-          if(this.count == 80 || this.count == 160){
+          if(this.count % 80 == 0){
             this.redditMore()
             this.twitterMore()
           }
