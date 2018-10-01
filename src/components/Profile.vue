@@ -42,8 +42,10 @@
         v-model="activeTab">
         <div class="level-center">
           <div class="level-item">
-            <a class="button fab fa-twitter fa-2x"> Tweet</a>
-            <a class="button fab fa-reddit fa-2x"> Post</a>
+            <a class="button fab fa-twitter fa-2x" @click="postTweet = true"> Tweet</a>
+            <tweet v-if='postTweet' @close="postTweet = false"></tweet>
+            <a class="button fab fa-reddit fa-2x" @click="postThread = true"> Post</a>
+            <thread v-if='postThread' @close="postThread = false"></thread>
             <a class="button fab fa-instagram fa-2x"> Upload</a>
           </div>
         </div>
@@ -146,7 +148,8 @@ import Twitter from './twitter/Tweets.vue'
 import Reddit from './reddit/Threads.vue'
 import Twitch from './twitch/Streams.vue'
 import Loading from './Loading.vue'
-import Post from './Post.vue'
+import Tweet from './twitter/TwitterPostTweet.vue'
+import Thread from './reddit/RedditPostThread.vue'
 
 
 export default {
@@ -157,7 +160,8 @@ export default {
       'reddit': Reddit,
       'twitch': Twitch,
       'loading': Loading,
-      'post': Post
+      'tweet': Tweet,
+      'thread': Thread
     },
     name: 'Profile',
     data() {
@@ -168,6 +172,8 @@ export default {
         filterReddit: true,
         filterTwitter: true,
         filterTwitch: true,
+        postTweet: false,
+        postThread: false
       }
     },
     watch:{
