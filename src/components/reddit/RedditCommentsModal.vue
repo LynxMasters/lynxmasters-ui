@@ -2,8 +2,8 @@
 <div class="modal is-active">
   <div class="modal-background"></div>
   <div class="modal-card reddit-content">
-    <header class="modal-card-head">
-      <p class="modal-card-title">r/{{thread.data.subreddit}}</p>
+    <header class="modal-card-head bg-reddit">
+      <p class="modal-card-title has-text-white">r/{{thread.data.subreddit}}</p>
       <button class="delete" v-on:click.stop="$emit('close')"></button>
     </header>
     <section class="modal-card-body">
@@ -36,7 +36,7 @@
         </article>
         <comments :comment="comment" v-for="comment in comments" :key="comment.id" ></comments>
     </section>
-    <footer class="modal-card-foot">
+    <footer class="modal-card-foot bg-reddit">
 
     </footer>
   </div>

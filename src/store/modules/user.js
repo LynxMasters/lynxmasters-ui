@@ -22,7 +22,7 @@ const mutations = {
     state.status = ''
     state.token = ''
     state.user = ''
-    localStorage.removeItem('token')
+    window.localStorage.removeItem('token')
   },
   auth_success(state, token, user){
     state.status = 'success'

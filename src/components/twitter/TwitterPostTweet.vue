@@ -2,17 +2,11 @@
 <div class="modal is-active">
   <div class="modal-background"></div>
   <div class="modal-card">
-    <header class="modal-card-head bg-twitter">
-      <p class="modal-card-title has-text-white">Reply to {{tweet.user.name}}</p>
+    <header class="modal-card-head has-text-centered bg-twitter">
+      <p class="modal-card-title has-text-white">Tweet</p>
       <button class="delete" v-on:click.stop="$emit('close')"></button>
     </header>
     <section class="modal-card-body">
-        <article class="media bg-white">
-          <avatar :avatar="tweet.user.profile_image_url"></avatar>
-          <div class="media-content">
-            <twittercontent :tweet="tweet" :isTweet="false"></twittercontent>
-          </div>
-        </article>
         <article class="media">
           <div class="media-content">
             <div class="field">
@@ -20,6 +14,19 @@
                 <textarea class="textarea" placeholder="Tweet your reply"></textarea>
               </p>
             </div>
+            <nav class="level is-mobile">
+              <div class="level-left">
+                <a class="level-item">
+                  <span class="icon is-small"><i class="fas fa-image "></i></span>
+                </a>
+                <a class="level-item">
+                  <span class="icon is-small"><i class="fas fa-poll-h "></i></span>
+                </a>
+                <a class="level-item">
+                  <span class="icon is-small"><i class="fas fa-map-marker-alt "></i></span>
+                </a>
+              </div>
+            </nav>
           </div>
         </article>
     </section>
@@ -29,25 +36,14 @@
 </div>
 </template>
 <script>
-import TwitterContent from './TwitterContent.vue'
-import TwitterAvatar from './TwitterAvatar.vue'
-import ExternalServices from '@/services/externalService'
 export default {
-  components:{
-    'twittercontent': TwitterContent,
-    'avatar': TwitterAvatar
-  },
-
-  props:{
-    tweet:{},
-  },
+  components:{},
+  props:{},
   data(){
     return{     
     }
   },
-  created(){
-    this.token = window.localStorage.getItem('token')     
-  },
+  created(){},
   methods:{
   },
 }
